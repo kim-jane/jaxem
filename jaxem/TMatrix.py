@@ -33,6 +33,7 @@ class TMatrix:
         self.output = config.output
         self.tol = config.tol
         self.seed = config.seed
+        self.factor = config.factor
         
         self.pot = Potential(config)
         self.map = Map(config)
@@ -65,6 +66,7 @@ class TMatrix:
         self.Gkq = jnp.zeros((self.Nk, self.Nq+1), dtype=jnp.complex128)
         self.Gkq = self.Gkq.at[:,0].set( self.m * self.k * (0.5 * Ck + self.k * Bk) ) # MeV^2
         self.Gkq = self.Gkq.at[:,1:].set( - self.m * Bkq * (self.q**2)[jnp.newaxis,:] )
+        self.Gkq *= config.factor # different normalization conventions
         tf = time.time()
         print(f"Done in {tf-ti:.3f} sec.")
         
@@ -236,9 +238,10 @@ class TMatrix:
             
         
     
-    def phase_shifts(self, T_single=None, T_coupled=None, factor=1.):
+    def phase_shifts(self, T_single=None, T_coupled=None):
     
         # use stapp parameterization with epsilon = 0 for single
+        
     
         if T_single is not None:
         
@@ -248,7 +251,7 @@ class TMatrix:
             
             print("*", Tsck.shape)
             
-            S_sck = 1 - 1j * factor * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:] * Tsck
+            S_sck = 1 - 1j * self.factor * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:] * Tsck
             
             print(S_sck)
             print(jnp.absolute(S_sck))
