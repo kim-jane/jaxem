@@ -1,0 +1,3 @@
+[submodule "chiral"]
+	path = chiral
+	url = https://github.com/cdrischler/greedy_emulator.git
