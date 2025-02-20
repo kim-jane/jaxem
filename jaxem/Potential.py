@@ -70,6 +70,7 @@ class Potential:
             self.compute_single = True if self.chan.Nsingle > 0 else False
             self.compute_coupled = True if self.chan.Ncoupled > 0 else False
             
+            
 
                 
             

@@ -73,6 +73,3 @@ class Map:
         wq = jnp.concatenate((wq1, wq2))
         
         return q, wq
-
-
-# multiply by factor here? Look at AG's New_emulator code

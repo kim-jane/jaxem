@@ -22,95 +22,70 @@ print(f"n_devices = {n_devices}")
 config = Config('test/BenchmarkChiral.ini')
 config.print_info()
 
-###
-
-'''
-pot = Potential(config)
-LECs_best = pot.LECs
-
-p1, p2, Vpp = np.loadtxt('test/benchmark/VNN_N2LO_local_R0_1.0_SLLJT_00001_lambda_50.00_Np_200_np.dat', unpack=True)
-
-p1 = jnp.array(p1)
-p2 = jnp.array(p2)
-Vpp = jnp.reshape(jnp.array(Vpp), (200, 200))
-print(Vpp.shape)
-
-p1 = p1[::200]
-p2 = p2[:200]
-
-
-Vocp_test, _ = pot.Voc(config.hbarc * p1, diag=True)
-Vp_test = jnp.einsum('o,oci->ci', LECs_best, Vocp_test)[0]
-
-plt.plot(jnp.diag(Vpp)/config.m/config.hbarc )
-plt.plot(Vp_test)
-plt.show()
-'''
-
-###
-
-
-Elab, delta = np.loadtxt('test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_1S0np.txt', unpack=True)
-
-plt.plot(Elab, delta)
-
-Elab, delta = np.loadtxt('test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_3P0np.txt', unpack=True)
-
-plt.plot(Elab, delta)
-
-'''
-plt.show()
-
-
-pot = Potential(config)
-LECs_best = pot.LECs
-
-p1, p2, Vpp = np.loadtxt('test/benchmark/VNN_N2LO_local_R0_1.0_SLLJT_00001_lambda_50.00_Np_200_np.dat', unpack=True)
-
-p1 = jnp.array(p1)
-p2 = jnp.array(p2)
-Vpp = jnp.reshape(jnp.array(Vpp), (200, 200))
-print(Vpp.shape)
-
-p1 = p1[::200]
-p2 = p2[:200]
-
-
-Vocp_test, _ = pot.Voc(config.hbarc * p1, diag=True)
-Vp_test = jnp.einsum('o,oci->ci', LECs_best, Vocp_test)[0]
-
-plt.plot(jnp.diag(Vpp)/config.m/config.hbarc )
-plt.plot(Vp_test)
-plt.show()
-
-'''
-
-
-
-
 
 # create tmat
 tmat = TMatrix(config)
 LECs_best = tmat.pot.LECs
 
+# plot Christian's phase shifts for all channels
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
 
+for c in range(tmat.chan.Nsingle):
+    
+
+    Elab, delta = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.single_spect_not[c]}np.txt', unpack=True)
+    ax[0].plot(Elab, delta)
+
+
+
+for cc in range(tmat.chan.Ncoupled):
+
+    Elab, delta_singlet, delta_triplet, epsilon = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.coupled_spect_not[cc]}np.txt', unpack=True)
+    ax[1].plot(Elab, delta_singlet, color='C'+str(cc))
+    ax[1].plot(Elab, delta_triplet, linestyle='dashed', color='C'+str(cc))
+    ax[1].plot(Elab, epsilon, linestyle='dotted', color='C'+str(cc))
+
+
+
+# computes phase shifts and plot
 Tsckq, Tscckq = tmat.solve(LECs_best)
-print("Tsckq = ", Tsckq.shape)
-print(tmat.k[1])
-print(Tsckq[0,0,1,0])
 
-delta, _ = tmat.phase_shifts(T_single=Tsckq, T_coupled=Tscckq)
-delta = delta[0]
-print("delta = ", delta)
 
-for i in range(delta.shape[0]):
-    plt.scatter(tmat.Elab, (180./np.pi) * delta[i])
-    
 
-Elab_AG = jnp.array([20., 40., 60., 80., 100.])
-delta_AG_singlet = jnp.array([9.339387E-01, 7.701090E-01, 6.477976E-01, 5.488205E-01, 4.653679E-01])
-delta_AG_triplet = jnp.array([1.222418E-01, 1.811798E-01, 1.919273E-01, 1.782547E-01, 1.519650E-01])
-plt.scatter(Elab_AG, (180./np.pi) * delta_AG_singlet, marker='s')
-plt.scatter(Elab_AG, (180./np.pi) * delta_AG_triplet, marker='s')
-    
+single_output, coupled_output = tmat.phase_shifts(T_single=Tsckq, T_coupled=Tscckq)
+delta_sck, eta_sck = single_output
+delta_minus_scck, delta_plus_scck, epsilon_scck, eta_minus_scck, eta_plus_scck = coupled_output
+
+
+for c in range(tmat.chan.Nsingle):
+
+    ax[0].scatter(tmat.Elab, (180/jnp.pi) * delta_sck[0,c,:])
+
+
+for cc in range(tmat.chan.Ncoupled):
+
+    ax[1].plot(tmat.Elab, (180/jnp.pi) * delta_minus_scck[0,cc,:], color='C'+str(cc+1))
+    ax[1].plot(tmat.Elab, (180/jnp.pi) * delta_plus_scck[0,cc,:], color='C'+str(cc+1), linestyle='dashed')
+    ax[1].plot(tmat.Elab, (180/jnp.pi) * epsilon_scck[0,cc,:], color='C'+str(cc+1), linestyle='dotted')
+
 plt.show()
+plt.close()
+
+
+'''
+for cc in range(tmat.chan.Ncoupled):
+
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,0,1:].real, marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,1,1:].real, marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,1,1:].real, marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,0,1:].real, marker='o')
+    
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,0,1:].imag, linestyle='dashed', marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,1,1:].imag, linestyle='dashed', marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,1,1:].imag, linestyle='dashed', marker='o')
+    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,0,1:].imag, linestyle='dashed', marker='o')
+    
+#plt.xlim(0, 20)
+plt.show()
+plt.close()
+'''

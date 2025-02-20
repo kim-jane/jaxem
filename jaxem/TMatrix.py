@@ -48,17 +48,16 @@ class TMatrix:
         self.Nq = config.Nq
         self.q, self.wq = self.map.grid() # MeV
         
-        # precalculate correction for finite map
+        # precalculate propagator for all energies
+        # units: MeV^2
+        print("Precalculating propagators...", end="", flush=True)
+        ti = time.time()
+        
         if self.map.inf:
             Ck = jnp.zeros(self.Nk)
         else:
             qmax = jnp.max(self.q)
-            Ck = jnp.log((qmax + self.k) / (qmax - self.k))
-            
-        # precalculate propagator for all energies
-        # units: MeV^2
-        print("Precalculating propagators...", end="")
-        ti = time.time()
+            Ck = jnp.log((qmax + self.k) / (qmax - self.k)) # correction for finite map
         Ck = Ck.astype(jnp.complex128) - 1j * jnp.pi
         Bkq = self.wq / ((self.q**2)[jnp.newaxis,:] - (self.k**2)[:,jnp.newaxis]) # MeV^-1
         Bk = jnp.sum(Bkq, axis=1)
@@ -71,7 +70,7 @@ class TMatrix:
         print(f"Done in {tf-ti:.3f} sec.")
         
         # precalculate potential operators for all channels and energies
-        print("Precalculating potential operators...", end="")
+        print("Precalculating potential operators...", end="", flush=True)
         ti = time.time()
         
         Vocqq, Voccqq = self.pot.Voc(self.q)
@@ -109,6 +108,7 @@ class TMatrix:
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,0,1:].set( Vocckq_mp )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,0,1:].set( Vocckq_mp )
 
+            
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,0,0,0].set( Vocck_mm )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,1,0,0].set( Vocck_pp )
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,0,0].set( Vocck_mp )
@@ -120,8 +120,9 @@ class TMatrix:
         tf = time.time()
         print(f"Done in {tf-ti:.3f} sec.")
         
-        '''
+        
         # check map for each channel and operator
+        '''
         k = 0
         for o in range(self.pot.No):
         
@@ -158,21 +159,23 @@ class TMatrix:
                     vmin = jnp.min(self.Vocckqq[o,cc,k])
                     vmax = jnp.max(self.Vocckqq[o,cc,k])
                     vmax = max(jnp.abs(vmin), jnp.abs(vmax))
+                    vmax = 0.00001 * vmax
                     ax[cc].imshow(self.Vocckqq[o,cc,k].real, vmin=-vmax, vmax=vmax, cmap='bwr')
                     ax[cc].set_title(f"{self.chan.coupled_spect_not[cc]} Channel")
                     ax[cc].axhline(-0.5, color='k', linestyle='dashed', linewidth=0.2)
                     ax[cc].axhline(0.5, color='k', linestyle='dashed', linewidth=0.2)
-                    ax[cc].axhline(self.Nq-0.5, color='k', linestyle='dashed', linewidth=0.2)
                     ax[cc].axhline(self.Nq+0.5, color='k', linestyle='dashed', linewidth=0.2)
+                    ax[cc].axhline(self.Nq+1.5, color='k', linestyle='dashed', linewidth=0.2)
                     ax[cc].axvline(-0.5, color='k', linestyle='dashed', linewidth=0.2)
                     ax[cc].axvline(0.5, color='k', linestyle='dashed', linewidth=0.2)
-                    ax[cc].axvline(self.Nq-0.5, color='k', linestyle='dashed', linewidth=0.2)
                     ax[cc].axvline(self.Nq+0.5, color='k', linestyle='dashed', linewidth=0.2)
+                    ax[cc].axvline(self.Nq+1.5, color='k', linestyle='dashed', linewidth=0.2)
                 
                 fig.suptitle(f"Operator {o}")
                 plt.show()
                 plt.close()
         '''
+        
         
         # pytrees for storing emulators
         self.emulator = {'greedy': {}, 'POD': {}}
@@ -182,7 +185,7 @@ class TMatrix:
         LECs_samples = jnp.reshape(LECs_samples, (-1, self.pot.No))
         Nsamples = LECs_samples.shape[0]
         
-        print(f"Solving the high-fidelity model for {Nsamples} samples...")
+        print(f"Solving the high-fidelity model for {Nsamples} samples...", flush=True)
         ti = time.time()
     
         if self.pot.compute_single:
@@ -216,6 +219,7 @@ class TMatrix:
             iq = jnp.arange(2*self.Nq+2)
             Ascckqq = -jnp.einsum('sckij,kj->sckij', Vscckqq, jnp.tile(self.Gkq, (1,2)))
             Ascckqq = Ascckqq.at[:,:,:,iq,iq].add(1.0)
+
             
             # solve for half-shell T matrix
             Tscckq = jnp.linalg.solve(Ascckqq, Vscckqq[:,:,:,:,[0, self.Nq + 1]])
@@ -253,7 +257,7 @@ class TMatrix:
             delta_sck = 0.5 * jnp.arctan2(S_sck.imag, S_sck.real)
             
             # compute eta
-            eta_sck = jnp.absolute(S_sck)
+            eta_sck = jnp.abs(S_sck)
             
             # package output
             single_output = (delta_sck, eta_sck)
@@ -268,25 +272,31 @@ class TMatrix:
             Tscckq = jnp.reshape(T_coupled, (-1, self.chan.Ncoupled, self.Nk, 2, 2, self.Nq+1))
             Tscck = Tscckq[:,:,:,:,:,0]
             
+            
             # convert to S matrix
             S_scck = - 1j * self.factor * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:,jnp.newaxis,jnp.newaxis] * Tscck
             i = jnp.arange(2)
             S_scck = S_scck.at[:,:,:,i,i].add(1.0) # adding 1 to -- and ++
             
             # compute mixing angle epsilon
-            epsilon_scck = - 0.5 * 1j * ( S_scck[...,0,1] + S_scck[...,1,0] ) / jnp.sqrt(S_scck[...,0,0] * S_scck[...,1,1])
-            epsilon_scck = 0.25 * 1j * jnp.log( (1 - 1j * epsilon_scck) / (1 + 1j * epsilon_scck) )
+            z = - 0.5 * 1j * ( S_scck[...,0,1] + S_scck[...,1,0] ) / jnp.sqrt(S_scck[...,0,0] * S_scck[...,1,1])
+            epsilon_scck = - 0.25 * 1j * jnp.log( (1 + 1j * z) / (1 - 1j * z) )
+            print(epsilon_scck)
             epsilon_scck = epsilon_scck.real
+            #epsilon_scck = jnp.zeros_like(epsilon_scck)
             
             # compute phase shifts
             S_minus_scck = S_scck[...,0,0] / jnp.cos(2 * epsilon_scck)
             S_plus_scck = S_scck[...,1,1] / jnp.cos(2 * epsilon_scck)
+
             delta_minus_scck = 0.5 * jnp.arctan2(S_minus_scck.imag, S_minus_scck.real)
             delta_plus_scck = 0.5 * jnp.arctan2(S_plus_scck.imag, S_plus_scck.real)
             
             # compute etas
-            eta_minus_scck = jnp.absolute(S_minus_scck)
-            eta_plus_scck = jnp.absolute(S_plus_scck)
+            eta_minus_scck = jnp.abs(S_minus_scck)
+            eta_plus_scck = jnp.abs(S_plus_scck)
+            print(eta_minus_scck)
+            print(eta_plus_scck)
             
             # package output
             coupled_output = (delta_minus_scck, delta_plus_scck, epsilon_scck, eta_minus_scck, eta_plus_scck)
