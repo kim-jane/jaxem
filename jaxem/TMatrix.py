@@ -190,9 +190,6 @@ class TMatrix:
             # compute potential matrices for all LEC combinations, single channels, and energies
             Vsckqq = jnp.einsum('so,ockij->sckij', LECs_samples, self.Vockqq)
             
-            print("max V = ", jnp.max(Vsckqq))
-            print("min V = ", jnp.min(Vsckqq))
-            
             # set up linear system
             iq = jnp.arange(self.Nq+1)
             Asckqq = -jnp.einsum('sckij,kj->sckij', Vsckqq, self.Gkq)
@@ -249,46 +246,55 @@ class TMatrix:
             Tsckq = jnp.reshape(T_single, (-1, self.chan.Nsingle, self.Nk, self.Nq+1))
             Tsck = Tsckq[:,:,:,0]
             
-            print("*", Tsck.shape)
-            
+            # convert to S matrix
             S_sck = 1 - 1j * self.factor * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:] * Tsck
             
-            print(S_sck)
-            print(jnp.absolute(S_sck))
-            
+            # compute single-channel phase shifts
             delta_sck = 0.5 * jnp.arctan2(S_sck.imag, S_sck.real)
-            print("delta from arctan = ", delta_sck)
             
-            delta_sck = 0.5 * jnp.angle(S_sck)
-            print("delta from angle = ", delta_sck)
+            # compute eta
+            eta_sck = jnp.absolute(S_sck)
             
+            # package output
+            single_output = (delta_sck, eta_sck)
             
-            
-            '''
-            # convert to tau
-            tau_sck = - factor * 0.5 * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:] * Tsck
-            
-            # calculate phase shifts in radians
-            delta_sck = 0.5 * jnp.arctan2(tau_sck.real, 0.5 - tau_sck.imag)
-            
-            
-            # fix branch cuts
-            eps = 1.e-8
-            
-            delta_sck = jnp.where(delta_sck < -eps, delta_sck + jnp.pi, delta_sck)
-            delta_sck = jnp.where(delta_sck > jnp.pi + eps, delta_sck - jnp.pi, delta_sck)
-            '''
             
         else:
-            delta_sck = None
+            single_output = None
         
         if T_coupled is not None:
-            delta_scck = None
+        
+            # extract on-shell elements
+            Tscckq = jnp.reshape(T_coupled, (-1, self.chan.Ncoupled, self.Nk, 2, 2, self.Nq+1))
+            Tscck = Tscckq[:,:,:,:,:,0]
+            
+            # convert to S matrix
+            S_scck = - 1j * self.factor * jnp.pi * self.m * self.k[jnp.newaxis,jnp.newaxis,:,jnp.newaxis,jnp.newaxis] * Tscck
+            i = jnp.arange(2)
+            S_scck = S_scck.at[:,:,:,i,i].add(1.0) # adding 1 to -- and ++
+            
+            # compute mixing angle epsilon
+            epsilon_scck = - 0.5 * 1j * ( S_scck[...,0,1] + S_scck[...,1,0] ) / jnp.sqrt(S_scck[...,0,0] * S_scck[...,1,1])
+            epsilon_scck = 0.25 * 1j * jnp.log( (1 - 1j * epsilon_scck) / (1 + 1j * epsilon_scck) )
+            epsilon_scck = epsilon_scck.real
+            
+            # compute phase shifts
+            S_minus_scck = S_scck[...,0,0] / jnp.cos(2 * epsilon_scck)
+            S_plus_scck = S_scck[...,1,1] / jnp.cos(2 * epsilon_scck)
+            delta_minus_scck = 0.5 * jnp.arctan2(S_minus_scck.imag, S_minus_scck.real)
+            delta_plus_scck = 0.5 * jnp.arctan2(S_plus_scck.imag, S_plus_scck.real)
+            
+            # compute etas
+            eta_minus_scck = jnp.absolute(S_minus_scck)
+            eta_plus_scck = jnp.absolute(S_plus_scck)
+            
+            # package output
+            coupled_output = (delta_minus_scck, delta_plus_scck, epsilon_scck, eta_minus_scck, eta_plus_scck)
             
         else:
-            delta_scck = None
+            coupled_output = None
             
-        return delta_sck, delta_scck
+        return single_output, coupled_output
         
     
             

@@ -40,10 +40,10 @@ class Channel:
         for J in range(Jmax+1):
             for S in range(2):
                 for L in range(J+2):
-                    T = 1 if ((L + S) % 2 == 0) else 0
-                    if (abs(L-S) <= J <= L+S):
-                        self.single_channels.append((J, S, T, Tz, L))
-                        self.single_spect_not.append(f"{2*S+1}{spect_not[L]}{J}")
+                    for T in [0, 1] if Tz == 0 else [1]:
+                        if (abs(L-S) <= J <= L+S) and (L + S + T) % 2 == 1:
+                            self.single_channels.append((J, S, T, Tz, L))
+                            self.single_spect_not.append(f"{2*S+1}{spect_not[L]}{J}")
                     
 
         # extract coupled channels
@@ -84,11 +84,11 @@ class Channel:
             J, S, T, Tz, L = self.single_channels[:,i]
             spect_not = self.single_spect_not[i]
             if Tz == 1:
-                print(f"\t{spect_not}, pp, J = {J}, S = {S}, L = {L}")
+                print(f"\t{spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L}")
             elif Tz == -1:
-                print(f"\t{spect_not}, nn, J = {J}, S = {S}, L = {L}")
+                print(f"\t{spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L}")
             else:
-                print(f"\t{spect_not}, np, J = {J}, S = {S}, L = {L}")
+                print(f"\t{spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L}")
     
         
     def print_coupled_channels(self):
@@ -98,8 +98,8 @@ class Channel:
             J, S, T, Tz, L1, L2 = self.coupled_channels[:,i]
             spect_not = self.coupled_spect_not[i]
             if Tz == 1:
-                print(f"\t{spect_not}, pp, J = {J}, S = {S}, L = {L1}, L' = {L2}")
+                print(f"\t{spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
             elif Tz == -1:
-                print(f"\t{spect_not}, nn, J = {J}, S = {S}, L = {L1}, L' = {L2}")
+                print(f"\t{spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
             else:
-                print(f"\t{spect_not}, np, J = {J}, S = {S}, L = {L1}, L' = {L2}")
+                print(f"\t{spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
