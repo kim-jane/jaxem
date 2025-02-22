@@ -47,6 +47,7 @@ class Channel:
                     
 
         # extract coupled channels
+        
         indices_to_remove = []
         for i, j in zip(*jnp.triu_indices(len(self.single_channels), k=1)):
             J1, S1, T1, Tz1, L1 = self.single_channels[i]

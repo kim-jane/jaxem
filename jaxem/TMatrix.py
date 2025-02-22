@@ -73,7 +73,8 @@ class TMatrix:
         print("Precalculating potential operators...", end="", flush=True)
         ti = time.time()
         
-        Vocqq, Voccqq = self.pot.Voc(self.q)
+        #Vocqq, Voccqq = self.pot.Voc(self.q)
+        Vocqq, Voccqq = self.pot.Voc(self.q, self.q)
         Vockq, Vocckq = self.pot.Voc(self.k, self.q)
         Vock, Vocck = self.pot.Voc(self.k, diag=True)
                 
@@ -87,46 +88,53 @@ class TMatrix:
 
         if self.pot.compute_coupled:
         
-            Voccqq_mm, Voccqq_pp, Voccqq_mp = Voccqq
-            Vocckq_mm, Vocckq_pp, Vocckq_mp = Vocckq
-            Vocck_mm, Vocck_pp, Vocck_mp = Vocck
+            Voccqq_mm, Voccqq_pp, Voccqq_mp, Voccqq_pm = Voccqq
+            Vocckq_mm, Vocckq_pp, Vocckq_mp, Vocckq_pm = Vocckq
+            Vocck_mm, Vocck_pp, Vocck_mp, Vocck_pm = Vocck
         
             self.Vocckqq = jnp.zeros((self.pot.No, self.chan.Ncoupled, self.Nk, 2, 2, self.Nq+1, self.Nq+1), dtype=jnp.complex128)
             
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,0,1:,1:].set( jnp.tile(Voccqq_mm[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,1,1:,1:].set( jnp.tile(Voccqq_pp[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,1:,1:].set( jnp.tile(Voccqq_mp[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,1:,1:].set( jnp.tile(Voccqq_mp[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
+            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,1:,1:].set( jnp.tile(Voccqq_pm[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
             
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,0,1:,0].set( Vocckq_mm )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,1,1:,0].set( Vocckq_pp )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,1:,0].set( Vocckq_mp )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,1:,0].set( Vocckq_mp )
+            self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,1:,0].set( Vocckq_pm ) # crucial
+            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,0,1:].set( Vocckq_pm ) # crucial
             
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,0,0,1:].set( Vocckq_mm )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,1,0,1:].set( Vocckq_pp )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,0,1:].set( Vocckq_mp )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,0,1:].set( Vocckq_mp )
+            self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,0,1:].set( Vocckq_mp ) # crucial
+            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,1:,0].set( Vocckq_mp ) # crucial
 
             
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,0,0,0].set( Vocck_mm )
             self.Vocckqq = self.Vocckqq.at[:,:,:,1,1,0,0].set( Vocck_pp )
             self.Vocckqq = self.Vocckqq.at[:,:,:,0,1,0,0].set( Vocck_mp )
-            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,0,0].set( Vocck_mp )
+            self.Vocckqq = self.Vocckqq.at[:,:,:,1,0,0,0].set( Vocck_pm )
             
             self.Vocckqq = jnp.transpose(self.Vocckqq, (0,1,2,3,5,4,6))
             self.Vocckqq = jnp.reshape(self.Vocckqq, (self.pot.No, self.chan.Ncoupled, self.Nk, 2*self.Nq+2, 2*self.Nq+2))
+            
+            '''
+            self.Vocckqq = jnp.block([ [self.Vocckqq[:, :, :, 0, 0, :, :], self.Vocckqq[:, :, :, 0, 1, :, :]],
+                                       [self.Vocckqq[:, :, :, 1, 0, :, :], self.Vocckqq[:, :, :, 1, 1, :, :]] ])
+            '''
+            print("*** ", self.Vocckqq.shape)
         
         tf = time.time()
         print(f"Done in {tf-ti:.3f} sec.")
         
         
         # check map for each channel and operator
-        '''
-        k = 0
-        for o in range(self.pot.No):
+        k = 10 # index of energy / pole
         
-            if self.pot.compute_single:
+        
+        if self.pot.compute_single:
+        
+            for o in range(self.pot.No):
             
                 fig, ax = plt.subplots(1, self.chan.Nsingle, figsize=(self.chan.Nsingle * 4, 4))
                 
@@ -147,8 +155,11 @@ class TMatrix:
                 fig.suptitle(f"Operator {o}")
                 plt.show()
                 plt.close()
+        
             
-            if self.pot.compute_coupled:
+        if self.pot.compute_coupled:
+            
+            for o in range(self.pot.No):
             
                 fig, ax = plt.subplots(1, self.chan.Ncoupled, figsize=(self.chan.Ncoupled * 6, 6))
                 
@@ -159,7 +170,7 @@ class TMatrix:
                     vmin = jnp.min(self.Vocckqq[o,cc,k])
                     vmax = jnp.max(self.Vocckqq[o,cc,k])
                     vmax = max(jnp.abs(vmin), jnp.abs(vmax))
-                    vmax = 0.00001 * vmax
+                    #vmax = 0.00001 * vmax
                     ax[cc].imshow(self.Vocckqq[o,cc,k].real, vmin=-vmax, vmax=vmax, cmap='bwr')
                     ax[cc].set_title(f"{self.chan.coupled_spect_not[cc]} Channel")
                     ax[cc].axhline(-0.5, color='k', linestyle='dashed', linewidth=0.2)
@@ -174,11 +185,12 @@ class TMatrix:
                 fig.suptitle(f"Operator {o}")
                 plt.show()
                 plt.close()
-        '''
+        
         
         
         # pytrees for storing emulators
         self.emulator = {'greedy': {}, 'POD': {}}
+            
             
     def solve(self, LECs_samples):
     
@@ -223,8 +235,13 @@ class TMatrix:
             
             # solve for half-shell T matrix
             Tscckq = jnp.linalg.solve(Ascckqq, Vscckqq[:,:,:,:,[0, self.Nq + 1]])
+            
+            print("**** T", Tscckq.shape)
+            
             Tscckq = jnp.reshape(Tscckq, (Nsamples, self.chan.Ncoupled, self.Nk, 2, self.Nq+1, 2))
             Tscckq = jnp.transpose(Tscckq, (0,1,2,3,5,4))
+
+            print("**** T", Tscckq.shape)
         
         else:
         
@@ -271,6 +288,7 @@ class TMatrix:
             # extract on-shell elements
             Tscckq = jnp.reshape(T_coupled, (-1, self.chan.Ncoupled, self.Nk, 2, 2, self.Nq+1))
             Tscck = Tscckq[:,:,:,:,:,0]
+            print("")
             
             
             # convert to S matrix
