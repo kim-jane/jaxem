@@ -20,7 +20,6 @@ print(f"n_devices = {n_devices}")
 
 # read inputs
 config = Config('test/BenchmarkChiral.ini')
-config.print_info()
 
 
 # create tmat
@@ -28,71 +27,91 @@ tmat = TMatrix(config)
 LECs_best = tmat.pot.LECs
 
 
-
-
 Tsckq, Tscckq = tmat.solve(LECs_best)
 
 
+
 for cc in range(tmat.chan.Ncoupled):
 
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,0,1:].real, marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,1,1:].real, marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,1,1:].real, marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,0,1:].real, marker='o')
-    
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,0,1:].imag, linestyle='dashed', marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,1,1:].imag, linestyle='dashed', marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,0,1,1:].imag, linestyle='dashed', marker='o')
-    plt.plot(tmat.q/config.hbarc, (config.hbarc)**2 * Tscckq[0,cc,0,1,0,1:].imag, linestyle='dashed', marker='o')
-    
-#plt.xlim(0, 20)
-plt.show()
-plt.close()
+    for k in range(tmat.Nk):
+
+        fig, ax = plt.subplots(2, 1, figsize=(6, 8), dpi=300)
+        
+        ms = 4
+        
+        ax[0].plot(tmat.q, Tscckq[0,cc,k,0,0,1:].real, marker='o', markersize=ms)
+        ax[0].plot(tmat.q, Tscckq[0,cc,k,1,1,1:].real, marker='o', markersize=ms)
+        ax[0].plot(tmat.q, Tscckq[0,cc,k,0,1,1:].real, marker='o', markersize=ms)
+        ax[0].plot(tmat.q, Tscckq[0,cc,k,1,0,1:].real, marker='o', markersize=ms)
+        
+        ax[1].plot(tmat.q, Tscckq[0,cc,k,0,0,1:].imag, marker='o', markersize=ms)
+        ax[1].plot(tmat.q, Tscckq[0,cc,k,1,1,1:].imag, marker='o', markersize=ms)
+        ax[1].plot(tmat.q, Tscckq[0,cc,k,0,1,1:].imag, marker='o', markersize=ms)
+        ax[1].plot(tmat.q, Tscckq[0,cc,k,1,0,1:].imag, marker='o', markersize=ms)
+
+        ax[0].axvline(config.p1, color='k', linestyle='dashed')
+        ax[0].axvline(config.p2, color='k', linestyle='dashed')
+        ax[0].axvline(config.p3, color='k', linestyle='dashed')
+        ax[0].axvline(tmat.k[k], color='r', linestyle='dashed')
+
+        ax[1].axvline(config.p1, color='k', linestyle='dashed')
+        ax[1].axvline(config.p2, color='k', linestyle='dashed')
+        ax[1].axvline(config.p3, color='k', linestyle='dashed')
+        ax[1].axvline(tmat.k[k], color='r', linestyle='dashed')
+        
+        
+        plt.savefig(f'figures/{config.output}_tmat_{tmat.chan.coupled_spect_not[cc]}_np_Elab{tmat.Elab[k]:08.3f}.pdf', format='pdf')
+        plt.close()
 
 
-#try negative off diagonal potential
 
-# computes phase shifts and plot
+# compute phase shifts
 single_output, coupled_output = tmat.phase_shifts(T_single=Tsckq, T_coupled=Tscckq)
 
 
-# plot Christian's phase shifts for all channels
-fig, ax = plt.subplots(1, 2, figsize=(12, 6))
-
-
-for c in range(tmat.chan.Nsingle):
-    
-
-    Elab, delta = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.single_spect_not[c]}np.txt', unpack=True)
-    ax[0].plot(Elab, delta)
-
-
-for cc in range(tmat.chan.Ncoupled):
-
-    Elab, delta_singlet, delta_triplet, epsilon = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.coupled_spect_not[cc]}np.txt', unpack=True)
-    ax[1].plot(Elab, delta_singlet, color='C'+str(cc))
-    ax[1].plot(Elab, delta_triplet, linestyle='dashed', color='C'+str(cc))
-    ax[1].plot(Elab, epsilon, linestyle='dotted', color='C'+str(cc))
-
+# plot
 
 if single_output is not None:
+
     delta_sck, eta_sck = single_output
     
     for c in range(tmat.chan.Nsingle):
-
-        ax[0].scatter(tmat.Elab, (180/jnp.pi) * delta_sck[0,c,:])
+    
+        plt.figure(figsize=(6,4), dpi=300)
+    
+        # Christian's phase shifts
+        Elab, delta = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.single_spect_not[c]}np.txt', unpack=True)
+        plt.plot(Elab, delta)
+        
+        # my phase shifts
+        plt.scatter(tmat.Elab, (180/jnp.pi) * delta_sck[0,c,:])
+        
+        plt.savefig(f'figures/{config.output}_phaseshift_{tmat.chan.single_spect_not[c]}_np.pdf', format='pdf')
+        plt.close()
+        
+        
 
 if coupled_output is not None:
+
     delta_minus_scck, delta_plus_scck, epsilon_scck, eta_minus_scck, eta_plus_scck = coupled_output
 
     for cc in range(tmat.chan.Ncoupled):
-
-        ax[1].scatter(tmat.Elab, (180/jnp.pi) * delta_minus_scck[0,cc,:], color='C'+str(cc+1))
-        ax[1].scatter(tmat.Elab, (180/jnp.pi) * delta_plus_scck[0,cc,:], color='C'+str(cc+1), linestyle='dashed')
-        ax[1].scatter(tmat.Elab, (180/jnp.pi) * epsilon_scck[0,cc,:], color='C'+str(cc+1), linestyle='dotted')
-
-plt.show()
-plt.close()
+    
+        fig, ax = plt.subplots(1, 3, figsize=(12,4), dpi=300)
+        
+        # Christian's phase shifts
+        Elab, delta_singlet, delta_triplet, epsilon = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{tmat.chan.coupled_spect_not[cc]}np.txt', unpack=True)
+        ax[0].plot(Elab, delta_singlet, color='C0')
+        ax[1].plot(Elab, delta_triplet, color='C0')
+        ax[2].plot(Elab, epsilon, color='C0')
+        
+        # my phase shifts
+        ax[0].scatter(tmat.Elab, (180/jnp.pi) * delta_minus_scck[0,cc,:], color='C1')
+        ax[1].scatter(tmat.Elab, (180/jnp.pi) * delta_plus_scck[0,cc,:], color='C1')
+        ax[2].scatter(tmat.Elab, (180/jnp.pi) * epsilon_scck[0,cc,:], color='C1')
+        
+        plt.savefig(f'figures/{config.output}_phaseshift_{tmat.chan.coupled_spect_not[cc]}_np.pdf', format='pdf')
+        plt.close()
 
 
 

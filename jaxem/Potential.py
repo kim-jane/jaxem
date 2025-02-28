@@ -32,7 +32,7 @@ sys.path.append(os.path.join(script_directory, "chiral"))
 
 class Potential:
 
-    # the potential has units of MeV^-2 AFTER being multiplied by LECs
+    # the potential has units of fm^2 after being multiplied with LECs
 
 
     def __init__(self, config):
@@ -47,7 +47,8 @@ class Potential:
         # choose potential
         if config.pot == 'chiral':
         
-            self.Voc = self.Voc_Chiral
+            self.Voc = self.Voc_Chiral    # calculates potential operators for single channels
+            self.Vocc = self.Vocc_Chiral  # calculates potential operators for coupled channels
             self.No = 12        # there are 11 LECs plus one auxiliary variable
             self.Naux = True    # one auxiliary (constant) variable, always assumed to be first operator
             self.potargs = {"label": "chiral", "kwargs": {"potId": 213}} # N2LO, R0=1.0 fm, SFR cutoff=1 GeV
@@ -81,9 +82,9 @@ class Potential:
         
             self.VR = 7.2910                   # 1
             self.VA = -3.1769                  # 1
-            self.muR = 613.69                  # MeV
-            self.muA = 305.86                  # MeV
-            self.Voc = self.Voc_MalflietTjon   # MeV^-2
+            self.muR = 613.69 / self.hbarc                 # fm^-1
+            self.muA = 305.86 / self.hbarc                 # fm^-1
+            self.Voc = self.Voc_MalflietTjon   # fm^2
             self.LECs = jnp.array([self.VR, self.VA])
             self.No = 2
             self.Nx = config.Nx
@@ -98,6 +99,8 @@ class Potential:
             self.Plx = self.Plx[self.L]
             
         elif config.pot == 'mn':
+        
+            # fix units on this
         
             self.V0R = 200.0                                    # MeV
             self.V0S = -91.85                                   # MeV
@@ -119,51 +122,30 @@ class Potential:
                 self.compute_single = True if self.chan.Nsingle > 0 else False
                 self.compute_coupled = False
             
-       
 
     def Voc_Chiral(self, p1, p2=None, diag=False):
+    
+        # CAN I USE VMAP WITH CHIRALMS_AFFINE?
         
-        # change momentum units from MeV to fm^-1
-        p1 = p1 / self.hbarc
+        if self.compute_single:
         
-        if diag is True:
+            if diag is True:
         
-            if self.compute_single:
                 Vocp = jnp.zeros((self.No, self.Nc, p1.shape[0]))
                 J, S, T, Tz, L = self.chan.single_channels
                 for c in range(self.Nc):
                     channel = CD_Channel(S=S[c], L=L[c], LL=L[c], J=J[c], channel=Tz[c])
                     for i in range(p1.shape[0]):
                         Vocp = Vocp.at[:,c,i].set( chiralms_affine(p1[i], p1[i], channel, **self.potargs["kwargs"]) )
-            else:
-                Vocp = None
+                        
+                Vocp *= self.hbarc**2 # fm^2 once multiplied by LECs
                 
-            if self.compute_coupled:
-                Voccp = jnp.zeros((4, self.No, self.Ncc, p1.shape[0]))
-                J, S, T, Tz, L1, L2 = self.chan.coupled_channels
-                for cc in range(self.Ncc):
-                    print(f"{cc} S={S[cc]} L={L1[cc]} L'={L2[cc]} J={J[cc]} Tz={Tz[cc]}")
-                    channel_mm = CD_Channel(S=S[cc], L=L1[cc], LL=L1[cc], J=J[cc], channel=Tz[cc])
-                    channel_pp = CD_Channel(S=S[cc], L=L2[cc], LL=L2[cc], J=J[cc], channel=Tz[cc])
-                    channel_mp = CD_Channel(S=S[cc], L=L1[cc], LL=L2[cc], J=J[cc], channel=Tz[cc])
-                    channel_pm = CD_Channel(S=S[cc], L=L2[cc], LL=L1[cc], J=J[cc], channel=Tz[cc])
-                    
-                    for i in range(p1.shape[0]):
-                        Voccp = Voccp.at[0,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_mm, **self.potargs["kwargs"]) )
-                        Voccp = Voccp.at[1,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_pp, **self.potargs["kwargs"]) )
-                        Voccp = Voccp.at[2,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_mp, **self.potargs["kwargs"]) )
-                        Voccp = Voccp.at[3,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_pm, **self.potargs["kwargs"]) )
-                        
+                return Vocp
+        
             else:
-                Voccp = None
-                        
-            return Vocp, Voccp
         
-        else:
-        
-            if p2 is None:
+                if p2 is None:
             
-                if self.compute_single:
                     Vocpp = jnp.zeros((self.No, self.Nc, p1.shape[0], p1.shape[0]))
                     J, S, T, Tz, L = self.chan.single_channels
                     for c in range(self.Nc):
@@ -174,10 +156,52 @@ class Potential:
                                 Vocpp = Vocpp.at[:,c,i,j].set( temp )
                                 Vocpp = Vocpp.at[:,c,j,i].set( temp )
                                 
-                else:
-                    Vocpp = None
+                    Vocpp *= self.hbarc**2 # fm^2 once multiplied by LECs
                         
-                if self.compute_coupled:
+                else:
+ 
+                    Vocpp = jnp.zeros((self.No, self.Nc, p1.shape[0], p2.shape[0]))
+                    J, S, T, Tz, L = self.chan.single_channels
+                    for c in range(self.Nc):
+                        channel = CD_Channel(S=S[c], L=L[c], LL=L[c], J=J[c], channel=Tz[c])
+                        for i in range(p1.shape[0]):
+                            for j in range(p2.shape[0]):
+                                Vocpp = Vocpp.at[:,c,i,j].set( chiralms_affine(p1[i], p2[j], channel, **self.potargs["kwargs"]) )
+                    Vocpp *= self.hbarc**2 # fm^2 once multiplied by LECs
+                    
+                return Vocpp
+        else:
+            return None
+            
+        
+    
+    def Vocc_Chiral(self, p1, p2=None, diag=False):
+    
+        if self.compute_coupled:
+        
+            if diag is True:
+
+                Voccp = jnp.zeros((4, self.No, self.Ncc, p1.shape[0]))
+                J, S, T, Tz, L1, L2 = self.chan.coupled_channels
+                for cc in range(self.Ncc):
+                    channel_mm = CD_Channel(S=S[cc], L=L1[cc], LL=L1[cc], J=J[cc], channel=Tz[cc])
+                    channel_pp = CD_Channel(S=S[cc], L=L2[cc], LL=L2[cc], J=J[cc], channel=Tz[cc])
+                    channel_mp = CD_Channel(S=S[cc], L=L1[cc], LL=L2[cc], J=J[cc], channel=Tz[cc])
+                    
+                    for i in range(p1.shape[0]):
+                        Voccp = Voccp.at[0,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_mm, **self.potargs["kwargs"]) )
+                        Voccp = Voccp.at[1,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_pp, **self.potargs["kwargs"]) )
+                        Voccp = Voccp.at[2,:,cc,i].set( chiralms_affine(p1[i], p1[i], channel_mp, **self.potargs["kwargs"]) )
+                        Voccp = Voccp.at[3,:,cc,i].set( Voccp[2,:,cc,i] )
+                        
+                Voccp *= self.hbarc**2 # fm^2 once multiplied by LECs
+                        
+                return Voccp
+        
+            else:
+            
+                if p2 is None:
+                
                     Voccpp = jnp.zeros((4, self.No, self.Ncc, p1.shape[0], p1.shape[0]))
                     J, S, T, Tz, L1, L2 = self.chan.coupled_channels
                     for cc in range(self.Ncc):
@@ -200,33 +224,14 @@ class Potential:
                                 Voccpp = Voccpp.at[1,:,cc,i,j].set( V_pp )
                                 Voccpp = Voccpp.at[1,:,cc,j,i].set( V_pp )
                                 Voccpp = Voccpp.at[2,:,cc,i,j].set( V_mp )
-                                Voccpp = Voccpp.at[2,:,cc,j,i].set( V_mp )
+                                Voccpp = Voccpp.at[2,:,cc,j,i].set( V_pm )
                                 Voccpp = Voccpp.at[3,:,cc,i,j].set( V_pm )
-                                Voccpp = Voccpp.at[3,:,cc,j,i].set( V_pm )
+                                Voccpp = Voccpp.at[3,:,cc,j,i].set( V_mp )
                                 
-                                
+                    Voccpp *= self.hbarc**2 # fm^2 once multiplied by LECs
+                    
                 else:
-                    Voccpp = None
-                
-            
-            else:
-                                    
-                # change momentum units from MeV to fm^-1
-                p2 = p2 / self.hbarc
 
-                if self.compute_single:
-                    Vocpp = jnp.zeros((self.No, self.Nc, p1.shape[0], p2.shape[0]))
-                    J, S, T, Tz, L = self.chan.single_channels
-                    for c in range(self.Nc):
-                        channel = CD_Channel(S=S[c], L=L[c], LL=L[c], J=J[c], channel=Tz[c])
-                        for i in range(p1.shape[0]):
-                            for j in range(p2.shape[0]):
-                                Vocpp = Vocpp.at[:,c,i,j].set( chiralms_affine(p1[i], p2[j], channel, **self.potargs["kwargs"]) )
-                                
-                else:
-                    Vocpp = None
-                        
-                if self.compute_coupled:
                     Voccpp = jnp.zeros((4, self.No, self.Ncc, p1.shape[0], p2.shape[0]))
                     J, S, T, Tz, L1, L2 = self.chan.coupled_channels
                     
@@ -244,22 +249,11 @@ class Potential:
                                 Voccpp = Voccpp.at[1,:,cc,i,j].set( chiralms_affine(p1[i], p2[j], channel_pp, **self.potargs["kwargs"]) )
                                 Voccpp = Voccpp.at[2,:,cc,i,j].set( chiralms_affine(p1[i], p2[j], channel_mp, **self.potargs["kwargs"]) )
                                 Voccpp = Voccpp.at[3,:,cc,i,j].set( chiralms_affine(p1[i], p2[j], channel_pm, **self.potargs["kwargs"]) )
-
-                        '''
-                        # plot each operator
-                        for o in range(self.No):
-                            fig, ax = plt.subplots(2, 2, figsize=(8,8))
-                            
-                            ax[0,0].imshow(Voccpp[0,o,cc])
-                            ax[1,1].imshow(Voccpp[1,o,cc])
-                            ax[0,1].imshow(Voccpp[2,o,cc])
-                            ax[1,0].imshow(Voccpp[3,o,cc])
-                            
-                            plt.show()
-                        '''
-                else:
-                    Voccpp = None
-            return Vocpp, Voccpp
+                    Voccpp *= self.hbarc**2 # fm^2 once multiplied by LECs
+                
+                return Voccpp
+        else:
+            return None
             
             
         

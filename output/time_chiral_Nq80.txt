@@ -1,0 +1,1015 @@
+hbarc = 197.327
+m_neutron = 939.565421
+m_proton = 938.272089
+m = 938.918755
+pot = chiral
+map = trns
+Nq = 80
+Nq1 = 50
+p1 = 2.5
+p2 = 6.0
+p3 = 30.0
+Jmax = 1
+Elab = [10.]
+output = time_chiral_Nq80
+channel = np
+factor = 0.6366197723675814
+seed = 213
+Ntrain = 20
+Ntest = 20
+tol = 1e-08
+2025-02-28 14:00:13,138 Logger initialized and writing to file: output/time_chiral_Nq80.txt
+2025-02-28 14:00:13,143 >>> SETUP
+2025-02-28 14:00:13,143 - common - setup - start - precalculating propagators
+2025-02-28 14:00:15,525 - common - setup - end - precalculating propagators (elapsed time: 2.38155 sec)
+2025-02-28 14:00:15,525 - single - setup - start - precalculating potential operators qq
+2025-02-28 14:01:21,414 - single - setup - end - precalculating potential operators qq (elapsed time: 65.88893 sec)
+2025-02-28 14:01:21,415 - single - setup - start - precalculating potential operators kq
+2025-02-28 14:01:22,721 - single - setup - end - precalculating potential operators kq (elapsed time: 1.30581 sec)
+2025-02-28 14:01:22,721 - single - setup - start - precalculating potential operators k
+2025-02-28 14:01:23,032 - single - setup - end - precalculating potential operators k (elapsed time: 0.31026 sec)
+2025-02-28 14:01:23,032 - single - setup - start - filling potential operators
+2025-02-28 14:01:24,140 - single - setup - end - filling potential operators (elapsed time: 1.10777 sec)
+2025-02-28 14:01:24,140 - coupled - setup - start - precalculating potential operators qq
+2025-02-28 14:02:27,772 - coupled - setup - end - precalculating potential operators qq (elapsed time: 63.63201 sec)
+2025-02-28 14:02:27,773 - coupled - setup - start - precalculating potential operators kq
+2025-02-28 14:02:28,826 - coupled - setup - end - precalculating potential operators kq (elapsed time: 1.05314 sec)
+2025-02-28 14:02:28,826 - coupled - setup - start - precalculating potential operators k
+2025-02-28 14:02:29,192 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.36583 sec)
+2025-02-28 14:02:29,432 - coupled - setup - start - filling potential operators
+2025-02-28 14:02:30,708 - coupled - setup - end - filling potential operators (elapsed time: 1.27598 sec)
+2025-02-28 14:02:30,709 <<< SETUP (total elapsed time: 137.56557 sec)
+2025-02-28 14:02:30,982 >>> POD GROM
+2025-02-28 14:02:30,982 - common - train POD GROM - start - sampling 20 training points
+2025-02-28 14:02:33,511 - common - train POD GROM - end - sampling 20 training points (elapsed time: 2.52898 sec)
+2025-02-28 14:02:33,511 - common - train POD GROM - LECs_train shape = (20, 12)
+2025-02-28 14:02:33,512 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-02-28 14:02:35,339 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 1.82746 sec)
+2025-02-28 14:02:35,339 - coupled - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-02-28 14:02:37,578 - coupled - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 2.23854 sec)
+2025-02-28 14:02:37,917 - single - train POD GROM - training 1S0 channel at Elab = 10.0 MeV...
+2025-02-28 14:02:37,918 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-02-28 14:02:39,210 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.29265 sec)
+2025-02-28 14:02:39,210 - single - train POD GROM - Nbasis = 12
+2025-02-28 14:02:39,211 - single - test POD GROM - start - sampling 1000 testing points
+2025-02-28 14:02:41,131 - single - test POD GROM - end - sampling 1000 testing points (elapsed time: 1.92066 sec)
+2025-02-28 14:02:41,132 - single - test POD GROM - LECs_test shape = (1000, 12)
+2025-02-28 14:02:41,132 - single - test POD GROM - start - emulating at testing points
+2025-02-28 14:02:42,827 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.69521 sec)
+2025-02-28 14:02:42,828 - single - test POD GROM - Csb shape = (1000, 12)
+2025-02-28 14:02:42,828 - single - test POD GROM - emulated Tsq shape = (1000, 81)
+2025-02-28 14:02:42,828 - single - test POD GROM - start - estimating error at testing points
+2025-02-28 14:02:43,959 - single - test POD GROM - end - estimating error at testing points (elapsed time: 1.13062 sec)
+2025-02-28 14:02:44,048 - single - test POD GROM - max estimated error = 1.67039116e-07
+2025-02-28 14:02:44,048 - single - test POD GROM - start - calibrating error at testing points
+2025-02-28 14:02:45,156 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 1.10819 sec)
+2025-02-28 14:02:45,157 - single - test POD GROM - calibration ratio = 0.99271040
+2025-02-28 14:02:45,239 - single - test POD GROM - avg calibrated testing error = 3.91492500e-09
+2025-02-28 14:02:45,339 - single - test POD GROM - std calibrated testing error = 9.09891124e-09
+2025-02-28 14:02:45,339 - single - test POD GROM - max calibrated testing error = 1.65821468e-07
+2025-02-28 14:02:45,340 - single - train POD GROM - training 3P0 channel at Elab = 10.0 MeV...
+2025-02-28 14:02:45,340 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-02-28 14:02:45,346 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.00582 sec)
+2025-02-28 14:02:45,346 - single - train POD GROM - Nbasis = 12
+2025-02-28 14:02:45,346 - single - test POD GROM - start - sampling 1000 testing points
+2025-02-28 14:02:45,375 - single - test POD GROM - end - sampling 1000 testing points (elapsed time: 0.02880 sec)
+2025-02-28 14:02:45,375 - single - test POD GROM - LECs_test shape = (1000, 12)
+2025-02-28 14:02:45,375 - single - test POD GROM - start - emulating at testing points
+2025-02-28 14:02:45,384 - single - test POD GROM - end - emulating at testing points (elapsed time: 0.00888 sec)
+2025-02-28 14:02:45,384 - single - test POD GROM - Csb shape = (1000, 12)
+2025-02-28 14:02:45,385 - single - test POD GROM - emulated Tsq shape = (1000, 81)
+2025-02-28 14:02:45,385 - single - test POD GROM - start - estimating error at testing points
+2025-02-28 14:02:45,418 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.03327 sec)
+2025-02-28 14:02:45,607 - single - test POD GROM - max estimated error = 2.28126074e-08
+2025-02-28 14:02:45,607 - single - test POD GROM - start - calibrating error at testing points
+2025-02-28 14:02:45,611 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.00350 sec)
+2025-02-28 14:02:45,611 - single - test POD GROM - calibration ratio = 0.99841506
+2025-02-28 14:02:45,611 - single - test POD GROM - avg calibrated testing error = 9.40295299e-10
+2025-02-28 14:02:45,612 - single - test POD GROM - std calibrated testing error = 1.73191142e-09
+2025-02-28 14:02:45,612 - single - test POD GROM - max calibrated testing error = 2.27764507e-08
+2025-02-28 14:02:45,612 - single - train POD GROM - training 1P1 channel at Elab = 10.0 MeV...
+2025-02-28 14:02:45,612 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-02-28 14:02:45,901 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.28851 sec)
+2025-02-28 14:02:45,901 - single - train POD GROM - Nbasis = 13
+2025-02-28 14:02:45,901 - single - test POD GROM - start - sampling 1000 testing points
+2025-02-28 14:02:45,929 - single - test POD GROM - end - sampling 1000 testing points (elapsed time: 0.02832 sec)
+2025-02-28 14:02:45,929 - single - test POD GROM - LECs_test shape = (1000, 12)
+2025-02-28 14:02:45,930 - single - test POD GROM - start - emulating at testing points
+2025-02-28 14:02:47,623 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.69345 sec)
+2025-02-28 14:02:47,623 - single - test POD GROM - Csb shape = (1000, 13)
+2025-02-28 14:02:47,623 - single - test POD GROM - emulated Tsq shape = (1000, 81)
+2025-02-28 14:02:47,624 - single - test POD GROM - start - estimating error at testing points
+2025-02-28 14:02:47,659 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.03574 sec)
+2025-02-28 14:02:47,836 - single - test POD GROM - max estimated error = 1.98934286e-07
+2025-02-28 14:02:47,836 - single - test POD GROM - start - calibrating error at testing points
+2025-02-28 14:02:47,840 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.00402 sec)
+2025-02-28 14:02:47,840 - single - test POD GROM - calibration ratio = 1.01134064
+2025-02-28 14:02:47,840 - single - test POD GROM - avg calibrated testing error = 1.28858739e-09
+2025-02-28 14:02:47,840 - single - test POD GROM - std calibrated testing error = 7.30394315e-09
+2025-02-28 14:02:47,841 - single - test POD GROM - max calibrated testing error = 2.01190328e-07
+2025-02-28 14:02:47,841 - single - train POD GROM - training 3P1 channel at Elab = 10.0 MeV...
+2025-02-28 14:02:47,841 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-02-28 14:02:47,869 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.02835 sec)
+2025-02-28 14:02:47,870 - single - train POD GROM - Nbasis = 12
+2025-02-28 14:02:47,870 - single - test POD GROM - start - sampling 1000 testing points
+2025-02-28 14:02:47,902 - single - test POD GROM - end - sampling 1000 testing points (elapsed time: 0.03251 sec)
+2025-02-28 14:02:47,903 - single - test POD GROM - LECs_test shape = (1000, 12)
+2025-02-28 14:02:47,903 - single - test POD GROM - start - emulating at testing points
+2025-02-28 14:02:47,909 - single - test POD GROM - end - emulating at testing points (elapsed time: 0.00656 sec)
+2025-02-28 14:02:47,910 - single - test POD GROM - Csb shape = (1000, 12)
+2025-02-28 14:02:47,910 - single - test POD GROM - emulated Tsq shape = (1000, 81)
+2025-02-28 14:02:47,910 - single - test POD GROM - start - estimating error at testing points
+2025-02-28 14:02:47,939 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.02901 sec)
+2025-02-28 14:02:48,156 - single - test POD GROM - max estimated error = 6.45783590e-09
+2025-02-28 14:02:48,156 - single - test POD GROM - start - calibrating error at testing points
+2025-02-28 14:02:48,159 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.00349 sec)
+2025-02-28 14:02:48,160 - single - test POD GROM - calibration ratio = 0.99266800
+2025-02-28 14:02:48,160 - single - test POD GROM - avg calibrated testing error = 7.10195138e-10
+2025-02-28 14:02:48,160 - single - test POD GROM - std calibrated testing error = 8.38362596e-10
+2025-02-28 14:02:48,160 - single - test POD GROM - max calibrated testing error = 6.41048707e-09
+2025-02-28 14:02:48,160 <<< POD GROM (total elapsed time: 17.17823 sec)
+2025-02-28 14:02:48,218 >>> GREEDY GROM
+2025-02-28 14:02:48,219 - common - train greedy GROM - start - sampling 2 training points
+2025-02-28 14:02:49,720 - common - train greedy GROM - end - sampling 2 training points (elapsed time: 1.50061 sec)
+2025-02-28 14:02:49,720 - common - train greedy GROM - LECs_train shape = (2, 12)
+2025-02-28 14:02:49,720 - single - train greedy GROM - start - solving high-fidelity model for 2 samples
+2025-02-28 14:02:50,790 - single - train greedy GROM - end - solving high-fidelity model for 2 samples (elapsed time: 1.07049 sec)
+2025-02-28 14:02:50,791 - coupled - train greedy GROM - start - solving high-fidelity model for 2 samples
+2025-02-28 14:02:51,856 - coupled - train greedy GROM - end - solving high-fidelity model for 2 samples (elapsed time: 1.06511 sec)
+2025-02-28 14:02:51,856 - single - train greedy GROM - training 1S0 channel at Elab = 10.0 MeV...
+2025-02-28 14:02:51,856 - single - train greedy GROM - start - orthogonalizing 2 initial training points
+2025-02-28 14:02:52,144 - single - train greedy GROM - end - orthogonalizing 2 initial training points (elapsed time: 0.28779 sec)
+2025-02-28 14:02:52,144 - single - train greedy GROM - greedy iteration = 0
+2025-02-28 14:02:52,145 - single - train greedy GROM - start - projecting
+2025-02-28 14:02:52,362 - single - train greedy GROM - end - projecting (elapsed time: 0.21687 sec)
+2025-02-28 14:02:52,362 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:02:52,457 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09493 sec)
+2025-02-28 14:02:52,457 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:02:53,423 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.96612 sec)
+2025-02-28 14:02:53,423 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:02:54,242 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.81834 sec)
+2025-02-28 14:02:54,242 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:02:54,683 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.44092 sec)
+2025-02-28 14:02:54,683 - single - val greedy GROM - calibration ratio = 1.82207366
+2025-02-28 14:02:54,772 - single - val greedy GROM - avg calibrated testing error = 5.79324633e-01
+2025-02-28 14:02:54,871 - single - val greedy GROM - std calibrated testing error = 3.59847183e-01
+2025-02-28 14:02:54,960 - single - val greedy GROM - max calibrated testing error = 2.09182435e+00
+2025-02-28 14:02:54,960 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:02:55,365 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.40476 sec)
+2025-02-28 14:02:55,365 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:02:55,365 - single - train greedy GROM - greedy iteration = 1
+2025-02-28 14:02:55,365 - single - train greedy GROM - start - projecting
+2025-02-28 14:02:55,588 - single - train greedy GROM - end - projecting (elapsed time: 0.22274 sec)
+2025-02-28 14:02:55,589 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:02:55,682 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09303 sec)
+2025-02-28 14:02:55,682 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:02:57,154 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.47224 sec)
+2025-02-28 14:02:57,154 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:02:58,029 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.87426 sec)
+2025-02-28 14:02:58,029 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:02:58,460 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43097 sec)
+2025-02-28 14:02:58,460 - single - val greedy GROM - calibration ratio = 1.47528076
+2025-02-28 14:02:58,548 - single - val greedy GROM - avg calibrated testing error = 5.32670048e-02
+2025-02-28 14:02:58,656 - single - val greedy GROM - std calibrated testing error = 3.85109896e-02
+2025-02-28 14:02:58,740 - single - val greedy GROM - max calibrated testing error = 2.08430020e-01
+2025-02-28 14:02:58,740 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:02:58,958 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21805 sec)
+2025-02-28 14:02:58,959 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:02:58,959 - single - train greedy GROM - greedy iteration = 2
+2025-02-28 14:02:58,959 - single - train greedy GROM - start - projecting
+2025-02-28 14:02:59,180 - single - train greedy GROM - end - projecting (elapsed time: 0.22142 sec)
+2025-02-28 14:02:59,180 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:02:59,272 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09156 sec)
+2025-02-28 14:02:59,272 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:00,767 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.49412 sec)
+2025-02-28 14:03:00,767 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:01,608 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.84136 sec)
+2025-02-28 14:03:01,609 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:02,047 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43827 sec)
+2025-02-28 14:03:02,047 - single - val greedy GROM - calibration ratio = 1.42569409
+2025-02-28 14:03:02,135 - single - val greedy GROM - avg calibrated testing error = 3.77279444e-02
+2025-02-28 14:03:02,235 - single - val greedy GROM - std calibrated testing error = 3.08407750e-02
+2025-02-28 14:03:02,322 - single - val greedy GROM - max calibrated testing error = 1.32800578e-01
+2025-02-28 14:03:02,322 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:02,536 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21348 sec)
+2025-02-28 14:03:02,536 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:02,536 - single - train greedy GROM - greedy iteration = 3
+2025-02-28 14:03:02,536 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:02,756 - single - train greedy GROM - end - projecting (elapsed time: 0.21971 sec)
+2025-02-28 14:03:02,756 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:02,847 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09041 sec)
+2025-02-28 14:03:02,847 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:04,369 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.52163 sec)
+2025-02-28 14:03:04,369 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:05,190 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.82087 sec)
+2025-02-28 14:03:05,190 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:05,619 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.42942 sec)
+2025-02-28 14:03:05,620 - single - val greedy GROM - calibration ratio = 1.07506858
+2025-02-28 14:03:05,709 - single - val greedy GROM - avg calibrated testing error = 2.01588487e-03
+2025-02-28 14:03:05,824 - single - val greedy GROM - std calibrated testing error = 1.69328885e-03
+2025-02-28 14:03:05,908 - single - val greedy GROM - max calibrated testing error = 8.51389046e-03
+2025-02-28 14:03:05,908 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:06,123 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21513 sec)
+2025-02-28 14:03:06,123 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:06,124 - single - train greedy GROM - greedy iteration = 4
+2025-02-28 14:03:06,124 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:06,344 - single - train greedy GROM - end - projecting (elapsed time: 0.21999 sec)
+2025-02-28 14:03:06,344 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:06,439 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09499 sec)
+2025-02-28 14:03:06,439 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:07,990 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.55126 sec)
+2025-02-28 14:03:07,991 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:08,775 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.78403 sec)
+2025-02-28 14:03:08,775 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:09,215 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43951 sec)
+2025-02-28 14:03:09,215 - single - val greedy GROM - calibration ratio = 1.05480189
+2025-02-28 14:03:09,303 - single - val greedy GROM - avg calibrated testing error = 4.46224517e-04
+2025-02-28 14:03:09,406 - single - val greedy GROM - std calibrated testing error = 2.89791766e-04
+2025-02-28 14:03:09,499 - single - val greedy GROM - max calibrated testing error = 2.31820602e-03
+2025-02-28 14:03:09,500 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:09,712 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21230 sec)
+2025-02-28 14:03:09,712 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:09,712 - single - train greedy GROM - greedy iteration = 5
+2025-02-28 14:03:09,712 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:10,262 - single - train greedy GROM - end - projecting (elapsed time: 0.54971 sec)
+2025-02-28 14:03:10,262 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:10,354 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09193 sec)
+2025-02-28 14:03:10,354 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:11,935 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.58085 sec)
+2025-02-28 14:03:11,936 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:12,908 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.97238 sec)
+2025-02-28 14:03:12,908 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:13,342 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43372 sec)
+2025-02-28 14:03:13,342 - single - val greedy GROM - calibration ratio = 1.02538445
+2025-02-28 14:03:13,431 - single - val greedy GROM - avg calibrated testing error = 1.68090249e-04
+2025-02-28 14:03:13,535 - single - val greedy GROM - std calibrated testing error = 8.46891803e-05
+2025-02-28 14:03:13,622 - single - val greedy GROM - max calibrated testing error = 4.26941185e-04
+2025-02-28 14:03:13,622 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:13,840 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21776 sec)
+2025-02-28 14:03:13,840 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:13,840 - single - train greedy GROM - greedy iteration = 6
+2025-02-28 14:03:13,840 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:14,062 - single - train greedy GROM - end - projecting (elapsed time: 0.22169 sec)
+2025-02-28 14:03:14,062 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:14,161 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09830 sec)
+2025-02-28 14:03:14,161 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:15,757 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.59616 sec)
+2025-02-28 14:03:15,757 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:16,524 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.76625 sec)
+2025-02-28 14:03:16,524 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:16,965 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.44114 sec)
+2025-02-28 14:03:16,965 - single - val greedy GROM - calibration ratio = 0.98490490
+2025-02-28 14:03:17,051 - single - val greedy GROM - avg calibrated testing error = 1.28214560e-05
+2025-02-28 14:03:17,151 - single - val greedy GROM - std calibrated testing error = 7.55950026e-06
+2025-02-28 14:03:17,238 - single - val greedy GROM - max calibrated testing error = 2.83080577e-05
+2025-02-28 14:03:17,238 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:17,454 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21572 sec)
+2025-02-28 14:03:17,454 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:17,455 - single - train greedy GROM - greedy iteration = 7
+2025-02-28 14:03:17,455 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:17,674 - single - train greedy GROM - end - projecting (elapsed time: 0.21964 sec)
+2025-02-28 14:03:17,674 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:17,772 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09705 sec)
+2025-02-28 14:03:17,772 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:19,383 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.61085 sec)
+2025-02-28 14:03:19,383 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:20,257 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.87406 sec)
+2025-02-28 14:03:20,258 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:20,703 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.44537 sec)
+2025-02-28 14:03:20,704 - single - val greedy GROM - calibration ratio = 1.00066728
+2025-02-28 14:03:20,790 - single - val greedy GROM - avg calibrated testing error = 3.13874417e-06
+2025-02-28 14:03:20,888 - single - val greedy GROM - std calibrated testing error = 3.58739525e-06
+2025-02-28 14:03:20,975 - single - val greedy GROM - max calibrated testing error = 2.48863082e-05
+2025-02-28 14:03:20,975 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:21,193 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21694 sec)
+2025-02-28 14:03:21,193 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:21,193 - single - train greedy GROM - greedy iteration = 8
+2025-02-28 14:03:21,193 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:21,413 - single - train greedy GROM - end - projecting (elapsed time: 0.21993 sec)
+2025-02-28 14:03:21,413 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:21,508 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09440 sec)
+2025-02-28 14:03:21,508 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:23,170 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.66170 sec)
+2025-02-28 14:03:23,170 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:24,037 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.86759 sec)
+2025-02-28 14:03:24,038 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:24,471 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43334 sec)
+2025-02-28 14:03:24,471 - single - val greedy GROM - calibration ratio = 1.00668223
+2025-02-28 14:03:24,557 - single - val greedy GROM - avg calibrated testing error = 5.12923460e-07
+2025-02-28 14:03:24,667 - single - val greedy GROM - std calibrated testing error = 4.23752631e-07
+2025-02-28 14:03:24,753 - single - val greedy GROM - max calibrated testing error = 2.16925573e-06
+2025-02-28 14:03:24,753 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:24,969 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21604 sec)
+2025-02-28 14:03:24,969 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:24,969 - single - train greedy GROM - greedy iteration = 9
+2025-02-28 14:03:24,969 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:25,190 - single - train greedy GROM - end - projecting (elapsed time: 0.22009 sec)
+2025-02-28 14:03:25,190 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:25,283 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09307 sec)
+2025-02-28 14:03:25,283 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:26,939 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.65597 sec)
+2025-02-28 14:03:26,939 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:27,759 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.81938 sec)
+2025-02-28 14:03:27,759 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:28,201 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.44169 sec)
+2025-02-28 14:03:28,201 - single - val greedy GROM - calibration ratio = 1.00912839
+2025-02-28 14:03:28,287 - single - val greedy GROM - avg calibrated testing error = 1.05977736e-07
+2025-02-28 14:03:28,386 - single - val greedy GROM - std calibrated testing error = 8.07741930e-08
+2025-02-28 14:03:28,473 - single - val greedy GROM - max calibrated testing error = 3.87261667e-07
+2025-02-28 14:03:28,473 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:28,685 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21191 sec)
+2025-02-28 14:03:28,686 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:28,686 - single - train greedy GROM - greedy iteration = 10
+2025-02-28 14:03:28,686 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:28,690 - single - train greedy GROM - end - projecting (elapsed time: 0.00442 sec)
+2025-02-28 14:03:28,690 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:28,785 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09479 sec)
+2025-02-28 14:03:28,786 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:29,911 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.12559 sec)
+2025-02-28 14:03:29,912 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:30,758 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.84633 sec)
+2025-02-28 14:03:30,758 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:31,199 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.44031 sec)
+2025-02-28 14:03:31,199 - single - val greedy GROM - calibration ratio = 1.01004110
+2025-02-28 14:03:31,286 - single - val greedy GROM - avg calibrated testing error = 1.05248185e-08
+2025-02-28 14:03:31,386 - single - val greedy GROM - std calibrated testing error = 8.95028422e-09
+2025-02-28 14:03:31,473 - single - val greedy GROM - max calibrated testing error = 5.60281460e-08
+2025-02-28 14:03:31,473 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:31,686 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.21348 sec)
+2025-02-28 14:03:31,687 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:31,687 - single - train greedy GROM - greedy iteration = 11
+2025-02-28 14:03:31,687 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:31,691 - single - train greedy GROM - end - projecting (elapsed time: 0.00368 sec)
+2025-02-28 14:03:31,691 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:31,787 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09573 sec)
+2025-02-28 14:03:31,787 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:32,935 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.14779 sec)
+2025-02-28 14:03:32,935 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:33,873 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.93772 sec)
+2025-02-28 14:03:33,874 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:34,311 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43681 sec)
+2025-02-28 14:03:34,311 - single - val greedy GROM - calibration ratio = 1.03687827
+2025-02-28 14:03:34,396 - single - val greedy GROM - avg calibrated testing error = 2.73225218e-09
+2025-02-28 14:03:34,496 - single - val greedy GROM - std calibrated testing error = 1.62891103e-09
+2025-02-28 14:03:34,584 - single - val greedy GROM - max calibrated testing error = 7.19893089e-09
+2025-02-28 14:03:34,584 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:34,647 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.06290 sec)
+2025-02-28 14:03:34,647 - single - val greedy GROM - greedy algorithm done in 11 iterations, used 13 training points
+2025-02-28 14:03:34,647 - single - train greedy GROM - training 3P0 channel at Elab = 10.0 MeV...
+2025-02-28 14:03:34,647 - single - train greedy GROM - start - orthogonalizing 2 initial training points
+2025-02-28 14:03:34,649 - single - train greedy GROM - end - orthogonalizing 2 initial training points (elapsed time: 0.00107 sec)
+2025-02-28 14:03:34,649 - single - train greedy GROM - greedy iteration = 0
+2025-02-28 14:03:34,649 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:34,658 - single - train greedy GROM - end - projecting (elapsed time: 0.00914 sec)
+2025-02-28 14:03:34,658 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:34,687 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02894 sec)
+2025-02-28 14:03:34,688 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:34,699 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01105 sec)
+2025-02-28 14:03:34,699 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:34,747 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04832 sec)
+2025-02-28 14:03:34,748 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:34,931 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.18299 sec)
+2025-02-28 14:03:34,931 - single - val greedy GROM - calibration ratio = 0.50360423
+2025-02-28 14:03:34,931 - single - val greedy GROM - avg calibrated testing error = 4.26046941e-02
+2025-02-28 14:03:34,933 - single - val greedy GROM - std calibrated testing error = 2.75295285e-02
+2025-02-28 14:03:34,933 - single - val greedy GROM - max calibrated testing error = 1.18926071e-01
+2025-02-28 14:03:34,933 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:34,934 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00122 sec)
+2025-02-28 14:03:34,934 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:34,935 - single - train greedy GROM - greedy iteration = 1
+2025-02-28 14:03:34,935 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:34,938 - single - train greedy GROM - end - projecting (elapsed time: 0.00285 sec)
+2025-02-28 14:03:34,938 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:34,974 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03595 sec)
+2025-02-28 14:03:34,974 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:34,981 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00713 sec)
+2025-02-28 14:03:34,981 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:35,019 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03774 sec)
+2025-02-28 14:03:35,020 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:35,245 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.22509 sec)
+2025-02-28 14:03:35,245 - single - val greedy GROM - calibration ratio = 1.09516257
+2025-02-28 14:03:35,245 - single - val greedy GROM - avg calibrated testing error = 3.33184079e-03
+2025-02-28 14:03:35,246 - single - val greedy GROM - std calibrated testing error = 2.77953944e-03
+2025-02-28 14:03:35,246 - single - val greedy GROM - max calibrated testing error = 2.39258519e-02
+2025-02-28 14:03:35,246 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:35,248 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00182 sec)
+2025-02-28 14:03:35,248 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:35,248 - single - train greedy GROM - greedy iteration = 2
+2025-02-28 14:03:35,248 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:35,251 - single - train greedy GROM - end - projecting (elapsed time: 0.00248 sec)
+2025-02-28 14:03:35,251 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:35,278 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02754 sec)
+2025-02-28 14:03:35,279 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:35,283 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00469 sec)
+2025-02-28 14:03:35,284 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:35,352 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.06871 sec)
+2025-02-28 14:03:35,353 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:35,517 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.16441 sec)
+2025-02-28 14:03:35,517 - single - val greedy GROM - calibration ratio = 1.03622112
+2025-02-28 14:03:35,518 - single - val greedy GROM - avg calibrated testing error = 3.70574409e-04
+2025-02-28 14:03:35,518 - single - val greedy GROM - std calibrated testing error = 3.57785589e-04
+2025-02-28 14:03:35,518 - single - val greedy GROM - max calibrated testing error = 5.66975267e-03
+2025-02-28 14:03:35,518 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:35,520 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00140 sec)
+2025-02-28 14:03:35,520 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:35,520 - single - train greedy GROM - greedy iteration = 3
+2025-02-28 14:03:35,520 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:35,524 - single - train greedy GROM - end - projecting (elapsed time: 0.00349 sec)
+2025-02-28 14:03:35,524 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:35,560 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03560 sec)
+2025-02-28 14:03:35,560 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:35,573 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01312 sec)
+2025-02-28 14:03:35,574 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:35,626 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05260 sec)
+2025-02-28 14:03:35,627 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:35,903 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.27640 sec)
+2025-02-28 14:03:35,903 - single - val greedy GROM - calibration ratio = 1.01400345
+2025-02-28 14:03:35,904 - single - val greedy GROM - avg calibrated testing error = 1.49544773e-04
+2025-02-28 14:03:35,904 - single - val greedy GROM - std calibrated testing error = 1.29257160e-04
+2025-02-28 14:03:35,904 - single - val greedy GROM - max calibrated testing error = 7.99560522e-04
+2025-02-28 14:03:35,904 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:35,905 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00112 sec)
+2025-02-28 14:03:35,905 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:35,906 - single - train greedy GROM - greedy iteration = 4
+2025-02-28 14:03:35,906 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:35,908 - single - train greedy GROM - end - projecting (elapsed time: 0.00256 sec)
+2025-02-28 14:03:35,908 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:35,942 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03371 sec)
+2025-02-28 14:03:35,942 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:35,958 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01542 sec)
+2025-02-28 14:03:35,958 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:36,009 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05072 sec)
+2025-02-28 14:03:36,009 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:36,225 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.21543 sec)
+2025-02-28 14:03:36,225 - single - val greedy GROM - calibration ratio = 0.98886005
+2025-02-28 14:03:36,226 - single - val greedy GROM - avg calibrated testing error = 1.18025870e-05
+2025-02-28 14:03:36,226 - single - val greedy GROM - std calibrated testing error = 1.15580034e-05
+2025-02-28 14:03:36,226 - single - val greedy GROM - max calibrated testing error = 9.85421418e-05
+2025-02-28 14:03:36,226 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:36,227 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00114 sec)
+2025-02-28 14:03:36,228 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:36,228 - single - train greedy GROM - greedy iteration = 5
+2025-02-28 14:03:36,228 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:36,231 - single - train greedy GROM - end - projecting (elapsed time: 0.00281 sec)
+2025-02-28 14:03:36,233 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:36,261 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02815 sec)
+2025-02-28 14:03:36,261 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:36,272 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01092 sec)
+2025-02-28 14:03:36,273 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:36,314 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04066 sec)
+2025-02-28 14:03:36,314 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:36,490 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.17601 sec)
+2025-02-28 14:03:36,490 - single - val greedy GROM - calibration ratio = 0.99741296
+2025-02-28 14:03:36,491 - single - val greedy GROM - avg calibrated testing error = 1.65155933e-06
+2025-02-28 14:03:36,491 - single - val greedy GROM - std calibrated testing error = 1.18760357e-06
+2025-02-28 14:03:36,491 - single - val greedy GROM - max calibrated testing error = 1.13156288e-05
+2025-02-28 14:03:36,491 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:36,493 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00151 sec)
+2025-02-28 14:03:36,493 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:36,493 - single - train greedy GROM - greedy iteration = 6
+2025-02-28 14:03:36,493 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:36,497 - single - train greedy GROM - end - projecting (elapsed time: 0.00313 sec)
+2025-02-28 14:03:36,497 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:36,528 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03138 sec)
+2025-02-28 14:03:36,529 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:36,543 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01379 sec)
+2025-02-28 14:03:36,543 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:36,585 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04172 sec)
+2025-02-28 14:03:36,585 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:36,812 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.22701 sec)
+2025-02-28 14:03:36,812 - single - val greedy GROM - calibration ratio = 0.99971755
+2025-02-28 14:03:36,813 - single - val greedy GROM - avg calibrated testing error = 5.72018126e-07
+2025-02-28 14:03:36,813 - single - val greedy GROM - std calibrated testing error = 2.83297883e-07
+2025-02-28 14:03:36,814 - single - val greedy GROM - max calibrated testing error = 1.50476964e-06
+2025-02-28 14:03:36,814 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:36,816 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00176 sec)
+2025-02-28 14:03:36,816 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:36,816 - single - train greedy GROM - greedy iteration = 7
+2025-02-28 14:03:36,816 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:36,819 - single - train greedy GROM - end - projecting (elapsed time: 0.00310 sec)
+2025-02-28 14:03:36,819 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:36,855 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03569 sec)
+2025-02-28 14:03:36,856 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:36,869 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01308 sec)
+2025-02-28 14:03:36,869 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:36,927 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05786 sec)
+2025-02-28 14:03:36,927 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:37,074 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.14617 sec)
+2025-02-28 14:03:37,074 - single - val greedy GROM - calibration ratio = 1.00439070
+2025-02-28 14:03:37,074 - single - val greedy GROM - avg calibrated testing error = 3.71947384e-07
+2025-02-28 14:03:37,074 - single - val greedy GROM - std calibrated testing error = 1.82050441e-07
+2025-02-28 14:03:37,075 - single - val greedy GROM - max calibrated testing error = 1.88829159e-06
+2025-02-28 14:03:37,075 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:37,076 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00112 sec)
+2025-02-28 14:03:37,076 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:37,076 - single - train greedy GROM - greedy iteration = 8
+2025-02-28 14:03:37,076 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:37,079 - single - train greedy GROM - end - projecting (elapsed time: 0.00252 sec)
+2025-02-28 14:03:37,079 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:37,107 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02760 sec)
+2025-02-28 14:03:37,107 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:37,118 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01067 sec)
+2025-02-28 14:03:37,118 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:37,162 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04348 sec)
+2025-02-28 14:03:37,162 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:37,362 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.20014 sec)
+2025-02-28 14:03:37,363 - single - val greedy GROM - calibration ratio = 1.00194218
+2025-02-28 14:03:37,363 - single - val greedy GROM - avg calibrated testing error = 4.27731667e-08
+2025-02-28 14:03:37,364 - single - val greedy GROM - std calibrated testing error = 1.67834088e-08
+2025-02-28 14:03:37,364 - single - val greedy GROM - max calibrated testing error = 1.01266958e-07
+2025-02-28 14:03:37,364 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:37,365 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00112 sec)
+2025-02-28 14:03:37,365 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:37,365 - single - train greedy GROM - greedy iteration = 9
+2025-02-28 14:03:37,366 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:37,368 - single - train greedy GROM - end - projecting (elapsed time: 0.00259 sec)
+2025-02-28 14:03:37,368 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:37,397 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02810 sec)
+2025-02-28 14:03:37,397 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:37,410 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01344 sec)
+2025-02-28 14:03:37,411 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:37,452 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04133 sec)
+2025-02-28 14:03:37,453 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:37,656 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.20270 sec)
+2025-02-28 14:03:37,656 - single - val greedy GROM - calibration ratio = 0.97677557
+2025-02-28 14:03:37,656 - single - val greedy GROM - avg calibrated testing error = 1.78198867e-08
+2025-02-28 14:03:37,657 - single - val greedy GROM - std calibrated testing error = 1.16867933e-08
+2025-02-28 14:03:37,657 - single - val greedy GROM - max calibrated testing error = 5.84866650e-08
+2025-02-28 14:03:37,657 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:37,658 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00119 sec)
+2025-02-28 14:03:37,658 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:37,658 - single - train greedy GROM - greedy iteration = 10
+2025-02-28 14:03:37,658 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:37,661 - single - train greedy GROM - end - projecting (elapsed time: 0.00230 sec)
+2025-02-28 14:03:37,661 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:37,689 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02778 sec)
+2025-02-28 14:03:37,689 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:37,703 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01408 sec)
+2025-02-28 14:03:37,704 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:37,748 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04419 sec)
+2025-02-28 14:03:37,748 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:37,923 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.17422 sec)
+2025-02-28 14:03:37,923 - single - val greedy GROM - calibration ratio = 0.99268796
+2025-02-28 14:03:37,923 - single - val greedy GROM - avg calibrated testing error = 2.75984010e-09
+2025-02-28 14:03:37,923 - single - val greedy GROM - std calibrated testing error = 2.31007430e-09
+2025-02-28 14:03:37,924 - single - val greedy GROM - max calibrated testing error = 1.15000549e-08
+2025-02-28 14:03:37,924 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:37,925 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00125 sec)
+2025-02-28 14:03:37,925 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:37,925 - single - train greedy GROM - greedy iteration = 11
+2025-02-28 14:03:37,925 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:37,928 - single - train greedy GROM - end - projecting (elapsed time: 0.00243 sec)
+2025-02-28 14:03:37,928 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:37,956 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02754 sec)
+2025-02-28 14:03:37,956 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:37,980 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.02389 sec)
+2025-02-28 14:03:37,980 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:38,036 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05555 sec)
+2025-02-28 14:03:38,036 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:38,188 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.15150 sec)
+2025-02-28 14:03:38,188 - single - val greedy GROM - calibration ratio = 1.00172607
+2025-02-28 14:03:38,189 - single - val greedy GROM - avg calibrated testing error = 6.16063835e-10
+2025-02-28 14:03:38,189 - single - val greedy GROM - std calibrated testing error = 3.99657458e-10
+2025-02-28 14:03:38,189 - single - val greedy GROM - max calibrated testing error = 1.82134002e-09
+2025-02-28 14:03:38,189 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:38,190 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00070 sec)
+2025-02-28 14:03:38,190 - single - val greedy GROM - greedy algorithm done in 11 iterations, used 13 training points
+2025-02-28 14:03:38,190 - single - train greedy GROM - training 1P1 channel at Elab = 10.0 MeV...
+2025-02-28 14:03:38,190 - single - train greedy GROM - start - orthogonalizing 2 initial training points
+2025-02-28 14:03:38,191 - single - train greedy GROM - end - orthogonalizing 2 initial training points (elapsed time: 0.00047 sec)
+2025-02-28 14:03:38,191 - single - train greedy GROM - greedy iteration = 0
+2025-02-28 14:03:38,191 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:38,195 - single - train greedy GROM - end - projecting (elapsed time: 0.00374 sec)
+2025-02-28 14:03:38,195 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:38,223 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02766 sec)
+2025-02-28 14:03:38,223 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:38,228 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00484 sec)
+2025-02-28 14:03:38,228 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:38,282 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05419 sec)
+2025-02-28 14:03:38,283 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:38,359 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.07587 sec)
+2025-02-28 14:03:38,359 - single - val greedy GROM - calibration ratio = 37.19594526
+2025-02-28 14:03:38,360 - single - val greedy GROM - avg calibrated testing error = 1.01490459e+00
+2025-02-28 14:03:38,360 - single - val greedy GROM - std calibrated testing error = 7.64878825e-01
+2025-02-28 14:03:38,360 - single - val greedy GROM - max calibrated testing error = 4.22851062e+00
+2025-02-28 14:03:38,360 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:38,361 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00097 sec)
+2025-02-28 14:03:38,361 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:38,362 - single - train greedy GROM - greedy iteration = 1
+2025-02-28 14:03:38,362 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:38,364 - single - train greedy GROM - end - projecting (elapsed time: 0.00280 sec)
+2025-02-28 14:03:38,365 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:38,396 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03103 sec)
+2025-02-28 14:03:38,396 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:38,400 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00379 sec)
+2025-02-28 14:03:38,400 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:38,442 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04216 sec)
+2025-02-28 14:03:38,443 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:38,546 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.10330 sec)
+2025-02-28 14:03:38,546 - single - val greedy GROM - calibration ratio = 1.96215777
+2025-02-28 14:03:38,547 - single - val greedy GROM - avg calibrated testing error = 4.76892142e-02
+2025-02-28 14:03:38,547 - single - val greedy GROM - std calibrated testing error = 3.48525136e-02
+2025-02-28 14:03:38,547 - single - val greedy GROM - max calibrated testing error = 1.86343222e-01
+2025-02-28 14:03:38,547 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:38,549 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00106 sec)
+2025-02-28 14:03:38,549 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:38,549 - single - train greedy GROM - greedy iteration = 2
+2025-02-28 14:03:38,549 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:38,551 - single - train greedy GROM - end - projecting (elapsed time: 0.00242 sec)
+2025-02-28 14:03:38,551 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:38,580 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02820 sec)
+2025-02-28 14:03:38,580 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:38,584 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00393 sec)
+2025-02-28 14:03:38,584 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:38,629 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04490 sec)
+2025-02-28 14:03:38,629 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:38,724 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.09476 sec)
+2025-02-28 14:03:38,725 - single - val greedy GROM - calibration ratio = 0.96936467
+2025-02-28 14:03:38,725 - single - val greedy GROM - avg calibrated testing error = 4.51837123e-04
+2025-02-28 14:03:38,725 - single - val greedy GROM - std calibrated testing error = 3.31003353e-04
+2025-02-28 14:03:38,725 - single - val greedy GROM - max calibrated testing error = 1.71252550e-03
+2025-02-28 14:03:38,725 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:38,726 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00095 sec)
+2025-02-28 14:03:38,727 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:38,727 - single - train greedy GROM - greedy iteration = 3
+2025-02-28 14:03:38,727 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:38,729 - single - train greedy GROM - end - projecting (elapsed time: 0.00238 sec)
+2025-02-28 14:03:38,729 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:38,758 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02817 sec)
+2025-02-28 14:03:38,758 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:38,762 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00377 sec)
+2025-02-28 14:03:38,762 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:38,816 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05384 sec)
+2025-02-28 14:03:38,816 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:38,986 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.17011 sec)
+2025-02-28 14:03:38,986 - single - val greedy GROM - calibration ratio = 1.55903563
+2025-02-28 14:03:38,987 - single - val greedy GROM - avg calibrated testing error = 1.81046705e-04
+2025-02-28 14:03:38,987 - single - val greedy GROM - std calibrated testing error = 2.14268348e-04
+2025-02-28 14:03:38,987 - single - val greedy GROM - max calibrated testing error = 3.02194175e-03
+2025-02-28 14:03:38,987 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:38,988 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00096 sec)
+2025-02-28 14:03:38,988 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:38,988 - single - train greedy GROM - greedy iteration = 4
+2025-02-28 14:03:38,988 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:38,991 - single - train greedy GROM - end - projecting (elapsed time: 0.00235 sec)
+2025-02-28 14:03:38,991 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:39,020 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02878 sec)
+2025-02-28 14:03:39,020 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:39,027 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00676 sec)
+2025-02-28 14:03:39,027 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:39,083 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05553 sec)
+2025-02-28 14:03:39,083 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:39,229 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.14562 sec)
+2025-02-28 14:03:39,229 - single - val greedy GROM - calibration ratio = 0.93129807
+2025-02-28 14:03:39,229 - single - val greedy GROM - avg calibrated testing error = 2.97815012e-05
+2025-02-28 14:03:39,230 - single - val greedy GROM - std calibrated testing error = 3.87451999e-05
+2025-02-28 14:03:39,230 - single - val greedy GROM - max calibrated testing error = 2.89743271e-04
+2025-02-28 14:03:39,230 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:39,231 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:39,231 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:39,231 - single - train greedy GROM - greedy iteration = 5
+2025-02-28 14:03:39,231 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:39,234 - single - train greedy GROM - end - projecting (elapsed time: 0.00229 sec)
+2025-02-28 14:03:39,234 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:39,261 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02753 sec)
+2025-02-28 14:03:39,262 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:39,265 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00374 sec)
+2025-02-28 14:03:39,266 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:39,321 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05526 sec)
+2025-02-28 14:03:39,321 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:39,460 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.13826 sec)
+2025-02-28 14:03:39,460 - single - val greedy GROM - calibration ratio = 1.07145101
+2025-02-28 14:03:39,460 - single - val greedy GROM - avg calibrated testing error = 4.36479460e-06
+2025-02-28 14:03:39,460 - single - val greedy GROM - std calibrated testing error = 3.41124444e-06
+2025-02-28 14:03:39,461 - single - val greedy GROM - max calibrated testing error = 3.75441794e-05
+2025-02-28 14:03:39,461 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:39,462 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00094 sec)
+2025-02-28 14:03:39,462 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:39,462 - single - train greedy GROM - greedy iteration = 6
+2025-02-28 14:03:39,462 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:39,464 - single - train greedy GROM - end - projecting (elapsed time: 0.00248 sec)
+2025-02-28 14:03:39,465 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:39,492 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02733 sec)
+2025-02-28 14:03:39,492 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:39,496 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00408 sec)
+2025-02-28 14:03:39,496 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:39,528 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03131 sec)
+2025-02-28 14:03:39,528 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:39,672 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.14390 sec)
+2025-02-28 14:03:39,672 - single - val greedy GROM - calibration ratio = 0.99076152
+2025-02-28 14:03:39,673 - single - val greedy GROM - avg calibrated testing error = 2.68148642e-06
+2025-02-28 14:03:39,673 - single - val greedy GROM - std calibrated testing error = 1.99391705e-06
+2025-02-28 14:03:39,673 - single - val greedy GROM - max calibrated testing error = 1.53057697e-05
+2025-02-28 14:03:39,673 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:39,674 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00099 sec)
+2025-02-28 14:03:39,675 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:39,675 - single - train greedy GROM - greedy iteration = 7
+2025-02-28 14:03:39,675 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:39,677 - single - train greedy GROM - end - projecting (elapsed time: 0.00252 sec)
+2025-02-28 14:03:39,677 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:39,705 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02775 sec)
+2025-02-28 14:03:39,705 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:39,709 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00392 sec)
+2025-02-28 14:03:39,710 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:39,751 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04120 sec)
+2025-02-28 14:03:39,751 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:39,913 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.16200 sec)
+2025-02-28 14:03:39,913 - single - val greedy GROM - calibration ratio = 3.67020907
+2025-02-28 14:03:39,914 - single - val greedy GROM - avg calibrated testing error = 2.27071437e-06
+2025-02-28 14:03:39,914 - single - val greedy GROM - std calibrated testing error = 1.68409406e-06
+2025-02-28 14:03:39,914 - single - val greedy GROM - max calibrated testing error = 1.63367848e-05
+2025-02-28 14:03:39,914 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:39,915 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:39,915 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:39,916 - single - train greedy GROM - greedy iteration = 8
+2025-02-28 14:03:39,916 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:39,918 - single - train greedy GROM - end - projecting (elapsed time: 0.00245 sec)
+2025-02-28 14:03:39,918 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:39,946 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02792 sec)
+2025-02-28 14:03:39,946 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:39,976 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.02901 sec)
+2025-02-28 14:03:39,976 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:40,009 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03274 sec)
+2025-02-28 14:03:40,009 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:40,150 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.14095 sec)
+2025-02-28 14:03:40,150 - single - val greedy GROM - calibration ratio = 0.99233837
+2025-02-28 14:03:40,150 - single - val greedy GROM - avg calibrated testing error = 5.28076044e-08
+2025-02-28 14:03:40,151 - single - val greedy GROM - std calibrated testing error = 3.40482565e-08
+2025-02-28 14:03:40,151 - single - val greedy GROM - max calibrated testing error = 1.72268753e-07
+2025-02-28 14:03:40,151 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:40,152 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:40,152 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:40,152 - single - train greedy GROM - greedy iteration = 9
+2025-02-28 14:03:40,152 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:40,155 - single - train greedy GROM - end - projecting (elapsed time: 0.00235 sec)
+2025-02-28 14:03:40,155 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:40,183 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02789 sec)
+2025-02-28 14:03:40,183 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:40,211 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.02765 sec)
+2025-02-28 14:03:40,211 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:40,243 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03229 sec)
+2025-02-28 14:03:40,243 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:40,432 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.18891 sec)
+2025-02-28 14:03:40,433 - single - val greedy GROM - calibration ratio = 0.97224891
+2025-02-28 14:03:40,433 - single - val greedy GROM - avg calibrated testing error = 1.22361296e-08
+2025-02-28 14:03:40,433 - single - val greedy GROM - std calibrated testing error = 7.29876682e-09
+2025-02-28 14:03:40,433 - single - val greedy GROM - max calibrated testing error = 7.98525057e-08
+2025-02-28 14:03:40,433 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:40,435 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00101 sec)
+2025-02-28 14:03:40,435 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:40,435 - single - train greedy GROM - greedy iteration = 10
+2025-02-28 14:03:40,435 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:40,437 - single - train greedy GROM - end - projecting (elapsed time: 0.00234 sec)
+2025-02-28 14:03:40,437 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:40,465 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02757 sec)
+2025-02-28 14:03:40,465 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:40,474 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00909 sec)
+2025-02-28 14:03:40,475 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:40,528 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.05363 sec)
+2025-02-28 14:03:40,529 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:40,725 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.19575 sec)
+2025-02-28 14:03:40,725 - single - val greedy GROM - calibration ratio = 0.99729609
+2025-02-28 14:03:40,725 - single - val greedy GROM - avg calibrated testing error = 8.60578084e-09
+2025-02-28 14:03:40,725 - single - val greedy GROM - std calibrated testing error = 7.35228664e-09
+2025-02-28 14:03:40,725 - single - val greedy GROM - max calibrated testing error = 3.04679979e-08
+2025-02-28 14:03:40,725 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:40,727 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:40,727 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:40,727 - single - train greedy GROM - greedy iteration = 11
+2025-02-28 14:03:40,727 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:40,729 - single - train greedy GROM - end - projecting (elapsed time: 0.00245 sec)
+2025-02-28 14:03:40,729 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:40,757 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02794 sec)
+2025-02-28 14:03:40,758 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:40,778 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.02048 sec)
+2025-02-28 14:03:40,778 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:40,812 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03303 sec)
+2025-02-28 14:03:40,812 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:40,987 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.17510 sec)
+2025-02-28 14:03:40,987 - single - val greedy GROM - calibration ratio = 10.28120830
+2025-02-28 14:03:40,988 - single - val greedy GROM - avg calibrated testing error = 7.75977890e-09
+2025-02-28 14:03:40,988 - single - val greedy GROM - std calibrated testing error = 1.48634453e-08
+2025-02-28 14:03:40,988 - single - val greedy GROM - max calibrated testing error = 4.29458742e-07
+2025-02-28 14:03:40,988 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:41,225 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.23650 sec)
+2025-02-28 14:03:41,225 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:41,225 - single - train greedy GROM - greedy iteration = 12
+2025-02-28 14:03:41,225 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:41,445 - single - train greedy GROM - end - projecting (elapsed time: 0.22042 sec)
+2025-02-28 14:03:41,446 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:41,542 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.09613 sec)
+2025-02-28 14:03:41,542 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:43,267 - single - val greedy GROM - end - emulating at validation points (elapsed time: 1.72525 sec)
+2025-02-28 14:03:43,268 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:44,039 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.77106 sec)
+2025-02-28 14:03:44,039 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:44,476 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.43654 sec)
+2025-02-28 14:03:44,476 - single - val greedy GROM - calibration ratio = 1.02612970
+2025-02-28 14:03:44,563 - single - val greedy GROM - avg calibrated testing error = 2.14790035e-10
+2025-02-28 14:03:44,661 - single - val greedy GROM - std calibrated testing error = 1.53111295e-10
+2025-02-28 14:03:44,751 - single - val greedy GROM - max calibrated testing error = 9.96008212e-10
+2025-02-28 14:03:44,751 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:44,752 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00071 sec)
+2025-02-28 14:03:44,752 - single - val greedy GROM - greedy algorithm done in 12 iterations, used 14 training points
+2025-02-28 14:03:44,752 - single - train greedy GROM - training 3P1 channel at Elab = 10.0 MeV...
+2025-02-28 14:03:44,752 - single - train greedy GROM - start - orthogonalizing 2 initial training points
+2025-02-28 14:03:44,753 - single - train greedy GROM - end - orthogonalizing 2 initial training points (elapsed time: 0.00059 sec)
+2025-02-28 14:03:44,753 - single - train greedy GROM - greedy iteration = 0
+2025-02-28 14:03:44,753 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:44,757 - single - train greedy GROM - end - projecting (elapsed time: 0.00452 sec)
+2025-02-28 14:03:44,757 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:44,786 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02813 sec)
+2025-02-28 14:03:44,786 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:44,790 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00449 sec)
+2025-02-28 14:03:44,791 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:44,835 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04448 sec)
+2025-02-28 14:03:44,836 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:45,005 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.16868 sec)
+2025-02-28 14:03:45,006 - single - val greedy GROM - calibration ratio = 0.99498590
+2025-02-28 14:03:45,006 - single - val greedy GROM - avg calibrated testing error = 8.26019810e-03
+2025-02-28 14:03:45,007 - single - val greedy GROM - std calibrated testing error = 5.98609089e-03
+2025-02-28 14:03:45,007 - single - val greedy GROM - max calibrated testing error = 3.19097485e-02
+2025-02-28 14:03:45,007 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:45,008 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00096 sec)
+2025-02-28 14:03:45,008 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:45,008 - single - train greedy GROM - greedy iteration = 1
+2025-02-28 14:03:45,008 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:45,011 - single - train greedy GROM - end - projecting (elapsed time: 0.00234 sec)
+2025-02-28 14:03:45,011 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:45,038 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02744 sec)
+2025-02-28 14:03:45,038 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:45,042 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00376 sec)
+2025-02-28 14:03:45,042 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:45,090 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04789 sec)
+2025-02-28 14:03:45,091 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:45,180 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.08902 sec)
+2025-02-28 14:03:45,180 - single - val greedy GROM - calibration ratio = 0.86775088
+2025-02-28 14:03:45,180 - single - val greedy GROM - avg calibrated testing error = 1.34024596e-03
+2025-02-28 14:03:45,181 - single - val greedy GROM - std calibrated testing error = 9.44937018e-04
+2025-02-28 14:03:45,181 - single - val greedy GROM - max calibrated testing error = 4.75870652e-03
+2025-02-28 14:03:45,181 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:45,182 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00124 sec)
+2025-02-28 14:03:45,183 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:45,183 - single - train greedy GROM - greedy iteration = 2
+2025-02-28 14:03:45,183 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:45,186 - single - train greedy GROM - end - projecting (elapsed time: 0.00299 sec)
+2025-02-28 14:03:45,186 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:45,214 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02793 sec)
+2025-02-28 14:03:45,214 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:45,234 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01967 sec)
+2025-02-28 14:03:45,234 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:45,278 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04400 sec)
+2025-02-28 14:03:45,278 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:45,388 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.10963 sec)
+2025-02-28 14:03:45,388 - single - val greedy GROM - calibration ratio = 1.01019018
+2025-02-28 14:03:45,389 - single - val greedy GROM - avg calibrated testing error = 2.57028826e-04
+2025-02-28 14:03:45,389 - single - val greedy GROM - std calibrated testing error = 2.46088015e-04
+2025-02-28 14:03:45,389 - single - val greedy GROM - max calibrated testing error = 1.30419016e-03
+2025-02-28 14:03:45,389 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:45,390 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:45,390 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:45,390 - single - train greedy GROM - greedy iteration = 3
+2025-02-28 14:03:45,391 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:45,393 - single - train greedy GROM - end - projecting (elapsed time: 0.00261 sec)
+2025-02-28 14:03:45,393 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:45,421 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02804 sec)
+2025-02-28 14:03:45,422 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:45,443 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.02083 sec)
+2025-02-28 14:03:45,443 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:45,476 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03319 sec)
+2025-02-28 14:03:45,476 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:45,684 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.20727 sec)
+2025-02-28 14:03:45,684 - single - val greedy GROM - calibration ratio = 1.02610536
+2025-02-28 14:03:45,684 - single - val greedy GROM - avg calibrated testing error = 3.59598546e-05
+2025-02-28 14:03:45,684 - single - val greedy GROM - std calibrated testing error = 3.54067339e-05
+2025-02-28 14:03:45,684 - single - val greedy GROM - max calibrated testing error = 3.37093558e-04
+2025-02-28 14:03:45,685 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:45,686 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00094 sec)
+2025-02-28 14:03:45,686 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:45,686 - single - train greedy GROM - greedy iteration = 4
+2025-02-28 14:03:45,686 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:45,689 - single - train greedy GROM - end - projecting (elapsed time: 0.00296 sec)
+2025-02-28 14:03:45,689 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:45,717 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02820 sec)
+2025-02-28 14:03:45,717 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:45,735 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01783 sec)
+2025-02-28 14:03:45,736 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:45,775 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03898 sec)
+2025-02-28 14:03:45,775 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:45,955 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.18013 sec)
+2025-02-28 14:03:45,955 - single - val greedy GROM - calibration ratio = 0.98377976
+2025-02-28 14:03:45,955 - single - val greedy GROM - avg calibrated testing error = 6.67967744e-06
+2025-02-28 14:03:45,956 - single - val greedy GROM - std calibrated testing error = 5.39645828e-06
+2025-02-28 14:03:45,956 - single - val greedy GROM - max calibrated testing error = 5.32670574e-05
+2025-02-28 14:03:45,956 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:45,957 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00101 sec)
+2025-02-28 14:03:45,957 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:45,957 - single - train greedy GROM - greedy iteration = 5
+2025-02-28 14:03:45,957 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:45,961 - single - train greedy GROM - end - projecting (elapsed time: 0.00301 sec)
+2025-02-28 14:03:45,961 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:45,992 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03073 sec)
+2025-02-28 14:03:45,992 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:45,997 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00490 sec)
+2025-02-28 14:03:45,997 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:46,074 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.07727 sec)
+2025-02-28 14:03:46,074 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:46,206 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.13150 sec)
+2025-02-28 14:03:46,206 - single - val greedy GROM - calibration ratio = 1.00558373
+2025-02-28 14:03:46,207 - single - val greedy GROM - avg calibrated testing error = 4.60089368e-07
+2025-02-28 14:03:46,207 - single - val greedy GROM - std calibrated testing error = 3.52449670e-07
+2025-02-28 14:03:46,207 - single - val greedy GROM - max calibrated testing error = 3.16247070e-06
+2025-02-28 14:03:46,207 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:46,208 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00098 sec)
+2025-02-28 14:03:46,208 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:46,208 - single - train greedy GROM - greedy iteration = 6
+2025-02-28 14:03:46,208 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:46,211 - single - train greedy GROM - end - projecting (elapsed time: 0.00235 sec)
+2025-02-28 14:03:46,211 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:46,243 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03206 sec)
+2025-02-28 14:03:46,243 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:46,248 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00455 sec)
+2025-02-28 14:03:46,248 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:46,288 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03980 sec)
+2025-02-28 14:03:46,288 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:46,498 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.20962 sec)
+2025-02-28 14:03:46,500 - single - val greedy GROM - calibration ratio = 0.98240156
+2025-02-28 14:03:46,500 - single - val greedy GROM - avg calibrated testing error = 1.90469679e-07
+2025-02-28 14:03:46,500 - single - val greedy GROM - std calibrated testing error = 1.41867089e-07
+2025-02-28 14:03:46,500 - single - val greedy GROM - max calibrated testing error = 7.05032593e-07
+2025-02-28 14:03:46,501 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:46,502 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00109 sec)
+2025-02-28 14:03:46,502 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:46,502 - single - train greedy GROM - greedy iteration = 7
+2025-02-28 14:03:46,502 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:46,505 - single - train greedy GROM - end - projecting (elapsed time: 0.00279 sec)
+2025-02-28 14:03:46,505 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:46,536 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.03084 sec)
+2025-02-28 14:03:46,536 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:46,547 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01108 sec)
+2025-02-28 14:03:46,548 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:46,587 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03864 sec)
+2025-02-28 14:03:46,587 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:46,779 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.19169 sec)
+2025-02-28 14:03:46,779 - single - val greedy GROM - calibration ratio = 0.99872020
+2025-02-28 14:03:46,779 - single - val greedy GROM - avg calibrated testing error = 3.30428248e-08
+2025-02-28 14:03:46,780 - single - val greedy GROM - std calibrated testing error = 2.12208316e-08
+2025-02-28 14:03:46,780 - single - val greedy GROM - max calibrated testing error = 2.03904599e-07
+2025-02-28 14:03:46,780 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:46,781 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00099 sec)
+2025-02-28 14:03:46,781 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:46,781 - single - train greedy GROM - greedy iteration = 8
+2025-02-28 14:03:46,781 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:46,784 - single - train greedy GROM - end - projecting (elapsed time: 0.00245 sec)
+2025-02-28 14:03:46,784 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:46,812 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02801 sec)
+2025-02-28 14:03:46,812 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:46,849 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.03629 sec)
+2025-02-28 14:03:46,849 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:46,886 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.03716 sec)
+2025-02-28 14:03:46,886 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:47,043 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.15609 sec)
+2025-02-28 14:03:47,043 - single - val greedy GROM - calibration ratio = 1.00424618
+2025-02-28 14:03:47,043 - single - val greedy GROM - avg calibrated testing error = 1.50775913e-08
+2025-02-28 14:03:47,043 - single - val greedy GROM - std calibrated testing error = 1.06660847e-08
+2025-02-28 14:03:47,043 - single - val greedy GROM - max calibrated testing error = 6.27107560e-08
+2025-02-28 14:03:47,044 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:47,045 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00106 sec)
+2025-02-28 14:03:47,045 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:47,045 - single - train greedy GROM - greedy iteration = 9
+2025-02-28 14:03:47,045 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:47,047 - single - train greedy GROM - end - projecting (elapsed time: 0.00242 sec)
+2025-02-28 14:03:47,048 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:47,075 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02756 sec)
+2025-02-28 14:03:47,075 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:47,086 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.01072 sec)
+2025-02-28 14:03:47,087 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:47,149 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.06208 sec)
+2025-02-28 14:03:47,149 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:47,331 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.18141 sec)
+2025-02-28 14:03:47,331 - single - val greedy GROM - calibration ratio = 0.98969378
+2025-02-28 14:03:47,331 - single - val greedy GROM - avg calibrated testing error = 5.63256032e-09
+2025-02-28 14:03:47,331 - single - val greedy GROM - std calibrated testing error = 3.77025544e-09
+2025-02-28 14:03:47,331 - single - val greedy GROM - max calibrated testing error = 2.41086197e-08
+2025-02-28 14:03:47,331 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:47,332 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00097 sec)
+2025-02-28 14:03:47,333 - single - val greedy GROM - added validation point with max error to training points
+2025-02-28 14:03:47,333 - single - train greedy GROM - greedy iteration = 10
+2025-02-28 14:03:47,333 - single - train greedy GROM - start - projecting
+2025-02-28 14:03:47,335 - single - train greedy GROM - end - projecting (elapsed time: 0.00235 sec)
+2025-02-28 14:03:47,335 - single - val greedy GROM - start - sampling 1000 validation points
+2025-02-28 14:03:47,363 - single - val greedy GROM - end - sampling 1000 validation points (elapsed time: 0.02781 sec)
+2025-02-28 14:03:47,363 - single - val greedy GROM - start - emulating at validation points
+2025-02-28 14:03:47,370 - single - val greedy GROM - end - emulating at validation points (elapsed time: 0.00637 sec)
+2025-02-28 14:03:47,370 - single - val greedy GROM - start - estimating error at validation points
+2025-02-28 14:03:47,419 - single - val greedy GROM - end - estimating error at validation points (elapsed time: 0.04910 sec)
+2025-02-28 14:03:47,419 - single - val greedy GROM - start - calibrating error at validation points
+2025-02-28 14:03:47,630 - single - val greedy GROM - end - calibrating error at validation points (elapsed time: 0.21029 sec)
+2025-02-28 14:03:47,630 - single - val greedy GROM - calibration ratio = 0.99399486
+2025-02-28 14:03:47,630 - single - val greedy GROM - avg calibrated testing error = 1.57466156e-09
+2025-02-28 14:03:47,630 - single - val greedy GROM - std calibrated testing error = 9.52960736e-10
+2025-02-28 14:03:47,631 - single - val greedy GROM - max calibrated testing error = 6.65091863e-09
+2025-02-28 14:03:47,631 - single - val greedy GROM - start - evaluating calibrated error
+2025-02-28 14:03:47,631 - single - val greedy GROM - end - evaluating calibrated error (elapsed time: 0.00065 sec)
+2025-02-28 14:03:47,631 - single - val greedy GROM - greedy algorithm done in 10 iterations, used 12 training points
+2025-02-28 14:03:47,632 <<< GREEDY GROM (total elapsed time: 59.41295 sec)

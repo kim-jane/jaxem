@@ -1,0 +1,25 @@
+hbarc = 197.327
+m_neutron = 939.565421
+m_proton = 938.272089
+m = 938.918755
+pot = chiral
+map = trns
+Nq = 120
+Nq1 = 75
+p1 = 2.5
+p2 = 6.0
+p3 = 30.0
+Jmax = 1
+Elab = [10.]
+output = time_chiral_Nq120
+channel = np
+factor = 0.6366197723675814
+seed = 213
+Ntrain = 20
+Ntest = 20
+tol = 1e-08
+2025-02-28 13:46:23,788 Logger initialized and writing to file: output/time_chiral_Nq120.txt
+2025-02-28 13:46:23,788 >>> SETUP
+2025-02-28 13:46:23,789 - common - setup - start - precalculating propagators
+2025-02-28 13:46:25,906 - common - setup - end - precalculating propagators (elapsed time: 2.11706 sec)
+2025-02-28 13:46:25,906 - single - setup - start - precalculating potential operators qq

@@ -78,20 +78,16 @@ class Config:
                 setattr(self, name, value)
                 self.context[name] = value
                 
+        self.write_info()
+                
     def set(self, name, value):
         setattr(self, name, value)
         self.context[name] = value
             
     def write_info(self):
-        with open(self.output + '.info', 'w') as file:
+        with open('output/' + self.output + '.txt', 'w') as file:
             for section in self.config.sections():
                 for name in self.config[section]:
                     value = interpret(self.config.get(section, name), self.context)
                     print(f'{name} = {value}')
-                    file.write(f'{name} = {value}')
-
-    def print_info(self):
-        for section in self.config.sections():
-            for name in self.config[section]:
-                value = interpret(self.config.get(section, name), self.context)
-                print(f'{name} = {value}')
+                    file.write(f'{name} = {value}\n')

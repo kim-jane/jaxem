@@ -7,6 +7,83 @@ config.update("jax_enable_x64", True)
 import time
 from matplotlib import pyplot as plt
 
+
+
+def gram_schmidt_insert(Q, new_col):
+    
+    v = jnp.dot(Q, jnp.dot(jnp.conjugate(Q.T), new_col))
+    
+    u = new_col - v
+    
+    norm_u = jnp.linalg.norm(u)
+    print("* norm_u = ", norm_u)
+    q_new = u / norm_u
+    
+    # update the Q matrix by appending the new q_{n+1} column
+    Q_new = jnp.hstack([Q, q_new.reshape(-1, 1)])
+    
+    return Q_new
+    
+def modified_gram_schmidt_insert(Q, new_col):
+
+    u = new_col.copy()
+    for i in range(Q.shape[1]):
+        print(f"{i} {jnp.linalg.norm(Q[:, i]):.15e}")
+        proj = jnp.dot(Q[:, i].conj(), u)
+        u = u - proj * Q[:, i]
+        u = u / jnp.linalg.norm(u) # just seeing if this will be more stable
+    
+    Q_new = jnp.hstack([Q, u.reshape(-1, 1)])
+    
+    for j in range(Q_new.shape[1]):
+        for i in range(j+1):
+            print(i, j, Q_new[:,i].conj().T @ Q_new[:,j])
+    
+    return Q_new
+    
+def householder_insert(Q, v): # there's a bug
+
+    for i in range(Q.shape[1]):
+        for j in range(i, Q.shape[1]):
+            print(i, j, Q[:,i].conj().T @ Q[:,j])
+
+    m, k = Q.shape
+    
+    # Project v onto the existing subspace
+    v_proj = Q @ (Q.conj().T @ v)
+    v_perp = v - v_proj
+    
+    # If v_perp is nearly zero, return original Q (indicating dependence)
+    norm_v_perp = jnp.linalg.norm(v_perp)
+    if norm_v_perp < 1e-12:
+        raise ValueError("Inserted vector is nearly dependent on the existing basis.")
+    
+    # Householder vector: u = v_perp + sign(v_perp[0]) * ||v_perp|| * e_1
+    sign_v0 = jnp.exp(1j * jnp.angle(v_perp[0])) if v_perp[0] != 0 else 1.0
+    u = v_perp + sign_v0 * norm_v_perp * jnp.eye(m, 1)[:, 0]  # e_1 is the first basis vector
+    u = u / jnp.linalg.norm(u)  # Normalize
+    
+    # Construct Householder reflection matrix: H = I - 2 uu^H
+    H = jnp.eye(m) - 2 * jnp.outer(u, u.conj())
+    
+    # Apply reflection to v_perp to make it fully orthogonal
+    q_new = H @ v_perp / jnp.linalg.norm(v_perp)
+    #q_new = q_new / jnp.linalg.norm(q_new)
+    # Append to Q
+    Q_new = jnp.hstack([Q, q_new[:, None]])
+    
+    for i in range(Q_new.shape[1]):
+        for j in range(i, Q_new.shape[1]):
+            print(i, j, Q_new[:,i].conj().T @ Q_new[:,j])
+            
+    for i in range(Q_new.shape[1]):
+        plt.plot(Q_new[:,i].real)
+        plt.plot(Q_new[:,i].imag, linestyle='dashed')
+    plt.show()
+    
+    return Q_new
+
+
 def latin_hypercube(key, n, d, minvals=0., maxvals=1.):
     """
     Generates n d-dimensional space-filling samples from a rectangular domain
@@ -44,7 +121,7 @@ def grid(xmin, xmax, N):
     and their corresponding weights.
     """
         
-    eps = 1.0e-6
+    eps = 1.0e-8
     
     def get_new_estimate(xo):
         P, dP = legendre(N, xo)

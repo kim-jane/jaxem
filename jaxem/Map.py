@@ -12,16 +12,16 @@ class Map:
         
         if config.map == 'tan':
             self.grid = self.grid_tan
-            self.c = config.c
+            self.c = config.c  # fm^-1
             self.inf = True
             
         elif config.map == 'trns':
         
             self.Nq1 = config.Nq1
             self.Nq2 = self.Nq - self.Nq1
-            self.p1 = config.p1
-            self.p2 = config.p2
-            self.p3 = config.p3
+            self.p1 = config.p1 # fm^-1
+            self.p2 = config.p2 # fm^-1
+            self.p3 = config.p3 # fm^-1
             self.grid = self.grid_trns
             self.inf = False
             

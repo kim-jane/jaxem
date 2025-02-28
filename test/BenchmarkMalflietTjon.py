@@ -19,7 +19,6 @@ print(f"n_devices = {n_devices}")
 
 # read inputs
 config = Config('test/BenchmarkMalflietTjon.ini')
-config.print_info()
 
 # create tmat
 tmat = TMatrix(config)
@@ -29,12 +28,11 @@ LECs_best = tmat.pot.LECs
 
 T, _ = tmat.solve(LECs_best)
 T = T[0]
-print(T.shape)
-print(T.min)
 
-# change units
-T *= config.hbarc**3         # MeV fm^3
-q = tmat.q / config.hbarc    # fm^-1
+print("min T = ", jnp.min(T))
+print("max T = ", jnp.max(T))
+
+T *= config.hbarc # MeV fm^3
 
 
 # plot T matrix against benchmark
@@ -57,8 +55,8 @@ data = np.reshape(data, (2, 4, 33, 4))
 for i in range(2):
     for j in range(4):
     
-        axes[0,i].plot(q, T[i,j,1:].real, lw=3, c=colors[j])
-        axes[1,i].plot(q, T[i,j,1:].imag, lw=3, c=colors[j])
+        axes[0,i].plot(tmat.q, T[i,j,1:].real, lw=3, c=colors[j])
+        axes[1,i].plot(tmat.q, T[i,j,1:].imag, lw=3, c=colors[j])
 
         #axes[0,i].set_ylim(-100, 10)
         q = data[i,j,:-1,0]
@@ -95,6 +93,6 @@ axes[1,1].grid(alpha=0.4)
 axes[1,0].set_xlim(0, 16)
 
 plt.tight_layout()
-plt.savefig(f'figures/{config.output}_mt_tmat.png', format='png')
+plt.savefig(f'figures/{config.output}_tmat.pdf', format='pdf')
 plt.close()
 

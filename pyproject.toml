@@ -16,6 +16,7 @@ dependencies = [
     "jupyterlab",
     "jax",
     "scikit-learn",
+    "pandas"
 ]
 
 [tool.setuptools]
