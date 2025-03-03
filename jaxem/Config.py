@@ -1,5 +1,6 @@
 import configparser
 import jax.numpy as jnp
+import re
 
 
 def interpret(input, context=None):
@@ -39,6 +40,16 @@ def interpret(input, context=None):
     elif any(sym in input for sym in symbols):
         # Evaluate using the stored context
         return eval(input.strip(), {"__builtins__": {}}, {"pi": jnp.pi, "jnp": jnp, **context})
+        
+    elif '{' in input and '}' in input:
+        parts = re.split(r"(\{.*?\})", input.strip())
+        newstring = ''
+        for part in parts:
+            if part.startswith('{') and part.endswith('}'):
+                newstring += str(context[part[1:-1]])
+            else:
+                newstring += part
+        return newstring
 
     elif '.' in input or 'E' in input:
         return float(input)
