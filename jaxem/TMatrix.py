@@ -34,10 +34,9 @@ class TMatrix:
         self.hbarc = config.hbarc
         self.m = config.m / self.hbarc # fm^-1
         self.output = config.output
-        self.tol = config.tol
-        self.seed = config.seed
         self.factor = config.factor
-        
+        self.config = config
+
         self.pot = Potential(config)
         self.map = Map(config)
         self.chan = self.pot.chan
@@ -60,37 +59,36 @@ class TMatrix:
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
         self.logger.setLevel(logging.INFO)  # Set log level as needed
-        self.logger.info(f"Logger initialized and writing to file: output/{self.output}.txt")
+        self.logger.info(f"logger initialized and writing to file: output/{self.output}.txt")
         
         # setup TMatrix object
         self.log_block_start("SETUP")
+        self.precalc_single_pot()
+        self.precalc_coupled_pot()
+        self.precalc_prop()
+        self.log_block_end()
         
-        # precalculate propagator for all energies
-        # units: MeV^2
-        self.log_category = "common"
-        self.log_stage = "setup"
-        self.log_start("precalculating propagators")
         
-        if self.map.inf:
-            Ck = jnp.zeros(self.Nk)
-        else:
-            qmax = jnp.max(self.q)
-            Ck = jnp.log((qmax + self.k) / (qmax - self.k)) # correction for finite map
-        Ck = Ck.astype(jnp.complex128) - 1j * jnp.pi
-        Bkq = self.wq / ((self.q**2)[jnp.newaxis,:] - (self.k**2)[:,jnp.newaxis]) # fm
-        Bk = jnp.sum(Bkq, axis=1)
-        
-        self.Gkq = jnp.zeros((self.Nk, self.Nq+1), dtype=jnp.complex128)
-        self.Gkq = self.Gkq.at[:,0].set( self.m * self.k * (0.5 * Ck + self.k * Bk) ) # fm^-2
-        self.Gkq = self.Gkq.at[:,1:].set( - self.m * Bkq * (self.q**2)[jnp.newaxis,:] ) # fm^-2
-        self.Gkq *= config.factor # different normalization conventions
-        self.log_end()
 
-                
-        if self.pot.compute_single:
         
-            # precalculate potential operators for all channels and energies
-            self.log_category = "single"
+    def precalc_single_pot(self):
+    
+        self.log_category = "single"
+        self.log_stage = "setup"
+        filename = 'saved_potentials/'+self.config.pot_file+'_c'  # c = single channel
+    
+        if self.config.load_pot:
+        
+            # load potential operators from file
+            self.log_start("loading potential operators from file")
+            with open(filename+'.pot', 'rb') as f:
+                self.Vockqq = jnp.load(f)
+            self.log_end()
+            
+    
+        elif self.pot.compute_single:
+            
+            # call Potential object
             self.log_start("precalculating potential operators qq")
             Vocqq = self.pot.Voc(self.q)
             self.log_end()
@@ -103,6 +101,7 @@ class TMatrix:
             Vock = self.pot.Voc(self.k, diag=True)
             self.log_end()
             
+            # fill big potential matrix
             self.log_start("filling potential operators")
             self.Vockqq = jnp.zeros((self.pot.No, self.chan.Nsingle, self.Nk, self.Nq+1, self.Nq+1), dtype=jnp.complex128)
             self.Vockqq = self.Vockqq.at[:,:,:,1:,1:].set( jnp.tile(Vocqq[:,:,jnp.newaxis,:,:], (1,1,self.Nk,1,1)) )
@@ -110,6 +109,12 @@ class TMatrix:
             self.Vockqq = self.Vockqq.at[:,:,:,0,1:].set( Vockq )
             self.Vockqq = self.Vockqq.at[:,:,:,0,0].set( Vock )
             self.log_end()
+            
+            # write to file
+            self.config.write_info(filename+'.info')
+            with open(filename+'.pot', 'wb') as f:
+                jnp.save(f, self.Vockqq, allow_pickle=False)
+            
             
             # plot for debugging
             '''
@@ -123,12 +128,26 @@ class TMatrix:
                     plt.show()
                     plt.close()
             '''
+            
+            
+    def precalc_coupled_pot(self):
+    
 
-
-        if self.pot.compute_coupled:
+        self.log_category = "coupled"
+        self.log_stage = "setup"
+        filename = 'saved_potentials/'+self.config.pot_file+'_cc'  # cc = coupled channel
+    
+        if self.config.load_pot:
+        
+            # load potential operators from file
+            self.log_start("loading potential operators from file")
+            with open(filename+'.pot', 'rb') as f:
+                self.Vocckqq = jnp.load(f)
+            self.log_end()
+        
+        elif self.pot.compute_coupled:
         
             # precalculate potential operators for all channels and energies
-            self.log_category = "coupled"
             self.log_start("precalculating potential operators qq")
             Voccqq = self.pot.Vocc(self.q)
             self.log_end()
@@ -188,17 +207,43 @@ class TMatrix:
             
             self.Vocckqq = jnp.transpose(self.Vocckqq, (0,1,2,3,5,4,6))
             self.Vocckqq = jnp.reshape(self.Vocckqq, (self.pot.No, self.chan.Ncoupled, self.Nk, 2*self.Nq+2, 2*self.Nq+2))
-            
             self.log_end()
-        
-        
-        # pytrees for storing emulators
-        self.emulator = {'greedy': {}, 'POD': {}}
-        
-        self.log_block_end()
             
-            
-    def solve(self, LECs_samples):
+            # write to file
+            self.config.write_info(filename+'.info')
+            with open(filename+'.pot', 'wb') as f:
+                jnp.save(f, self.Vocckqq, allow_pickle=False)
+                
+                
+        
+    def precalc_prop(self):
+        """ Precalculates the propagator for all energies k and momenta on the grid q using the subtraction method. 
+            The stored array Gkq has shape (Nk, Nq+1). """
+    
+        # precalculate propagator for all energies
+        # units: MeV^2
+        self.log_category = "common"
+        self.log_stage = "setup"
+        self.log_start("precalculating propagators")
+        
+        if self.map.inf:
+            Ck = jnp.zeros(self.Nk)
+        else:
+            qmax = jnp.max(self.q)
+            Ck = jnp.log((qmax + self.k) / (qmax - self.k)) # correction for finite map
+        Ck = Ck.astype(jnp.complex128) - 1j * jnp.pi
+        Bkq = self.wq / ((self.q**2)[jnp.newaxis,:] - (self.k**2)[:,jnp.newaxis]) # fm
+        Bk = jnp.sum(Bkq, axis=1)
+        
+        self.Gkq = jnp.zeros((self.Nk, self.Nq+1), dtype=jnp.complex128)
+        self.Gkq = self.Gkq.at[:,0].set( self.m * self.k * (0.5 * Ck + self.k * Bk) ) # fm^-2
+        self.Gkq = self.Gkq.at[:,1:].set( - self.m * Bkq * (self.q**2)[jnp.newaxis,:] ) # fm^-2
+        self.Gkq *= self.factor # different normalization conventions
+        self.log_end()
+        
+        
+        
+    def solve_single(self, LECs_samples):
     
         LECs_samples = jnp.reshape(LECs_samples, (-1, self.pot.No))
         Nsamples = LECs_samples.shape[0]
@@ -221,10 +266,17 @@ class TMatrix:
             
             self.log_end()
             
+            return Tsckq
+            
         else:
         
-            Tsckq = None
-            
+            return None
+
+
+    def solve_coupled(self, LECs_samples):
+    
+        LECs_samples = jnp.reshape(LECs_samples, (-1, self.pot.No))
+        Nsamples = LECs_samples.shape[0]
             
         if self.pot.compute_coupled:
         
@@ -246,35 +298,42 @@ class TMatrix:
             Tscckq = jnp.transpose(Tscckq, (0,1,2,3,5,4))
 
             self.log_end()
+            return Tscckq
             
         else:
         
-            Tscckq = None
+            return None
+            
+            
+    def solve(self, LECs_samples):
+    
+        Tsckq = self.solve_single(LECs_samples)
+        Tscckq = self.solve_coupled(LECs_samples)
         
         return Tsckq, Tscckq
         
         
     
-    def train_POD_GROM(self, LECs_lbd, LECs_ubd, Ntrain=40, Ntest=1000):
+    def train_POD_GROM_single(self, LECs_lbd, LECs_ubd):
     
-        self.log_block_start("POD GROM")
-    
-        # sample training LECs
-        self.log_category = "common"
-        self.log_stage = "train POD GROM"
-        self.log_start(f"sampling {Ntrain} training points")
-        key = random.PRNGKey(self.seed)
-        key, key_in = random.split(key)
-        LECs_train = latin_hypercube(key_in, Ntrain, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
-        self.log_end()
-        self.log_message(f"LECs_train shape = {LECs_train.shape}")
-        
-        # solve high fidelity model at all training points
-        Tsckq_train, Tscckq_train = self.solve(LECs_train)
-        
-        # train single channel emulator
         if self.pot.compute_single:
+    
+            self.log_block_start("POD GROM")
+        
+            # sample training points (all candidate points by default)
             self.log_category = "single"
+            self.log_stage = "train POD GROM"
+            self.log_start(f"sampling {self.config.Ncand} training points")
+            key = random.PRNGKey(self.config.seed)
+            key, key_in = random.split(key)
+            LECs_train = latin_hypercube(key_in, self.config.Ncand, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+            self.log_end()
+            self.log_message(f"LECs_train shape = {LECs_train.shape}")
+            
+            # solve high fidelity model at all training points
+            Tsckq_train = self.solve_single(LECs_train)
+        
+            # train single channel emulator
             for c, chan_label in enumerate(self.chan.single_spect_not):
                 for k, Elab in enumerate(self.Elab):
                     
@@ -289,7 +348,7 @@ class TMatrix:
                     Uqs, Ss, _ = jnp.linalg.svd(Tqs, full_matrices=False)
                     
                     # truncate basis
-                    index = int(jnp.argmax(Ss/Ss[0] <= self.tol))
+                    index = int(jnp.argmax(Ss/Ss[0] <= self.config.svd_tol))
                     Nbasis = index + 1 if index > 0 else Ntrain
                     Xqb = Uqs[:,:Nbasis]
                     
@@ -303,9 +362,9 @@ class TMatrix:
                     
                     # sample testing points
                     self.log_stage = "test POD GROM"
-                    self.log_start(f"sampling {Ntest} testing points")
+                    self.log_start(f"sampling {self.config.Ntest} testing points")
                     key, key_in = random.split(key)
-                    LECs_test = latin_hypercube(key_in, Ntest, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+                    LECs_test = latin_hypercube(key_in, self.config.Ntest, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
                     self.log_end()
                     self.log_message(f"LECs_test shape = {LECs_test.shape}")
                     
@@ -331,17 +390,17 @@ class TMatrix:
                     self.log_end()
                     self.log_message(f"max estimated error = {jnp.max(estimated_Es):.8e}")
                     
-                    
-                    self.log_start("calibrating error at testing points")
-
                     # select testing point with largest estimated error
                     s_maxE = jnp.argmax(estimated_Es)
                     LECs_add = LECs_test[s_maxE]
                     
                     # calculate exact solution at testing point with largest error
+                    self.log_start("solving high-fidelity model at testing point with largest error")
                     exact_Tq = jnp.linalg.solve(Asqq[s_maxE], Vsq[s_maxE])
+                    self.log_end()
                     
                     # calibrate estimated error
+                    self.log_start("calibrating error at testing points")
                     exact_E = jnp.linalg.norm(exact_Tq - emulated_Tsq[s_maxE])
                     calibration_ratio = exact_E / estimated_Es[s_maxE]
                     calibrated_Es = estimated_Es * calibration_ratio
@@ -355,9 +414,141 @@ class TMatrix:
         self.log_block_end()
 
 
+    def train_greedy_GROM_single(self, LECs_lbd, LECs_ubd):
+   
+        if self.pot.compute_single:
+        
+            self.log_block_start("GREEDY GROM")
+
+            # sample candidate training points
+            self.log_category = "single"
+            self.log_stage = "train greedy GROM"
+            self.log_start(f"sampling {self.config.Ncand} candidate points")
+            key = random.PRNGKey(self.config.seed)
+            key, key_in = random.split(key)
+            LECs_cand = latin_hypercube(key_in, self.config.Ncand, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+            self.log_end()
+            self.log_message(f"LECs_cand shape = {LECs_cand.shape}")
+            
+            # choose a small subset to start
+            self.log_start(f"selecting {self.config.Ninit} initial training points")
+            LECs_init = LECs_cand[:self.config.Ninit]
+            self.log_end()
+            self.log_message(f"LECs_init shape = {LECs_init.shape}")
+            
+            # the candidate LECs are the validation points by default
+            LECs_val = LECs_cand
+            
+            # solve high fidelity model at all training points
+            Tsckq_init = self.solve_single(LECs_init)
+
+            # train single channel emulator
+            for c, chan_label in enumerate(self.chan.single_spect_not):
+                for k, Elab in enumerate(self.Elab):
+                    
+                    self.log_stage = "train greedy GROM"
+                    self.log_message(f"training {chan_label} channel at Elab = {Elab} MeV...")
+                    self.log_start(f"orthogonalizing {self.config.Ninit} initial training points")
+                    Tqb_train = jnp.transpose(Tsckq_init[:,c,k,:])
+                    LECs_train = LECs_init
+                    Ntrain = self.config.Ninit
+                    Xqb, _ = jnp.linalg.qr(Tqb_train)
+                    self.log_end()
+
+                    for iter in range(self.config.Nmax):
+                    
+                        # project
+                        self.log_stage = "train greedy GROM"
+                        self.log_message(f"greedy iteration = {iter}")
+                        self.log_start("projecting")
+                        XVGXobb = jnp.einsum('ia,oij,j,jb->oab',
+                                              jnp.conjugate(Xqb), self.Vockqq[:,c,k,:,:], self.Gkq[k,:], Xqb)
+                        XVob = jnp.einsum('ib,oi->ob', jnp.conjugate(Xqb), self.Vockqq[:,c,k,:,0])
+                        self.log_end()
+                        
+                        # sample validation points and add the training points
+                        if self.config.resample_val:
+                            self.log_stage = "val greedy GROM"
+                            self.log_start(f"sampling {self.config.Nval} new validation points")
+                            key, key_in = random.split(key)
+                            LECs_val = latin_hypercube(key_in, self.config.Nval, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+                            LECs_val = jnp.concatenate((LECs_val, LECs_train))
+                            self.log_end()
+    
+                        # solve low fidelity model at validation points
+                        self.log_start(f"emulating at validation points")
+                        XVGXsbb = jnp.einsum('so,oab->sab', LECs_val, XVGXobb)
+                        XVsb = jnp.einsum('so,ob->sb', LECs_val, XVob)
+                        ib = jnp.arange(Ntrain)
+                        XAXsbb = (-XVGXsbb).at[:,ib,ib].add(1.0)
+                        Csb = jnp.linalg.solve(XAXsbb, XVsb[...,jnp.newaxis])[...,0]
+                        emulated_Tsq = jnp.einsum('sb,ib->si', Csb, Xqb)
+                        self.log_end()
+                        
+                        # estimate error at validation points
+                        self.log_start(f"estimating error at validation points")
+                        VGsqq = jnp.einsum('so,oij,j->sij', LECs_val, self.Vockqq[:,c,k,:,:], self.Gkq[k,:])
+                        Vsq = jnp.einsum('so,oi->si', LECs_val, self.Vockqq[:,c,k,:,0])
+                        iq = jnp.arange(self.Nq+1)
+                        Asqq = (-VGsqq).at[:,iq,iq].add(1.0)
+                        estimated_Es = jnp.linalg.norm(jnp.einsum('sij,sj->si', Asqq, emulated_Tsq) - Vsq, axis=1)
+                        self.log_end()
+                        
+                        # select validation point with largest estimated error
+                        s_maxE = jnp.argmax(estimated_Es)
+                        LECs_add = LECs_val[s_maxE]
+                        
+                        # calculate exact solution at validation point with largest error
+                        self.log_start(f"solving high-fidelity model at validation point with largest error")
+                        exact_Tq = jnp.linalg.solve(Asqq[s_maxE], Vsq[s_maxE])
+                        self.log_end()
+                        
+                        # calibrate estimated error
+                        self.log_start(f"calibrating error at validation points")
+                        exact_E = jnp.linalg.norm(exact_Tq - emulated_Tsq[s_maxE])
+                        calibration_ratio = exact_E / estimated_Es[s_maxE]
+                        calibrated_Es = estimated_Es * calibration_ratio
+                        self.log_end()
+                        self.log_message(f"calibration ratio = {calibration_ratio:.8f}")
+                        self.log_message(f"avg calibrated testing error = {jnp.mean(calibrated_Es):.8e}")
+                        self.log_message(f"std calibrated testing error = {jnp.std(calibrated_Es):.8e}")
+                        self.log_message(f"max calibrated testing error = {jnp.max(calibrated_Es):.8e}")
+                        
+                        self.log_start(f"evaluating calibrated error")
+                            
+                        # store emulator for this channel and energy once converged
+                        if jnp.max(calibrated_Es) < self.config.err_tol:
+                        
+                            iters = jnp.arange(iter + 1)
+                            self.log_end()
+                            self.log_message(f"greedy algorithm done in {iter} iterations, used {Ntrain} training points")
+                            
+                            break
+                            
+                        # add validation point with largest error
+                        Ntrain += 1
+                        LECs_train = jnp.concatenate((LECs_train, LECs_add[jnp.newaxis,:]), axis=0)
+                        #Xqb = gram_schmidt_insert(Xqb, exact_Tq)
+                        #Xqb = householder_insert(Xqb, exact_Tq)
+                        #Xqb = modified_gram_schmidt_insert(Xqb, exact_Tq)
+                        
+                        Tqb_train = jnp.append(Tqb_train, exact_Tq[:,jnp.newaxis], axis=1)
+                        Xqb, _ = jnp.linalg.qr(Tqb_train)
+                        
+                        self.log_end()
+                        self.log_message(f"added validation point with max error to training points, Tqb_train shape = {Tqb_train.shape}")
+                        
 
 
-    def train_greedy_GROM(self, LECs_lbd, LECs_ubd, Ninit=2, Nval=1000, Nmax=20, o1=0, o2=1, Ngrid=100):
+            #self.emulator['greedy GROM'] = {'Xqb': Xqb_stored, 'XVGXobb': XVGXobb_stored, 'XVob': XVob_stored}
+            #print("\nGreedy GROM emulator stored with label 'greedy GROM'.")
+            
+            
+        self.log_block_end()
+        
+
+
+    def old_train_greedy_GROM(self, LECs_lbd, LECs_ubd, Ninit=2, Nval=1000, Nmax=20, o1=0, o2=1, Ngrid=100):
     
         self.log_block_start("GREEDY GROM")
 
@@ -373,12 +564,6 @@ class TMatrix:
 
         # solve high fidelity model at all training points
         Tsckq_init, Tscckq_init = self.solve(LECs_init)
-        
-        # store this emulator as a pytree
-        #Xqb_stored = {c: {str(Elab): [] for Elab in self.Elab} for c in self.chan.all_spect_not}
-        #XVGXobb_stored = {c: {str(Elab): [] for Elab in self.Elab} for c in self.chan.all_spect_not}
-        #XVob_stored = {c: {str(Elab): [] for Elab in self.Elab} for c in self.chan.all_spect_not}
-        
 
         # train single channel emulator
         if self.pot.compute_single:
@@ -439,20 +624,22 @@ class TMatrix:
                         estimated_Es = jnp.linalg.norm(jnp.einsum('sij,sj->si', Asqq, emulated_Tsq) - Vsq, axis=1)
                         self.log_end()
                         
-                        self.log_start(f"calibrating error at validation points")
+                        
                         
                         # select validation point with largest estimated error
                         s_maxE = jnp.argmax(estimated_Es)
                         LECs_add = LECs_val[s_maxE]
                         
                         # calculate exact solution at validation point with largest error
+                        self.log_start(f"solving high-fidelity model at validation point with largest error")
                         exact_Tq = jnp.linalg.solve(Asqq[s_maxE], Vsq[s_maxE])
+                        self.log_end()
                         
                         # calibrate estimated error
+                        self.log_start(f"calibrating error at validation points")
                         exact_E = jnp.linalg.norm(exact_Tq - emulated_Tsq[s_maxE])
                         calibration_ratio = exact_E / estimated_Es[s_maxE]
                         calibrated_Es = estimated_Es * calibration_ratio
-
                         self.log_end()
                         self.log_message(f"calibration ratio = {calibration_ratio:.8f}")
                         self.log_message(f"avg calibrated testing error = {jnp.mean(calibrated_Es):.8e}")
@@ -512,7 +699,7 @@ class TMatrix:
                         self.log_start(f"evaluating calibrated error")
                             
                         # store emulator for this channel and energy once converged
-                        if jnp.max(calibrated_Es) < self.tol:
+                        if jnp.max(calibrated_Es) < self.config.err_tol:
                         
                             Elab_label = str(Elab)
                         

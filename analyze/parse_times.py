@@ -22,10 +22,18 @@ def extract_times(filename):
                 match = re.search(pattern, line)
 
                 if match:
+                
+                    if 'solving high-fidelity' in str(match[4]):
+                        stage.append(str(match[3])+' solve')
+                        
+                    else:
+                        stage.append(str(match[3]))
+                        
                     category.append(str(match[2]))
-                    stage.append(str(match[3]))
                     message.append(str(match[4]))
                     time.append(float(match[5]))
+                    
+                    
                     
         return category, stage, message, time
         
@@ -48,23 +56,34 @@ def df_times(filename):
     return times
     
 def time_from_df(df, stage, category):
-    return df.loc[(df['stage'] == stage) & (df['category'] == category), 'time'].iloc[0]
+    return float(df.loc[(df['stage'] == stage) & (df['category'] == category), 'time'].iloc[0])
     
 
-times40 = df_times("output/time_chiral_Nq40.txt")
-times56 = df_times("output/time_chiral_Nq56.txt")
-times80 = df_times("output/time_chiral_Nq80.txt")
-#times120 = add_times("output/time_chiral_Nq120.txt")
+Nq = [40, 80, 120, 160, 200, 240]
+
+times = [df_times(f"output/time_chiral_Nq{n}.txt") for n in Nq]
+setup_times = np.array([time_from_df(df, "setup", "single") for df in times])
+train_POD_GROM_times = np.array([time_from_df(df, "train POD GROM", "single") for df in times])
+train_greedy_GROM_times = np.array([time_from_df(df, "train greedy GROM", "single") for df in times])
+train_POD_GROM_solve_times = np.array([time_from_df(df, "train POD GROM solve", "single") for df in times])
+train_greedy_GROM_solve_times = np.array([time_from_df(df, "train greedy GROM solve", "single") for df in times])
+
+print(times)
+print(setup_times)
+print(train_POD_GROM_times)
+print(train_greedy_GROM_times)
+
+ms = 4
+#plt.loglog(Nq, setup_times, marker='o', linestyle='dotted', markersize=ms)
+plt.loglog(Nq, train_POD_GROM_solve_times + train_POD_GROM_times, marker='o', linestyle='solid', markersize=ms, color='C0', label='Training time')
+plt.loglog(Nq, train_greedy_GROM_solve_times + train_greedy_GROM_times, marker='o', linestyle='solid', markersize=ms, color='C1', label='Training time')
+plt.loglog(Nq, train_POD_GROM_solve_times, marker='o', linestyle='dashed', markersize=ms, color='C0')
+plt.loglog(Nq, train_greedy_GROM_solve_times, marker='o', linestyle='dashed', markersize=ms, color='C1')
 
 
-print("40\n", times40)
-print("56\n", times56)
-print("80\n", times80)
-#print(times120)
+plt.plot([1], [0.5], color='gray', marker='o', linestyle='dashed', markersize=ms, label='Portion spent solving high-fidelity model')
 
-time_value = time_from_df()
-
-Nq = [40, 56, 80]
-setup_times = []
-train_POD_GROM_times = []
-train_greedy_GROM_times = []
+plt.xlim(37, 250)
+#plt.ylim(0.8, 7)
+plt.legend()
+plt.show()

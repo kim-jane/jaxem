@@ -35,9 +35,9 @@ LECs_ubd = 2.0 * LECs_best
 LECs_ubd = LECs_ubd.at[0].set(LECs_best[0])
 
 # POD GROM
-tmat.train_POD_GROM(LECs_lbd, LECs_ubd)
+tmat.train_POD_GROM_single(LECs_lbd, LECs_ubd)
 
 
 
 # greedy GROM
-tmat.train_greedy_GROM(LECs_lbd, LECs_ubd, o1=8, o2=9)
+tmat.train_greedy_GROM_single(LECs_lbd, LECs_ubd)
