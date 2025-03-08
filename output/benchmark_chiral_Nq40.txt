@@ -1,0 +1,25 @@
+2025-03-08 15:48:26,529 logger initialized and writing to file: output/benchmark_chiral_Nq40.txt
+2025-03-08 15:48:26,529 >>> SETUP
+2025-03-08 15:48:26,529 - single - setup - start - precalculating potential operators qq
+2025-03-08 15:49:13,154 - single - setup - end - precalculating potential operators qq (elapsed time: 46.62545 sec)
+2025-03-08 15:49:13,155 - single - setup - start - precalculating potential operators kq
+2025-03-08 15:49:25,060 - single - setup - end - precalculating potential operators kq (elapsed time: 11.90515 sec)
+2025-03-08 15:49:25,060 - single - setup - start - precalculating potential operators k
+2025-03-08 15:49:25,561 - single - setup - end - precalculating potential operators k (elapsed time: 0.50031 sec)
+2025-03-08 15:49:25,561 - single - setup - start - filling potential operators
+2025-03-08 15:49:26,699 - single - setup - end - filling potential operators (elapsed time: 1.13802 sec)
+2025-03-08 15:49:26,723 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 15:50:42,619 - coupled - setup - end - precalculating potential operators qq (elapsed time: 75.89588 sec)
+2025-03-08 15:50:42,619 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 15:51:01,159 - coupled - setup - end - precalculating potential operators kq (elapsed time: 18.54004 sec)
+2025-03-08 15:51:01,159 - coupled - setup - start - precalculating potential operators k
+2025-03-08 15:51:01,835 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.67586 sec)
+2025-03-08 15:51:02,050 - coupled - setup - start - filling potential operators
+2025-03-08 15:51:03,455 - coupled - setup - end - filling potential operators (elapsed time: 1.40462 sec)
+2025-03-08 15:51:03,495 - common - setup - start - precalculating propagators
+2025-03-08 15:51:05,278 - common - setup - end - precalculating propagators (elapsed time: 1.78287 sec)
+2025-03-08 15:51:05,278 <<< SETUP (total elapsed time: 158.74905 sec)
+2025-03-08 15:51:05,333 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 15:51:06,919 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.58586 sec)
+2025-03-08 15:51:06,919 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 15:51:08,970 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 2.05082 sec)

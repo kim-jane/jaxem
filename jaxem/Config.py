@@ -107,4 +107,9 @@ class Config:
         for section in self.config.sections():
             for name in self.config[section]:
                 value = interpret(self.config.get(section, name), self.context)
-                print(f'{name} = {value}')
+                if name == 'Elab':
+                    print(f'{name}:')
+                    for i in range(len(value)):
+                        print(f'\t{i} -> {value[i]} MeV')
+                else:
+                    print(f'{name} = {value}')

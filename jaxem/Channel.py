@@ -47,7 +47,6 @@ class Channel:
                     
 
         # extract coupled channels
-        
         indices_to_remove = []
         for i, j in zip(*jnp.triu_indices(len(self.single_channels), k=1)):
             J1, S1, T1, Tz1, L1 = self.single_channels[i]
@@ -85,11 +84,11 @@ class Channel:
             J, S, T, Tz, L = self.single_channels[:,i]
             spect_not = self.single_spect_not[i]
             if Tz == 1:
-                print(f"\t{spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L}")
+                print(f"\t{i} -> {spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L}")
             elif Tz == -1:
-                print(f"\t{spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L}")
+                print(f"\t{i} -> {spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L}")
             else:
-                print(f"\t{spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L}")
+                print(f"\t{i} -> {spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L}")
     
         
     def print_coupled_channels(self):
@@ -99,8 +98,8 @@ class Channel:
             J, S, T, Tz, L1, L2 = self.coupled_channels[:,i]
             spect_not = self.coupled_spect_not[i]
             if Tz == 1:
-                print(f"\t{spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
+                print(f"\t{i} -> {spect_not}, pp, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
             elif Tz == -1:
-                print(f"\t{spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
+                print(f"\t{i} -> {spect_not}, nn, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
             else:
-                print(f"\t{spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
+                print(f"\t{i} -> {spect_not}, np, J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")

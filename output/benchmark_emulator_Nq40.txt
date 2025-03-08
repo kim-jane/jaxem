@@ -1,0 +1,800 @@
+2025-03-08 16:05:59,877 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:05:59,877 >>> SETUP
+2025-03-08 16:05:59,877 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:06:14,588 - single - setup - end - precalculating potential operators qq (elapsed time: 14.71054 sec)
+2025-03-08 16:06:14,588 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:06:15,227 - single - setup - end - precalculating potential operators kq (elapsed time: 0.63905 sec)
+2025-03-08 16:06:15,228 - single - setup - start - precalculating potential operators k
+2025-03-08 16:06:15,499 - single - setup - end - precalculating potential operators k (elapsed time: 0.27144 sec)
+2025-03-08 16:06:15,499 - single - setup - start - filling potential operators
+2025-03-08 16:06:16,526 - single - setup - end - filling potential operators (elapsed time: 1.02681 sec)
+2025-03-08 16:06:16,532 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:06:30,109 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.57661 sec)
+2025-03-08 16:06:30,109 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:06:30,721 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61150 sec)
+2025-03-08 16:06:30,721 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:06:31,046 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32448 sec)
+2025-03-08 16:06:31,252 - coupled - setup - start - filling potential operators
+2025-03-08 16:06:32,368 - coupled - setup - end - filling potential operators (elapsed time: 1.11539 sec)
+2025-03-08 16:06:32,372 - common - setup - start - precalculating propagators
+2025-03-08 16:06:34,111 - common - setup - end - precalculating propagators (elapsed time: 1.73865 sec)
+2025-03-08 16:06:34,111 <<< SETUP (total elapsed time: 34.23397 sec)
+2025-03-08 16:06:34,166 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:06:35,775 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.60805 sec)
+2025-03-08 16:06:35,775 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:06:37,607 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.83156 sec)
+2025-03-08 16:06:37,847 >>> POD GROM
+2025-03-08 16:07:06,538 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:07:06,538 >>> SETUP
+2025-03-08 16:07:06,538 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:07:21,315 - single - setup - end - precalculating potential operators qq (elapsed time: 14.77656 sec)
+2025-03-08 16:07:21,315 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:07:21,953 - single - setup - end - precalculating potential operators kq (elapsed time: 0.63755 sec)
+2025-03-08 16:07:21,953 - single - setup - start - precalculating potential operators k
+2025-03-08 16:07:22,222 - single - setup - end - precalculating potential operators k (elapsed time: 0.26865 sec)
+2025-03-08 16:07:22,222 - single - setup - start - filling potential operators
+2025-03-08 16:07:23,221 - single - setup - end - filling potential operators (elapsed time: 0.99892 sec)
+2025-03-08 16:07:23,224 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:07:36,880 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.65658 sec)
+2025-03-08 16:07:36,881 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:07:37,493 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61264 sec)
+2025-03-08 16:07:37,494 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:07:37,818 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32431 sec)
+2025-03-08 16:07:38,022 - coupled - setup - start - filling potential operators
+2025-03-08 16:07:39,130 - coupled - setup - end - filling potential operators (elapsed time: 1.10760 sec)
+2025-03-08 16:07:39,132 - common - setup - start - precalculating propagators
+2025-03-08 16:07:40,843 - common - setup - end - precalculating propagators (elapsed time: 1.71025 sec)
+2025-03-08 16:07:40,843 <<< SETUP (total elapsed time: 34.30474 sec)
+2025-03-08 16:07:40,900 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:07:42,424 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.52453 sec)
+2025-03-08 16:07:42,425 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:07:44,249 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.82433 sec)
+2025-03-08 16:07:44,489 >>> POD GROM
+2025-03-08 16:07:44,489 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:07:46,739 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.24951 sec)
+2025-03-08 16:07:46,739 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:07:46,739 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:07:47,720 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.98085 sec)
+2025-03-08 16:07:47,720 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:07:47,720 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:07:48,850 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.12963 sec)
+2025-03-08 16:07:48,850 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:07:48,850 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:09:57,432 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:09:57,432 >>> SETUP
+2025-03-08 16:09:57,432 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:10:12,193 - single - setup - end - precalculating potential operators qq (elapsed time: 14.76125 sec)
+2025-03-08 16:10:12,193 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:10:12,841 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64708 sec)
+2025-03-08 16:10:12,841 - single - setup - start - precalculating potential operators k
+2025-03-08 16:10:13,112 - single - setup - end - precalculating potential operators k (elapsed time: 0.27057 sec)
+2025-03-08 16:10:13,112 - single - setup - start - filling potential operators
+2025-03-08 16:10:14,112 - single - setup - end - filling potential operators (elapsed time: 1.00055 sec)
+2025-03-08 16:10:14,116 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:10:27,936 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.82000 sec)
+2025-03-08 16:10:27,936 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:10:28,551 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61464 sec)
+2025-03-08 16:10:28,551 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:10:28,876 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32467 sec)
+2025-03-08 16:10:29,080 - coupled - setup - start - filling potential operators
+2025-03-08 16:10:30,192 - coupled - setup - end - filling potential operators (elapsed time: 1.11252 sec)
+2025-03-08 16:10:30,195 - common - setup - start - precalculating propagators
+2025-03-08 16:10:31,909 - common - setup - end - precalculating propagators (elapsed time: 1.71443 sec)
+2025-03-08 16:10:31,909 <<< SETUP (total elapsed time: 34.47756 sec)
+2025-03-08 16:10:31,964 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:10:33,506 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.54241 sec)
+2025-03-08 16:10:33,507 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:10:35,320 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.81262 sec)
+2025-03-08 16:10:35,558 >>> POD GROM
+2025-03-08 16:10:35,558 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:10:37,778 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.21945 sec)
+2025-03-08 16:10:37,778 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:10:37,778 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:10:38,744 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.96607 sec)
+2025-03-08 16:10:38,744 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:10:38,744 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:10:39,854 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.10908 sec)
+2025-03-08 16:10:39,854 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:10:39,854 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:10:39,996 - single - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14175 sec)
+2025-03-08 16:10:39,996 - single - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 16:10:39,996 - single - test POD GROM - start - emulating at testing points
+2025-03-08 16:10:41,507 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.51099 sec)
+2025-03-08 16:10:41,508 - single - test POD GROM - Csb shape = (21, 12)
+2025-03-08 16:10:41,508 - single - test POD GROM - emulated Tsq shape = (21, 41)
+2025-03-08 16:10:41,508 - single - test POD GROM - start - estimating error at testing points
+2025-03-08 16:10:42,113 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.60448 sec)
+2025-03-08 16:10:42,184 - single - test POD GROM - max estimated error = 2.17539381e-09
+2025-03-08 16:10:42,547 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-08 16:10:42,857 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.30984 sec)
+2025-03-08 16:10:42,857 - single - test POD GROM - start - calibrating error at testing points
+2025-03-08 16:10:43,173 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.31558 sec)
+2025-03-08 16:10:43,173 - single - test POD GROM - calibration ratio = 1.01789390
+2025-03-08 16:10:43,248 - single - test POD GROM - avg calibrated testing error = 7.30712759e-10
+2025-03-08 16:10:43,337 - single - test POD GROM - std calibrated testing error = 5.52018060e-10
+2025-03-08 16:10:43,337 - single - test POD GROM - max calibrated testing error = 2.21432008e-09
+2025-03-08 16:11:16,065 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:11:16,065 >>> SETUP
+2025-03-08 16:11:16,066 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:11:30,821 - single - setup - end - precalculating potential operators qq (elapsed time: 14.75500 sec)
+2025-03-08 16:11:30,821 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:11:31,464 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64322 sec)
+2025-03-08 16:11:31,464 - single - setup - start - precalculating potential operators k
+2025-03-08 16:11:31,732 - single - setup - end - precalculating potential operators k (elapsed time: 0.26781 sec)
+2025-03-08 16:11:31,733 - single - setup - start - filling potential operators
+2025-03-08 16:11:32,733 - single - setup - end - filling potential operators (elapsed time: 1.00014 sec)
+2025-03-08 16:11:32,735 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:11:46,322 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.58612 sec)
+2025-03-08 16:11:46,322 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:11:46,945 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.62305 sec)
+2025-03-08 16:11:46,945 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:11:47,270 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32457 sec)
+2025-03-08 16:11:47,471 - coupled - setup - start - filling potential operators
+2025-03-08 16:11:48,577 - coupled - setup - end - filling potential operators (elapsed time: 1.10521 sec)
+2025-03-08 16:11:48,580 - common - setup - start - precalculating propagators
+2025-03-08 16:11:50,286 - common - setup - end - precalculating propagators (elapsed time: 1.70591 sec)
+2025-03-08 16:11:50,286 <<< SETUP (total elapsed time: 34.22043 sec)
+2025-03-08 16:11:50,342 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:11:51,880 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.53738 sec)
+2025-03-08 16:11:51,880 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:11:53,687 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.80640 sec)
+2025-03-08 16:11:53,925 >>> POD GROM
+2025-03-08 16:11:53,925 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:11:56,130 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.20508 sec)
+2025-03-08 16:11:56,130 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:11:56,131 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:11:57,101 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.97053 sec)
+2025-03-08 16:11:57,102 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:11:57,102 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:11:58,208 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.10620 sec)
+2025-03-08 16:11:58,209 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:11:58,209 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:11:58,351 - single - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14236 sec)
+2025-03-08 16:11:58,351 - single - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 16:11:58,351 - single - test POD GROM - start - emulating at testing points
+2025-03-08 16:11:59,845 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.49339 sec)
+2025-03-08 16:11:59,845 - single - test POD GROM - Csb shape = (21, 12)
+2025-03-08 16:11:59,845 - single - test POD GROM - emulated Tsq shape = (21, 41)
+2025-03-08 16:11:59,845 - single - test POD GROM - start - estimating error at testing points
+2025-03-08 16:12:00,451 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.60620 sec)
+2025-03-08 16:12:00,524 - single - test POD GROM - max estimated error = 2.17539381e-09
+2025-03-08 16:12:00,886 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-08 16:12:01,194 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.30753 sec)
+2025-03-08 16:12:01,194 - single - test POD GROM - start - calibrating error at testing points
+2025-03-08 16:12:01,511 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.31662 sec)
+2025-03-08 16:12:01,511 - single - test POD GROM - calibration ratio = 1.01789390
+2025-03-08 16:12:01,586 - single - test POD GROM - avg calibrated testing error = 7.30712759e-10
+2025-03-08 16:12:01,674 - single - test POD GROM - std calibrated testing error = 5.52018060e-10
+2025-03-08 16:12:01,674 - single - test POD GROM - max calibrated testing error = 2.21432008e-09
+2025-03-08 16:12:26,100 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:12:26,100 >>> SETUP
+2025-03-08 16:12:26,100 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:12:40,802 - single - setup - end - precalculating potential operators qq (elapsed time: 14.70163 sec)
+2025-03-08 16:12:40,802 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:12:41,448 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64622 sec)
+2025-03-08 16:12:41,449 - single - setup - start - precalculating potential operators k
+2025-03-08 16:12:41,719 - single - setup - end - precalculating potential operators k (elapsed time: 0.27003 sec)
+2025-03-08 16:12:41,719 - single - setup - start - filling potential operators
+2025-03-08 16:12:42,722 - single - setup - end - filling potential operators (elapsed time: 1.00291 sec)
+2025-03-08 16:12:42,725 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:12:56,581 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.85617 sec)
+2025-03-08 16:12:56,581 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:12:57,195 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61381 sec)
+2025-03-08 16:12:57,195 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:12:57,527 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.33192 sec)
+2025-03-08 16:12:57,730 - coupled - setup - start - filling potential operators
+2025-03-08 16:12:58,840 - coupled - setup - end - filling potential operators (elapsed time: 1.10948 sec)
+2025-03-08 16:12:58,843 - common - setup - start - precalculating propagators
+2025-03-08 16:13:00,560 - common - setup - end - precalculating propagators (elapsed time: 1.71645 sec)
+2025-03-08 16:13:00,560 <<< SETUP (total elapsed time: 34.45961 sec)
+2025-03-08 16:13:00,617 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:13:02,149 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.53136 sec)
+2025-03-08 16:13:02,149 - coupled - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 16:13:03,959 - coupled - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.80979 sec)
+2025-03-08 16:13:04,197 >>> POD GROM
+2025-03-08 16:13:04,197 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:13:06,397 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.19988 sec)
+2025-03-08 16:13:06,397 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:13:06,397 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:13:07,369 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.97160 sec)
+2025-03-08 16:13:07,370 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:13:07,370 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:13:08,486 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.11647 sec)
+2025-03-08 16:13:08,487 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:13:08,487 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:13:08,628 - single - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14139 sec)
+2025-03-08 16:13:08,628 - single - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 16:13:08,628 - single - test POD GROM - start - emulating at testing points
+2025-03-08 16:13:10,120 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.49151 sec)
+2025-03-08 16:13:10,120 - single - test POD GROM - Csb shape = (21, 12)
+2025-03-08 16:13:10,120 - single - test POD GROM - emulated Tsq shape = (21, 41)
+2025-03-08 16:13:10,120 - single - test POD GROM - start - estimating error at testing points
+2025-03-08 16:13:10,724 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.60405 sec)
+2025-03-08 16:13:10,797 - single - test POD GROM - max estimated error = 2.17539381e-09
+2025-03-08 16:13:11,158 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-08 16:13:11,468 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.30988 sec)
+2025-03-08 16:13:11,468 - single - test POD GROM - start - calibrating error at testing points
+2025-03-08 16:13:11,783 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.31498 sec)
+2025-03-08 16:13:11,784 - single - test POD GROM - calibration ratio = 1.01789390
+2025-03-08 16:13:11,858 - single - test POD GROM - avg calibrated testing error = 7.30712759e-10
+2025-03-08 16:13:11,945 - single - test POD GROM - std calibrated testing error = 5.52018060e-10
+2025-03-08 16:13:11,946 - single - test POD GROM - max calibrated testing error = 2.21432008e-09
+2025-03-08 16:21:19,161 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:21:19,161 >>> SETUP
+2025-03-08 16:21:19,161 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:21:58,573 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:21:58,573 >>> SETUP
+2025-03-08 16:21:58,574 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:22:13,111 - single - setup - end - precalculating potential operators qq (elapsed time: 14.53769 sec)
+2025-03-08 16:22:13,112 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:22:13,765 - single - setup - end - precalculating potential operators kq (elapsed time: 0.65368 sec)
+2025-03-08 16:22:13,766 - single - setup - start - precalculating potential operators k
+2025-03-08 16:22:14,034 - single - setup - end - precalculating potential operators k (elapsed time: 0.26847 sec)
+2025-03-08 16:22:14,034 - single - setup - start - filling potential operators
+2025-03-08 16:22:15,032 - single - setup - end - filling potential operators (elapsed time: 0.99724 sec)
+2025-03-08 16:22:15,035 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:22:28,568 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.53348 sec)
+2025-03-08 16:22:28,568 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:22:29,177 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.60897 sec)
+2025-03-08 16:22:29,178 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:22:29,500 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32256 sec)
+2025-03-08 16:22:29,704 - coupled - setup - start - filling potential operators
+2025-03-08 16:22:30,810 - coupled - setup - end - filling potential operators (elapsed time: 1.10588 sec)
+2025-03-08 16:22:30,813 - common - setup - start - precalculating propagators
+2025-03-08 16:22:32,524 - common - setup - end - precalculating propagators (elapsed time: 1.71045 sec)
+2025-03-08 16:22:32,524 <<< SETUP (total elapsed time: 33.95048 sec)
+2025-03-08 16:22:59,696 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:22:59,696 >>> SETUP
+2025-03-08 16:22:59,696 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:23:14,531 - single - setup - end - precalculating potential operators qq (elapsed time: 14.83454 sec)
+2025-03-08 16:23:14,531 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:23:15,204 - single - setup - end - precalculating potential operators kq (elapsed time: 0.67307 sec)
+2025-03-08 16:23:15,204 - single - setup - start - precalculating potential operators k
+2025-03-08 16:23:15,475 - single - setup - end - precalculating potential operators k (elapsed time: 0.27016 sec)
+2025-03-08 16:23:15,475 - single - setup - start - filling potential operators
+2025-03-08 16:23:16,479 - single - setup - end - filling potential operators (elapsed time: 1.00392 sec)
+2025-03-08 16:23:16,482 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:23:30,300 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.81795 sec)
+2025-03-08 16:23:30,300 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:23:30,922 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.62171 sec)
+2025-03-08 16:23:30,922 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:23:31,246 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32417 sec)
+2025-03-08 16:23:31,449 - coupled - setup - start - filling potential operators
+2025-03-08 16:23:32,562 - coupled - setup - end - filling potential operators (elapsed time: 1.11244 sec)
+2025-03-08 16:23:32,565 - common - setup - start - precalculating propagators
+2025-03-08 16:23:34,277 - common - setup - end - precalculating propagators (elapsed time: 1.71192 sec)
+2025-03-08 16:23:34,277 <<< SETUP (total elapsed time: 34.58082 sec)
+2025-03-08 16:23:35,983 >>> POD GROM
+2025-03-08 16:23:35,983 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:23:38,192 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.20926 sec)
+2025-03-08 16:23:38,193 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:24:12,425 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:24:12,426 >>> SETUP
+2025-03-08 16:24:12,426 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:24:27,251 - single - setup - end - precalculating potential operators qq (elapsed time: 14.82513 sec)
+2025-03-08 16:24:27,251 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:24:27,898 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64658 sec)
+2025-03-08 16:24:27,898 - single - setup - start - precalculating potential operators k
+2025-03-08 16:24:28,168 - single - setup - end - precalculating potential operators k (elapsed time: 0.27010 sec)
+2025-03-08 16:24:28,168 - single - setup - start - filling potential operators
+2025-03-08 16:24:29,173 - single - setup - end - filling potential operators (elapsed time: 1.00417 sec)
+2025-03-08 16:24:29,175 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:24:42,765 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.58937 sec)
+2025-03-08 16:24:42,765 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:24:43,373 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.60817 sec)
+2025-03-08 16:24:43,374 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:24:43,697 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32381 sec)
+2025-03-08 16:24:43,901 - coupled - setup - start - filling potential operators
+2025-03-08 16:24:45,011 - coupled - setup - end - filling potential operators (elapsed time: 1.11061 sec)
+2025-03-08 16:24:45,014 - common - setup - start - precalculating propagators
+2025-03-08 16:24:46,744 - common - setup - end - precalculating propagators (elapsed time: 1.72953 sec)
+2025-03-08 16:24:46,744 <<< SETUP (total elapsed time: 34.31827 sec)
+2025-03-08 16:24:48,445 >>> POD GROM
+2025-03-08 16:24:48,445 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:24:50,649 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.20349 sec)
+2025-03-08 16:24:50,649 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:24:50,649 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:24:51,636 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.98687 sec)
+2025-03-08 16:24:51,637 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:24:51,637 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:24:52,519 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.88240 sec)
+2025-03-08 16:24:52,520 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:24:52,520 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:24:52,661 - single - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14120 sec)
+2025-03-08 16:24:52,661 - single - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 16:24:52,661 - single - test POD GROM - start - emulating at testing points
+2025-03-08 16:24:54,155 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.49357 sec)
+2025-03-08 16:24:54,155 - single - test POD GROM - Csb shape = (21, 12)
+2025-03-08 16:24:54,155 - single - test POD GROM - emulated Tsq shape = (21, 41)
+2025-03-08 16:24:54,155 - single - test POD GROM - start - estimating error at testing points
+2025-03-08 16:24:54,761 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.60578 sec)
+2025-03-08 16:24:54,833 - single - test POD GROM - max estimated error = 2.17539381e-09
+2025-03-08 16:24:55,194 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-08 16:24:55,381 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.18638 sec)
+2025-03-08 16:24:55,381 - single - test POD GROM - start - calibrating error at testing points
+2025-03-08 16:24:55,706 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.32452 sec)
+2025-03-08 16:24:55,706 - single - test POD GROM - calibration ratio = 1.01789390
+2025-03-08 16:24:55,781 - single - test POD GROM - avg calibrated testing error = 7.30712759e-10
+2025-03-08 16:24:55,869 - single - test POD GROM - std calibrated testing error = 5.52018060e-10
+2025-03-08 16:24:55,869 - single - test POD GROM - max calibrated testing error = 2.21432008e-09
+2025-03-08 16:26:52,585 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:26:52,585 >>> SETUP
+2025-03-08 16:26:52,586 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:27:07,137 - single - setup - end - precalculating potential operators qq (elapsed time: 14.55156 sec)
+2025-03-08 16:27:07,137 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:27:07,788 - single - setup - end - precalculating potential operators kq (elapsed time: 0.65078 sec)
+2025-03-08 16:27:07,789 - single - setup - start - precalculating potential operators k
+2025-03-08 16:27:08,057 - single - setup - end - precalculating potential operators k (elapsed time: 0.26855 sec)
+2025-03-08 16:27:08,057 - single - setup - start - filling potential operators
+2025-03-08 16:27:09,055 - single - setup - end - filling potential operators (elapsed time: 0.99800 sec)
+2025-03-08 16:27:09,058 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:27:22,654 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.59552 sec)
+2025-03-08 16:27:22,654 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:27:23,264 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61007 sec)
+2025-03-08 16:27:23,264 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:27:23,587 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32264 sec)
+2025-03-08 16:27:23,789 - coupled - setup - start - filling potential operators
+2025-03-08 16:27:24,897 - coupled - setup - end - filling potential operators (elapsed time: 1.10701 sec)
+2025-03-08 16:27:24,899 - common - setup - start - precalculating propagators
+2025-03-08 16:27:26,609 - common - setup - end - precalculating propagators (elapsed time: 1.70924 sec)
+2025-03-08 16:27:26,609 <<< SETUP (total elapsed time: 34.02325 sec)
+2025-03-08 16:27:28,317 >>> POD GROM
+2025-03-08 16:27:28,317 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:27:30,514 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.19683 sec)
+2025-03-08 16:27:30,515 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:27:30,515 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:27:31,500 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.98485 sec)
+2025-03-08 16:27:31,501 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:27:31,501 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:30:31,376 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:30:31,376 >>> SETUP
+2025-03-08 16:30:31,377 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:30:46,100 - single - setup - end - precalculating potential operators qq (elapsed time: 14.72350 sec)
+2025-03-08 16:30:46,100 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:30:46,749 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64802 sec)
+2025-03-08 16:30:46,749 - single - setup - start - precalculating potential operators k
+2025-03-08 16:30:47,019 - single - setup - end - precalculating potential operators k (elapsed time: 0.26979 sec)
+2025-03-08 16:30:47,019 - single - setup - start - filling potential operators
+2025-03-08 16:30:48,021 - single - setup - end - filling potential operators (elapsed time: 1.00255 sec)
+2025-03-08 16:30:48,024 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:31:01,819 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.79450 sec)
+2025-03-08 16:31:01,819 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:31:02,426 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.60662 sec)
+2025-03-08 16:31:02,426 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:31:02,748 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32222 sec)
+2025-03-08 16:31:02,951 - coupled - setup - start - filling potential operators
+2025-03-08 16:31:04,055 - coupled - setup - end - filling potential operators (elapsed time: 1.10431 sec)
+2025-03-08 16:31:04,058 - common - setup - start - precalculating propagators
+2025-03-08 16:31:05,767 - common - setup - end - precalculating propagators (elapsed time: 1.70858 sec)
+2025-03-08 16:31:05,767 <<< SETUP (total elapsed time: 34.39056 sec)
+2025-03-08 16:31:07,464 >>> POD GROM
+2025-03-08 16:31:07,464 - single - train POD GROM - start - sampling 20 training points
+2025-03-08 16:31:09,663 - single - train POD GROM - end - sampling 20 training points (elapsed time: 2.19912 sec)
+2025-03-08 16:31:09,664 - single - train POD GROM - LECs_train shape = (20, 12)
+2025-03-08 16:31:09,664 - single - train POD GROM - start - solving high-fidelity model for 20 samples
+2025-03-08 16:31:10,658 - single - train POD GROM - end - solving high-fidelity model for 20 samples (elapsed time: 0.99377 sec)
+2025-03-08 16:31:10,658 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-08 16:31:10,658 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-08 16:31:12,367 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.70880 sec)
+2025-03-08 16:31:12,367 - single - train POD GROM - Nbasis = 12
+2025-03-08 16:31:12,367 - single - test POD GROM - start - sampling 20 testing points
+2025-03-08 16:31:12,509 - single - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14180 sec)
+2025-03-08 16:31:12,509 - single - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 16:31:12,510 - single - test POD GROM - start - emulating at testing points
+2025-03-08 16:31:13,999 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.48985 sec)
+2025-03-08 16:31:14,000 - single - test POD GROM - Csb shape = (21, 12)
+2025-03-08 16:31:14,000 - single - test POD GROM - emulated Tsq shape = (21, 41)
+2025-03-08 16:31:14,000 - single - test POD GROM - start - estimating error at testing points
+2025-03-08 16:31:14,602 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.60255 sec)
+2025-03-08 16:31:14,675 - single - test POD GROM - max estimated error = 2.17539381e-09
+2025-03-08 16:31:15,036 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-08 16:31:15,222 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.18583 sec)
+2025-03-08 16:31:15,222 - single - test POD GROM - start - calibrating error at testing points
+2025-03-08 16:31:15,540 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.31805 sec)
+2025-03-08 16:31:15,541 - single - test POD GROM - calibration ratio = 1.01789390
+2025-03-08 16:31:15,615 - single - test POD GROM - avg calibrated testing error = 7.30712759e-10
+2025-03-08 16:31:15,703 - single - test POD GROM - std calibrated testing error = 5.52018060e-10
+2025-03-08 16:31:15,703 - single - test POD GROM - max calibrated testing error = 2.21432008e-09
+2025-03-08 16:40:23,565 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:40:23,565 >>> SETUP
+2025-03-08 16:40:23,565 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:40:38,512 - single - setup - end - precalculating potential operators qq (elapsed time: 14.94671 sec)
+2025-03-08 16:40:38,512 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:40:39,157 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64497 sec)
+2025-03-08 16:40:39,158 - single - setup - start - precalculating potential operators k
+2025-03-08 16:40:39,427 - single - setup - end - precalculating potential operators k (elapsed time: 0.26886 sec)
+2025-03-08 16:40:39,427 - single - setup - start - filling potential operators
+2025-03-08 16:40:40,430 - single - setup - end - filling potential operators (elapsed time: 1.00310 sec)
+2025-03-08 16:40:40,433 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:40:54,197 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.76426 sec)
+2025-03-08 16:40:54,197 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:40:54,813 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61564 sec)
+2025-03-08 16:40:54,813 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:40:55,139 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32618 sec)
+2025-03-08 16:40:55,343 - coupled - setup - start - filling potential operators
+2025-03-08 16:40:56,454 - coupled - setup - end - filling potential operators (elapsed time: 1.11087 sec)
+2025-03-08 16:40:56,456 - common - setup - start - precalculating propagators
+2025-03-08 16:40:58,185 - common - setup - end - precalculating propagators (elapsed time: 1.72871 sec)
+2025-03-08 16:40:58,185 <<< SETUP (total elapsed time: 34.62009 sec)
+2025-03-08 16:41:47,891 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:41:47,892 >>> SETUP
+2025-03-08 16:41:47,892 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:42:02,660 - single - setup - end - precalculating potential operators qq (elapsed time: 14.76866 sec)
+2025-03-08 16:42:02,661 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:42:03,300 - single - setup - end - precalculating potential operators kq (elapsed time: 0.63948 sec)
+2025-03-08 16:42:03,300 - single - setup - start - precalculating potential operators k
+2025-03-08 16:42:03,569 - single - setup - end - precalculating potential operators k (elapsed time: 0.26858 sec)
+2025-03-08 16:42:03,569 - single - setup - start - filling potential operators
+2025-03-08 16:42:04,569 - single - setup - end - filling potential operators (elapsed time: 0.99964 sec)
+2025-03-08 16:42:04,572 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:42:18,195 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.62304 sec)
+2025-03-08 16:42:18,195 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:42:18,804 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.60855 sec)
+2025-03-08 16:42:18,804 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:42:19,127 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32326 sec)
+2025-03-08 16:42:19,329 - coupled - setup - start - filling potential operators
+2025-03-08 16:42:20,440 - coupled - setup - end - filling potential operators (elapsed time: 1.11073 sec)
+2025-03-08 16:42:20,443 - common - setup - start - precalculating propagators
+2025-03-08 16:42:22,155 - common - setup - end - precalculating propagators (elapsed time: 1.71200 sec)
+2025-03-08 16:42:22,156 <<< SETUP (total elapsed time: 34.26386 sec)
+2025-03-08 16:43:00,218 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:43:00,219 >>> SETUP
+2025-03-08 16:43:00,219 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:43:14,944 - single - setup - end - precalculating potential operators qq (elapsed time: 14.72510 sec)
+2025-03-08 16:43:14,944 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:43:15,613 - single - setup - end - precalculating potential operators kq (elapsed time: 0.66873 sec)
+2025-03-08 16:43:15,613 - single - setup - start - precalculating potential operators k
+2025-03-08 16:43:15,883 - single - setup - end - precalculating potential operators k (elapsed time: 0.26996 sec)
+2025-03-08 16:43:15,883 - single - setup - start - filling potential operators
+2025-03-08 16:43:16,888 - single - setup - end - filling potential operators (elapsed time: 1.00490 sec)
+2025-03-08 16:43:16,891 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:43:30,595 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.70382 sec)
+2025-03-08 16:43:30,595 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:43:31,210 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61462 sec)
+2025-03-08 16:43:31,210 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:43:31,535 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32424 sec)
+2025-03-08 16:43:31,737 - coupled - setup - start - filling potential operators
+2025-03-08 16:43:32,844 - coupled - setup - end - filling potential operators (elapsed time: 1.10698 sec)
+2025-03-08 16:43:32,847 - common - setup - start - precalculating propagators
+2025-03-08 16:43:34,555 - common - setup - end - precalculating propagators (elapsed time: 1.70765 sec)
+2025-03-08 16:43:34,555 <<< SETUP (total elapsed time: 34.33625 sec)
+2025-03-08 16:46:18,340 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:46:18,341 >>> SETUP
+2025-03-08 16:46:18,341 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:46:33,076 - single - setup - end - precalculating potential operators qq (elapsed time: 14.73504 sec)
+2025-03-08 16:46:33,076 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:46:33,721 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64448 sec)
+2025-03-08 16:46:33,721 - single - setup - start - precalculating potential operators k
+2025-03-08 16:46:33,991 - single - setup - end - precalculating potential operators k (elapsed time: 0.26979 sec)
+2025-03-08 16:46:33,991 - single - setup - start - filling potential operators
+2025-03-08 16:46:34,996 - single - setup - end - filling potential operators (elapsed time: 1.00531 sec)
+2025-03-08 16:46:35,077 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:46:48,826 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.74869 sec)
+2025-03-08 16:46:48,826 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:46:49,442 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.61610 sec)
+2025-03-08 16:46:49,443 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:46:49,769 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32644 sec)
+2025-03-08 16:46:49,972 - coupled - setup - start - filling potential operators
+2025-03-08 16:46:51,093 - coupled - setup - end - filling potential operators (elapsed time: 1.12059 sec)
+2025-03-08 16:46:51,095 - common - setup - start - precalculating propagators
+2025-03-08 16:46:52,809 - common - setup - end - precalculating propagators (elapsed time: 1.71388 sec)
+2025-03-08 16:46:52,810 <<< SETUP (total elapsed time: 34.46898 sec)
+2025-03-08 16:54:41,929 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:54:41,930 >>> SETUP
+2025-03-08 16:54:41,930 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:54:56,688 - single - setup - end - precalculating potential operators qq (elapsed time: 14.75803 sec)
+2025-03-08 16:54:56,688 - single - setup - start - precalculating potential operators kq
+2025-03-08 16:54:57,333 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64465 sec)
+2025-03-08 16:54:57,333 - single - setup - start - precalculating potential operators k
+2025-03-08 16:54:57,604 - single - setup - end - precalculating potential operators k (elapsed time: 0.27070 sec)
+2025-03-08 16:54:57,604 - single - setup - start - filling potential operators
+2025-03-08 16:54:58,619 - single - setup - end - filling potential operators (elapsed time: 1.01458 sec)
+2025-03-08 16:54:58,622 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 16:55:12,225 - coupled - setup - end - precalculating potential operators qq (elapsed time: 13.60326 sec)
+2025-03-08 16:55:12,225 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 16:55:12,835 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.60945 sec)
+2025-03-08 16:55:12,835 - coupled - setup - start - precalculating potential operators k
+2025-03-08 16:55:13,159 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.32415 sec)
+2025-03-08 16:55:13,362 - coupled - setup - start - filling potential operators
+2025-03-08 16:55:14,470 - coupled - setup - end - filling potential operators (elapsed time: 1.10841 sec)
+2025-03-08 16:55:14,473 - common - setup - start - precalculating propagators
+2025-03-08 16:55:16,185 - common - setup - end - precalculating propagators (elapsed time: 1.71200 sec)
+2025-03-08 16:55:16,185 <<< SETUP (total elapsed time: 34.25575 sec)
+2025-03-08 16:56:39,905 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:56:39,905 >>> SETUP
+2025-03-08 16:56:39,905 - single - setup - start - precalculating potential operators qq
+2025-03-08 16:57:08,431 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:57:08,431 >>> SETUP
+2025-03-08 16:57:08,431 - single - setup - start - loading potential operators from file
+2025-03-08 16:57:08,433 - single - setup - end - loading potential operators from file (elapsed time: 0.00149 sec)
+2025-03-08 16:57:08,433 - coupled - setup - start - loading potential operators from file
+2025-03-08 16:57:08,434 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00132 sec)
+2025-03-08 16:57:08,434 - common - setup - start - precalculating propagators
+2025-03-08 16:57:10,310 - common - setup - end - precalculating propagators (elapsed time: 1.87538 sec)
+2025-03-08 16:57:10,310 <<< SETUP (total elapsed time: 1.87891 sec)
+2025-03-08 16:57:41,731 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:57:41,731 >>> SETUP
+2025-03-08 16:57:41,731 - single - setup - start - loading potential operators from file
+2025-03-08 16:57:41,733 - single - setup - end - loading potential operators from file (elapsed time: 0.00148 sec)
+2025-03-08 16:57:41,733 - coupled - setup - start - loading potential operators from file
+2025-03-08 16:57:41,735 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00137 sec)
+2025-03-08 16:57:41,735 - common - setup - start - precalculating propagators
+2025-03-08 16:57:43,610 - common - setup - end - precalculating propagators (elapsed time: 1.87499 sec)
+2025-03-08 16:57:43,610 <<< SETUP (total elapsed time: 1.87860 sec)
+2025-03-08 16:58:49,991 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 16:58:49,991 >>> SETUP
+2025-03-08 16:58:49,991 - single - setup - start - loading potential operators from file
+2025-03-08 16:58:49,993 - single - setup - end - loading potential operators from file (elapsed time: 0.00153 sec)
+2025-03-08 16:58:49,993 - coupled - setup - start - loading potential operators from file
+2025-03-08 16:58:49,994 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00136 sec)
+2025-03-08 16:58:49,994 - common - setup - start - precalculating propagators
+2025-03-08 16:58:51,870 - common - setup - end - precalculating propagators (elapsed time: 1.87521 sec)
+2025-03-08 16:58:51,870 <<< SETUP (total elapsed time: 1.87884 sec)
+2025-03-08 17:01:57,123 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:01:57,123 >>> SETUP
+2025-03-08 17:01:57,123 - single - setup - start - loading potential operators from file
+2025-03-08 17:01:57,125 - single - setup - end - loading potential operators from file (elapsed time: 0.00143 sec)
+2025-03-08 17:01:57,125 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:01:57,126 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00127 sec)
+2025-03-08 17:01:57,126 - common - setup - start - precalculating propagators
+2025-03-08 17:01:59,005 - common - setup - end - precalculating propagators (elapsed time: 1.87905 sec)
+2025-03-08 17:01:59,006 <<< SETUP (total elapsed time: 1.88246 sec)
+2025-03-08 17:05:58,649 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:05:58,649 >>> SETUP
+2025-03-08 17:05:58,649 - single - setup - start - loading potential operators from file
+2025-03-08 17:05:58,651 - single - setup - end - loading potential operators from file (elapsed time: 0.00156 sec)
+2025-03-08 17:05:58,651 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:05:58,652 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 17:05:58,652 - common - setup - start - precalculating propagators
+2025-03-08 17:06:00,519 - common - setup - end - precalculating propagators (elapsed time: 1.86692 sec)
+2025-03-08 17:06:00,520 <<< SETUP (total elapsed time: 1.87060 sec)
+2025-03-08 17:06:49,598 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:06:49,598 >>> SETUP
+2025-03-08 17:06:49,598 - single - setup - start - loading potential operators from file
+2025-03-08 17:06:49,600 - single - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 17:06:49,600 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:06:49,602 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00140 sec)
+2025-03-08 17:06:49,602 - common - setup - start - precalculating propagators
+2025-03-08 17:06:51,475 - common - setup - end - precalculating propagators (elapsed time: 1.87285 sec)
+2025-03-08 17:06:51,475 <<< SETUP (total elapsed time: 1.87654 sec)
+2025-03-08 17:08:05,765 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:08:05,765 >>> SETUP
+2025-03-08 17:08:05,765 - single - setup - start - loading potential operators from file
+2025-03-08 17:08:05,766 - single - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 17:08:05,767 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:08:05,768 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00142 sec)
+2025-03-08 17:08:05,768 - common - setup - start - precalculating propagators
+2025-03-08 17:08:07,642 - common - setup - end - precalculating propagators (elapsed time: 1.87372 sec)
+2025-03-08 17:08:07,642 <<< SETUP (total elapsed time: 1.87738 sec)
+2025-03-08 17:08:50,800 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:08:50,801 >>> SETUP
+2025-03-08 17:08:50,801 - single - setup - start - loading potential operators from file
+2025-03-08 17:08:50,802 - single - setup - end - loading potential operators from file (elapsed time: 0.00149 sec)
+2025-03-08 17:08:50,802 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:08:50,804 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00136 sec)
+2025-03-08 17:08:50,804 - common - setup - start - precalculating propagators
+2025-03-08 17:08:52,670 - common - setup - end - precalculating propagators (elapsed time: 1.86581 sec)
+2025-03-08 17:08:52,670 <<< SETUP (total elapsed time: 1.86942 sec)
+2025-03-08 17:09:34,450 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:09:34,450 >>> SETUP
+2025-03-08 17:09:34,450 - single - setup - start - loading potential operators from file
+2025-03-08 17:09:34,452 - single - setup - end - loading potential operators from file (elapsed time: 0.00147 sec)
+2025-03-08 17:09:34,452 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:09:34,453 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00133 sec)
+2025-03-08 17:09:34,453 - common - setup - start - precalculating propagators
+2025-03-08 17:09:36,327 - common - setup - end - precalculating propagators (elapsed time: 1.87351 sec)
+2025-03-08 17:09:36,327 <<< SETUP (total elapsed time: 1.87707 sec)
+2025-03-08 17:11:10,403 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:11:10,403 >>> SETUP
+2025-03-08 17:11:10,404 - single - setup - start - loading potential operators from file
+2025-03-08 17:11:10,405 - single - setup - end - loading potential operators from file (elapsed time: 0.00159 sec)
+2025-03-08 17:11:10,405 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:11:10,407 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00129 sec)
+2025-03-08 17:11:10,407 - common - setup - start - precalculating propagators
+2025-03-08 17:11:12,285 - common - setup - end - precalculating propagators (elapsed time: 1.87831 sec)
+2025-03-08 17:11:12,285 <<< SETUP (total elapsed time: 1.88191 sec)
+2025-03-08 17:12:06,011 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:12:06,011 >>> SETUP
+2025-03-08 17:12:06,011 - single - setup - start - loading potential operators from file
+2025-03-08 17:12:06,013 - single - setup - end - loading potential operators from file (elapsed time: 0.00156 sec)
+2025-03-08 17:12:06,013 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:12:06,014 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00141 sec)
+2025-03-08 17:12:06,015 - common - setup - start - precalculating propagators
+2025-03-08 17:12:07,878 - common - setup - end - precalculating propagators (elapsed time: 1.86312 sec)
+2025-03-08 17:12:07,878 <<< SETUP (total elapsed time: 1.86682 sec)
+2025-03-08 17:12:14,809 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:12:14,952 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14275 sec)
+2025-03-08 17:12:14,952 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:12:14,953 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:12:16,208 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.25513 sec)
+2025-03-08 17:12:16,210 - common - test POD GROM - Csb shape = (21, 20)
+2025-03-08 17:12:16,210 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:12:16,210 - common - test POD GROM - start - estimating error at testing points
+2025-03-08 17:14:39,611 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:14:39,611 >>> SETUP
+2025-03-08 17:14:39,611 - single - setup - start - loading potential operators from file
+2025-03-08 17:14:39,613 - single - setup - end - loading potential operators from file (elapsed time: 0.00177 sec)
+2025-03-08 17:14:39,613 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:14:39,615 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00141 sec)
+2025-03-08 17:14:39,615 - common - setup - start - precalculating propagators
+2025-03-08 17:14:41,497 - common - setup - end - precalculating propagators (elapsed time: 1.88181 sec)
+2025-03-08 17:14:41,497 <<< SETUP (total elapsed time: 1.88578 sec)
+2025-03-08 17:14:48,448 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:14:48,593 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14431 sec)
+2025-03-08 17:14:48,593 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:14:48,594 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:14:49,868 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.27443 sec)
+2025-03-08 17:14:49,868 - common - test POD GROM - Csb shape = (21, 20)
+2025-03-08 17:14:49,868 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:16:22,383 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:16:22,383 >>> SETUP
+2025-03-08 17:16:22,383 - single - setup - start - loading potential operators from file
+2025-03-08 17:16:22,385 - single - setup - end - loading potential operators from file (elapsed time: 0.00153 sec)
+2025-03-08 17:16:22,385 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:16:22,386 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 17:16:22,387 - common - setup - start - precalculating propagators
+2025-03-08 17:16:24,264 - common - setup - end - precalculating propagators (elapsed time: 1.87722 sec)
+2025-03-08 17:16:24,264 <<< SETUP (total elapsed time: 1.88088 sec)
+2025-03-08 17:16:31,195 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:16:31,340 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 0.14441 sec)
+2025-03-08 17:16:31,340 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:16:31,340 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:16:32,636 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.29523 sec)
+2025-03-08 17:16:32,637 - common - test POD GROM - Csb shape = (21, 20)
+2025-03-08 17:16:32,637 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:18:28,446 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:18:28,446 >>> SETUP
+2025-03-08 17:18:28,446 - single - setup - start - loading potential operators from file
+2025-03-08 17:18:28,448 - single - setup - end - loading potential operators from file (elapsed time: 0.00154 sec)
+2025-03-08 17:18:28,448 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:18:28,449 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 17:18:28,450 - common - setup - start - precalculating propagators
+2025-03-08 17:18:30,322 - common - setup - end - precalculating propagators (elapsed time: 1.87260 sec)
+2025-03-08 17:18:30,323 <<< SETUP (total elapsed time: 1.87626 sec)
+2025-03-08 17:18:37,364 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:18:39,074 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.70943 sec)
+2025-03-08 17:18:39,074 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:18:39,074 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:18:40,469 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.39487 sec)
+2025-03-08 17:18:40,469 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:18:40,470 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:22:37,399 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:22:37,399 >>> SETUP
+2025-03-08 17:22:37,399 - single - setup - start - loading potential operators from file
+2025-03-08 17:22:37,401 - single - setup - end - loading potential operators from file (elapsed time: 0.00156 sec)
+2025-03-08 17:22:37,401 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:22:37,403 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 17:22:37,403 - common - setup - start - precalculating propagators
+2025-03-08 17:22:39,276 - common - setup - end - precalculating propagators (elapsed time: 1.87324 sec)
+2025-03-08 17:22:39,276 <<< SETUP (total elapsed time: 1.87692 sec)
+2025-03-08 17:22:46,311 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:22:48,027 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.71570 sec)
+2025-03-08 17:22:48,027 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:22:48,027 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:22:49,420 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.39242 sec)
+2025-03-08 17:22:49,420 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:22:49,420 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:26:56,314 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:26:56,314 >>> SETUP
+2025-03-08 17:26:56,314 - single - setup - start - loading potential operators from file
+2025-03-08 17:26:56,316 - single - setup - end - loading potential operators from file (elapsed time: 0.00154 sec)
+2025-03-08 17:26:56,316 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:26:56,318 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00141 sec)
+2025-03-08 17:26:56,318 - common - setup - start - precalculating propagators
+2025-03-08 17:26:58,193 - common - setup - end - precalculating propagators (elapsed time: 1.87501 sec)
+2025-03-08 17:26:58,193 <<< SETUP (total elapsed time: 1.87871 sec)
+2025-03-08 17:27:05,701 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:27:07,425 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.72442 sec)
+2025-03-08 17:27:07,426 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:27:07,426 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:28:31,045 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:28:31,045 >>> SETUP
+2025-03-08 17:28:31,045 - single - setup - start - loading potential operators from file
+2025-03-08 17:28:31,047 - single - setup - end - loading potential operators from file (elapsed time: 0.00154 sec)
+2025-03-08 17:28:31,047 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:28:31,049 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00142 sec)
+2025-03-08 17:28:31,049 - common - setup - start - precalculating propagators
+2025-03-08 17:28:32,920 - common - setup - end - precalculating propagators (elapsed time: 1.87165 sec)
+2025-03-08 17:28:32,921 <<< SETUP (total elapsed time: 1.87535 sec)
+2025-03-08 17:28:41,167 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:28:43,441 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 2.27385 sec)
+2025-03-08 17:28:43,442 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:28:43,443 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:30:11,658 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:30:11,658 >>> SETUP
+2025-03-08 17:30:11,658 - single - setup - start - loading potential operators from file
+2025-03-08 17:30:11,660 - single - setup - end - loading potential operators from file (elapsed time: 0.00166 sec)
+2025-03-08 17:30:11,660 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:30:11,662 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 17:30:11,662 - common - setup - start - precalculating propagators
+2025-03-08 17:30:13,605 - common - setup - end - precalculating propagators (elapsed time: 1.94307 sec)
+2025-03-08 17:30:13,605 <<< SETUP (total elapsed time: 1.94710 sec)
+2025-03-08 17:30:54,975 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:30:54,976 >>> SETUP
+2025-03-08 17:30:54,976 - single - setup - start - loading potential operators from file
+2025-03-08 17:30:54,978 - single - setup - end - loading potential operators from file (elapsed time: 0.00165 sec)
+2025-03-08 17:30:54,978 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:30:54,979 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00133 sec)
+2025-03-08 17:30:54,979 - common - setup - start - precalculating propagators
+2025-03-08 17:30:57,644 - common - setup - end - precalculating propagators (elapsed time: 2.66430 sec)
+2025-03-08 17:30:57,644 <<< SETUP (total elapsed time: 2.66808 sec)
+2025-03-08 17:32:03,993 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:32:03,994 >>> SETUP
+2025-03-08 17:32:03,995 - single - setup - start - loading potential operators from file
+2025-03-08 17:32:03,998 - single - setup - end - loading potential operators from file (elapsed time: 0.00342 sec)
+2025-03-08 17:32:03,998 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:32:04,002 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00349 sec)
+2025-03-08 17:32:04,002 - common - setup - start - precalculating propagators
+2025-03-08 17:32:05,967 - common - setup - end - precalculating propagators (elapsed time: 1.96497 sec)
+2025-03-08 17:32:05,968 <<< SETUP (total elapsed time: 1.97299 sec)
+2025-03-08 17:32:14,275 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:32:16,429 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 2.15368 sec)
+2025-03-08 17:32:16,429 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:32:16,429 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:32:17,934 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.50469 sec)
+2025-03-08 17:32:17,934 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:32:17,934 - common - test POD GROM - emulated Tsq shape = (21, 164)
+2025-03-08 17:36:39,886 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:36:39,887 >>> SETUP
+2025-03-08 17:36:39,887 - single - setup - start - loading potential operators from file
+2025-03-08 17:36:39,891 - single - setup - end - loading potential operators from file (elapsed time: 0.00379 sec)
+2025-03-08 17:36:39,891 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:36:39,892 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00144 sec)
+2025-03-08 17:36:39,892 - common - setup - start - precalculating propagators
+2025-03-08 17:36:41,868 - common - setup - end - precalculating propagators (elapsed time: 1.97563 sec)
+2025-03-08 17:36:41,868 <<< SETUP (total elapsed time: 1.98164 sec)
+2025-03-08 17:36:49,671 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:36:51,474 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.80197 sec)
+2025-03-08 17:36:51,474 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:36:51,474 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:36:53,011 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.53709 sec)
+2025-03-08 17:36:53,011 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:36:53,012 - common - test POD GROM - emulated Tsq shape = (21, 2, 82)
+2025-03-08 17:37:43,411 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:37:43,411 >>> SETUP
+2025-03-08 17:37:43,411 - single - setup - start - loading potential operators from file
+2025-03-08 17:37:43,413 - single - setup - end - loading potential operators from file (elapsed time: 0.00157 sec)
+2025-03-08 17:37:43,413 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:37:43,414 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00131 sec)
+2025-03-08 17:37:43,414 - common - setup - start - precalculating propagators
+2025-03-08 17:37:45,370 - common - setup - end - precalculating propagators (elapsed time: 1.95549 sec)
+2025-03-08 17:37:45,370 <<< SETUP (total elapsed time: 1.95927 sec)
+2025-03-08 17:37:53,088 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:37:54,887 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.79839 sec)
+2025-03-08 17:37:54,887 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:37:54,887 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:37:56,414 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.52670 sec)
+2025-03-08 17:37:56,414 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:37:56,414 - common - test POD GROM - emulated Tsq shape = (21, 2, 2, 41)
+2025-03-08 17:39:25,860 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:39:25,861 >>> SETUP
+2025-03-08 17:39:25,861 - single - setup - start - loading potential operators from file
+2025-03-08 17:39:25,862 - single - setup - end - loading potential operators from file (elapsed time: 0.00172 sec)
+2025-03-08 17:39:25,863 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:39:25,864 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00157 sec)
+2025-03-08 17:39:25,865 - common - setup - start - precalculating propagators
+2025-03-08 17:39:27,852 - common - setup - end - precalculating propagators (elapsed time: 1.98728 sec)
+2025-03-08 17:39:27,852 <<< SETUP (total elapsed time: 1.99152 sec)
+2025-03-08 17:39:35,573 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:39:37,374 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.79990 sec)
+2025-03-08 17:39:37,374 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:39:37,374 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:39:38,920 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.54623 sec)
+2025-03-08 17:39:38,920 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:39:38,921 - common - test POD GROM - emulated Tsq shape = (21, 2, 2, 41)
+2025-03-08 17:40:41,653 logger initialized and writing to file: output/benchmark_emulator_Nq40.txt
+2025-03-08 17:40:41,653 >>> SETUP
+2025-03-08 17:40:41,653 - single - setup - start - loading potential operators from file
+2025-03-08 17:40:41,655 - single - setup - end - loading potential operators from file (elapsed time: 0.00189 sec)
+2025-03-08 17:40:41,655 - coupled - setup - start - loading potential operators from file
+2025-03-08 17:40:41,658 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00208 sec)
+2025-03-08 17:40:41,658 - common - setup - start - precalculating propagators
+2025-03-08 17:40:43,704 - common - setup - end - precalculating propagators (elapsed time: 2.04599 sec)
+2025-03-08 17:40:43,704 <<< SETUP (total elapsed time: 2.05107 sec)
+2025-03-08 17:40:51,815 - common - test POD GROM - start - sampling 20 testing points
+2025-03-08 17:40:53,702 - common - test POD GROM - end - sampling 20 testing points (elapsed time: 1.88696 sec)
+2025-03-08 17:40:53,703 - common - test POD GROM - LECs_test shape = (21, 12)
+2025-03-08 17:40:53,703 - common - test POD GROM - start - emulating at testing points
+2025-03-08 17:40:55,288 - common - test POD GROM - end - emulating at testing points (elapsed time: 1.58556 sec)
+2025-03-08 17:40:55,289 - common - test POD GROM - Csb shape = (21, 34)
+2025-03-08 17:40:55,289 - common - test POD GROM - emulated Tsq shape = (21, 2, 2, 41)

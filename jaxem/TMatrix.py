@@ -1,5 +1,6 @@
 import jax.numpy as jnp
 from jax import config
+import jax
 config.update("jax_enable_x64", True)
 from jax import random, grad, jit, vmap
 from scipy.interpolate import griddata, RBFInterpolator
@@ -242,75 +243,145 @@ class TMatrix:
         self.log_end()
         
         
-        
-    def solve_single(self, LECs_samples):
     
-        LECs_samples = jnp.reshape(LECs_samples, (-1, self.pot.No))
-        Nsamples = LECs_samples.shape[0]
         
-        if self.pot.compute_single:
-        
-            self.log_category = "single"
-            self.log_start(f"solving high-fidelity model for {Nsamples} samples")
-            
-            # compute potential matrices for all LEC combinations, single channels, and energies
-            Vsckqq = jnp.einsum('so,ockij->sckij', LECs_samples, self.Vockqq) # MeV^2
-            
-            # set up linear system
-            iq = jnp.arange(self.Nq+1)
-            Asckqq = -jnp.einsum('sckij,kj->sckij', Vsckqq, self.Gkq) # 1
-            Asckqq = Asckqq.at[:,:,:,iq,iq].add(1.0)
-            
-            # solve for half-shell T matrix for all LECs, single channels, and energies
-            Tsckq = jnp.linalg.solve(Asckqq, Vsckqq[:,:,:,:,0][..., None])[..., 0] # MeV^2
-            
-            self.log_end()
-            
-            return Tsckq
-            
-        else:
-        
-            return None
-
-
-    def solve_coupled(self, LECs_samples):
+    def solve_single(self, LECs, c_index, k_index):
     
-        LECs_samples = jnp.reshape(LECs_samples, (-1, self.pot.No))
-        Nsamples = LECs_samples.shape[0]
-            
-        if self.pot.compute_coupled:
+        Vqq = jnp.einsum('o,oij->ij', LECs, self.Vockqq[:,c_index,k_index,:,:])
+        iq = jnp.arange(self.Nq+1)
+        Aqq = -jnp.einsum('ij,j->ij', Vqq, self.Gkq[k_index,:])
+        Aqq = Aqq.at[iq,iq].add(1.0)
+        Tq = jnp.linalg.solve(Aqq, Vqq[:,0])
         
-            self.log_category = "coupled"
-            self.log_start(f"solving high-fidelity model for {Nsamples} samples")
+        return Tq
+        
+        
+    def solve_coupled(self, LECs, cc_index, k_index):
     
-            # compute potential matrices for all LEC combinations, coupled channels, and energies
-            # units: fm^2
-            Vscckqq = jnp.einsum('so,ockij->sckij', LECs_samples, self.Vocckqq)
-  
-            # set up linear system
-            iq = jnp.arange(2*self.Nq+2)
-            Ascckqq = -jnp.einsum('sckij,kj->sckij', Vscckqq, jnp.tile(self.Gkq, (1,2)))
-            Ascckqq = Ascckqq.at[:,:,:,iq,iq].add(1.0)
+        Vqq = jnp.einsum('o,oij->ij', LECs, self.Vocckqq[:,cc_index,k_index,:,:])
+        iq = jnp.arange(2*self.Nq+2)
+        Aqq = -jnp.einsum('ij,j->ij', Vqq, jnp.tile(self.Gkq[k_index], (2,)))
+        Aqq = Aqq.at[iq,iq].add(1.0)
 
-            # solve for half-shell T matrix
-            Tscckq = jnp.linalg.solve(Ascckqq, Vscckqq[:,:,:,:,[0, self.Nq + 1]])
-            Tscckq = jnp.reshape(Tscckq, (Nsamples, self.chan.Ncoupled, self.Nk, 2, self.Nq+1, 2))
-            Tscckq = jnp.transpose(Tscckq, (0,1,2,3,5,4))
+        Tq = jnp.linalg.solve(Aqq, Vqq[:,[0, self.Nq + 1]])
+        print("Tq = ", Tq.shape)
+        Tq = jnp.reshape(Tq, (2, self.Nq+1, 2))
+        Tq = jnp.transpose(Tq, (0,2,1))
 
-            self.log_end()
-            return Tscckq
-            
-        else:
+        print("Tq = ", Tq.shape)
+        return Tq
         
-            return None
-            
-            
-    def solve(self, LECs_samples):
+
+    def train_POD_GROM_coupled(self, LECs_lbd, LECs_ubd, cc_index, k_index):
     
-        Tsckq = self.solve_single(LECs_samples)
-        Tscckq = self.solve_coupled(LECs_samples)
+    
+        # sample training points (all candidate points by default)
+
+        key = random.PRNGKey(self.config.seed)
+        key, key_in = random.split(key)
+        LECs_train = latin_hypercube(key_in, self.config.Ncand, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+
+        Tsq = jax.vmap(self.solve_coupled, in_axes=(0,None,None))(LECs_train, cc_index, k_index)
+        print("Tsq inside train coupled", Tsq.shape)
         
-        return Tsckq, Tscckq
+        Tsq = jnp.concatenate((Tsq[:,0,0,:], Tsq[:,1,0,:], Tsq[:,0,1,:], Tsq[:,1,1,:]), axis=1)
+        
+        # select training data
+        Tqs = jnp.transpose(Tsq)
+        
+        print("Tqs inside train coupled", Tqs.shape)
+        
+        # orthogonalize
+        Uqs, Ss, _ = jnp.linalg.svd(Tqs, full_matrices=False)
+        
+        # truncate basis
+        
+        index = int(jnp.argmax(Ss/Ss[0] <= self.config.svd_tol))
+        Nbasis = index + 1 if index > 0 else self.config.Ncand
+        Xqb = Uqs[:,:Nbasis]
+        
+        print("Xqb = ", Xqb.shape)
+        print("Voqq = ", self.Vocckqq[:,cc_index,k_index,:,:].shape)
+        print("Gq = ", jnp.tile(self.Gkq[k_index], (2,)).shape)
+        
+        def make_block_diag(VGqq):
+            return jax.scipy.linalg.block_diag(VGqq, VGqq)
+        
+        # project
+        VGoqq = jnp.einsum('oij,j->oij', self.Vocckqq[:,cc_index,k_index,:,:], jnp.tile(self.Gkq[k_index,:], (2,)))
+        print("VGoqq = ", VGoqq.shape)
+        VGoqq = jax.vmap(make_block_diag, in_axes=(0))(VGoqq)
+        print("VGoqq = ", VGoqq.shape)
+        XVGXobb = jnp.einsum('ia,oij,jb->oab', jnp.conjugate(Xqb), VGoqq, Xqb)
+        print("XVGXobb = ", XVGXobb.shape)
+        
+        Voq = self.Vocckqq[:,cc_index,k_index,:, [0, self.Nq+1]]
+        print("Voq = ", Voq.shape)
+        Voq = jnp.concatenate((Voq[0,:,:], Voq[1,:,:]), axis=1)
+        print("Voq = ", Voq.shape)
+        XVob = jnp.einsum('ib,oi->ob', jnp.conjugate(Xqb), Voq)
+        print("XVob = ", XVob.shape)
+        
+        # sample testing points
+        self.log_stage = "test POD GROM"
+        self.log_start(f"sampling {self.config.Ntest} testing points")
+        key, key_in = random.split(key)
+        LECs_test = latin_hypercube(key_in, self.config.Ntest, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+        LECs_test = jnp.concatenate((self.pot.LECs[None,:], LECs_test))
+        self.log_end()
+        self.log_message(f"LECs_test shape = {LECs_test.shape}")
+        
+        # solve low fidelity model at testing points
+        self.log_start("emulating at testing points")
+        XVGXsbb = jnp.einsum('so,oab->sab', LECs_test, XVGXobb)
+        print("VGsbb = ", XVGXsbb.shape)
+        XVsb = jnp.einsum('so,ob->sb', LECs_test, XVob)
+        print("XVsb = ", XVsb.shape)
+        ib = jnp.arange(Nbasis)
+        XAXsbb = (-XVGXsbb).at[:,ib,ib].add(1.0)
+        Csb = jnp.linalg.solve(XAXsbb, XVsb[...,None])[...,0]
+        emulated_Tsq = jnp.einsum('sb,ib->si', Csb, Xqb)
+        emulated_Tsq = jnp.reshape(emulated_Tsq, (self.config.Ntest+1, 2, 2, -1))
+        emulated_Tsq = jnp.transpose(emulated_Tsq, (0,2,1,3))
+        self.log_end()
+        self.log_message(f"Csb shape = {Csb.shape}")
+        self.log_message(f"emulated Tsq shape = {emulated_Tsq.shape}")
+        
+        '''
+        # estimate error at testing points
+        self.log_start("estimating error at testing points")
+        VGsqq = jnp.einsum('so,oij,j->sij', LECs_test, self.Vockqq[:,cc_index,k_index,:,:], self.Gkq[k_index,:])
+        Vsq = jnp.einsum('so,oi->si', LECs_test, self.Vockqq[:,c,k,:,0])
+        iq = jnp.arange(self.Nq+1)
+        Asqq = (-VGsqq).at[:,iq,iq].add(1.0)
+        estimated_Es = jnp.linalg.norm(jnp.einsum('sij,sj->si', Asqq, emulated_Tsq) - Vsq, axis=1)
+        self.log_end()
+        self.log_message(f"max estimated error = {jnp.max(estimated_Es):.8e}")
+        
+        # select testing point with largest estimated error
+        s_maxE = jnp.argmax(estimated_Es)
+        LECs_add = LECs_test[s_maxE]
+        
+        # calculate exact solution at testing point with largest error
+        self.log_start("solving high-fidelity model at testing point with largest error")
+        exact_Tq = jnp.linalg.solve(Asqq[s_maxE], Vsq[s_maxE])
+        self.log_end()
+        
+        # calibrate estimated error
+        self.log_start("calibrating error at testing points")
+        exact_E = jnp.linalg.norm(exact_Tq - emulated_Tsq[s_maxE])
+        calibration_ratio = exact_E / estimated_Es[s_maxE]
+        calibrated_Es = estimated_Es * calibration_ratio
+        
+        self.log_end()
+        self.log_message(f"calibration ratio = {calibration_ratio:.8f}")
+        self.log_message(f"avg calibrated testing error = {jnp.mean(calibrated_Es):.8e}")
+        self.log_message(f"std calibrated testing error = {jnp.std(calibrated_Es):.8e}")
+        self.log_message(f"max calibrated testing error = {jnp.max(calibrated_Es):.8e}")
+        '''
+        
+        return emulated_Tsq
+
         
         
     
@@ -329,9 +400,7 @@ class TMatrix:
             LECs_train = latin_hypercube(key_in, self.config.Ncand, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
             self.log_end()
             self.log_message(f"LECs_train shape = {LECs_train.shape}")
-            
-            # solve high fidelity model at all training points
-            Tsckq_train = self.solve_single(LECs_train)
+        
         
             # train single channel emulator
             for c, chan_label in enumerate(self.chan.single_spect_not):
@@ -341,8 +410,10 @@ class TMatrix:
                     self.log_message(f"training {chan_label} channel at Elab = {Elab} MeV...")
                     self.log_start("orthogonalizing, truncating, and projecting")
                     
+                    Tsq = jax.vmap(self.solve_single, in_axes=(0,None,None))(LECs_train, c, k)
+                    
                     # select training data
-                    Tqs = jnp.transpose(Tsckq_train[:,c,k,:])
+                    Tqs = jnp.transpose(Tsq)
                     
                     # orthogonalize
                     Uqs, Ss, _ = jnp.linalg.svd(Tqs, full_matrices=False)
@@ -365,6 +436,7 @@ class TMatrix:
                     self.log_start(f"sampling {self.config.Ntest} testing points")
                     key, key_in = random.split(key)
                     LECs_test = latin_hypercube(key_in, self.config.Ntest, self.pot.No, minvals=LECs_lbd, maxvals=LECs_ubd)
+                    LECs_test = jnp.concatenate((self.pot.LECs[None,:], LECs_test))
                     self.log_end()
                     self.log_message(f"LECs_test shape = {LECs_test.shape}")
                     
@@ -410,8 +482,14 @@ class TMatrix:
                     self.log_message(f"avg calibrated testing error = {jnp.mean(calibrated_Es):.8e}")
                     self.log_message(f"std calibrated testing error = {jnp.std(calibrated_Es):.8e}")
                     self.log_message(f"max calibrated testing error = {jnp.max(calibrated_Es):.8e}")
+                    
+                    
+                    return emulated_Tsq
 
         self.log_block_end()
+        
+        
+        
 
 
     def train_greedy_GROM_single(self, LECs_lbd, LECs_ubd):

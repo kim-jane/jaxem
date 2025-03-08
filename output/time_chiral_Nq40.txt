@@ -3254,3 +3254,943 @@ greedy_tol = 1e-08
 2025-03-06 12:00:16,534 - single - train greedy GROM - end - evaluating calibrated error (elapsed time: 0.00035 sec)
 2025-03-06 12:00:16,535 - single - train greedy GROM - greedy algorithm done in 9 iterations, used 11 training points
 2025-03-06 12:00:16,535 <<< GREEDY GROM (total elapsed time: 22.50709 sec)
+2025-03-06 14:22:44,802 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 14:22:44,804 >>> SETUP
+2025-03-06 14:22:44,804 - single - setup - start - loading potential operators from file
+2025-03-06 14:22:44,812 - single - setup - end - loading potential operators from file (elapsed time: 0.00780 sec)
+2025-03-06 14:22:44,812 - coupled - setup - start - loading potential operators from file
+2025-03-06 14:22:44,816 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00360 sec)
+2025-03-06 14:22:44,816 - common - setup - start - precalculating propagators
+2025-03-06 14:22:47,005 - common - setup - end - precalculating propagators (elapsed time: 2.18878 sec)
+2025-03-06 14:22:47,005 <<< SETUP (total elapsed time: 2.20102 sec)
+2025-03-06 14:22:47,268 >>> POD GROM
+2025-03-06 14:22:47,268 - single - train POD GROM - start - sampling 100 training points
+2025-03-06 14:22:49,779 - single - train POD GROM - end - sampling 100 training points (elapsed time: 2.51065 sec)
+2025-03-06 14:22:49,779 - single - train POD GROM - LECs_train shape = (100, 12)
+2025-03-06 14:22:49,780 - single - train POD GROM - start - solving high-fidelity model for 100 samples
+2025-03-06 14:22:51,804 - single - train POD GROM - end - solving high-fidelity model for 100 samples (elapsed time: 2.02468 sec)
+2025-03-06 14:22:52,261 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-06 14:22:52,261 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:22:53,564 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.30278 sec)
+2025-03-06 14:22:53,564 - single - train POD GROM - Nbasis = 12
+2025-03-06 14:22:53,564 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:22:53,597 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.03243 sec)
+2025-03-06 14:22:53,597 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:22:53,597 - single - test POD GROM - start - emulating at testing points
+2025-03-06 14:22:55,296 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.69927 sec)
+2025-03-06 14:22:55,297 - single - test POD GROM - Csb shape = (100, 12)
+2025-03-06 14:22:55,297 - single - test POD GROM - emulated Tsq shape = (100, 41)
+2025-03-06 14:22:55,297 - single - test POD GROM - start - estimating error at testing points
+2025-03-06 14:22:55,989 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.69178 sec)
+2025-03-06 14:22:56,073 - single - test POD GROM - max estimated error = 1.00525074e-08
+2025-03-06 14:22:56,487 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-06 14:22:56,843 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.35564 sec)
+2025-03-06 14:22:56,843 - single - test POD GROM - start - calibrating error at testing points
+2025-03-06 14:22:57,198 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.35439 sec)
+2025-03-06 14:22:57,198 - single - test POD GROM - calibration ratio = 1.06072970
+2025-03-06 14:22:57,284 - single - test POD GROM - avg calibrated testing error = 1.24358405e-09
+2025-03-06 14:22:57,393 - single - test POD GROM - std calibrated testing error = 1.37151853e-09
+2025-03-06 14:22:57,394 - single - test POD GROM - max calibrated testing error = 1.06629932e-08
+2025-03-06 14:22:57,394 - single - train POD GROM - training 1S0 channel at Elab = 40.0 MeV...
+2025-03-06 14:22:57,394 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:22:58,204 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.81031 sec)
+2025-03-06 14:22:58,205 - single - train POD GROM - Nbasis = 13
+2025-03-06 14:22:58,205 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:22:58,234 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.02903 sec)
+2025-03-06 14:22:58,234 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:22:58,234 - single - test POD GROM - start - emulating at testing points
+2025-03-06 14:23:12,416 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 14:23:12,416 >>> SETUP
+2025-03-06 14:23:12,416 - single - setup - start - loading potential operators from file
+2025-03-06 14:23:12,420 - single - setup - end - loading potential operators from file (elapsed time: 0.00322 sec)
+2025-03-06 14:23:12,420 - coupled - setup - start - loading potential operators from file
+2025-03-06 14:23:12,422 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00242 sec)
+2025-03-06 14:23:12,422 - common - setup - start - precalculating propagators
+2025-03-06 14:23:14,560 - common - setup - end - precalculating propagators (elapsed time: 2.13743 sec)
+2025-03-06 14:23:14,560 <<< SETUP (total elapsed time: 2.14398 sec)
+2025-03-06 14:23:14,830 >>> POD GROM
+2025-03-06 14:23:14,830 - single - train POD GROM - start - sampling 100 training points
+2025-03-06 14:23:17,295 - single - train POD GROM - end - sampling 100 training points (elapsed time: 2.46485 sec)
+2025-03-06 14:23:17,296 - single - train POD GROM - LECs_train shape = (100, 12)
+2025-03-06 14:23:17,296 - single - train POD GROM - start - solving high-fidelity model for 100 samples
+2025-03-06 14:23:19,160 - single - train POD GROM - end - solving high-fidelity model for 100 samples (elapsed time: 1.86419 sec)
+2025-03-06 14:23:19,540 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-06 14:23:19,540 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:23:20,808 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.26712 sec)
+2025-03-06 14:23:20,808 - single - train POD GROM - Nbasis = 12
+2025-03-06 14:23:20,808 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:23:20,836 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.02801 sec)
+2025-03-06 14:23:20,836 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:23:20,836 - single - test POD GROM - start - emulating at testing points
+2025-03-06 14:23:22,513 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.67683 sec)
+2025-03-06 14:23:22,513 - single - test POD GROM - Csb shape = (100, 12)
+2025-03-06 14:23:22,513 - single - test POD GROM - emulated Tsq shape = (100, 41)
+2025-03-06 14:23:22,513 - single - test POD GROM - start - estimating error at testing points
+2025-03-06 14:23:23,191 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.67742 sec)
+2025-03-06 14:23:23,273 - single - test POD GROM - max estimated error = 1.00525074e-08
+2025-03-06 14:23:23,680 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-06 14:23:24,028 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.34692 sec)
+2025-03-06 14:23:24,028 - single - test POD GROM - start - calibrating error at testing points
+2025-03-06 14:23:24,381 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.35344 sec)
+2025-03-06 14:23:24,381 - single - test POD GROM - calibration ratio = 1.06072970
+2025-03-06 14:23:24,469 - single - test POD GROM - avg calibrated testing error = 1.24358405e-09
+2025-03-06 14:23:24,565 - single - test POD GROM - std calibrated testing error = 1.37151853e-09
+2025-03-06 14:23:24,565 - single - test POD GROM - max calibrated testing error = 1.06629932e-08
+2025-03-06 14:23:24,565 - single - train POD GROM - training 1S0 channel at Elab = 40.0 MeV...
+2025-03-06 14:23:24,565 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:23:25,255 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.68946 sec)
+2025-03-06 14:23:25,255 - single - train POD GROM - Nbasis = 13
+2025-03-06 14:23:25,255 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:23:25,283 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.02841 sec)
+2025-03-06 14:23:25,284 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:23:25,284 - single - test POD GROM - start - emulating at testing points
+2025-03-06 14:24:27,083 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 14:24:27,084 >>> SETUP
+2025-03-06 14:24:27,085 - single - setup - start - loading potential operators from file
+2025-03-06 14:24:27,089 - single - setup - end - loading potential operators from file (elapsed time: 0.00409 sec)
+2025-03-06 14:24:27,089 - coupled - setup - start - loading potential operators from file
+2025-03-06 14:24:27,092 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00274 sec)
+2025-03-06 14:24:27,092 - common - setup - start - precalculating propagators
+2025-03-06 14:24:29,209 - common - setup - end - precalculating propagators (elapsed time: 2.11725 sec)
+2025-03-06 14:24:29,209 <<< SETUP (total elapsed time: 2.12495 sec)
+2025-03-06 14:24:29,479 >>> POD GROM
+2025-03-06 14:24:29,480 - single - train POD GROM - start - sampling 100 training points
+2025-03-06 14:24:31,977 - single - train POD GROM - end - sampling 100 training points (elapsed time: 2.49686 sec)
+2025-03-06 14:24:31,977 - single - train POD GROM - LECs_train shape = (100, 12)
+2025-03-06 14:24:31,977 - single - train POD GROM - start - solving high-fidelity model for 100 samples
+2025-03-06 14:24:33,765 - single - train POD GROM - end - solving high-fidelity model for 100 samples (elapsed time: 1.78776 sec)
+2025-03-06 14:24:33,935 - single - train POD GROM - training 1S0 channel at Elab = 20.0 MeV...
+2025-03-06 14:24:33,935 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:24:35,196 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 1.26089 sec)
+2025-03-06 14:24:35,196 - single - train POD GROM - Nbasis = 12
+2025-03-06 14:24:35,196 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:24:35,224 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.02781 sec)
+2025-03-06 14:24:35,224 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:24:35,225 - single - test POD GROM - start - emulating at testing points
+2025-03-06 14:24:36,944 - single - test POD GROM - end - emulating at testing points (elapsed time: 1.71944 sec)
+2025-03-06 14:24:36,944 - single - test POD GROM - Csb shape = (100, 12)
+2025-03-06 14:24:36,944 - single - test POD GROM - emulated Tsq shape = (100, 41)
+2025-03-06 14:24:36,944 - single - test POD GROM - start - estimating error at testing points
+2025-03-06 14:24:37,621 - single - test POD GROM - end - estimating error at testing points (elapsed time: 0.67616 sec)
+2025-03-06 14:24:37,704 - single - test POD GROM - max estimated error = 1.00525074e-08
+2025-03-06 14:24:38,110 - single - test POD GROM - start - solving high-fidelity model at testing point with largest error
+2025-03-06 14:24:38,451 - single - test POD GROM - end - solving high-fidelity model at testing point with largest error (elapsed time: 0.34073 sec)
+2025-03-06 14:24:38,451 - single - test POD GROM - start - calibrating error at testing points
+2025-03-06 14:24:38,785 - single - test POD GROM - end - calibrating error at testing points (elapsed time: 0.33417 sec)
+2025-03-06 14:24:38,786 - single - test POD GROM - calibration ratio = 1.06072970
+2025-03-06 14:24:38,871 - single - test POD GROM - avg calibrated testing error = 1.24358405e-09
+2025-03-06 14:24:38,965 - single - test POD GROM - std calibrated testing error = 1.37151853e-09
+2025-03-06 14:24:38,965 - single - test POD GROM - max calibrated testing error = 1.06629932e-08
+2025-03-06 14:24:38,965 - single - train POD GROM - training 3P0 channel at Elab = 20.0 MeV...
+2025-03-06 14:24:38,965 - single - train POD GROM - start - orthogonalizing, truncating, and projecting
+2025-03-06 14:24:39,250 - single - train POD GROM - end - orthogonalizing, truncating, and projecting (elapsed time: 0.28431 sec)
+2025-03-06 14:24:39,250 - single - train POD GROM - Nbasis = 13
+2025-03-06 14:24:39,250 - single - test POD GROM - start - sampling 100 testing points
+2025-03-06 14:24:39,280 - single - test POD GROM - end - sampling 100 testing points (elapsed time: 0.03020 sec)
+2025-03-06 14:24:39,280 - single - test POD GROM - LECs_test shape = (100, 12)
+2025-03-06 14:24:39,281 - single - test POD GROM - start - emulating at testing points
+2025-03-06 17:45:48,982 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 17:45:48,984 >>> SETUP
+2025-03-06 17:45:48,984 - single - setup - start - loading potential operators from file
+2025-03-06 17:45:48,991 - single - setup - end - loading potential operators from file (elapsed time: 0.00770 sec)
+2025-03-06 17:45:48,992 - coupled - setup - start - loading potential operators from file
+2025-03-06 17:45:48,995 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00295 sec)
+2025-03-06 17:45:48,995 - common - setup - start - precalculating propagators
+2025-03-06 17:45:51,132 - common - setup - end - precalculating propagators (elapsed time: 2.13699 sec)
+2025-03-06 17:45:51,132 <<< SETUP (total elapsed time: 2.14851 sec)
+2025-03-06 17:46:21,037 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 17:46:21,042 >>> SETUP
+2025-03-06 17:46:21,042 - single - setup - start - loading potential operators from file
+2025-03-06 17:46:21,048 - single - setup - end - loading potential operators from file (elapsed time: 0.00564 sec)
+2025-03-06 17:46:21,048 - coupled - setup - start - loading potential operators from file
+2025-03-06 17:46:21,052 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00373 sec)
+2025-03-06 17:46:21,052 - common - setup - start - precalculating propagators
+2025-03-06 17:46:23,170 - common - setup - end - precalculating propagators (elapsed time: 2.11823 sec)
+2025-03-06 17:46:23,172 <<< SETUP (total elapsed time: 2.12996 sec)
+2025-03-06 17:48:27,895 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-06 17:48:27,896 >>> SETUP
+2025-03-06 17:48:27,896 - single - setup - start - loading potential operators from file
+2025-03-06 17:48:27,900 - single - setup - end - loading potential operators from file (elapsed time: 0.00429 sec)
+2025-03-06 17:48:27,900 - coupled - setup - start - loading potential operators from file
+2025-03-06 17:48:27,904 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00340 sec)
+2025-03-06 17:48:27,904 - common - setup - start - precalculating propagators
+2025-03-06 17:48:30,055 - common - setup - end - precalculating propagators (elapsed time: 2.15049 sec)
+2025-03-06 17:48:30,055 <<< SETUP (total elapsed time: 2.15898 sec)
+2025-03-07 10:54:36,647 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 10:54:36,647 >>> SETUP
+2025-03-07 10:54:36,647 - single - setup - start - loading potential operators from file
+2025-03-07 10:54:36,651 - single - setup - end - loading potential operators from file (elapsed time: 0.00368 sec)
+2025-03-07 10:54:36,651 - coupled - setup - start - loading potential operators from file
+2025-03-07 10:54:36,655 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00320 sec)
+2025-03-07 10:54:36,655 - common - setup - start - precalculating propagators
+2025-03-07 10:54:38,786 - common - setup - end - precalculating propagators (elapsed time: 2.13147 sec)
+2025-03-07 10:54:38,787 <<< SETUP (total elapsed time: 2.13915 sec)
+2025-03-07 11:01:53,947 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 11:01:53,949 >>> SETUP
+2025-03-07 11:01:53,949 - single - setup - start - loading potential operators from file
+2025-03-07 11:01:53,955 - single - setup - end - loading potential operators from file (elapsed time: 0.00577 sec)
+2025-03-07 11:01:53,955 - coupled - setup - start - loading potential operators from file
+2025-03-07 11:01:53,959 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00348 sec)
+2025-03-07 11:01:53,959 - common - setup - start - precalculating propagators
+2025-03-07 11:01:56,081 - common - setup - end - precalculating propagators (elapsed time: 2.12186 sec)
+2025-03-07 11:01:56,081 <<< SETUP (total elapsed time: 2.13192 sec)
+2025-03-07 14:01:56,947 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 14:01:56,948 >>> SETUP
+2025-03-07 14:01:56,948 - single - setup - start - loading potential operators from file
+2025-03-07 14:01:56,953 - single - setup - end - loading potential operators from file (elapsed time: 0.00476 sec)
+2025-03-07 14:01:56,953 - coupled - setup - start - loading potential operators from file
+2025-03-07 14:01:56,957 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00409 sec)
+2025-03-07 14:01:56,957 - common - setup - start - precalculating propagators
+2025-03-07 14:01:59,116 - common - setup - end - precalculating propagators (elapsed time: 2.15832 sec)
+2025-03-07 14:01:59,116 <<< SETUP (total elapsed time: 2.16798 sec)
+2025-03-07 14:02:33,508 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 14:02:33,508 >>> SETUP
+2025-03-07 14:02:33,508 - single - setup - start - loading potential operators from file
+2025-03-07 14:02:33,510 - single - setup - end - loading potential operators from file (elapsed time: 0.00152 sec)
+2025-03-07 14:02:33,510 - coupled - setup - start - loading potential operators from file
+2025-03-07 14:02:33,512 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-07 14:02:33,512 - common - setup - start - precalculating propagators
+2025-03-07 14:02:35,637 - common - setup - end - precalculating propagators (elapsed time: 2.12510 sec)
+2025-03-07 14:02:35,639 <<< SETUP (total elapsed time: 2.13013 sec)
+2025-03-07 14:24:46,503 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 14:24:46,504 >>> SETUP
+2025-03-07 14:24:46,504 - single - setup - start - loading potential operators from file
+2025-03-07 14:24:46,508 - single - setup - end - loading potential operators from file (elapsed time: 0.00392 sec)
+2025-03-07 14:24:46,508 - coupled - setup - start - loading potential operators from file
+2025-03-07 14:24:46,511 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00291 sec)
+2025-03-07 14:24:46,511 - common - setup - start - precalculating propagators
+2025-03-07 14:24:48,644 - common - setup - end - precalculating propagators (elapsed time: 2.13255 sec)
+2025-03-07 14:24:48,644 <<< SETUP (total elapsed time: 2.14019 sec)
+2025-03-07 14:28:43,219 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 14:28:43,220 >>> SETUP
+2025-03-07 14:28:43,220 - single - setup - start - loading potential operators from file
+2025-03-07 14:28:43,224 - single - setup - end - loading potential operators from file (elapsed time: 0.00409 sec)
+2025-03-07 14:28:43,225 - coupled - setup - start - loading potential operators from file
+2025-03-07 14:28:43,228 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00292 sec)
+2025-03-07 14:28:43,228 - common - setup - start - precalculating propagators
+2025-03-07 14:28:45,357 - common - setup - end - precalculating propagators (elapsed time: 2.12943 sec)
+2025-03-07 14:28:45,357 <<< SETUP (total elapsed time: 2.13728 sec)
+2025-03-07 14:53:11,380 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-07 14:53:11,381 >>> SETUP
+2025-03-07 14:53:11,381 - single - setup - start - loading potential operators from file
+2025-03-07 14:53:11,385 - single - setup - end - loading potential operators from file (elapsed time: 0.00411 sec)
+2025-03-07 14:53:11,385 - coupled - setup - start - loading potential operators from file
+2025-03-07 14:53:11,388 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00327 sec)
+2025-03-07 14:53:11,389 - common - setup - start - precalculating propagators
+2025-03-07 14:53:13,531 - common - setup - end - precalculating propagators (elapsed time: 2.14263 sec)
+2025-03-07 14:53:13,532 <<< SETUP (total elapsed time: 2.15079 sec)
+2025-03-08 12:50:57,983 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 12:50:57,985 >>> SETUP
+2025-03-08 12:50:57,985 - single - setup - start - loading potential operators from file
+2025-03-08 12:50:57,994 - single - setup - end - loading potential operators from file (elapsed time: 0.00831 sec)
+2025-03-08 12:50:57,994 - coupled - setup - start - loading potential operators from file
+2025-03-08 12:50:57,997 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00304 sec)
+2025-03-08 12:50:57,997 - common - setup - start - precalculating propagators
+2025-03-08 12:50:59,908 - common - setup - end - precalculating propagators (elapsed time: 1.91109 sec)
+2025-03-08 12:50:59,909 <<< SETUP (total elapsed time: 1.92333 sec)
+2025-03-08 12:52:12,136 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 12:52:12,136 >>> SETUP
+2025-03-08 12:52:12,136 - single - setup - start - loading potential operators from file
+2025-03-08 12:52:12,140 - single - setup - end - loading potential operators from file (elapsed time: 0.00387 sec)
+2025-03-08 12:52:12,140 - coupled - setup - start - loading potential operators from file
+2025-03-08 12:52:12,144 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00343 sec)
+2025-03-08 12:52:12,144 - common - setup - start - precalculating propagators
+2025-03-08 12:52:14,024 - common - setup - end - precalculating propagators (elapsed time: 1.87984 sec)
+2025-03-08 12:52:14,026 <<< SETUP (total elapsed time: 1.89016 sec)
+2025-03-08 12:52:37,348 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 12:52:37,348 >>> SETUP
+2025-03-08 12:52:37,348 - single - setup - start - loading potential operators from file
+2025-03-08 12:52:37,349 - single - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 12:52:37,350 - coupled - setup - start - loading potential operators from file
+2025-03-08 12:52:37,351 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00136 sec)
+2025-03-08 12:52:37,351 - common - setup - start - precalculating propagators
+2025-03-08 12:52:39,225 - common - setup - end - precalculating propagators (elapsed time: 1.87366 sec)
+2025-03-08 12:52:39,225 <<< SETUP (total elapsed time: 1.87725 sec)
+2025-03-08 12:53:05,624 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 12:53:05,624 >>> SETUP
+2025-03-08 12:53:05,624 - single - setup - start - loading potential operators from file
+2025-03-08 12:53:05,626 - single - setup - end - loading potential operators from file (elapsed time: 0.00157 sec)
+2025-03-08 12:53:05,626 - coupled - setup - start - loading potential operators from file
+2025-03-08 12:53:05,628 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00139 sec)
+2025-03-08 12:53:05,628 - common - setup - start - precalculating propagators
+2025-03-08 12:53:07,505 - common - setup - end - precalculating propagators (elapsed time: 1.87709 sec)
+2025-03-08 12:53:07,505 <<< SETUP (total elapsed time: 1.88080 sec)
+2025-03-08 12:55:36,490 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 12:55:36,493 >>> SETUP
+2025-03-08 12:55:36,493 - single - setup - start - loading potential operators from file
+2025-03-08 12:55:36,498 - single - setup - end - loading potential operators from file (elapsed time: 0.00460 sec)
+2025-03-08 12:55:36,498 - coupled - setup - start - loading potential operators from file
+2025-03-08 12:55:36,502 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00305 sec)
+2025-03-08 12:55:36,502 - common - setup - start - precalculating propagators
+2025-03-08 12:55:38,372 - common - setup - end - precalculating propagators (elapsed time: 1.87060 sec)
+2025-03-08 12:55:38,375 <<< SETUP (total elapsed time: 1.88138 sec)
+2025-03-08 13:00:43,567 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:00:43,571 >>> SETUP
+2025-03-08 13:00:43,571 - single - setup - start - loading potential operators from file
+2025-03-08 13:00:43,576 - single - setup - end - loading potential operators from file (elapsed time: 0.00437 sec)
+2025-03-08 13:00:43,576 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:00:43,579 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00310 sec)
+2025-03-08 13:00:43,579 - common - setup - start - precalculating propagators
+2025-03-08 13:00:45,459 - common - setup - end - precalculating propagators (elapsed time: 1.87938 sec)
+2025-03-08 13:00:45,459 <<< SETUP (total elapsed time: 1.88778 sec)
+2025-03-08 13:02:01,321 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:02:01,323 >>> SETUP
+2025-03-08 13:02:01,323 - single - setup - start - loading potential operators from file
+2025-03-08 13:02:01,327 - single - setup - end - loading potential operators from file (elapsed time: 0.00391 sec)
+2025-03-08 13:02:01,327 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:02:01,331 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00363 sec)
+2025-03-08 13:02:01,331 - common - setup - start - precalculating propagators
+2025-03-08 13:02:03,222 - common - setup - end - precalculating propagators (elapsed time: 1.89120 sec)
+2025-03-08 13:02:03,223 <<< SETUP (total elapsed time: 1.89961 sec)
+2025-03-08 13:08:30,814 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:08:30,814 >>> SETUP
+2025-03-08 13:08:30,814 - single - setup - start - loading potential operators from file
+2025-03-08 13:08:30,820 - single - setup - end - loading potential operators from file (elapsed time: 0.00603 sec)
+2025-03-08 13:08:30,820 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:08:30,824 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00392 sec)
+2025-03-08 13:08:30,825 - common - setup - start - precalculating propagators
+2025-03-08 13:08:32,713 - common - setup - end - precalculating propagators (elapsed time: 1.88853 sec)
+2025-03-08 13:08:32,714 <<< SETUP (total elapsed time: 1.89937 sec)
+2025-03-08 13:08:55,320 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:08:55,321 >>> SETUP
+2025-03-08 13:08:55,321 - single - setup - start - loading potential operators from file
+2025-03-08 13:08:55,322 - single - setup - end - loading potential operators from file (elapsed time: 0.00162 sec)
+2025-03-08 13:08:55,322 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:08:55,324 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00146 sec)
+2025-03-08 13:08:55,324 - common - setup - start - precalculating propagators
+2025-03-08 13:08:57,199 - common - setup - end - precalculating propagators (elapsed time: 1.87493 sec)
+2025-03-08 13:08:57,199 <<< SETUP (total elapsed time: 1.87877 sec)
+2025-03-08 13:11:50,979 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:11:50,981 >>> SETUP
+2025-03-08 13:11:50,982 - single - setup - start - loading potential operators from file
+2025-03-08 13:11:50,986 - single - setup - end - loading potential operators from file (elapsed time: 0.00431 sec)
+2025-03-08 13:11:50,986 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:11:50,989 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00295 sec)
+2025-03-08 13:11:50,989 - common - setup - start - precalculating propagators
+2025-03-08 13:11:52,877 - common - setup - end - precalculating propagators (elapsed time: 1.88781 sec)
+2025-03-08 13:11:52,878 <<< SETUP (total elapsed time: 1.89601 sec)
+2025-03-08 13:19:04,301 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:19:04,301 >>> SETUP
+2025-03-08 13:19:04,301 - single - setup - start - loading potential operators from file
+2025-03-08 13:19:04,306 - single - setup - end - loading potential operators from file (elapsed time: 0.00472 sec)
+2025-03-08 13:19:04,306 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:19:04,309 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00295 sec)
+2025-03-08 13:19:04,310 - common - setup - start - precalculating propagators
+2025-03-08 13:19:06,577 - common - setup - end - precalculating propagators (elapsed time: 2.26784 sec)
+2025-03-08 13:19:06,578 <<< SETUP (total elapsed time: 2.27636 sec)
+2025-03-08 13:20:12,148 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:20:12,148 >>> SETUP
+2025-03-08 13:20:12,148 - single - setup - start - loading potential operators from file
+2025-03-08 13:20:12,150 - single - setup - end - loading potential operators from file (elapsed time: 0.00169 sec)
+2025-03-08 13:20:12,150 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:20:12,151 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00141 sec)
+2025-03-08 13:20:12,152 - common - setup - start - precalculating propagators
+2025-03-08 13:20:14,010 - common - setup - end - precalculating propagators (elapsed time: 1.85874 sec)
+2025-03-08 13:20:14,011 <<< SETUP (total elapsed time: 1.86258 sec)
+2025-03-08 13:40:28,314 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:40:28,314 >>> SETUP
+2025-03-08 13:40:28,314 - single - setup - start - loading potential operators from file
+2025-03-08 13:40:28,320 - single - setup - end - loading potential operators from file (elapsed time: 0.00548 sec)
+2025-03-08 13:40:28,320 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:40:28,324 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00398 sec)
+2025-03-08 13:40:28,324 - common - setup - start - precalculating propagators
+2025-03-08 13:40:30,221 - common - setup - end - precalculating propagators (elapsed time: 1.89674 sec)
+2025-03-08 13:40:30,221 <<< SETUP (total elapsed time: 1.90702 sec)
+2025-03-08 13:45:07,802 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:45:07,805 >>> SETUP
+2025-03-08 13:45:07,805 - single - setup - start - loading potential operators from file
+2025-03-08 13:45:07,811 - single - setup - end - loading potential operators from file (elapsed time: 0.00572 sec)
+2025-03-08 13:45:07,811 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:45:07,815 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00362 sec)
+2025-03-08 13:45:07,815 - common - setup - start - precalculating propagators
+2025-03-08 13:45:09,730 - common - setup - end - precalculating propagators (elapsed time: 1.91498 sec)
+2025-03-08 13:45:09,730 <<< SETUP (total elapsed time: 1.92530 sec)
+2025-03-08 13:52:43,091 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:52:43,091 >>> SETUP
+2025-03-08 13:52:43,091 - single - setup - start - loading potential operators from file
+2025-03-08 13:52:43,097 - single - setup - end - loading potential operators from file (elapsed time: 0.00572 sec)
+2025-03-08 13:52:43,097 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:52:43,100 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00321 sec)
+2025-03-08 13:52:43,101 - common - setup - start - precalculating propagators
+2025-03-08 13:52:45,068 - common - setup - end - precalculating propagators (elapsed time: 1.96750 sec)
+2025-03-08 13:52:45,068 <<< SETUP (total elapsed time: 1.97729 sec)
+2025-03-08 13:53:19,981 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:53:19,982 >>> SETUP
+2025-03-08 13:53:19,982 - single - setup - start - loading potential operators from file
+2025-03-08 13:53:19,985 - single - setup - end - loading potential operators from file (elapsed time: 0.00303 sec)
+2025-03-08 13:53:19,985 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:53:19,987 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00233 sec)
+2025-03-08 13:53:19,988 - common - setup - start - precalculating propagators
+2025-03-08 13:53:21,860 - common - setup - end - precalculating propagators (elapsed time: 1.87238 sec)
+2025-03-08 13:53:21,860 <<< SETUP (total elapsed time: 1.87857 sec)
+2025-03-08 13:54:29,965 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:54:29,965 >>> SETUP
+2025-03-08 13:54:29,965 - single - setup - start - loading potential operators from file
+2025-03-08 13:54:29,968 - single - setup - end - loading potential operators from file (elapsed time: 0.00303 sec)
+2025-03-08 13:54:29,968 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:54:29,971 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00242 sec)
+2025-03-08 13:54:29,971 - common - setup - start - precalculating propagators
+2025-03-08 13:54:31,855 - common - setup - end - precalculating propagators (elapsed time: 1.88351 sec)
+2025-03-08 13:54:31,855 <<< SETUP (total elapsed time: 1.88981 sec)
+2025-03-08 13:55:43,573 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:55:43,573 >>> SETUP
+2025-03-08 13:55:43,574 - single - setup - start - loading potential operators from file
+2025-03-08 13:55:43,579 - single - setup - end - loading potential operators from file (elapsed time: 0.00558 sec)
+2025-03-08 13:55:43,579 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:55:43,583 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00380 sec)
+2025-03-08 13:55:43,584 - common - setup - start - precalculating propagators
+2025-03-08 13:55:45,458 - common - setup - end - precalculating propagators (elapsed time: 1.87454 sec)
+2025-03-08 13:55:45,458 <<< SETUP (total elapsed time: 1.88486 sec)
+2025-03-08 13:56:40,995 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:56:40,995 >>> SETUP
+2025-03-08 13:56:40,995 - single - setup - start - loading potential operators from file
+2025-03-08 13:56:40,999 - single - setup - end - loading potential operators from file (elapsed time: 0.00378 sec)
+2025-03-08 13:56:40,999 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:56:41,002 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00216 sec)
+2025-03-08 13:56:41,002 - common - setup - start - precalculating propagators
+2025-03-08 13:56:43,211 - common - setup - end - precalculating propagators (elapsed time: 2.20935 sec)
+2025-03-08 13:56:43,212 <<< SETUP (total elapsed time: 2.21654 sec)
+2025-03-08 13:59:33,569 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 13:59:33,569 >>> SETUP
+2025-03-08 13:59:33,569 - single - setup - start - loading potential operators from file
+2025-03-08 13:59:33,573 - single - setup - end - loading potential operators from file (elapsed time: 0.00350 sec)
+2025-03-08 13:59:33,573 - coupled - setup - start - loading potential operators from file
+2025-03-08 13:59:33,576 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00284 sec)
+2025-03-08 13:59:33,576 - common - setup - start - precalculating propagators
+2025-03-08 13:59:35,456 - common - setup - end - precalculating propagators (elapsed time: 1.87995 sec)
+2025-03-08 13:59:35,456 <<< SETUP (total elapsed time: 1.88716 sec)
+2025-03-08 14:00:30,253 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:00:30,254 >>> SETUP
+2025-03-08 14:00:30,254 - single - setup - start - loading potential operators from file
+2025-03-08 14:00:30,257 - single - setup - end - loading potential operators from file (elapsed time: 0.00318 sec)
+2025-03-08 14:00:30,257 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:00:30,260 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00251 sec)
+2025-03-08 14:00:30,260 - common - setup - start - precalculating propagators
+2025-03-08 14:00:32,141 - common - setup - end - precalculating propagators (elapsed time: 1.88051 sec)
+2025-03-08 14:00:32,141 <<< SETUP (total elapsed time: 1.88711 sec)
+2025-03-08 14:02:02,936 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:02:02,936 >>> SETUP
+2025-03-08 14:02:02,937 - single - setup - start - loading potential operators from file
+2025-03-08 14:02:02,939 - single - setup - end - loading potential operators from file (elapsed time: 0.00267 sec)
+2025-03-08 14:02:02,940 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:02:02,942 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00258 sec)
+2025-03-08 14:02:02,942 - common - setup - start - precalculating propagators
+2025-03-08 14:02:05,012 - common - setup - end - precalculating propagators (elapsed time: 2.06990 sec)
+2025-03-08 14:02:05,013 <<< SETUP (total elapsed time: 2.07603 sec)
+2025-03-08 14:02:29,740 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:02:29,741 >>> SETUP
+2025-03-08 14:02:29,741 - single - setup - start - loading potential operators from file
+2025-03-08 14:02:29,742 - single - setup - end - loading potential operators from file (elapsed time: 0.00159 sec)
+2025-03-08 14:02:29,742 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:02:29,744 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00151 sec)
+2025-03-08 14:02:29,744 - common - setup - start - precalculating propagators
+2025-03-08 14:02:31,618 - common - setup - end - precalculating propagators (elapsed time: 1.87423 sec)
+2025-03-08 14:02:31,619 <<< SETUP (total elapsed time: 1.87807 sec)
+2025-03-08 14:04:19,388 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:04:19,388 >>> SETUP
+2025-03-08 14:04:19,388 - single - setup - start - loading potential operators from file
+2025-03-08 14:04:19,390 - single - setup - end - loading potential operators from file (elapsed time: 0.00158 sec)
+2025-03-08 14:04:19,390 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:04:19,392 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00146 sec)
+2025-03-08 14:04:19,392 - common - setup - start - precalculating propagators
+2025-03-08 14:04:21,263 - common - setup - end - precalculating propagators (elapsed time: 1.87144 sec)
+2025-03-08 14:04:21,264 <<< SETUP (total elapsed time: 1.87523 sec)
+2025-03-08 14:05:06,488 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:05:06,488 >>> SETUP
+2025-03-08 14:05:06,488 - single - setup - start - loading potential operators from file
+2025-03-08 14:05:06,490 - single - setup - end - loading potential operators from file (elapsed time: 0.00146 sec)
+2025-03-08 14:05:06,490 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:05:06,491 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00143 sec)
+2025-03-08 14:05:06,491 - common - setup - start - precalculating propagators
+2025-03-08 14:05:08,372 - common - setup - end - precalculating propagators (elapsed time: 1.88000 sec)
+2025-03-08 14:05:08,372 <<< SETUP (total elapsed time: 1.88363 sec)
+2025-03-08 14:05:43,109 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:05:43,111 >>> SETUP
+2025-03-08 14:05:43,111 - single - setup - start - loading potential operators from file
+2025-03-08 14:05:43,115 - single - setup - end - loading potential operators from file (elapsed time: 0.00372 sec)
+2025-03-08 14:05:43,115 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:05:43,119 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00417 sec)
+2025-03-08 14:05:43,119 - common - setup - start - precalculating propagators
+2025-03-08 14:05:45,215 - common - setup - end - precalculating propagators (elapsed time: 2.09606 sec)
+2025-03-08 14:05:45,217 <<< SETUP (total elapsed time: 2.10607 sec)
+2025-03-08 14:08:23,455 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:08:23,455 >>> SETUP
+2025-03-08 14:08:23,455 - single - setup - start - loading potential operators from file
+2025-03-08 14:08:23,457 - single - setup - end - loading potential operators from file (elapsed time: 0.00156 sec)
+2025-03-08 14:08:23,457 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:08:23,458 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00145 sec)
+2025-03-08 14:08:23,458 - common - setup - start - precalculating propagators
+2025-03-08 14:08:25,318 - common - setup - end - precalculating propagators (elapsed time: 1.85943 sec)
+2025-03-08 14:08:25,318 <<< SETUP (total elapsed time: 1.86318 sec)
+2025-03-08 14:09:14,202 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:09:14,202 >>> SETUP
+2025-03-08 14:09:14,202 - single - setup - start - loading potential operators from file
+2025-03-08 14:09:14,204 - single - setup - end - loading potential operators from file (elapsed time: 0.00155 sec)
+2025-03-08 14:09:14,204 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:09:14,206 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00142 sec)
+2025-03-08 14:09:14,206 - common - setup - start - precalculating propagators
+2025-03-08 14:09:16,069 - common - setup - end - precalculating propagators (elapsed time: 1.86298 sec)
+2025-03-08 14:09:16,069 <<< SETUP (total elapsed time: 1.86669 sec)
+2025-03-08 14:11:08,715 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:11:08,715 >>> SETUP
+2025-03-08 14:11:08,715 - single - setup - start - loading potential operators from file
+2025-03-08 14:11:08,717 - single - setup - end - loading potential operators from file (elapsed time: 0.00151 sec)
+2025-03-08 14:11:08,717 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:11:08,718 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00142 sec)
+2025-03-08 14:11:08,719 - common - setup - start - precalculating propagators
+2025-03-08 14:11:10,587 - common - setup - end - precalculating propagators (elapsed time: 1.86848 sec)
+2025-03-08 14:11:10,587 <<< SETUP (total elapsed time: 1.87217 sec)
+2025-03-08 14:11:35,205 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:11:35,205 >>> SETUP
+2025-03-08 14:11:35,206 - single - setup - start - loading potential operators from file
+2025-03-08 14:11:35,207 - single - setup - end - loading potential operators from file (elapsed time: 0.00160 sec)
+2025-03-08 14:11:35,207 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:11:35,209 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 14:11:35,209 - common - setup - start - precalculating propagators
+2025-03-08 14:11:37,076 - common - setup - end - precalculating propagators (elapsed time: 1.86662 sec)
+2025-03-08 14:11:37,076 <<< SETUP (total elapsed time: 1.87034 sec)
+2025-03-08 14:12:31,883 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:12:31,883 >>> SETUP
+2025-03-08 14:12:31,883 - single - setup - start - loading potential operators from file
+2025-03-08 14:12:31,885 - single - setup - end - loading potential operators from file (elapsed time: 0.00147 sec)
+2025-03-08 14:12:31,885 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:12:31,886 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00135 sec)
+2025-03-08 14:12:31,886 - common - setup - start - precalculating propagators
+2025-03-08 14:12:33,768 - common - setup - end - precalculating propagators (elapsed time: 1.88179 sec)
+2025-03-08 14:12:33,768 <<< SETUP (total elapsed time: 1.88533 sec)
+2025-03-08 14:12:58,759 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:12:58,759 >>> SETUP
+2025-03-08 14:12:58,759 - single - setup - start - loading potential operators from file
+2025-03-08 14:12:58,760 - single - setup - end - loading potential operators from file (elapsed time: 0.00149 sec)
+2025-03-08 14:12:58,761 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:12:58,762 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00131 sec)
+2025-03-08 14:12:58,762 - common - setup - start - precalculating propagators
+2025-03-08 14:13:00,637 - common - setup - end - precalculating propagators (elapsed time: 1.87477 sec)
+2025-03-08 14:13:00,637 <<< SETUP (total elapsed time: 1.87829 sec)
+2025-03-08 14:13:40,870 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:13:40,870 >>> SETUP
+2025-03-08 14:13:40,870 - single - setup - start - loading potential operators from file
+2025-03-08 14:13:40,872 - single - setup - end - loading potential operators from file (elapsed time: 0.00159 sec)
+2025-03-08 14:13:40,872 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:13:40,873 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 14:13:40,874 - common - setup - start - precalculating propagators
+2025-03-08 14:14:06,454 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:14:06,454 >>> SETUP
+2025-03-08 14:14:06,454 - single - setup - start - loading potential operators from file
+2025-03-08 14:14:06,456 - single - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 14:14:06,456 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:14:06,457 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00138 sec)
+2025-03-08 14:14:06,457 - common - setup - start - precalculating propagators
+2025-03-08 14:14:08,346 - common - setup - end - precalculating propagators (elapsed time: 1.88812 sec)
+2025-03-08 14:14:08,346 <<< SETUP (total elapsed time: 1.89176 sec)
+2025-03-08 14:17:10,447 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:17:10,447 >>> SETUP
+2025-03-08 14:17:10,447 - single - setup - start - loading potential operators from file
+2025-03-08 14:17:10,450 - single - setup - end - loading potential operators from file (elapsed time: 0.00302 sec)
+2025-03-08 14:17:10,450 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:17:10,453 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00261 sec)
+2025-03-08 14:17:10,453 - common - setup - start - precalculating propagators
+2025-03-08 14:17:12,440 - common - setup - end - precalculating propagators (elapsed time: 1.98642 sec)
+2025-03-08 14:17:12,440 <<< SETUP (total elapsed time: 1.99288 sec)
+2025-03-08 14:18:46,769 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:18:46,769 >>> SETUP
+2025-03-08 14:18:46,769 - single - setup - start - loading potential operators from file
+2025-03-08 14:18:46,773 - single - setup - end - loading potential operators from file (elapsed time: 0.00375 sec)
+2025-03-08 14:18:46,773 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:18:46,776 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00299 sec)
+2025-03-08 14:18:46,777 - common - setup - start - precalculating propagators
+2025-03-08 14:18:48,786 - common - setup - end - precalculating propagators (elapsed time: 2.00880 sec)
+2025-03-08 14:18:48,786 <<< SETUP (total elapsed time: 2.01639 sec)
+2025-03-08 14:21:10,789 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:21:10,790 >>> SETUP
+2025-03-08 14:21:10,790 - single - setup - start - loading potential operators from file
+2025-03-08 14:21:10,794 - single - setup - end - loading potential operators from file (elapsed time: 0.00450 sec)
+2025-03-08 14:21:10,795 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:21:10,798 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00299 sec)
+2025-03-08 14:21:10,798 - common - setup - start - precalculating propagators
+2025-03-08 14:21:12,707 - common - setup - end - precalculating propagators (elapsed time: 1.90892 sec)
+2025-03-08 14:21:12,707 <<< SETUP (total elapsed time: 1.91730 sec)
+2025-03-08 14:22:32,726 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:22:32,727 >>> SETUP
+2025-03-08 14:22:32,727 - single - setup - start - loading potential operators from file
+2025-03-08 14:22:32,733 - single - setup - end - loading potential operators from file (elapsed time: 0.00612 sec)
+2025-03-08 14:22:32,733 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:22:32,736 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00287 sec)
+2025-03-08 14:22:32,736 - common - setup - start - precalculating propagators
+2025-03-08 14:22:34,650 - common - setup - end - precalculating propagators (elapsed time: 1.91406 sec)
+2025-03-08 14:22:34,651 <<< SETUP (total elapsed time: 1.92406 sec)
+2025-03-08 14:24:25,247 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:24:25,247 >>> SETUP
+2025-03-08 14:24:25,247 - single - setup - start - loading potential operators from file
+2025-03-08 14:24:25,252 - single - setup - end - loading potential operators from file (elapsed time: 0.00432 sec)
+2025-03-08 14:24:25,252 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:24:25,255 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00276 sec)
+2025-03-08 14:24:25,255 - common - setup - start - precalculating propagators
+2025-03-08 14:24:27,163 - common - setup - end - precalculating propagators (elapsed time: 1.90809 sec)
+2025-03-08 14:24:27,163 <<< SETUP (total elapsed time: 1.91601 sec)
+2025-03-08 14:26:05,562 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:26:05,562 >>> SETUP
+2025-03-08 14:26:05,562 - single - setup - start - loading potential operators from file
+2025-03-08 14:26:05,567 - single - setup - end - loading potential operators from file (elapsed time: 0.00500 sec)
+2025-03-08 14:26:05,568 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:26:05,571 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00299 sec)
+2025-03-08 14:26:05,571 - common - setup - start - precalculating propagators
+2025-03-08 14:26:07,482 - common - setup - end - precalculating propagators (elapsed time: 1.91039 sec)
+2025-03-08 14:26:07,482 <<< SETUP (total elapsed time: 1.91955 sec)
+2025-03-08 14:28:39,942 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:28:39,943 >>> SETUP
+2025-03-08 14:28:39,943 - single - setup - start - loading potential operators from file
+2025-03-08 14:28:39,946 - single - setup - end - loading potential operators from file (elapsed time: 0.00333 sec)
+2025-03-08 14:28:39,946 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:28:39,949 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00256 sec)
+2025-03-08 14:28:39,949 - common - setup - start - precalculating propagators
+2025-03-08 14:28:41,825 - common - setup - end - precalculating propagators (elapsed time: 1.87574 sec)
+2025-03-08 14:28:41,825 <<< SETUP (total elapsed time: 1.88249 sec)
+2025-03-08 14:32:44,058 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:32:44,058 >>> SETUP
+2025-03-08 14:32:44,058 - single - setup - start - loading potential operators from file
+2025-03-08 14:32:44,063 - single - setup - end - loading potential operators from file (elapsed time: 0.00450 sec)
+2025-03-08 14:32:44,063 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:32:44,066 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00280 sec)
+2025-03-08 14:32:44,066 - common - setup - start - precalculating propagators
+2025-03-08 14:33:03,839 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:33:03,839 >>> SETUP
+2025-03-08 14:33:03,839 - single - setup - start - loading potential operators from file
+2025-03-08 14:33:03,842 - single - setup - end - loading potential operators from file (elapsed time: 0.00301 sec)
+2025-03-08 14:33:03,842 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:33:03,845 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00235 sec)
+2025-03-08 14:33:03,845 - common - setup - start - precalculating propagators
+2025-03-08 14:33:05,747 - common - setup - end - precalculating propagators (elapsed time: 1.90200 sec)
+2025-03-08 14:33:05,747 <<< SETUP (total elapsed time: 1.90822 sec)
+2025-03-08 14:34:24,894 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:34:24,894 >>> SETUP
+2025-03-08 14:34:24,894 - single - setup - start - loading potential operators from file
+2025-03-08 14:34:24,897 - single - setup - end - loading potential operators from file (elapsed time: 0.00289 sec)
+2025-03-08 14:34:24,897 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:34:24,900 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00244 sec)
+2025-03-08 14:34:24,900 - common - setup - start - precalculating propagators
+2025-03-08 14:34:26,772 - common - setup - end - precalculating propagators (elapsed time: 1.87230 sec)
+2025-03-08 14:34:26,772 <<< SETUP (total elapsed time: 1.87853 sec)
+2025-03-08 14:35:09,300 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:35:09,301 >>> SETUP
+2025-03-08 14:35:09,301 - single - setup - start - loading potential operators from file
+2025-03-08 14:35:09,305 - single - setup - end - loading potential operators from file (elapsed time: 0.00444 sec)
+2025-03-08 14:35:09,305 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:35:09,309 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00295 sec)
+2025-03-08 14:35:09,309 - common - setup - start - precalculating propagators
+2025-03-08 14:35:11,216 - common - setup - end - precalculating propagators (elapsed time: 1.90767 sec)
+2025-03-08 14:35:11,217 <<< SETUP (total elapsed time: 1.91594 sec)
+2025-03-08 14:35:49,009 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:35:49,009 >>> SETUP
+2025-03-08 14:35:49,009 - single - setup - start - loading potential operators from file
+2025-03-08 14:35:49,013 - single - setup - end - loading potential operators from file (elapsed time: 0.00373 sec)
+2025-03-08 14:35:49,013 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:35:49,016 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00303 sec)
+2025-03-08 14:35:49,017 - common - setup - start - precalculating propagators
+2025-03-08 14:35:50,926 - common - setup - end - precalculating propagators (elapsed time: 1.90892 sec)
+2025-03-08 14:35:50,926 <<< SETUP (total elapsed time: 1.91682 sec)
+2025-03-08 14:36:43,790 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:36:43,790 >>> SETUP
+2025-03-08 14:36:43,790 - single - setup - start - loading potential operators from file
+2025-03-08 14:36:43,794 - single - setup - end - loading potential operators from file (elapsed time: 0.00385 sec)
+2025-03-08 14:36:43,794 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:36:43,797 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00276 sec)
+2025-03-08 14:36:43,797 - common - setup - start - precalculating propagators
+2025-03-08 14:36:45,795 - common - setup - end - precalculating propagators (elapsed time: 1.99775 sec)
+2025-03-08 14:36:45,795 <<< SETUP (total elapsed time: 2.00521 sec)
+2025-03-08 14:37:56,831 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:37:56,831 >>> SETUP
+2025-03-08 14:37:56,831 - single - setup - start - loading potential operators from file
+2025-03-08 14:37:56,834 - single - setup - end - loading potential operators from file (elapsed time: 0.00294 sec)
+2025-03-08 14:37:56,834 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:37:56,837 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00251 sec)
+2025-03-08 14:37:56,837 - common - setup - start - precalculating propagators
+2025-03-08 14:37:58,708 - common - setup - end - precalculating propagators (elapsed time: 1.87097 sec)
+2025-03-08 14:37:58,709 <<< SETUP (total elapsed time: 1.87732 sec)
+2025-03-08 14:39:36,287 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:39:36,287 >>> SETUP
+2025-03-08 14:39:36,287 - single - setup - start - loading potential operators from file
+2025-03-08 14:39:36,290 - single - setup - end - loading potential operators from file (elapsed time: 0.00244 sec)
+2025-03-08 14:39:36,290 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:39:36,292 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00247 sec)
+2025-03-08 14:39:36,293 - common - setup - start - precalculating propagators
+2025-03-08 14:39:38,164 - common - setup - end - precalculating propagators (elapsed time: 1.87113 sec)
+2025-03-08 14:39:38,164 <<< SETUP (total elapsed time: 1.87692 sec)
+2025-03-08 14:40:27,711 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:40:27,712 >>> SETUP
+2025-03-08 14:40:27,712 - single - setup - start - loading potential operators from file
+2025-03-08 14:40:27,716 - single - setup - end - loading potential operators from file (elapsed time: 0.00448 sec)
+2025-03-08 14:40:27,716 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:40:27,720 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00309 sec)
+2025-03-08 14:40:27,720 - common - setup - start - precalculating propagators
+2025-03-08 14:40:29,591 - common - setup - end - precalculating propagators (elapsed time: 1.87086 sec)
+2025-03-08 14:40:29,591 <<< SETUP (total elapsed time: 1.87932 sec)
+2025-03-08 14:41:43,371 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:41:43,371 >>> SETUP
+2025-03-08 14:41:43,371 - single - setup - start - loading potential operators from file
+2025-03-08 14:41:43,376 - single - setup - end - loading potential operators from file (elapsed time: 0.00440 sec)
+2025-03-08 14:41:43,376 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:41:43,379 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00275 sec)
+2025-03-08 14:41:43,379 - common - setup - start - precalculating propagators
+2025-03-08 14:41:45,244 - common - setup - end - precalculating propagators (elapsed time: 1.86490 sec)
+2025-03-08 14:41:45,244 <<< SETUP (total elapsed time: 1.87291 sec)
+2025-03-08 14:43:25,616 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:43:25,617 >>> SETUP
+2025-03-08 14:43:25,617 - single - setup - start - loading potential operators from file
+2025-03-08 14:43:25,622 - single - setup - end - loading potential operators from file (elapsed time: 0.00462 sec)
+2025-03-08 14:43:25,622 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:43:25,625 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00321 sec)
+2025-03-08 14:43:25,625 - common - setup - start - precalculating propagators
+2025-03-08 14:43:27,493 - common - setup - end - precalculating propagators (elapsed time: 1.86786 sec)
+2025-03-08 14:43:27,493 <<< SETUP (total elapsed time: 1.87658 sec)
+2025-03-08 14:44:02,420 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:44:02,420 >>> SETUP
+2025-03-08 14:44:02,420 - single - setup - start - loading potential operators from file
+2025-03-08 14:44:02,424 - single - setup - end - loading potential operators from file (elapsed time: 0.00392 sec)
+2025-03-08 14:44:02,424 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:44:02,427 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00307 sec)
+2025-03-08 14:44:02,428 - common - setup - start - precalculating propagators
+2025-03-08 14:44:04,305 - common - setup - end - precalculating propagators (elapsed time: 1.87695 sec)
+2025-03-08 14:44:04,305 <<< SETUP (total elapsed time: 1.88484 sec)
+2025-03-08 14:46:06,149 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:46:06,150 >>> SETUP
+2025-03-08 14:46:06,150 - single - setup - start - loading potential operators from file
+2025-03-08 14:46:06,153 - single - setup - end - loading potential operators from file (elapsed time: 0.00363 sec)
+2025-03-08 14:46:06,154 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:46:06,157 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00380 sec)
+2025-03-08 14:46:06,158 - common - setup - start - precalculating propagators
+2025-03-08 14:46:08,029 - common - setup - end - precalculating propagators (elapsed time: 1.87081 sec)
+2025-03-08 14:46:08,029 <<< SETUP (total elapsed time: 1.87913 sec)
+2025-03-08 14:48:58,106 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:48:58,106 >>> SETUP
+2025-03-08 14:48:58,106 - single - setup - start - loading potential operators from file
+2025-03-08 14:48:58,110 - single - setup - end - loading potential operators from file (elapsed time: 0.00395 sec)
+2025-03-08 14:48:58,111 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:48:58,113 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00280 sec)
+2025-03-08 14:48:58,114 - common - setup - start - precalculating propagators
+2025-03-08 14:48:59,984 - common - setup - end - precalculating propagators (elapsed time: 1.86981 sec)
+2025-03-08 14:48:59,984 <<< SETUP (total elapsed time: 1.87740 sec)
+2025-03-08 14:49:53,351 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:49:53,351 >>> SETUP
+2025-03-08 14:49:53,351 - single - setup - start - loading potential operators from file
+2025-03-08 14:49:53,356 - single - setup - end - loading potential operators from file (elapsed time: 0.00455 sec)
+2025-03-08 14:49:53,356 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:49:53,359 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00304 sec)
+2025-03-08 14:49:53,360 - common - setup - start - precalculating propagators
+2025-03-08 14:49:55,225 - common - setup - end - precalculating propagators (elapsed time: 1.86574 sec)
+2025-03-08 14:49:55,226 <<< SETUP (total elapsed time: 1.87422 sec)
+2025-03-08 14:50:57,984 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:50:57,984 >>> SETUP
+2025-03-08 14:50:57,985 - single - setup - start - loading potential operators from file
+2025-03-08 14:50:57,986 - single - setup - end - loading potential operators from file (elapsed time: 0.00159 sec)
+2025-03-08 14:50:57,986 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:50:57,988 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00144 sec)
+2025-03-08 14:50:57,988 - common - setup - start - precalculating propagators
+2025-03-08 14:50:59,855 - common - setup - end - precalculating propagators (elapsed time: 1.86729 sec)
+2025-03-08 14:50:59,856 <<< SETUP (total elapsed time: 1.87109 sec)
+2025-03-08 14:52:48,726 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:52:48,726 >>> SETUP
+2025-03-08 14:52:48,726 - single - setup - start - loading potential operators from file
+2025-03-08 14:52:48,728 - single - setup - end - loading potential operators from file (elapsed time: 0.00150 sec)
+2025-03-08 14:52:48,728 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:52:48,730 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00142 sec)
+2025-03-08 14:52:48,730 - common - setup - start - precalculating propagators
+2025-03-08 14:52:50,637 - common - setup - end - precalculating propagators (elapsed time: 1.90726 sec)
+2025-03-08 14:52:50,637 <<< SETUP (total elapsed time: 1.91092 sec)
+2025-03-08 14:57:51,965 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:57:51,965 >>> SETUP
+2025-03-08 14:57:51,965 - single - setup - start - loading potential operators from file
+2025-03-08 14:57:51,969 - single - setup - end - loading potential operators from file (elapsed time: 0.00382 sec)
+2025-03-08 14:57:51,969 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:57:51,972 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00280 sec)
+2025-03-08 14:57:51,972 - common - setup - start - precalculating propagators
+2025-03-08 14:57:53,873 - common - setup - end - precalculating propagators (elapsed time: 1.90086 sec)
+2025-03-08 14:57:53,873 <<< SETUP (total elapsed time: 1.90831 sec)
+2025-03-08 14:58:41,081 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:58:41,082 >>> SETUP
+2025-03-08 14:58:41,082 - single - setup - start - loading potential operators from file
+2025-03-08 14:58:41,085 - single - setup - end - loading potential operators from file (elapsed time: 0.00324 sec)
+2025-03-08 14:58:41,086 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:58:41,089 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00279 sec)
+2025-03-08 14:58:41,089 - common - setup - start - precalculating propagators
+2025-03-08 14:58:43,379 - common - setup - end - precalculating propagators (elapsed time: 2.29052 sec)
+2025-03-08 14:58:43,380 <<< SETUP (total elapsed time: 2.29763 sec)
+2025-03-08 14:59:27,545 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 14:59:27,545 >>> SETUP
+2025-03-08 14:59:27,545 - single - setup - start - loading potential operators from file
+2025-03-08 14:59:27,549 - single - setup - end - loading potential operators from file (elapsed time: 0.00341 sec)
+2025-03-08 14:59:27,549 - coupled - setup - start - loading potential operators from file
+2025-03-08 14:59:27,552 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00247 sec)
+2025-03-08 14:59:27,552 - common - setup - start - precalculating propagators
+2025-03-08 14:59:29,455 - common - setup - end - precalculating propagators (elapsed time: 1.90265 sec)
+2025-03-08 14:59:29,455 <<< SETUP (total elapsed time: 1.90945 sec)
+2025-03-08 15:01:59,070 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:01:59,070 >>> SETUP
+2025-03-08 15:01:59,070 - single - setup - start - loading potential operators from file
+2025-03-08 15:01:59,072 - single - setup - end - loading potential operators from file (elapsed time: 0.00152 sec)
+2025-03-08 15:01:59,072 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:01:59,073 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00133 sec)
+2025-03-08 15:01:59,073 - common - setup - start - precalculating propagators
+2025-03-08 15:02:00,950 - common - setup - end - precalculating propagators (elapsed time: 1.87675 sec)
+2025-03-08 15:02:00,950 <<< SETUP (total elapsed time: 1.88033 sec)
+2025-03-08 15:02:42,277 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:02:42,277 >>> SETUP
+2025-03-08 15:02:42,277 - single - setup - start - loading potential operators from file
+2025-03-08 15:02:42,281 - single - setup - end - loading potential operators from file (elapsed time: 0.00381 sec)
+2025-03-08 15:02:42,281 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:02:42,285 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00358 sec)
+2025-03-08 15:02:42,285 - common - setup - start - precalculating propagators
+2025-03-08 15:02:44,167 - common - setup - end - precalculating propagators (elapsed time: 1.88151 sec)
+2025-03-08 15:02:44,167 <<< SETUP (total elapsed time: 1.88977 sec)
+2025-03-08 15:04:05,651 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:04:05,651 >>> SETUP
+2025-03-08 15:04:05,652 - single - setup - start - loading potential operators from file
+2025-03-08 15:04:05,656 - single - setup - end - loading potential operators from file (elapsed time: 0.00401 sec)
+2025-03-08 15:04:05,656 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:04:05,659 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00289 sec)
+2025-03-08 15:04:05,659 - common - setup - start - precalculating propagators
+2025-03-08 15:04:07,649 - common - setup - end - precalculating propagators (elapsed time: 1.98950 sec)
+2025-03-08 15:04:07,649 <<< SETUP (total elapsed time: 1.99729 sec)
+2025-03-08 15:07:31,552 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:07:31,552 >>> SETUP
+2025-03-08 15:07:31,553 - single - setup - start - loading potential operators from file
+2025-03-08 15:07:31,556 - single - setup - end - loading potential operators from file (elapsed time: 0.00331 sec)
+2025-03-08 15:07:31,556 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:07:31,560 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00381 sec)
+2025-03-08 15:07:31,560 - common - setup - start - precalculating propagators
+2025-03-08 15:07:33,938 - common - setup - end - precalculating propagators (elapsed time: 2.37741 sec)
+2025-03-08 15:07:33,939 <<< SETUP (total elapsed time: 2.38616 sec)
+2025-03-08 15:08:19,615 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:08:19,616 >>> SETUP
+2025-03-08 15:08:19,616 - single - setup - start - loading potential operators from file
+2025-03-08 15:08:19,619 - single - setup - end - loading potential operators from file (elapsed time: 0.00288 sec)
+2025-03-08 15:08:19,620 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:08:19,622 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00261 sec)
+2025-03-08 15:08:19,622 - common - setup - start - precalculating propagators
+2025-03-08 15:08:21,563 - common - setup - end - precalculating propagators (elapsed time: 1.94090 sec)
+2025-03-08 15:08:21,564 <<< SETUP (total elapsed time: 1.94723 sec)
+2025-03-08 15:10:22,045 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:10:22,048 >>> SETUP
+2025-03-08 15:10:22,048 - single - setup - start - loading potential operators from file
+2025-03-08 15:10:22,052 - single - setup - end - loading potential operators from file (elapsed time: 0.00357 sec)
+2025-03-08 15:10:22,052 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:10:22,055 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00316 sec)
+2025-03-08 15:10:22,055 - common - setup - start - precalculating propagators
+2025-03-08 15:10:23,973 - common - setup - end - precalculating propagators (elapsed time: 1.91758 sec)
+2025-03-08 15:10:23,973 <<< SETUP (total elapsed time: 1.92515 sec)
+2025-03-08 15:12:38,516 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:12:38,518 >>> SETUP
+2025-03-08 15:12:38,518 - single - setup - start - loading potential operators from file
+2025-03-08 15:12:38,522 - single - setup - end - loading potential operators from file (elapsed time: 0.00389 sec)
+2025-03-08 15:12:38,522 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:12:38,525 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00283 sec)
+2025-03-08 15:12:38,525 - common - setup - start - precalculating propagators
+2025-03-08 15:12:40,570 - common - setup - end - precalculating propagators (elapsed time: 2.04498 sec)
+2025-03-08 15:12:40,571 <<< SETUP (total elapsed time: 2.05262 sec)
+2025-03-08 15:22:58,161 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:22:58,162 >>> SETUP
+2025-03-08 15:22:58,162 - single - setup - start - loading potential operators from file
+2025-03-08 15:22:58,167 - single - setup - end - loading potential operators from file (elapsed time: 0.00467 sec)
+2025-03-08 15:22:58,167 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:22:58,170 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00275 sec)
+2025-03-08 15:22:58,170 - common - setup - start - precalculating propagators
+2025-03-08 15:23:00,413 - common - setup - end - precalculating propagators (elapsed time: 2.24301 sec)
+2025-03-08 15:23:00,413 <<< SETUP (total elapsed time: 2.25131 sec)
+2025-03-08 15:23:56,654 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:23:56,656 >>> SETUP
+2025-03-08 15:23:56,656 - single - setup - start - loading potential operators from file
+2025-03-08 15:23:56,660 - single - setup - end - loading potential operators from file (elapsed time: 0.00368 sec)
+2025-03-08 15:23:56,660 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:23:56,663 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00334 sec)
+2025-03-08 15:23:56,664 - common - setup - start - precalculating propagators
+2025-03-08 15:23:58,668 - common - setup - end - precalculating propagators (elapsed time: 2.00383 sec)
+2025-03-08 15:23:58,668 <<< SETUP (total elapsed time: 2.01184 sec)
+2025-03-08 15:25:58,981 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:25:58,981 >>> SETUP
+2025-03-08 15:25:58,981 - single - setup - start - loading potential operators from file
+2025-03-08 15:25:58,985 - single - setup - end - loading potential operators from file (elapsed time: 0.00367 sec)
+2025-03-08 15:25:58,985 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:25:58,987 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00248 sec)
+2025-03-08 15:25:58,988 - common - setup - start - precalculating propagators
+2025-03-08 15:26:01,021 - common - setup - end - precalculating propagators (elapsed time: 2.03309 sec)
+2025-03-08 15:26:01,021 <<< SETUP (total elapsed time: 2.04003 sec)
+2025-03-08 15:27:24,084 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:27:24,087 >>> SETUP
+2025-03-08 15:27:24,087 - single - setup - start - loading potential operators from file
+2025-03-08 15:27:24,092 - single - setup - end - loading potential operators from file (elapsed time: 0.00440 sec)
+2025-03-08 15:27:24,092 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:27:24,095 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00309 sec)
+2025-03-08 15:27:24,095 - common - setup - start - precalculating propagators
+2025-03-08 15:27:26,059 - common - setup - end - precalculating propagators (elapsed time: 1.96392 sec)
+2025-03-08 15:27:26,059 <<< SETUP (total elapsed time: 1.97244 sec)
+2025-03-08 15:32:41,120 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:32:41,120 >>> SETUP
+2025-03-08 15:32:41,120 - single - setup - start - loading potential operators from file
+2025-03-08 15:32:41,122 - single - setup - end - loading potential operators from file (elapsed time: 0.00155 sec)
+2025-03-08 15:32:41,122 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:32:41,124 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00145 sec)
+2025-03-08 15:32:41,124 - common - setup - start - precalculating propagators
+2025-03-08 15:32:43,007 - common - setup - end - precalculating propagators (elapsed time: 1.88287 sec)
+2025-03-08 15:32:43,007 <<< SETUP (total elapsed time: 1.88659 sec)
+2025-03-08 15:34:09,628 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:34:09,628 >>> SETUP
+2025-03-08 15:34:09,628 - single - setup - start - precalculating potential operators qq
+2025-03-08 15:34:24,323 - single - setup - end - precalculating potential operators qq (elapsed time: 14.69477 sec)
+2025-03-08 15:34:24,323 - single - setup - start - precalculating potential operators kq
+2025-03-08 15:34:24,965 - single - setup - end - precalculating potential operators kq (elapsed time: 0.64150 sec)
+2025-03-08 15:34:24,965 - single - setup - start - precalculating potential operators k
+2025-03-08 15:34:25,234 - single - setup - end - precalculating potential operators k (elapsed time: 0.26877 sec)
+2025-03-08 15:34:25,234 - single - setup - start - filling potential operators
+2025-03-08 15:34:26,237 - single - setup - end - filling potential operators (elapsed time: 1.00265 sec)
+2025-03-08 15:34:26,242 - coupled - setup - start - precalculating potential operators qq
+2025-03-08 15:34:40,725 - coupled - setup - end - precalculating potential operators qq (elapsed time: 14.48313 sec)
+2025-03-08 15:34:40,725 - coupled - setup - start - precalculating potential operators kq
+2025-03-08 15:34:41,374 - coupled - setup - end - precalculating potential operators kq (elapsed time: 0.64811 sec)
+2025-03-08 15:34:41,374 - coupled - setup - start - precalculating potential operators k
+2025-03-08 15:34:41,705 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.33133 sec)
+2025-03-08 15:34:41,918 - coupled - setup - start - filling potential operators
+2025-03-08 15:34:43,056 - coupled - setup - end - filling potential operators (elapsed time: 1.13754 sec)
+2025-03-08 15:34:43,062 - common - setup - start - precalculating propagators
+2025-03-08 15:34:44,815 - common - setup - end - precalculating propagators (elapsed time: 1.75325 sec)
+2025-03-08 15:34:44,815 <<< SETUP (total elapsed time: 35.18750 sec)
+2025-03-08 15:38:14,733 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:38:14,733 >>> SETUP
+2025-03-08 15:38:14,733 - single - setup - start - loading potential operators from file
+2025-03-08 15:38:14,735 - single - setup - end - loading potential operators from file (elapsed time: 0.00163 sec)
+2025-03-08 15:38:14,735 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:38:14,737 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00154 sec)
+2025-03-08 15:38:14,737 - common - setup - start - precalculating propagators
+2025-03-08 15:38:16,612 - common - setup - end - precalculating propagators (elapsed time: 1.87547 sec)
+2025-03-08 15:38:16,612 <<< SETUP (total elapsed time: 1.87943 sec)
+2025-03-08 15:38:17,164 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 15:38:18,685 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 1.52086 sec)
+2025-03-08 15:41:46,802 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:41:46,802 >>> SETUP
+2025-03-08 15:41:46,802 - single - setup - start - loading potential operators from file
+2025-03-08 15:41:46,804 - single - setup - end - loading potential operators from file (elapsed time: 0.00148 sec)
+2025-03-08 15:41:46,804 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:41:46,805 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00132 sec)
+2025-03-08 15:41:46,805 - common - setup - start - precalculating propagators
+2025-03-08 15:41:48,679 - common - setup - end - precalculating propagators (elapsed time: 1.87335 sec)
+2025-03-08 15:41:48,679 <<< SETUP (total elapsed time: 1.87689 sec)
+2025-03-08 15:42:17,907 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:42:17,907 >>> SETUP
+2025-03-08 15:42:17,907 - single - setup - start - loading potential operators from file
+2025-03-08 15:42:17,909 - single - setup - end - loading potential operators from file (elapsed time: 0.00152 sec)
+2025-03-08 15:42:17,909 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:42:17,910 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00139 sec)
+2025-03-08 15:42:17,911 - common - setup - start - precalculating propagators
+2025-03-08 15:42:19,786 - common - setup - end - precalculating propagators (elapsed time: 1.87545 sec)
+2025-03-08 15:42:19,786 <<< SETUP (total elapsed time: 1.87911 sec)
+2025-03-08 15:42:26,332 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 15:42:52,817 logger initialized and writing to file: output/time_chiral_Nq40.txt
+2025-03-08 15:42:52,818 >>> SETUP
+2025-03-08 15:42:52,818 - single - setup - start - loading potential operators from file
+2025-03-08 15:42:52,819 - single - setup - end - loading potential operators from file (elapsed time: 0.00152 sec)
+2025-03-08 15:42:52,819 - coupled - setup - start - loading potential operators from file
+2025-03-08 15:42:52,821 - coupled - setup - end - loading potential operators from file (elapsed time: 0.00137 sec)
+2025-03-08 15:42:52,821 - common - setup - start - precalculating propagators
+2025-03-08 15:42:54,738 - common - setup - end - precalculating propagators (elapsed time: 1.91723 sec)
+2025-03-08 15:42:54,739 <<< SETUP (total elapsed time: 1.92088 sec)
+2025-03-08 15:43:00,088 - single - setup - start - solving high-fidelity model for 1 samples
+2025-03-08 15:43:03,964 - single - setup - end - solving high-fidelity model for 1 samples (elapsed time: 3.87533 sec)
