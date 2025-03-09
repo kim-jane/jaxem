@@ -1,0 +1,36 @@
+2025-03-09 07:11:48,794 logger initialized and writing to file: output/new_benchmark_chiral_Nq40.txt
+2025-03-09 07:11:48,794 >>> SETUP
+2025-03-09 07:11:48,794 - single - setup - start - loading potential operators from file
+2025-03-09 07:11:48,820 - single - setup - end - loading potential operators from file (elapsed time: 0.02555 sec)
+2025-03-09 07:11:48,820 - coupled - setup - start - loading potential operators from file
+2025-03-09 07:11:48,864 - coupled - setup - end - loading potential operators from file (elapsed time: 0.04401 sec)
+2025-03-09 07:11:48,864 - common - setup - start - precalculating propagators
+2025-03-09 07:11:50,778 - common - setup - end - precalculating propagators (elapsed time: 1.91385 sec)
+2025-03-09 07:11:50,778 <<< SETUP (total elapsed time: 1.98426 sec)
+2025-03-09 07:13:05,736 logger initialized and writing to file: output/new_benchmark_chiral_Nq40.txt
+2025-03-09 07:13:05,737 >>> SETUP
+2025-03-09 07:13:05,737 - single - setup - start - loading potential operators from file
+2025-03-09 07:13:05,758 - single - setup - end - loading potential operators from file (elapsed time: 0.02139 sec)
+2025-03-09 07:13:05,758 - coupled - setup - start - loading potential operators from file
+2025-03-09 07:13:05,792 - coupled - setup - end - loading potential operators from file (elapsed time: 0.03398 sec)
+2025-03-09 07:13:05,793 - common - setup - start - precalculating propagators
+2025-03-09 07:13:07,708 - common - setup - end - precalculating propagators (elapsed time: 1.91563 sec)
+2025-03-09 07:13:07,708 <<< SETUP (total elapsed time: 1.97188 sec)
+2025-03-09 07:15:02,096 logger initialized and writing to file: output/new_benchmark_chiral_Nq40.txt
+2025-03-09 07:15:02,097 >>> SETUP
+2025-03-09 07:15:02,097 - single - setup - start - loading potential operators from file
+2025-03-09 07:15:02,118 - single - setup - end - loading potential operators from file (elapsed time: 0.02104 sec)
+2025-03-09 07:15:02,118 - coupled - setup - start - loading potential operators from file
+2025-03-09 07:15:02,152 - coupled - setup - end - loading potential operators from file (elapsed time: 0.03373 sec)
+2025-03-09 07:15:02,152 - common - setup - start - precalculating propagators
+2025-03-09 07:15:04,068 - common - setup - end - precalculating propagators (elapsed time: 1.91566 sec)
+2025-03-09 07:15:04,068 <<< SETUP (total elapsed time: 1.97132 sec)
+2025-03-09 07:15:52,428 logger initialized and writing to file: output/new_benchmark_chiral_Nq40.txt
+2025-03-09 07:15:52,428 >>> SETUP
+2025-03-09 07:15:52,428 - single - setup - start - loading potential operators from file
+2025-03-09 07:15:52,450 - single - setup - end - loading potential operators from file (elapsed time: 0.02166 sec)
+2025-03-09 07:15:52,450 - coupled - setup - start - loading potential operators from file
+2025-03-09 07:15:52,486 - coupled - setup - end - loading potential operators from file (elapsed time: 0.03556 sec)
+2025-03-09 07:15:52,486 - common - setup - start - precalculating propagators
+2025-03-09 07:15:54,403 - common - setup - end - precalculating propagators (elapsed time: 1.91647 sec)
+2025-03-09 07:15:54,403 <<< SETUP (total elapsed time: 1.97476 sec)

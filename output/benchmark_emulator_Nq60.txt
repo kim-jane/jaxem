@@ -1,0 +1,21 @@
+2025-03-09 09:22:04,734 logger initialized and writing to file: output/benchmark_emulator_Nq60.txt
+2025-03-09 09:22:04,735 >>> SETUP
+2025-03-09 09:22:04,735 - single - setup - start - precalculating potential operators qq
+2025-03-09 09:22:39,780 - single - setup - end - precalculating potential operators qq (elapsed time: 35.04515 sec)
+2025-03-09 09:22:39,780 - single - setup - start - precalculating potential operators kq
+2025-03-09 09:23:16,430 - single - setup - end - precalculating potential operators kq (elapsed time: 36.64984 sec)
+2025-03-09 09:23:16,431 - single - setup - start - precalculating potential operators k
+2025-03-09 09:23:17,222 - single - setup - end - precalculating potential operators k (elapsed time: 0.79084 sec)
+2025-03-09 09:23:17,223 - single - setup - start - filling potential operators
+2025-03-09 09:23:18,717 - single - setup - end - filling potential operators (elapsed time: 1.49447 sec)
+2025-03-09 09:23:18,845 - coupled - setup - start - precalculating potential operators qq
+2025-03-09 09:23:53,007 - coupled - setup - end - precalculating potential operators qq (elapsed time: 34.16173 sec)
+2025-03-09 09:23:53,007 - coupled - setup - start - precalculating potential operators kq
+2025-03-09 09:24:27,370 - coupled - setup - end - precalculating potential operators kq (elapsed time: 34.36313 sec)
+2025-03-09 09:24:27,371 - coupled - setup - start - precalculating potential operators k
+2025-03-09 09:24:28,160 - coupled - setup - end - precalculating potential operators k (elapsed time: 0.78903 sec)
+2025-03-09 09:24:28,402 - coupled - setup - start - filling potential operators
+2025-03-09 09:24:30,795 - coupled - setup - end - filling potential operators (elapsed time: 2.39294 sec)
+2025-03-09 09:24:30,867 - common - setup - start - precalculating propagators
+2025-03-09 09:24:32,492 - common - setup - end - precalculating propagators (elapsed time: 1.62544 sec)
+2025-03-09 09:24:32,493 <<< SETUP (total elapsed time: 147.75773 sec)

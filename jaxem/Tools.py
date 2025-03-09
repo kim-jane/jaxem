@@ -8,6 +8,41 @@ import time
 from matplotlib import pyplot as plt
 
 
+def latin_hypercube(key, n, d, minvals=0., maxvals=1.):
+    """
+    Generates n d-dimensional space-filling samples from a rectangular domain
+    described by minvals and maxvals. By default, the domain is [0,1)^d.
+    """
+    key, key_in = random.split(key)
+    samples = random.uniform(key_in, (n, d))/n + jnp.linspace(0, 1, n+1)[:n][:,jnp.newaxis]
+    
+    for i in range(d):
+        key, key_in = random.split(key)
+        perm = random.permutation(key_in, n, independent=True)
+        samples = samples.at[:,i].set(samples[perm, i])
+        
+    minvals = jnp.array(minvals) * jnp.ones(d)
+    maxvals = jnp.array(maxvals) * jnp.ones(d)
+    samples = minvals + (maxvals - minvals) * samples
+            
+    return samples
+    
+    
+def sample_LECs(key, Nsamples, LECs_best, scale_min=0., scale_max=2., static_indices=[]):
+
+    LECs_lbd = scale_min * LECs_best
+    LECs_ubd = scale_max * LECs_best
+    
+    for i in static_indices:
+        LECs_lbd = LECs_lbd.at[i].set(LECs_best[i])
+        LECs_ubd = LECs_ubd.at[i].set(LECs_best[i])
+
+    key, key_in = random.split(key)
+    LECs_samples = latin_hypercube(key_in, Nsamples, LECs_best.shape[0], minvals=LECs_lbd, maxvals=LECs_ubd)
+
+    return LECs_samples
+    
+
 
 def gram_schmidt_insert(Q, new_col):
     
@@ -84,24 +119,7 @@ def householder_insert(Q, v): # there's a bug
     return Q_new
 
 
-def latin_hypercube(key, n, d, minvals=0., maxvals=1.):
-    """
-    Generates n d-dimensional space-filling samples from a rectangular domain
-    described by minvals and maxvals. By default, the domain is [0,1)^d.
-    """
-    key, key_in = random.split(key)
-    samples = random.uniform(key_in, (n, d))/n + jnp.linspace(0, 1, n+1)[:n][:,jnp.newaxis]
-    
-    for i in range(d):
-        key, key_in = random.split(key)
-        perm = random.permutation(key_in, n, independent=True)
-        samples = samples.at[:,i].set(samples[perm, i])
-        
-    minvals = jnp.array(minvals) * jnp.ones(d)
-    maxvals = jnp.array(maxvals) * jnp.ones(d)
-    samples = minvals + (maxvals - minvals) * samples
-            
-    return samples
+
 
 
     

@@ -30,7 +30,6 @@ LECs_best = tmat.pot.LECs
 Tsckq, Tscckq = tmat.solve(LECs_best)
 
 
-
 for cc in range(tmat.chan.Ncoupled):
 
     for k in range(tmat.Nk):
@@ -66,7 +65,7 @@ for cc in range(tmat.chan.Ncoupled):
 
 
 # compute phase shifts
-single_output, coupled_output = tmat.phase_shifts(T_single=Tsckq, T_coupled=Tscckq)
+single_output, coupled_output = tmat.phase_shifts_old(T_single=Tsckq, T_coupled=Tscckq)
 
 
 # plot
