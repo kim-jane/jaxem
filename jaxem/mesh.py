@@ -43,14 +43,14 @@ class TRNS(Mesh):
     def __init__(
         self,
         n_mesh: int = 40,
-        n_mesh1: int = 25,   # number of grid points in [0, p2]
+        frac: float = 0.625,   # fraction of grid points in [0, p2]
         p1: float = 2.5,     # fm^-1
         p2: float = 6.0,     # fm^-1
         p3: float = 30.0     # fm^-1
     ):
     
         super().__init__(n_mesh)
-        self.n_mesh1 = n_mesh1
+        self.n_mesh1 = int(frac * n_mesh)
         self.n_mesh2 = self.n_mesh - self.n_mesh1
         self.p1 = p1
         self.p2 = p2

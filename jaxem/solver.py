@@ -29,9 +29,7 @@ class Solver:
         # precompute all potential operators for all
         # channels and store in a pytree
         
-        filebase = "saved_potentials/" + self.potential.name + f"_Nq{self.mesh.n_mesh}"
-        
-        print("filebase = ", filebase)
+        self.filebase = "saved_potentials/" + self.potential.name + f"_Nq{self.mesh.n_mesh}"
         
         self.Vqqo = {}
         
@@ -84,10 +82,7 @@ class Solver:
                     self.Vqqo[channel], allow_pickle=False
                 )
                 
-                
-
-        
-        
+            
     def t(
         self,
         channel: str = '1S0',
@@ -114,7 +109,7 @@ class Solver:
         elif channel in self.channels.coupled.keys():
             
             if linear_system is None:
-                Aqqo, Vqo, k = self.setup_coupled_channel(channel, Elab)
+                Aqqo, Vqo = self.setup_coupled_channel(channel, Elab)
                 
             else:
                 Aqqo, Vqo = linear_system
@@ -134,41 +129,44 @@ class Solver:
         Returns the decomposed linear system (Aqqo, Vqo) for a given channel and energy.
         """
 
-        k = self.calc_momentum_pole(Elab) # jit
-        Gq = self.calc_propagator(k) # jit
+        k = self.calc_momentum_pole(Elab) # jitable
+        Gq = self.calc_propagator(k) # jitable
         
         qn = self.channels.single[channel]
-        Vkko = self.potential.single_channel_operators(k, diag=True, **qn)   # no jit
-        Vkqo = self.potential.single_channel_operators(k, self.mesh.q, **qn) # no jit
-        Vqqo = self.extend_onshell_single(Vkko, Vkqo, self.Vqqo[channel])    # jit
+        Vkko = self.potential.single_channel_operators(k, diag=True, **qn)   # not jitable
+        Vkqo = self.potential.single_channel_operators(k, self.mesh.q, **qn) # not jitable
+        Vqqo = self.extend_onshell_single(Vkko, Vkqo, self.Vqqo[channel])    # jitable
         
-        Aqqo, Vqo = self.decomposed_linear_system_single(Vqqo, Gq) # jit
+        Aqqo, Vqo = self.decomposed_linear_system_single(Vqqo, Gq) # jitable
         return Aqqo, Vqo
         
 
     def setup_coupled_channel(
         self,
         channel: str,
-        Elab: float
+        Elab: float,
+        flatten: bool = False,
     ) -> Tuple[jnp.ndarray, jnp.ndarray]:
         """
         Returns the decomposed linear system (Aqqo, Vqo) for a given channel and energy.
         """
-        k = jnp.sqrt(0.5 * self.potential.mass * Elab / self.potential.hbarc**2)
-        k = jnp.array([k])  # traceable
-        
+        k = self.calc_momentum_pole(Elab) # jit
         Gq = self.calc_propagator(k) # jit
         
-        qn = self.channels.single[channel]
-        Vkko = self.potential.single_channel_operators(k, diag=True, **qn)   # no jit
-        Vkqo = self.potential.single_channel_operators(k, self.mesh.q, **qn) # no jit
+        qn = self.channels.coupled[channel]
+        Vkko = self.potential.coupled_channel_operators(k, diag=True, **qn)   # no jit
+        Vkqo = self.potential.coupled_channel_operators(k, self.mesh.q, **qn) # no jit
         Vqqo = self.extend_onshell_coupled(Vkko, Vkqo, self.Vqqo[channel])    # jit
         
-        Aqqo, Vqo = self.decomposed_linear_system_single(Vqqo, Gq) # jit
+        Aqqo, Vqo = self.decomposed_linear_system_coupled(Vqqo, Gq) # jit
+        
+        print("Aqqo = ", Aqqo.shape)
+        print("Vqo = ", Vqo.shape)
+        
         return Aqqo, Vqo
         
         
-    @partial(jax.jit, static_argnames=("self"))
+    #@partial(jax.jit, static_argnames=("self"))
     def calc_momentum_pole(
         self,
         Elab: float
@@ -177,7 +175,7 @@ class Solver:
         return jnp.array([k])  # traceable
         
         
-    @partial(jax.jit, static_argnames=("self"))
+    #@partial(jax.jit, static_argnames=("self"))
     def calc_propagator(
         self,
         k: jnp.ndarray
@@ -200,7 +198,7 @@ class Solver:
         
         
         
-    @partial(jax.jit, static_argnames=("self"))
+    #@partial(jax.jit, static_argnames=("self"))
     def extend_onshell_single(
         self,
         Vkko: jnp.ndarray,
@@ -266,7 +264,7 @@ class Solver:
         return operators
 
 
-    @partial(jax.jit, static_argnames=('self'))
+    #@partial(jax.jit, static_argnames=('self'))
     def decomposed_linear_system_single(
         self,
         Vqqo: jnp.ndarray,
@@ -279,21 +277,21 @@ class Solver:
         return (Aqqo, Vqqo[:,0,:])
         
         
-    @partial(jax.jit, static_argnames=('self'))
+    #@partial(jax.jit, static_argnames=('self'))
     def decomposed_linear_system_coupled(
         self,
-        LECs: jnp.ndarray,
         Vqqo: jnp.ndarray,
         Gq: jnp.ndarray,
     ) -> Tuple[jnp.ndarray, jnp.ndarray]:
     
-        Aqqo = -Vqqo * jnp.tile(propagator, (2,))[None,:,None]
+        Aqqo = -Vqqo * jnp.tile(Gq, (2,))[None,:,None]
         iq = jnp.arange(Aqqo.shape[0])
         Aqqo = Aqqo.at[iq,iq].add(1.0)
-        return (Aqqo, Vqqo[:,[0, n + 1],:])
+        return (Aqqo, Vqqo[:,[0, self.mesh.n_mesh + 1],:])
 
 
-    @partial(jax.jit, static_argnames=('self'))
+
+    #@partial(jax.jit, static_argnames=('self'))
     def solve_single_channel(
         self,
         LECs: jnp.ndarray,
@@ -307,31 +305,42 @@ class Solver:
         )
         return Tq
     
-    @partial(jax.jit, static_argnames=('self'))
-    def batch_solve_single_channel(
-        self,
-        LECs_batch: jnp.ndarray,
-        Aqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
 
-        return jax.vmap(self.solve_single_channel, in_axes=(0,None,None))(LECs_batch, Aqqo, Vqo)
     
-    @partial(jax.jit, static_argnames=('self'))
+    #@partial(jax.jit, static_argnames=('self'))
     def solve_coupled_channel(
         self,
         LECs: jnp.ndarray,
         Aqqo: jnp.ndarray,
         Vqo: jnp.ndarray,
+        flat: bool = False,
     ) -> jnp.ndarray:
     
-        Tq = jnp.linalg.solve(
-            jnp.tensordot(Aqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
-        )
-        Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
-        Tq = jnp.transpose(Tq, (0,2,1))
+        if flat:
+        
+            Tq = jnp.linalg.solve(Aqqo, Vqo)
+        
+        else
+    
+            Tq = jnp.linalg.solve(
+                jnp.tensordot(Aqqo, LECs, axes=([2], [0])),
+                jnp.tensordot(Vqo, LECs, axes=([2], [0]))
+            )
+            Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
+            Tq = jnp.transpose(Tq, (0,2,1))
+
         return Tq
         
         
-    
+
+    def calc_observables(self,
+        self,
+        channel,
+        Elab
+        ):
+        
+        for channel in self.channels.single.keys():
+            for
+        
+
+

@@ -3,7 +3,11 @@ jax.config.update("jax_enable_x64", True)
 import jax.numpy as jnp
 
 
-
+def print_dict(dict):
+    for key, value in dict.items():
+        print(f"{key}:")
+        print(f"    {value}")
+    print("")
 
 def latin_hypercube(key, n, d, minvals=0., maxvals=1.):
     """
