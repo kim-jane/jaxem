@@ -27,93 +27,33 @@ class Emulator:
         self.channels = solver.channels
         self.potential = solver.potential
         
-        
-    def project(
+    def emulate(
         self,
-        A: jnp.ndarray,
-        V: jnp.ndarray,
-        test_basis: jnp.ndarray,
-        trial_basis: jnp.ndarray,
+        LECs,
+        model,
     ):
         """
-        Projects full-space linear system (A, V) onto reduced basis.
-
-        Parameters
-        ----------
-        A : jnp.ndarray
-            Full operator tensor with shape (q, q, o)
-        V : jnp.ndarray
-            Full right-hand side with shape (q, o)
-        test_basis : jnp.ndarray
-            Test basis matrix (q, a), spans residual weighting space (a = b for Galerkin)
-        trial_basis : jnp.ndarray
-            Trial basis matrix (q, b), spans solution space
-
-
-        Returns
-        -------
-        A_reduced : jnp.ndarray
-            Reduced operator with shape (a, b, o)
-        V_reduced : jnp.ndarray
-            Reduced RHS with shape (a, o)
+        Use given emulator model to emulate T-matrix solutions at given LECs. 
         """
-    
-        A_reduced = jnp.einsum('ia,ijo,jb->abo', jnp.conjugate(test_basis), A, trial_basis)
-        V_reduced  = jnp.einsum('ia,io->ao', jnp.conjugate(test_basis), V)
+        C = model["func"](LECs, model["reduced A"], model["reduced V"])
+        
+        return C
 
-        return A_reduced, V_reduced
-        
-    def petrov_galerkin_test_basis(
-        self,
-        X: jnp.ndarray,
-        A: jnp.ndarray,      # lhs of fom
-        V: jnp.ndarray,       # rhs of fom
-    ):
-    
-        # apply AX for all operators
-        AX = jnp.einsum('ijo,jb->iob', A, X)
-        
-        # construct residual subspace (also test basis in LSPG)
-        # inactive columns are at the end
-        Y = jnp.concatenate((
-            V,
-            jnp.reshape(AX, (A.shape[0], -1), order='F'),
-            ), axis=1
-        )
-        
-        # orthogonalize residual subspace
-        Y = self.qr(Y)
-        
-        return Y
         
         
-    #@partial(jax.jit, static_argnames=("self"))
-    def estimate_error(
-        self,
-        LECs_candidates: jnp.ndarray,
-        C: jnp.ndarray,
-        A_pg: jnp.ndarray,
-        V_pg: jnp.ndarray,
-    ):
-        A_residual = jnp.einsum('abo,so,sb->sa', A_pg, LECs_candidates, C)
-        V_residual = jnp.einsum('bo,so->sb', V_pg, LECs_candidates)
-        return jnp.linalg.norm(A_residual - V_residual, axis=1)
-        
-
     def fit(
         self,
         LECs_candidates,
         channel: str = "1S0",
         Elab: float = 10.0,
-        n_init: int = 2,
-        n_max: int = 25,
+        n_init: int = 2,  # number of initial points for greedy algo
+        n_max: int = 25,  # maximum number of snapshots to select from candidates
         tol: float = 1e-5,
         rom = "g", # or "lspg"
         mode = "greedy", # or "pod"
-        linear_system: Tuple[jnp.ndarray, jnp.ndarray] = None,
+        linear_system: Tuple[jnp.ndarray, jnp.ndarray] = None, # remove?
     ):
-        
-    
+
         # empty containers
         model = {
             'reduced A': None,
@@ -144,19 +84,27 @@ class Emulator:
         
         # choose the appropriate functions for single/coupled channels
         if channel in self.channels.single.keys():
-            assert n_max <= self.mesh.n_mesh+1, "Maximum basis size is too large."
+            n_dim = self.mesh.n_mesh+1
             setup_func = self.solver.setup_single_channel
             solve_func = self.solver.solve_single_channel
             
         elif channel in self.channels.coupled.keys():
-            assert n_max <= 4*self.mesh.n_mesh+4, "Maximum basis size is too large."
-            setup_func = self.solver.setup_coupled_channel
-            solve_func = lambda LECs, A, V: (
-                self.solver.solve_coupled_channel(LECs, A, V).reshape(4, -1).T.reshape(-1)
-            )
+            n_dim = 4*self.mesh.n_mesh+4
+            n_half = n_dim / 2
             
+            def setup_func(channel, Elab):
+                Aqqo, Vqo = self.solver.setup_coupled_channel(channel, Elab, flat=True)
+                Aqqo = jax.vmap(jax.scipy.linalg.block_diag, in_axes=(2,2), out_axes=2)(Aqqo, Aqqo)
+                Vqo = jnp.concatenate([Vqo[:,0,:], Vqo[:,1,:]], axis=0)
+                return Aqqo, Vqo
+            
+            def solve_func(LECs, A, V):
+                return self.solver.solve_coupled_channel(LECs, A[:n_half,:n_half], V[:n_half], flat=True)
+        
         else:
             print("Channel {channel} not found in list.")
+            
+        assert n_max <= n_dim, "Maximum basis size is too large."
             
         # choose appropriate functions for galerkin or petrov-galerkin rom
         if rom == "g":
@@ -249,10 +197,14 @@ class Emulator:
         
             # collect n_init snapshots, leaving room for n_max snapshots
             with timed_section(times['setup']):
-                T = jnp.zeros((self.mesh.n_mesh+1, n_max), dtype=jnp.complex128)
+                T = jnp.zeros((n_dim, n_max), dtype=jnp.complex128)
                 T = T.at[:, :n_init].set(
                     jax.vmap(solve_func, in_axes=(0,None,None))(LECs_candidates[:n_init], A, V).T
                 )
+                
+                #for i in range(n_init):
+                #    plt.plot(T[:,i].real)
+                #plt.show()
             
                 LECs_train = jnp.zeros((n_max, self.potential.n_operators), dtype=jnp.complex128)
                 LECs_train = LECs_train.at[:n_init].set( LECs_candidates[:n_init] )
@@ -267,13 +219,8 @@ class Emulator:
                 
                 with timed_section(times['emulate']):
                     C = jax.vmap(emulate_func, in_axes=(0,None,None,None))(LECs_candidates, A_reduced, V_reduced, i)
-                    
-                    print("\n\n C * ", C.shape)
                     C = jnp.concatenate((C, jnp.zeros((LECs_candidates.shape[0], n_max-i))), axis=1)
-                    print("\n\n LECs * ", LECs_candidates.shape)
-                    print("\n\n A red * ", A_reduced.shape)
-                    print("\n\n V red * ", V_reduced.shape)
-                    print("\n\n C * ", C.shape)
+    
                     
                 with timed_section(times['solve']):
                     # this is just to compare with emulation time
@@ -282,16 +229,17 @@ class Emulator:
                 with timed_section(times['error']):
 
                     A_residual, V_residual = residual_basis_func(X, A, V, A_reduced, V_reduced)
-                    
-                    print("LECs_candidates = ", LECs_candidates.shape)
-                    print("C = ", C.shape)
-                    print("YAX = ", A_residual.shape)
-                    print("YV = ", V_residual.shape)
-                    
                     errors_est = self.estimate_error(LECs_candidates, C, A_residual, V_residual)
-                    
-                    
                     index_max_error = jnp.argmax(errors_est)
+                    index_min_error = jnp.argmin(errors_est)
+                    
+                    #debug
+                    t_em = jnp.einsum('ib,b->i', X, C[index_min_error])
+                    t_ex = solve_func(LECs_candidates[index_min_error], A, V)
+                    
+                    plt.plot(t_em.real)
+                    plt.plot(t_ex.real, linestyle='dashed')
+                    plt.show()
                     
                     # convert worst emulated candidate to full space
                     t_em = jnp.einsum('ib,b->i', X, C[index_max_error])
@@ -299,13 +247,16 @@ class Emulator:
                     # compute exact solution at worst point
                     t_ex = solve_func(LECs_candidates[index_max_error], A, V)
                     
+                    plt.plot(t_em.real)
+                    plt.plot(t_ex.real, linestyle='dashed')
+                    plt.show()
+                    
                     # add point
                     T = T.at[:,i].set(t_ex)
                     LECs_train = LECs_train.at[i].set(LECs_candidates[index_max_error])
 
                     # calibrate error using real solution
                     errors_cal = jnp.linalg.norm(t_em - t_ex) * errors_est / errors_est[index_max_error]
-                    
                     
                     
                     errors['min'].append( jnp.min(errors_cal) )
@@ -316,6 +267,9 @@ class Emulator:
                     errors['p75'].append( jnp.percentile(errors_cal, 75.) )
                     errors['p95'].append( jnp.percentile(errors_cal, 95.) )
                     
+                    print(errors)
+                    print(times)
+                    
                 if jnp.max(errors_cal) < tol:
                     break
         
@@ -325,12 +279,87 @@ class Emulator:
         model['test basis'] = Y
         model['snapshots'] = T
         model['LECs'] = LECs_train
+        model['func'] = emulate_func
         
         for dict in [model, errors, times]:
             for key, val in dict.items():
                 dict[key] = jnp.array(val)
                 
         return model, errors, times
+        
+    def project(
+        self,
+        A: jnp.ndarray,
+        V: jnp.ndarray,
+        test_basis: jnp.ndarray,
+        trial_basis: jnp.ndarray,
+    ):
+        """
+        Projects full-space linear system (A, V) onto reduced basis.
+
+        Parameters
+        ----------
+        A : jnp.ndarray
+            Full operator tensor with shape (q, q, o)
+        V : jnp.ndarray
+            Full right-hand side with shape (q, o)
+        test_basis : jnp.ndarray
+            Test basis matrix (q, a), spans residual weighting space (a = b for Galerkin)
+        trial_basis : jnp.ndarray
+            Trial basis matrix (q, b), spans solution space
+
+
+        Returns
+        -------
+        A_reduced : jnp.ndarray
+            Reduced operator with shape (a, b, o)
+        V_reduced : jnp.ndarray
+            Reduced RHS with shape (a, o)
+        """
+    
+        A_reduced = jnp.einsum('ia,ijo,jb->abo', jnp.conjugate(test_basis), A, trial_basis)
+        V_reduced  = jnp.einsum('ia,io->ao', jnp.conjugate(test_basis), V)
+
+        return A_reduced, V_reduced
+        
+    def petrov_galerkin_test_basis(
+        self,
+        X: jnp.ndarray,
+        A: jnp.ndarray,      # lhs of fom
+        V: jnp.ndarray,       # rhs of fom
+    ):
+    
+        # apply AX for all operators
+        AX = jnp.einsum('ijo,jb->iob', A, X)
+        
+        # construct residual subspace (also test basis in LSPG)
+        # inactive columns are at the end
+        Y = jnp.concatenate((
+            V,
+            jnp.reshape(AX, (A.shape[0], -1), order='F'),
+            ), axis=1
+        )
+        
+        # orthogonalize residual subspace
+        Y = self.qr(Y)
+        
+        return Y
+        
+        
+    #@partial(jax.jit, static_argnames=("self"))
+    def estimate_error(
+        self,
+        LECs_candidates: jnp.ndarray,
+        C: jnp.ndarray,
+        A_pg: jnp.ndarray,
+        V_pg: jnp.ndarray,
+    ):
+        A_residual = jnp.einsum('abo,so,sb->sa', A_pg, LECs_candidates, C)
+        V_residual = jnp.einsum('bo,so->sb', V_pg, LECs_candidates)
+        return jnp.linalg.norm(A_residual - V_residual, axis=1)
+        
+
+
         
 
     @partial(jax.jit, static_argnames=("self"))

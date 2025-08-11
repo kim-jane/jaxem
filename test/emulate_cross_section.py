@@ -62,5 +62,11 @@ for channel in channels.coupled.keys():
     
     t = solver.t(channel, Elab, potential.LECs)
     
-    obs = solver.observables(channel, Elab, t)
+    plt.plot(t[0,0,1:].real)
+    plt.plot(t[0,1,1:].real)
+    plt.plot(t[1,0,1:].real)
+    plt.plot(t[1,1,1:].real)
+    plt.show()
+    
+    obs = solver.calc_observables(channel, Elab, t)
     

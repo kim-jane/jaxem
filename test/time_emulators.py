@@ -12,15 +12,18 @@ channel = '3S1-3D1'
 Elab = 10.0
 rom = 'g'
 n_trials = 1
+seed = 317
 
 
 print(f"channel = {channel}")
 print(f"Elab = {Elab} MeV")
 print(f"ROM = {rom}")
 print(f"n_trials = {n_trials}")
+print(f"seed = {seed}\n")
 
 channels = Channels(isospin_channel='np', Jmax=1)
 potential = Chiral()
+key = jax.random.PRNGKey(seed)
 
 def print_dict(dict):
     for key, value in dict.items():
@@ -33,14 +36,12 @@ for n_mesh in [40]:
     
     print(f"\nn_mesh = {n_mesh}")
 
-    mesh = TRNS(n_mesh=n_mesh, n_mesh1=int(0.625 * n_mesh))
+    mesh = TRNS(n_mesh=n_mesh)
     solver = Solver(mesh, channels, potential)
     emulator = Emulator(solver)
 
     #linear_system = solver.setup_single_channel(channel, Elab)
     #linear_system = solver.setup_coupled_channel(channel, Elab)
-
-    key = jax.random.PRNGKey(317)
 
     trials = {}
 
@@ -52,8 +53,8 @@ for n_mesh in [40]:
             subkey,
             1000,
             potential.LECs,
-            scale_min=0.5,
-            scale_max=1.5,
+            scale_min=0.0,
+            scale_max=2.0,
             static_indices=[0, 10, 11]
         )
         
@@ -61,14 +62,15 @@ for n_mesh in [40]:
             LECs_candidates,
             channel=channel,
             Elab=Elab,
-            tol=1e-8,
+            tol=1e-3,
             rom=rom,
             mode="greedy",
-            n_max = 41,
+            n_init=2,
+            n_max=21,
         )
         
         print(f"\n{t}")
-        print_dict(model)
+        #print_dict(model)
         print_dict(errors)
         print_dict(times)
 
@@ -85,7 +87,7 @@ for n_mesh in [40]:
             LECs_candidates,
             channel=channel,
             Elab=Elab,
-            tol=1e-8,
+            tol=1e-3,
             rom=rom,
             mode="pod",
         )
