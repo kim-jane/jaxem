@@ -83,6 +83,8 @@ class Channels:
             }
             for label, (J, S, T, Tz, L1, L2) in zip(coupled_spect_not, coupled_channels)
         }
+        
+        self.all = {**self.single, **self.coupled}
 
         # print
         self.print_single_channels()

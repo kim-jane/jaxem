@@ -26,16 +26,16 @@ class Tangent(Mesh):
         self.c = c
         self.inf = True
 
-        def map(k):
-            return self.c * jnp.tan(0.5 * jnp.pi * k)
+        def map(x):
+            return self.c * jnp.tan(0.5 * jnp.pi * x)
     
-        def dmap(k):
-            sec = 1. / jnp.cos(0.5 * jnp.pi * k)
+        def dmap(x):
+            sec = 1. / jnp.cos(0.5 * jnp.pi * x)
             return 0.5 * jnp.pi * self.c * sec * sec
     
         q, wq = grid(0., 1., self.Nq)
-        self.wq = dmap(q) * wq
-        self.q = map(q)
+        self.wq = dmap(q) * wq # fm^-1
+        self.q = map(q) # fm^-1
         
         
 class TRNS(Mesh):
@@ -43,9 +43,9 @@ class TRNS(Mesh):
     def __init__(
         self,
         n_mesh: int = 40,
-        frac: float = 0.625,   # fraction of grid points in [0, p2]
+        frac: float = 0.8,   # fraction of grid points in [0, p2]
         p1: float = 2.5,     # fm^-1
-        p2: float = 6.0,     # fm^-1
+        p2: float = 10.0,     # fm^-1
         p3: float = 30.0     # fm^-1
     ):
     
@@ -57,19 +57,19 @@ class TRNS(Mesh):
         self.p3 = p3
         self.inf = False
         
-        def map1(k):
-            return (1. + k) / (1./self.p1 - (1./self.p1 - 2./self.p2) * k)
+        def map1(x):
+            return (1. + x) / (1./self.p1 - (1./self.p1 - 2./self.p2) * x) # fm^-1
             
-        def dmap1(k):
+        def dmap1(x):
             num = -2. * self.p1 * self.p2 * (self.p1 - self.p2)
-            denom = self.p2 * (k - 1.) - 2. * self.p1 * k
-            return num / denom**2
+            denom = self.p2 * (x - 1.) - 2. * self.p1 * x
+            return num / denom**2 # fm^-1
             
-        def map2(k):
-            return 0.5 * (self.p2 + self.p3) + 0.5 * (self.p3 - self.p2) * k
+        def map2(x):
+            return 0.5 * (self.p2 + self.p3) + 0.5 * (self.p3 - self.p2) * x # fm^-1
             
-        def dmap2(k):
-            return 0.5 * (self.p3 - self.p2)
+        def dmap2(x):
+            return 0.5 * (self.p3 - self.p2) # fm^-1
             
         q1, wq1 = grid(-1., 1., self.n_mesh1)
         wq1 = dmap1(q1) * wq1

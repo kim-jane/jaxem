@@ -27,7 +27,7 @@ class Emulator:
         self.channels = solver.channels
         self.potential = solver.potential
         
-    def emulate(
+    def emulate_t(
         self,
         LECs,
         model,
@@ -39,6 +39,7 @@ class Emulator:
         
         return C
 
+    
         
         
     def fit(
@@ -93,13 +94,13 @@ class Emulator:
             n_half = n_dim / 2
             
             def setup_func(channel, Elab):
-                Aqqo, Vqo = self.solver.setup_coupled_channel(channel, Elab, flat=True)
-                Aqqo = jax.vmap(jax.scipy.linalg.block_diag, in_axes=(2,2), out_axes=2)(Aqqo, Aqqo)
+                VGqqo, Vqo = self.solver.setup_coupled_channel(channel, Elab, flat=True)
+                VGqqo = jax.vmap(jax.scipy.linalg.block_diag, in_axes=(2,2), out_axes=2)(VGqqo, VGqqo)
                 Vqo = jnp.concatenate([Vqo[:,0,:], Vqo[:,1,:]], axis=0)
-                return Aqqo, Vqo
+                return VGqqo, Vqo
             
-            def solve_func(LECs, A, V):
-                return self.solver.solve_coupled_channel(LECs, A[:n_half,:n_half], V[:n_half], flat=True)
+            def solve_func(LECs, VG, V):
+                return self.solver.solve_coupled_channel(LECs, VG[:n_half,:n_half], V[:n_half], flat=True)
         
         else:
             print("Channel {channel} not found in list.")
@@ -109,19 +110,19 @@ class Emulator:
         # choose appropriate functions for galerkin or petrov-galerkin rom
         if rom == "g":
         
-            test_basis_func = lambda X, A, V: X
+            test_basis_func = lambda X, VG, V: X
             
-            def emulate_func(LECs, A_reduced, V_reduced, i=None):
+            def emulate_func(LECs, VG_reduced, V_reduced, i=None):
                 i = i or A_reduced.shape[0]
                 return jnp.linalg.solve(
-                    jnp.einsum('abo,o->ab', A_reduced[:i,:i], LECs),
+                    jnp.identity(i) - jnp.einsum('abo,o->ab', VG_reduced[:i,:i], LECs),
                     jnp.einsum('bo,o->b', V_reduced[:i], LECs)
                 )
                 
-            def residual_basis_func(X, A, V, A_reduced, V_reduced):
-                Y = self.petrov_galerkin_test_basis(X, A, V)
+            def residual_basis_func(X, VG, V, VG_reduced, V_reduced):
+                Y = self.petrov_galerkin_test_basis(X, VG, V)
                 print("in residual basis func for galerkin Y = ", Y.shape)
-                return self.project(A, V, Y, X)
+                return self.project(VG, V, Y, X)
 
         elif rom == "lspg":
         
