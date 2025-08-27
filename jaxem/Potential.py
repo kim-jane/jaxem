@@ -45,7 +45,7 @@ class Chiral(Potential):
     
     def __init__(
         self,
-        hbarc: float = 197.326,         # MeV fm
+        hbarc: float = 197.327,         # MeV fm
         mass: float = 938.918755,       # MeV (default: avg nucleon mass)
     ):
         super().__init__(hbarc, mass, "chiral")

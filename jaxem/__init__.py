@@ -4,3 +4,4 @@ from .mesh import Tangent, TRNS
 from .potential import Chiral
 from .solver import Solver
 from .emulator import Emulator
+from .sampler import Sampler

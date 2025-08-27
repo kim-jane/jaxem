@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 import time
 from jaxem import *
 from collections import defaultdict
-
+import corner
 
 
 mesh = TRNS(n_mesh=40)
-channels = Channels(isospin_channel='np', Jmax=1)
+channels = Channels(isospin_channel='np', Jmax=4)
 potential = Chiral()
 solver = Solver(mesh, channels, potential)
 emulator = Emulator(solver)
@@ -18,12 +18,13 @@ emulator = Emulator(solver)
 
 filename = "test/benchmark/np_SGT/PWA93_1_300.txt"
 Elabs, sigmas = np.loadtxt(filename, unpack=True)
-indices = [0,1,2,5,10,50,100,200]
+indices = [0,1,2,5,10,20,50,100,200,300]
 Elabs = Elabs[indices]
 sigmas_data = sigmas[indices]
     
-plt.plot(Elabs, sigmas_data, color='k')
-    
+#plt.plot(Elabs, sigmas_data, marker='o')
+#plt.show()
+
 
 key = jax.random.PRNGKey(317)
 key, subkey = jax.random.split(key)
@@ -65,29 +66,22 @@ for Elab in Elabs:
     all_metas.append( metas_for_Elab )
 
 
-sampler = Sampler(emulator, all_models, all_metas, Elabs, sigmas_data)
 
-LECs_samples = sampler.sample()
+sampler = Sampler(emulator, all_models, all_metas, Elabs, sigmas_data, static_indices=[0,10,11])
+
+t = time.time()
+LECs_samples, sigmas_samples, acc_rate = sampler.sample()
 print("LECS_samples = ", LECs_samples.shape)
+print("sigmas_samples = ", sigmas_samples.shape)
+print("acceptance = ", acc_rate)
 
-n_energies = Elabs.shape[0]
-n_samples = LECs_samples.shape[0]
+print("time to sample = ", time.time() - t)
 
-sigmas_em = jnp.zeros((n_energies, n_samples))
-
-for i in range(n_energies):
-    for j in range(n_samples):
-
-        sigma = emulator.total_cross_section(
-            all_models[i],
-            all_metas[i],
-            LECs=LECs_samples[j]
-        )
-    
-        sigmas_em = sigmas_em.at[i,j].set(sigma.squeeze())
-    
-
-for j in range(n_samples):
-    plt.scatter(Elabs, 10. * sigmas_em[:,j], color='b', marker='o', s=0.5)
-
-plt.show()
+filename = f"saved_samples/chiral_Nq{mesh.n_mesh}_Jmax{channels.Jmax}.npz"
+jnp.savez(
+    filename,
+    LECs_samples=LECs_samples,
+    sigmas_samples=sigmas_samples,
+    Elabs=Elabs,
+    sigmas_data=sigmas_data
+)

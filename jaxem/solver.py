@@ -146,8 +146,6 @@ class Solver:
         VGqqo = Vqqo * Gq[None,:,None]
         return (VGqqo, Vqqo[:,0,:])
         
-        
-        
 
     def setup_coupled_channel(
         self,
@@ -156,6 +154,8 @@ class Solver:
     ) -> Tuple[jnp.ndarray, jnp.ndarray]:
         """
         Returns the operator-decomposed tensors (VGqqo, Vqo) for a given channel and energy.
+        VGqqo = (2Nq+2, 2Nq+2, No)
+        Vqo = (2Nq+2, 2, No)
         """
         Gq = self.propagator(Elab)
         Vqqo = self.potential_operators_coupled(channel, Elab)
@@ -163,6 +163,93 @@ class Solver:
         return (VGqqo, Vqqo[:,[0, self.mesh.n_mesh + 1],:])
         
         
+    def setup_coupled_channel_flat(
+        self,
+        channel: str,
+        Elab: float,
+    ) -> Tuple[jnp.ndarray, jnp.ndarray]:
+        """
+        Returns the flattened operator-decomposed tensors (VGqqo, Vqo) for a given channel and energy.
+        VGqqo = (4Nq+4, 4Nq+4, No)
+        Vqo = (4Nq+4, No)
+        """
+        
+        VGqqo, Vqo = self.setup_coupled_channel(channel, Elab)
+        VGqqo = jax.vmap(jax.scipy.linalg.block_diag, in_axes=(2,2), out_axes=2)(VGqqo, VGqqo)
+        Vqo = jnp.concatenate([Vqo[:,0,:], Vqo[:,1,:]], axis=0)
+        return VGqqo, Vqo
+        
+
+    @partial(jax.jit, static_argnames=('self'))
+    def solve_single_channel(
+        self,
+        LECs: jnp.ndarray,
+        VGqqo: jnp.ndarray,
+        Vqo: jnp.ndarray,
+    ) -> jnp.ndarray:
+    
+        Tq = jnp.linalg.solve(
+            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
+            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
+        )
+        return Tq # fm^2
+    
+
+    
+    @partial(jax.jit, static_argnames=('self'))
+    def solve_coupled_channel(
+        self,
+        LECs: jnp.ndarray,
+        VGqqo: jnp.ndarray,
+        Vqo: jnp.ndarray,
+    ) -> jnp.ndarray:
+    
+        """
+        LECs = (No,)
+        VGqqo = (2Nq+2, 2Nq+2, No)
+        Vqo = (2Nq+2, 2, No)
+        Tq = (2, 2, Nq+1)
+            
+        """
+
+        Tq = jnp.linalg.solve(
+            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
+            jnp.tensordot(Vqo, LECs, axes=([2], [0]))
+        )
+        Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
+        Tq = jnp.transpose(Tq, (0,2,1))
+
+        return Tq # fm^2
+        
+
+    @partial(jax.jit, static_argnames=('self'))
+    def solve_coupled_channel_flat(
+        self,
+        LECs: jnp.ndarray,
+        VGqqo: jnp.ndarray,
+        Vqo: jnp.ndarray,
+    ) -> jnp.ndarray:
+    
+        """
+        LECs = (No,)
+        VGqqo = (4Nq+4, 4Nq+4, No)
+        Vqo = (4Nq+4, No)
+        Tq = (4Nq+4,)
+            
+        """
+        
+        print("* compiling solve coupled channel flat")
+        
+        Tq = jnp.linalg.solve(
+            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
+            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
+        )
+
+        return Tq # fm^2
+    
+
+
+
     @partial(jax.jit, static_argnames=("self"))
     def momentum_pole(
         self,
@@ -207,6 +294,8 @@ class Solver:
         load,
         compute,
     ):
+        print("")
+        
         if self.load_potential and glob.glob(filename):
             print(f"Loading file: {filename}")
             t = time.perf_counter()
@@ -233,7 +322,7 @@ class Solver:
             if self.write_potential:
                 print(f"Writing potential to file: {filename}")
                 jnp.savez(filename, **kwargs)
-        print("")
+        
         return V
         
     
@@ -405,48 +494,3 @@ class Solver:
         return operators
 
 
-
-    @partial(jax.jit, static_argnames=('self'))
-    def solve_single_channel(
-        self,
-        LECs: jnp.ndarray,
-        VGqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
-    
-        Tq = jnp.linalg.solve(
-            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
-        )
-        return Tq # fm^2
-    
-
-    
-    @partial(jax.jit, static_argnames=('self'))
-    def solve_coupled_channel(
-        self,
-        LECs: jnp.ndarray,
-        VGqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
-    
-        """
-        LECs = (No,)
-        VGqqo = (2Nq+2, 2Nq+2, No)
-        Vqo = (2Nq+2, 2, No)
-        Tq = (2, 2, Nq+1)
-            
-        """
-
-        Tq = jnp.linalg.solve(
-            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([2], [0]))
-        )
-        Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
-        Tq = jnp.transpose(Tq, (0,2,1))
-
-        return Tq # fm^2
-        
-
-
-    

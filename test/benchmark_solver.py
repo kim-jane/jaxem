@@ -10,7 +10,7 @@ from collections import defaultdict
 
 Elab = 10.0
 n_mesh = 40
-Jmax = 2
+Jmax = 1
 
 Elabs = jnp.linspace(0.001, 300.0, 150)
 
@@ -18,6 +18,32 @@ mesh = TRNS(n_mesh=n_mesh)
 channels = Channels(isospin_channel='np', Jmax=Jmax)
 potential = Chiral()
 solver = Solver(mesh, channels, potential)
+
+
+for channel in channels.single.keys():
+    
+    
+    Elab, delta = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{channel}np.txt', unpack=True)
+    
+    plt.plot(Elab, delta)
+    
+    for Elab in Elabs[::30]:
+    
+        Tq = solver.t(channel, Elab)
+        delta, eta, sigma = solver.scattering_params(channel, Elab, Tq)
+        
+        print("Elab = ", Elab)
+        #plt.plot(mesh.q, Tq[1:].real)
+        #plt.plot(mesh.q, Tq[1:].imag)
+        #plt.show()
+        
+        
+        plt.scatter(Elab, (180/jnp.pi) * delta, color='C1', linestyle='dashed')
+    
+    plt.show()
+
+
+
 
 
 for channel in channels.coupled.keys():
@@ -32,11 +58,12 @@ for channel in channels.coupled.keys():
     ax[1].plot(Elabs, delta_triplet, color='C0')
     ax[2].plot(Elabs, epsilon_CD, color='C0')
     
-    for Elab in Elabs[::10]:
+    for Elab in Elabs[::15]:
+    
+        print("Elab = ", Elab)
     
         Tq = solver.t(channel, Elab)
-        observables = solver.calc_observables(channel, Elab, Tq)
-        (delta_minus, delta_plus, epsilon), (eta_minus, eta_plus), sigma = observables
+        (delta_minus, delta_plus, epsilon), (eta_minus, eta_plus), sigma = solver.scattering_params(channel, Elab, Tq)
         
         '''
         plt.plot(mesh.q, Tq[0,0,1:].real)
@@ -57,15 +84,5 @@ for channel in channels.coupled.keys():
     plt.show()
 
 
-
-
-for channel in channels.single.keys():
-    
-    
-    Elab, delta = np.loadtxt(f'test/benchmark/N2LO_fulllocal_R0_1.0_lam_50.0_Np_54/phaseShifts_{channel}np.txt', unpack=True)
-    
-    plt.plot(Elab, delta)
-    
-    plt.show()
 
 
