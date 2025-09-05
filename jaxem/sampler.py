@@ -18,18 +18,20 @@ class Sampler:
         metas,
         Elabs,
         sigmas,
-        prior_scale : float = 0.1,
+        prior_scale : float = 0.5,
         likelihood_scale : float = 0.1,
         static_indices = None
     ):
         self.emulator = emulator
+        self.solver = emulator.solver
         self.potential = emulator.potential
         self.models = models
         self.metas = metas
-        self.Elab = Elabs
+        self.Elabs = Elabs
         self.sigmas = sigmas / 10.0 # convert mb to fm^2
         self.n_energies = Elabs.shape[0]
-        self.prior_variance = (prior_scale * self.potential.LECs)**2
+        self.prior_scale = prior_scale
+        self.prior_variance = (self.prior_scale * self.potential.LECs)**2
         self.likelihood_scale = likelihood_scale
         self.static_indices = static_indices or []
         
@@ -42,8 +44,17 @@ class Sampler:
         n_skip: int = 10,
         n_samples_per_chain = 500,
         init_noise = 0.002,
-        step_scale = 0.005
+        step_scale = 0.005,
+        use_emulators = True
     ):
+    
+        
+        
+        if use_emulators:
+            batch_log_posterior = self.batch_log_posterior_emulated
+            
+        else:
+            batch_log_posterior = self.batch_log_posterior_solved
     
     
         scaled_step_size = step_scale * self.potential.LECs
@@ -63,7 +74,7 @@ class Sampler:
                 subkey, shape=(n_chains, self.potential.n_operators)
             )
             
-            logP_n, sigmas_n = self.batch_log_posterior(chains_n)
+            logP_n, sigmas_n = batch_log_posterior(chains_n)
             #logP_n = self.batch_log_prior(chains_n)
             
             # accept or reject
@@ -86,7 +97,7 @@ class Sampler:
         chains_o = jax.random.normal(subkey, shape=(n_chains, self.potential.n_operators))
         chains_o = self.potential.LECs[None,:] * (1 + init_noise * chains_o)
         
-        logP_o, sigmas_o = self.batch_log_posterior(chains_o)
+        logP_o, sigmas_o = batch_log_posterior(chains_o)
         acc_o = jnp.zeros((n_chains,), jnp.int32)
         
         state_o = (key, chains_o, logP_o, sigmas_o, acc_o)
@@ -163,15 +174,13 @@ class Sampler:
     ):
         return jax.vmap(self.log_likelihood, in_axes=(0,))(LECs_batch)
         
-        
-    def log_likelihood(
+    def emulated_cross_sections(
         self,
         LECs
     ):
     
-        # can this be vmapped?
-        
         sigmas = jnp.zeros(self.n_energies)
+        
         
         for i in range(self.n_energies):
             sigmas = sigmas.at[i].set( self.emulator.total_cross_section(
@@ -179,6 +188,36 @@ class Sampler:
                 )
             )
             
+        
+        #sigmas = jax.vmap(self.emulator.total_cross_section, in_axes=(0,0,None))(self.models, self.metas, LECs)
+        return sigmas
+        
+    
+    def solved_cross_sections(
+        self,
+        LECs
+    ):
+    
+        sigmas = jnp.zeros(self.n_energies)
+        
+        for i in range(self.n_energies):
+            sigmas = sigmas.at[i].set( self.solver.total_cross_section(
+                self.Elabs[i], LECs=LECs
+                )
+            )
+        
+        #sigmas = jax.vmap(self.solver.total_cross_section, in_axes=(0,None))(self.Elabs, LECs)
+        return sigmas
+    
+    
+        
+
+
+    def log_likelihood(
+        self,
+        sigmas
+    ):
+    
         likelihood_variance = (self.likelihood_scale * sigmas)**2
             
         logP = -0.5 * (
@@ -186,19 +225,54 @@ class Sampler:
             + jnp.log(2 * jnp.pi * likelihood_variance)
         )
         
-        return jnp.sum(logP), sigmas
+        return jnp.sum(logP)
+    
 
-
-    def log_posterior(
+    def log_likelihood_solved(
         self,
         LECs
     ):
-        logP, sigmas = self.log_likelihood(LECs)
+        sigmas = self.solved_cross_sections(LECs)
+        logP = self.log_likelihood(sigmas)
+        return logP, sigmas
+        
+    def log_likelihood_emulated(
+        self,
+        LECs
+    ):
+        sigmas = self.emulated_cross_sections(LECs)
+        logP = self.log_likelihood(sigmas)
+        return logP, sigmas
+        
+
+    def log_posterior_emulated(
+        self,
+        LECs
+    ):
+        logP, sigmas = self.log_likelihood_emulated(LECs)
         return logP + self.log_prior(LECs), sigmas
         
-    def batch_log_posterior(
+        
+    def log_posterior_solved(
         self,
-        LECs_batch
+        LECs
     ):
-        return jax.vmap(self.log_posterior, in_axes=(0,))(LECs_batch)
+        logP, sigmas = self.log_likelihood_solved(LECs)
+        return logP + self.log_prior(LECs), sigmas
+        
+        
+    def batch_log_posterior_emulated(
+        self,
+        LECs_batch,
+        
+    ):
+        return jax.vmap(self.log_posterior_emulated, in_axes=(0,))(LECs_batch)
+        
+
+    def batch_log_posterior_solved(
+        self,
+        LECs_batch,
+        
+    ):
+        return jax.vmap(self.log_posterior_solved, in_axes=(0,))(LECs_batch)
         

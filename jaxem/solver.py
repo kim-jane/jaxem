@@ -58,15 +58,16 @@ class Solver:
         
     def total_cross_section(
         self,
-        Elab
+        Elab,
+        LECs: jnp.ndarray = None
     ):
         sigma_tot = 0.0
     
         for channel in self.channels.all:
         
-            sigma_tot += self.scattering_params(channel, Elab)[2]
+            sigma_tot += self.scattering_params(channel, Elab, LECs=LECs)[2]
             
-        return sigma_tot
+        return sigma_tot.squeeze()
             
             
 
@@ -74,11 +75,12 @@ class Solver:
         self,
         channel,
         Elab,
-        Tq: jnp.ndarray = None
+        Tq: jnp.ndarray = None,
+        LECs: jnp.ndarray = None
     ):
     
         if Tq is None:
-            Tq = self.t(channel, Elab)
+            Tq = self.t(channel, Elab, LECs=LECs)
     
         k = self.momentum_pole(Elab) # fm^-1
         m = self.potential.mass # MeV

@@ -418,36 +418,27 @@ class Emulator:
                 print("speedup = ", times['full solve'][-1] / times['reduced solve'][-1])
                     
                 with timed_section(times['error']):
-                    print("start")
         
                     I_residual, VG_residual, V_residual = project_residual(X, Y, VG, V, I_reduced, VG_reduced, V_reduced)
-                    print("1")
                     errors_est = self.batch_estimate_error(LECs_candidates, C, I_residual, VG_residual, V_residual)
-                    print("2")
                     index_max_error = jnp.argmax(errors_est)
-                    print("3")
                     errors_est.block_until_ready()
-                    print("A")
                     
                     # convert worst emulated candidate to full space
                     #t_em = jnp.einsum('ib,b->i', X, C[index_max_error])
                     t_em = self.reconstruct(X, C[index_max_error])
-                    t_em.block_until_ready()
-                    print("B")
+                    #t_em.block_until_ready()
 
                     # compute exact solution at worst point
                     t_ex = solve(LECs_candidates[index_max_error], VG, V)
-                    t_ex.block_until_ready()
-                    print("C")
+                    #t_ex.block_until_ready()
                     
                     # add point
                     T = T.at[:,i].set(t_ex)
                     LECs_train = LECs_train.at[i].set(LECs_candidates[index_max_error])
-                    print("D")
 
                     # calibrate error using real solution
                     errors_cal = jnp.linalg.norm(t_em - t_ex) * errors_est / errors_est[index_max_error]
-                    print("E")
                     
                     errors['min'].append( jnp.min(errors_cal) )
                     errors['med'].append( jnp.median(errors_cal) )
@@ -585,11 +576,6 @@ class Emulator:
         
         s >> a > b > o
         """
-        print("LECs = ", LECs_batch.shape)
-        print("C = ", C_batch.shape)
-        print("I = ", I_residual.shape)
-        print("VG = ", VG_residual.shape)
-        print("V = ", V_residual.shape)
         
         IC = jnp.einsum('ab,sb->sa', I_residual, C_batch)
         VGC = jnp.einsum('abo,sb->sao', VG_residual, C_batch)
