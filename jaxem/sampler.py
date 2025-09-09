@@ -25,8 +25,7 @@ class Sampler:
         self.emulator = emulator
         self.solver = emulator.solver
         self.potential = emulator.potential
-        self.models = models
-        self.metas = metas
+        self.channels = emulator.channels
         self.Elabs = Elabs
         self.sigmas = sigmas / 10.0 # convert mb to fm^2
         self.n_energies = Elabs.shape[0]
@@ -34,6 +33,36 @@ class Sampler:
         self.prior_variance = (self.prior_scale * self.potential.LECs)**2
         self.likelihood_scale = likelihood_scale
         self.static_indices = static_indices or []
+        
+    
+        
+        self.models = models
+        self.metas = metas
+        
+        print("Setting up all solvers")
+        all_single_systems = []
+        all_coupled_solvers = []
+        
+        for Elab in Elabs:
+
+            single_systems_for_Elab = []
+            
+            for channel in self.channels.single.keys():
+            
+                single_systems_for_Elab.append( self.solver.setup_single_channel(channel, Elab) )
+
+            coupled_solvers_for_Elab = []
+            
+            for channel in self.channels.coupled.keys():
+            
+                coupled_solvers_for_Elab.append( self.solver.setup_coupled_channel(channel, Elab) )
+                
+                
+            all_single_systems.append( single_systems_for_Elab )
+            all_coupled_solvers.append( coupled_solvers_for_Elab )
+        
+        self.single_systems = all_single_systems
+        self.coupled_solvers = all_coupled_solvers
         
 
     def sample(
@@ -192,6 +221,7 @@ class Sampler:
         #sigmas = jax.vmap(self.emulator.total_cross_section, in_axes=(0,0,None))(self.models, self.metas, LECs)
         return sigmas
         
+        
     
     def solved_cross_sections(
         self,
@@ -202,7 +232,7 @@ class Sampler:
         
         for i in range(self.n_energies):
             sigmas = sigmas.at[i].set( self.solver.total_cross_section(
-                self.Elabs[i], LECs=LECs
+                self.Elabs[i], LECs, self.single_systems[i], self.coupled_solvers[i]
                 )
             )
         

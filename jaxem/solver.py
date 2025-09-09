@@ -6,10 +6,9 @@ import time
 from .channels import Channels
 from .mesh import Mesh
 from .potential import Potential
-from typing import Optional, Dict, Tuple
+from typing import Optional, Dict, Tuple, List
 import matplotlib.pyplot as plt
 import glob
-
 
 class Solver:
 
@@ -18,6 +17,7 @@ class Solver:
         mesh: Mesh,
         channels: Channels,
         potential: Potential,
+        Elabs: List,
         write_potential: bool = True,
         load_potential: bool = True
     ):
@@ -25,269 +25,475 @@ class Solver:
         self.mesh = mesh
         self.channels = channels
         self.potential = potential
+        self.Elabs = jnp.array(Elabs)
         self.write_potential = write_potential
         self.load_potential = load_potential
         
+        self.setup()
+        
+    
+    def setup(self):
+        
+        self.setup_propagator()
+        
+        nc = self.channels.n_single
+        ncc = self.channels.n_coupled
+        nk = self.n_poles
+        nq = self.mesh.n_mesh
+        no = self.potential.n_operators
+        
+        self.Vcqqo = jnp.zeros((nc,nq,nq,no), dtype=jnp.complex128)
+        self.Vckqo = jnp.zeros((nc,nk,nq,no), dtype=jnp.complex128)
+        self.Vcko = jnp.zeros((nc,nk,no), dtype=jnp.complex128)
+
+        self.Vccqqo = jnp.zeros((ncc,2,2,nq,nq,no), dtype=jnp.complex128)
+        self.Vcckqo = jnp.zeros((ncc,2,2,nk,nq,no), dtype=jnp.complex128)
+        self.Vccko = jnp.zeros((ncc,2,2,nk,no), dtype=jnp.complex128)
+        
+        for c in range(nc):
+            self.setup_single_channel(c)
             
+        for cc in range(ncc):
+            self.setup_coupled_channel(cc)
+
+
+    def setup_propagator(self):
+
+        # momentum poles
+        self.k = jnp.sqrt( 0.5 * self.potential.mass * self.Elabs / self.potential.hbarc**2 ) # fm^-1
+        self.n_poles = self.k.shape[0]
+        
+        k = self.k[:,None]
+        q = self.mesh.q[None,:]
+        Bkq = self.mesh.wq[None,:] / ( q**2 - k**2 )  # fm
+        
+        # correction for finite map
+        if self.mesh.inf:
+            Ck = 0.0 - 1j * jnp.pi
+            
+        else:
+            qmax = jnp.max(self.mesh.q)
+            Ck = jnp.log( (qmax + self.k) / (qmax - self.k) ) - 1j * jnp.pi
+
+        # fill in propagator   fm^-2
+        self.Gkq = jnp.zeros((self.n_poles, self.mesh.n_mesh + 1), dtype=jnp.complex128)
+        
+        self.Gkq = self.Gkq.at[:,0].set( self.potential.mass * self.k * (0.5 * Ck + self.k * jnp.sum(Bkq, axis=1) ) ) # MeV fm^-1
+        self.Gkq = self.Gkq.at[:,1:].set( - self.potential.mass * Bkq * q**2 ) # MeV fm^-1
+        self.Gkq *= (self.potential.factor / self.potential.hbarc) # fm^-2, for different normalization conventions
+    
+        
+        
+    @partial(jax.jit, static_argnames=("self"))
     def t(
         self,
-        channel: str = '1S0',
-        Elab: float = 10.0,
-        LECs: jnp.ndarray = None
-    ) -> jnp.ndarray:
-    
-        if LECs is None:
-            LECs = self.potential.LECs
-            
-            
-        if channel in self.channels.single:
-            
-            VGqqo, Vqo = self.setup_single_channel(channel, Elab)
-            return self.solve_single_channel(LECs, VGqqo, Vqo)
-            
-            
-        elif channel in self.channels.coupled:
-        
-            VGqqo, Vqo = self.setup_coupled_channel(channel, Elab)
-            return self.solve_coupled_channel(LECs, VGqqo, Vqo)
-            
-        else:
-            raise ValueError(f"Channel {channel} not found.")
-            
-            
-        
-    def total_cross_section(
-        self,
-        Elab,
-        LECs: jnp.ndarray = None
+        LECs: jnp.ndarray,
     ):
-        sigma_tot = 0.0
     
-        for channel in self.channels.all:
+        ic = jnp.arange(self.channels.n_single)
+        icc = jnp.arange(self.channels.n_coupled)
+        ik = jnp.arange(self.n_poles)
         
-            sigma_tot += self.scattering_params(channel, Elab, LECs=LECs)[2]
-            
-        return sigma_tot.squeeze()
-            
-            
+        Tckq = jax.vmap(
+            jax.vmap(self.single_channel_t, in_axes=(None,None,0)),
+            in_axes=(None,0,None)
+        )(LECs, ic, ik)
+    
+        Tcckq = jax.vmap(
+            jax.vmap(self.coupled_channel_t, in_axes=(None,None,0)),
+            in_axes=(None,0,None)
+        )(LECs, icc, ik)
+        
+        return Tckq, Tcckq
 
+    @partial(jax.jit, static_argnames=("self"))
+    def phase_shifts(
+        self,
+        t: Tuple[jnp.ndarray]
+    ):
+    
+        single_output, coupled_output = self.scattering_params(t)
+        return single_output[0], coupled_output[0]
+        
+    @partial(jax.jit, static_argnames=("self"))
+    def total_cross_sections(
+        self,
+        t: Tuple[jnp.ndarray]
+    ):
+        single_output, coupled_output = self.scattering_params(t)
+        
+        sigma_ck = single_output[2]
+        sigma_cck = coupled_output[2]
+        
+        sigma_tot = jnp.sum(sigma_ck, axis=0) + jnp.sum(sigma_ck, axis=0)
+        
+        return sigma_tot * 10. # convert from fm^2 to mb
+    
+        
+    @partial(jax.jit, static_argnames=("self"))
     def scattering_params(
         self,
-        channel,
-        Elab,
-        Tq: jnp.ndarray = None,
-        LECs: jnp.ndarray = None
+        t: Tuple[jnp.ndarray]
     ):
     
-        if Tq is None:
-            Tq = self.t(channel, Elab, LECs=LECs)
-    
-        k = self.momentum_pole(Elab) # fm^-1
+        Tckq, Tcckq = t
+        
+        # single channels
+        Tck = Tckq[:,:,0]
+        hc = self.potential.hbarc
+        k = self.k # fm^-1
         m = self.potential.mass # MeV
         f = self.potential.factor # 1
+        Jc = self.channels.single_quantum_nums[:,0]
+        Jcc = self.channels.coupled_quantum_nums[:,0]
         
-        if channel in self.channels.single:
-            
-            # extract on-shell element of T-matrix
-            T = Tq[0] # fm^2
-            
-            # convert to S-matrix
-            S = 1 - 1j * jnp.pi * f * m * k * T / self.potential.hbarc # 1
-            delta = 0.5 * jnp.arctan2(S.imag, S.real)
-            eta = jnp.abs(S)
-        
-            J = self.channels.single[channel]["J"]
-            sigma = 0.5 * jnp.pi * (2*J+1) * (1-S).real / k**2 # fm^2
-            
-            return delta, eta, sigma
-            
-            
-        elif channel in self.channels.coupled:
-            
-            T = Tq[:,:,0]
-            J = self.channels.coupled[channel]["J"]
-            S = jnp.identity(2) - 1j * jnp.pi * f * m * k * T / self.potential.hbarc
+        Sck = 1 - 1j * jnp.pi * f * m * k * Tck / hc
+        delta_ck = 0.5 * jnp.arctan2(Sck.imag, Sck.real)
+        eta_ck = jnp.abs(Sck)
+        sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * (1-Sck).real / k[None,:]**2 # fm^2
+        single_output = delta_ck, eta_ck, sigma_ck
 
-            Z = 0.5 * ( S[0,1] + S[1,0] ) / jnp.sqrt(S[0,0] * S[1,1])
-            epsilon = -0.25 * 1j * jnp.log( (1 + Z) / (1 - Z) )
-            epsilon = epsilon.real
-            
-            if J == 1:
-                epsilon = jnp.where(epsilon < -1e-8, jnp.abs(epsilon), epsilon)
-            
-            S_minus = S[0,0] / jnp.cos(2 * epsilon)
-            S_plus = S[1,1] / jnp.cos(2 * epsilon)
-            
-            delta_minus = 0.5 * jnp.arctan2(S_minus.imag, S_minus.real)
-            delta_plus = 0.5 * jnp.arctan2(S_plus.imag, S_plus.real)
-            delta_minus = jnp.where(delta_minus < -1e-8, jnp.pi + delta_minus, delta_minus)
-            
-            eta_minus = jnp.abs(S_minus)
-            eta_plus = jnp.abs(S_plus)
-            
-            sigma = 0.5 * jnp.pi * (2*J+1) * (2 - S_minus - S_plus).real / k**2
-            
-            return (delta_minus, delta_plus, epsilon), (eta_minus, eta_plus), sigma
-            
-        else:
-            raise ValueError(f"Channel {channel} not found.")
+        # coupled channels
+        Tcck = Tcckq[:,:,:,:,0]
+        Scck = - 1j * jnp.pi * f * m * k[None,:,None,None] * Tcck / hc
+        Scck = Scck.at[:,:,0,0].set(1.0)
+        Scck = Scck.at[:,:,1,1].set(1.0)
+
+        Z = 0.5 * ( Scck[:,:,0,1] + Scck[:,:,1,0] ) / jnp.sqrt(Scck[:,:,0,0] * Scck[:,:,1,1])
+        epsilon = -0.25 * 1j * jnp.log( (1 + Z) / (1 - Z) )
+        epsilon = epsilon.real
+        cond = (epsilon < -1e-8) & (Jcc == 1)[..., None]
+        epsilon = jnp.where(cond, jnp.abs(epsilon), epsilon)
+        
+        S_minus = Scck[:,:,0,0] / jnp.cos(2 * epsilon)
+        S_plus = Scck[:,:,1,1] / jnp.cos(2 * epsilon)
+        
+        delta_minus = 0.5 * jnp.arctan2(S_minus.imag, S_minus.real)
+        delta_plus = 0.5 * jnp.arctan2(S_plus.imag, S_plus.real)
+        delta_minus = jnp.where(delta_minus < -1e-8, jnp.pi + delta_minus, delta_minus)
+        
+        eta_minus = jnp.abs(S_minus)
+        eta_plus = jnp.abs(S_plus)
+        
+        sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * (2 - S_minus - S_plus).real / k[None,:]**2
+        
+        coupled_output = (delta_minus, delta_plus, epsilon), (eta_minus, eta_plus), sigma_cck
+        
+        return single_output, coupled_output
+    
+
+    
+        
+    @partial(jax.jit, static_argnames=("self"))
+    def single_channel_t(
+        self,
+        LECs: jnp.ndarray,
+        c: int, # channel index,
+        k: int # pole index
+    ):
+    
+        nq = self.mesh.n_mesh
+        
+        # dot LECs with precomputed operators
+        V_onshell   =  self.Vcko[c,k] @ LECs
+        V_halfshell = self.Vckqo[c,k] @ LECs
+        V_offshell  = self.Vcqqo[c] @ LECs
+        
+        Vqq = jnp.zeros((nq+1, nq+1), dtype=jnp.complex128)
+        Vqq = Vqq.at[0,0].set( V_onshell )
+        Vqq = Vqq.at[0,1:].set( V_halfshell )
+        Vqq = Vqq.at[1:,0].set( V_halfshell )
+        Vqq = Vqq.at[1:,1:].set( V_offshell )
+        
+        Gq = self.Gkq[k,:]
+        
+        iq = jnp.arange(nq+1)
+        Aqq = -Vqq * Gq[None,:]
+        Aqq = Aqq.at[iq,iq].add(1.0)
+        Tq = jnp.linalg.solve(Aqq, Vqq[:,0])
+
+        return Tq # fm^2
         
 
+    @partial(jax.jit, static_argnames=("self"))
+    def single_channel_operators(
+        self,
+        c: int, # channel index,
+        k: int # pole index
+    ):
+    
+        nq = self.mesh.n_mesh
+        no = self.potential.n_operators
+        
+        V_onshell   =  self.Vcko[c,k]
+        V_halfshell = self.Vckqo[c,k]
+        V_offshell  = self.Vcqqo[c]
+        
+        Vqqo = jnp.zeros((nq+1, nq+1, no), dtype=jnp.complex128)
+        Vqqo = Vqqo.at[0,0].set( V_onshell )
+        Vqqo = Vqqo.at[0,1:].set( V_halfshell )
+        Vqqo = Vqqo.at[1:,0].set( V_halfshell )
+        Vqqo = Vqqo.at[1:,1:].set( V_offshell )
+        
+        Gq = self.Gkq[k,:]
+        VGqqo = Vqqo * Gq[None,:,None]
+        Vqo = Vqqo[:,0,:]
+        
+        return VGqqo, Vqo
+
+
+    @partial(jax.jit, static_argnames=("self"))
+    def coupled_channel_t(
+        self,
+        LECs: jnp.ndarray,
+        cc: int, # channel index
+        k: int
+    ):
+    
+        nq = self.mesh.n_mesh
+        
+        # dot LECs with precomputed operators
+        V_onshell = self.Vccko[cc,:,:,k] @ LECs
+        V_halfshell = self.Vcckqo[cc,:,:,k] @ LECs
+        V_offshell  = self.Vccqqo[cc] @ LECs
+        
+        Vqq = jnp.zeros((2, 2, nq+1, nq+1), dtype=jnp.complex128)
+        
+        Vqq = Vqq.at[:,:,0,0].set( V_onshell )
+        
+        Vqq = Vqq.at[:,:,1:,0].set( V_halfshell )
+        Vqq = Vqq.at[0,1,1:,0].set( V_halfshell[1,0] )
+        
+        Vqq = Vqq.at[:,:,0,1:].set( V_halfshell )
+        Vqq = Vqq.at[0,1,1:,0].set( V_halfshell[0,1] )
+        
+        Vqq = Vqq.at[:,:,1:,1:].set( V_offshell )
+        
+        Vqq = jnp.transpose(Vqq, (0,2,1,3))
+        Vqq = jnp.reshape(Vqq, (2*nq+2, 2*nq+2))
+        
+        Gq = jnp.tile(self.Gkq[k,:], (2,))
+        
+        iq = jnp.arange(2*nq+2)
+        Aqq = -Vqq * Gq[None,:]
+        Aqq = Aqq.at[iq,iq].add(1.0)
+        Tq = jnp.linalg.solve(Aqq, Vqq[:,[0,nq+1]])
+
+        Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
+        Tq = jnp.transpose(Tq, (0,2,1))
+                
+        return Tq # fm^2
+        
+    @partial(jax.jit, static_argnames=("self"))
+    def coupled_channel_t_flat(
+        self,
+        LECs: jnp.ndarray,
+        cc: int, # channel index
+        k: int
+    ):
+    
+        Tq = self.coupled_channel_t(LECs, cc, k)
+        
+        return jnp.concatenate(
+            (Tq[0,0], Tq[1,0], Tq[1,0], Tq[1,1]),
+            axis=0
+        )
+        
+
+    @partial(jax.jit, static_argnames=("self"))
+    def coupled_channel_operators(
+        self,
+        cc: int, # channel index
+        k: int
+    ):
+        nq = self.mesh.n_mesh
+        no = self.potential.n_operators
+        
+        # dot LECs with precomputed operators
+        V_onshell = self.Vccko[cc,:,:,k]
+        V_halfshell = self.Vcckqo[cc,:,:,k]
+        V_offshell  = self.Vccqqo[cc]
+        
+        Vqqo = jnp.zeros((2, 2, nq+1, nq+1, no), dtype=jnp.complex128)
+        
+        Vqqo = Vqqo.at[:,:,0,0].set( V_onshell )
+        
+        Vqqo = Vqqo.at[:,:,1:,0].set( V_halfshell )
+        Vqqo = Vqqo.at[0,1,1:,0].set( V_halfshell[1,0] )
+        
+        Vqqo = Vqqo.at[:,:,0,1:].set( V_halfshell )
+        Vqqo = Vqqo.at[0,1,1:,0].set( V_halfshell[0,1] )
+        
+        Vqqo = Vqqo.at[:,:,1:,1:].set( V_offshell )
+        
+        Vqqo = jnp.transpose(Vqqo, (0,2,1,3,4))
+        Vqqo = jnp.reshape(Vqqo, (2*nq+2, 2*nq+2, no))
+        
+        Gq = jnp.tile(self.Gkq[k,:], (2,))
+        VGqqo = Vqqo * Gq[None,:,None]
+        Vqo = Vqqo[:,[0,nq+1],:]
+        
+        return VGqqo, Vqo
+        
+        
+    @partial(jax.jit, static_argnames=("self"))
+    def coupled_channel_operators_flat(
+        self,
+        cc: int, # channel index
+        k: int
+    ):
+        VGqqo, Vqo = self.coupled_channel_operators(cc, k)
+        VGqqo = jax.vmap(
+            jax.scipy.linalg.block_diag, in_axes=(2,2),
+            out_axes=2
+        )(VGqqo, VGqqo)
+        Vqo = jnp.concatenate([Vqo[:,0,:], Vqo[:,1,:]], axis=0)
+        return VGqqo, Vqo
         
         
     def setup_single_channel(
         self,
-        channel: str,
-        Elab: float
-    ) -> Tuple[jnp.ndarray, jnp.ndarray]:
-        """
-        Returns the operator-decomposed tensors (VGqqo, Vqo) for a given channel and energy.
-        """
-        Gq = self.propagator(Elab)
-        Vqqo = self.potential_operators_single(channel, Elab)
-        VGqqo = Vqqo * Gq[None,:,None]
-        return (VGqqo, Vqqo[:,0,:])
+        channel_index: int
+    ):
+    
+        label = self.channels.single_labels[channel_index]
+        J, S, T, Tz, L = self.channels.single_quantum_nums[channel_index]
+        qn = {"J": J, "S": S, "T": T, "Tz": Tz, "L": L}
+        filebase = f"saved_potentials/{self.potential.name}_Nq{self.mesh.n_mesh}_{label}"
+        rtol = 0.0
+        atol = 1e-8
         
+        nk = self.k.shape[0]
+        nq = self.mesh.n_mesh
+        no = self.potential.n_operators
+        
+        
+        # load Vqqo
+        filename = filebase + f"_Vqqo.npz"
+        validate = lambda data: (
+                data['Vqqo'].shape == (nq, nq, no)
+            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vqqo']
+        compute = lambda: {
+            'Vqqo': self.potential.single_channel_operators(self.mesh.q, diag=False, **qn),
+            'q': self.mesh.q
+        }
+        self.Vcqqo = self.Vcqqo.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
 
+        # load Vkqo
+        filename = filebase + f"_Vkqo.npz"
+        validate = lambda data: (
+            data['Vkqo'].shape == (nk, nq, no)
+            and jnp.allclose(data['k'], self.k, rtol=rtol, atol=atol)
+            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vkqo']
+        compute = lambda: {
+            'Vkqo': self.potential.single_channel_operators(self.k, self.mesh.q, **qn),
+            'k': self.k,
+            'q': self.mesh.q,
+        }
+        self.Vckqo = self.Vckqo.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
+        
+        # load Vkko
+        filename = filebase + f"_Vko.npz"
+        validate = lambda data: (
+            data['Vko'].shape == (nk, no)
+            and jnp.allclose(data['k'], self.k, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vko']
+        compute = lambda: {
+            'Vko': self.potential.single_channel_operators(self.k, diag=True, **qn),
+            'k': self.k,
+        }
+        self.Vcko = self.Vcko.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
+
+        
     def setup_coupled_channel(
         self,
-        channel: str,
-        Elab: float,
-    ) -> Tuple[jnp.ndarray, jnp.ndarray]:
-        """
-        Returns the operator-decomposed tensors (VGqqo, Vqo) for a given channel and energy.
-        VGqqo = (2Nq+2, 2Nq+2, No)
-        Vqo = (2Nq+2, 2, No)
-        """
-        Gq = self.propagator(Elab)
-        Vqqo = self.potential_operators_coupled(channel, Elab)
-        VGqqo = Vqqo * jnp.tile(Gq, (2,))[None,:,None]
-        return (VGqqo, Vqqo[:,[0, self.mesh.n_mesh + 1],:])
-        
-        
-    def setup_coupled_channel_flat(
-        self,
-        channel: str,
-        Elab: float,
-    ) -> Tuple[jnp.ndarray, jnp.ndarray]:
-        """
-        Returns the flattened operator-decomposed tensors (VGqqo, Vqo) for a given channel and energy.
-        VGqqo = (4Nq+4, 4Nq+4, No)
-        Vqo = (4Nq+4, No)
-        """
-        
-        VGqqo, Vqo = self.setup_coupled_channel(channel, Elab)
-        VGqqo = jax.vmap(jax.scipy.linalg.block_diag, in_axes=(2,2), out_axes=2)(VGqqo, VGqqo)
-        Vqo = jnp.concatenate([Vqo[:,0,:], Vqo[:,1,:]], axis=0)
-        return VGqqo, Vqo
-        
-
-    @partial(jax.jit, static_argnames=('self'))
-    def solve_single_channel(
-        self,
-        LECs: jnp.ndarray,
-        VGqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
-    
-        Tq = jnp.linalg.solve(
-            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
-        )
-        return Tq # fm^2
-    
-
-    
-    @partial(jax.jit, static_argnames=('self'))
-    def solve_coupled_channel(
-        self,
-        LECs: jnp.ndarray,
-        VGqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
-    
-        """
-        LECs = (No,)
-        VGqqo = (2Nq+2, 2Nq+2, No)
-        Vqo = (2Nq+2, 2, No)
-        Tq = (2, 2, Nq+1)
-            
-        """
-
-        Tq = jnp.linalg.solve(
-            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([2], [0]))
-        )
-        Tq = jnp.reshape(Tq, (2, self.mesh.n_mesh+1, 2))
-        Tq = jnp.transpose(Tq, (0,2,1))
-
-        return Tq # fm^2
-        
-
-    @partial(jax.jit, static_argnames=('self'))
-    def solve_coupled_channel_flat(
-        self,
-        LECs: jnp.ndarray,
-        VGqqo: jnp.ndarray,
-        Vqo: jnp.ndarray,
-    ) -> jnp.ndarray:
-    
-        """
-        LECs = (No,)
-        VGqqo = (4Nq+4, 4Nq+4, No)
-        Vqo = (4Nq+4, No)
-        Tq = (4Nq+4,)
-            
-        """
-        
-        print("* compiling solve coupled channel flat")
-        
-        Tq = jnp.linalg.solve(
-            jnp.identity(VGqqo.shape[0]) - jnp.tensordot(VGqqo, LECs, axes=([2], [0])),
-            jnp.tensordot(Vqo, LECs, axes=([1], [0]))
-        )
-
-        return Tq # fm^2
-    
-
-
-
-    @partial(jax.jit, static_argnames=("self"))
-    def momentum_pole(
-        self,
-        Elab: jnp.ndarray # one element JAX-array for tracing
-    ):
-        k = jnp.sqrt( 0.5 * self.potential.mass * Elab / self.potential.hbarc**2 ) # fm^-1
-        return jnp.array([k]) # traceable
-        
-    
-        
-        
-    @partial(jax.jit, static_argnames=("self"))
-    def propagator(
-        self,
-        Elab: jnp.ndarray # one element JAX-array for tracing
+        channel_index: int
     ):
     
-        k = self.momentum_pole(Elab)
+        label = self.channels.coupled_labels[channel_index]
+        J, S, T, Tz, L1, L2 = self.channels.coupled_quantum_nums[channel_index]
+        qn = {"J": J, "S": S, "T": T, "Tz": Tz, "L1": L1, "L2": L2}
+        filebase = f"saved_potentials/{self.potential.name}_Nq{self.mesh.n_mesh}_{label}"
+        rtol = 0.0
+        atol = 1e-8
         
-        # correction for finite map
-        if self.mesh.inf:
-            C = 0.0 - 1j * jnp.pi
-            
-        else:
-            qmax = jnp.max(self.mesh.q)
-            C = jnp.log( (qmax + k) / (qmax - k) ) - 1j * jnp.pi
-            
-        Bq = self.mesh.wq / ( self.mesh.q**2 - k**2 )  # fm
+        nk = self.k.shape[0]
+        nq = self.mesh.n_mesh
+        no = self.potential.n_operators
         
-        Gq = jnp.zeros((self.mesh.n_mesh + 1,), dtype=jnp.complex128)
-        Gq = Gq.at[0].set( jnp.squeeze(self.potential.mass * k * (0.5 * C + k * jnp.sum(Bq))) ) # MeV fm^-1
-        Gq = Gq.at[1:].set( - self.potential.mass * Bq * self.mesh.q**2 ) # MeV fm^-1
-        Gq *= (self.potential.factor / self.potential.hbarc) # fm^-2, for different normalization conventions
+        # load Vqqo
+        filename = filebase + f"_Vqqo.npz"
+        validate = lambda data: (
+                data['Vqqo'].shape == (2, 2, nq, nq, no)
+            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vqqo']
+        compute = lambda: {
+            'Vqqo': self.potential.coupled_channel_operators(self.mesh.q, diag=False, **qn),
+            'q': self.mesh.q
+        }
+        self.Vccqqo = self.Vccqqo.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
+
+        # load Vkqo
+        filename = filebase + f"_Vkqo.npz"
+        validate = lambda data: (
+            data['Vkqo'].shape == (2, 2, nk, nq, no)
+            and jnp.allclose(data['k'], self.k, rtol=rtol, atol=atol)
+            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vkqo']
+        compute = lambda: {
+            'Vkqo': self.potential.coupled_channel_operators(self.k, self.mesh.q, **qn),
+            'k': self.k,
+            'q': self.mesh.q,
+        }
+        self.Vcckqo = self.Vcckqo.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
         
-        return Gq # fm^-2
+        # load Vkko
+        filename = filebase + f"_Vko.npz"
+        validate = lambda data: (
+            data['Vko'].shape == (2, 2, nk, no)
+            and jnp.allclose(data['k'], self.k, rtol=rtol, atol=atol)
+        )
+        load = lambda data: data['Vko']
+        compute = lambda: {
+            'Vko': self.potential.coupled_channel_operators(self.k, diag=True, **qn),
+            'k': self.k,
+        }
+        self.Vccko = self.Vccko.at[channel_index].set(
+            self.load_compute_write_potential(
+                filename, validate, load, compute
+            )
+        )
         
+
+    
+
         
     def load_compute_write_potential(
         self,
@@ -327,172 +533,3 @@ class Solver:
         
         return V
         
-    
-    def potential_operators_single(
-        self,
-        channel,
-        Elab # one element JAX-array for tracing
-    ):
-    
-        filebase = f"saved_potentials/{self.potential.name}_Nq{self.mesh.n_mesh}"
-        qn = self.channels.single[channel]
-        rtol = 0.0
-        atol = 1e-8
-        
-        m = self.mesh.n_mesh
-        n = self.potential.n_operators
-        k = self.momentum_pole(Elab)
-        
-        # load Vqqo
-        filename = filebase + f"_Vqqo_{channel}.npz"
-        validate = lambda data: (
-                data['Vqqo'].shape == (m, m, n)
-            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vqqo']
-        compute = lambda: {
-            'Vqqo': self.potential.single_channel_operators(self.mesh.q, diag=False, **qn),
-            'q': self.mesh.q
-        }
-        Vqqo = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-
-        # load Vkqo
-        filename = filebase + f"_Vkqo_{channel}_{Elab:.3f}MeV.npz"
-        validate = lambda data: (
-            data['Vkqo'].shape == (1, m, n)
-            and jnp.allclose(data['k'], k, rtol=rtol, atol=atol)
-            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vkqo']
-        compute = lambda: {
-            'Vkqo': self.potential.single_channel_operators(k, self.mesh.q, **qn),
-            'k': k,
-            'q': self.mesh.q,
-        }
-        Vkqo = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-        
-        # load Vkko
-        filename = filebase + f"_Vkko_{channel}_{Elab:.3f}MeV.npz"
-        validate = lambda data: (
-            data['Vkko'].shape == (1, n)
-            and jnp.allclose(data['k'], k, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vkko']
-        compute = lambda: {
-            'Vkko': self.potential.single_channel_operators(k, diag=True, **qn),
-            'k': k,
-        }
-        Vkko = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-        
-        Vkko = jnp.squeeze(Vkko)
-        Vkqo = jnp.squeeze(Vkqo)
-        
-        operators = jnp.zeros((m+1, m+1, n), dtype=jnp.complex128)
-        operators = operators.at[0,0].set( Vkko )
-        operators = operators.at[0,1:].set( Vkqo )
-        operators = operators.at[1:,0].set( Vkqo )
-        operators = operators.at[1:,1:].set( Vqqo )
-        
-        return operators
-        
-        
-    def potential_operators_coupled(
-        self,
-        channel,
-        Elab # one element JAX-array for tracing
-    ):
-    
-        filebase = f"saved_potentials/{self.potential.name}_Nq{self.mesh.n_mesh}"
-        qn = self.channels.coupled[channel]
-        rtol = 0.0
-        atol = 1e-8
-        
-        m = self.mesh.n_mesh
-        n = self.potential.n_operators
-        k = self.momentum_pole(Elab)
-        
-        # load Vqqo
-        filename = filebase + f"_Vqqo_{channel}.npz"
-        validate = lambda data: (
-                data['Vqqo'].shape == (2, 2, m, m, n)
-            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vqqo']
-        compute = lambda: {
-            'Vqqo': self.potential.coupled_channel_operators(self.mesh.q, diag=False, **qn),
-            'q': self.mesh.q
-        }
-        Vqqo = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-
-        # load Vkqo
-        filename = filebase + f"_Vkqo_{channel}_{Elab:.3f}MeV.npz"
-        validate = lambda data: (
-            data['Vkqo'].shape == (2, 2, 1, m, n)
-            and jnp.allclose(data['k'], k, rtol=rtol, atol=atol)
-            and jnp.allclose(data['q'], self.mesh.q, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vkqo']
-        compute = lambda: {
-            'Vkqo': self.potential.coupled_channel_operators(k, self.mesh.q, **qn),
-            'k': k,
-            'q': self.mesh.q,
-        }
-        Vkqo = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-        
-        # load Vkko
-        filename = filebase + f"_Vkko_{channel}_{Elab:.3f}MeV.npz"
-        validate = lambda data: (
-            data['Vkko'].shape == (2, 2, 1, n)
-            and jnp.allclose(data['k'], k, rtol=rtol, atol=atol)
-        )
-        load = lambda data: data['Vkko']
-        compute = lambda: {
-            'Vkko': self.potential.coupled_channel_operators(k, diag=True, **qn),
-            'k': k,
-        }
-        Vkko = self.load_compute_write_potential(
-            filename, validate, load, compute
-        )
-        
-        Vkko = jnp.squeeze(Vkko)
-        Vkqo = jnp.squeeze(Vkqo)
-    
-        
-        operators = jnp.zeros((2, 2, m+1, m+1, n), dtype=jnp.complex128)
-        
-        operators = operators.at[0,0,0,0].set( Vkko[0,0] )
-        operators = operators.at[1,1,0,0].set( Vkko[1,1] )
-        operators = operators.at[0,1,0,0].set( Vkko[0,1] )
-        operators = operators.at[1,0,0,0].set( Vkko[1,0] )
-        
-        operators = operators.at[0,0,1:,0].set( Vkqo[0,0] )
-        operators = operators.at[1,1,1:,0].set( Vkqo[1,1] )
-        operators = operators.at[0,1,1:,0].set( Vkqo[1,0] ) # mp
-        operators = operators.at[1,0,0,1:].set( Vkqo[1,0] ) # pm
-
-        operators = operators.at[0,0,0,1:].set( Vkqo[0,0] )
-        operators = operators.at[1,1,0,1:].set( Vkqo[1,1] )
-        operators = operators.at[0,1,0,1:].set( Vkqo[0,1] ) # mp
-        operators = operators.at[1,0,1:,0].set( Vkqo[0,1] ) # pm
-        
-        operators = operators.at[0,0,1:,1:].set( Vqqo[0,0] )
-        operators = operators.at[1,1,1:,1:].set( Vqqo[1,1] )
-        operators = operators.at[0,1,1:,1:].set( Vqqo[0,1] )
-        operators = operators.at[1,0,1:,1:].set( Vqqo[1,0] )
-        
-        operators = jnp.transpose(operators, (0,2,1,3,4))
-        operators = jnp.reshape(operators, (2*m+2, 2*m+2, n))
-
-        return operators
-
-
