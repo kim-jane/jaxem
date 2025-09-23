@@ -104,60 +104,48 @@ class Solver:
             in_axes=(None,0,None)
         )(LECs, icc, ik)
         
-        return Tckq, Tcckq
+        return Tckq, Tcckq # fm^2
+
 
     @partial(jax.jit, static_argnames=("self"))
-    def phase_shifts(
+    def onshell_t(
         self,
-        t: Tuple[jnp.ndarray]
+        LECs: jnp.ndarray,
     ):
     
-        single_output, coupled_output = self.scattering_params(t)
-        return single_output[0], coupled_output[0]
+        Tckq, Tcckq = self.t(LECs)
         
-    @partial(jax.jit, static_argnames=("self"))
-    def total_cross_sections(
-        self,
-        t: Tuple[jnp.ndarray]
-    ):
-        single_output, coupled_output = self.scattering_params(t)
-        
-        sigma_ck = single_output[2]
-        sigma_cck = coupled_output[2]
-        
-        sigma_tot = jnp.sum(sigma_ck, axis=0) + jnp.sum(sigma_ck, axis=0)
-        
-        return sigma_tot * 10. # convert from fm^2 to mb
-    
-        
+        return Tckq[:,:,0], Tcckq[:,:,:,:,0] # fm^2
+
+
     @partial(jax.jit, static_argnames=("self"))
     def scattering_params(
         self,
-        t: Tuple[jnp.ndarray]
+        t_onshell: Tuple[jnp.ndarray]
     ):
     
-        Tckq, Tcckq = t
+        Tck, Tcck = t_onshell # fm^2
         
-        # single channels
-        Tck = Tckq[:,:,0]
-        hc = self.potential.hbarc
+        hc = self.potential.hbarc # MeV fm
         k = self.k # fm^-1
         m = self.potential.mass # MeV
         f = self.potential.factor # 1
         Jc = self.channels.single_quantum_nums[:,0]
         Jcc = self.channels.coupled_quantum_nums[:,0]
         
+        # single channels
         Sck = 1 - 1j * jnp.pi * f * m * k * Tck / hc
         delta_ck = 0.5 * jnp.arctan2(Sck.imag, Sck.real)
         eta_ck = jnp.abs(Sck)
         sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * (1-Sck).real / k[None,:]**2 # fm^2
-        single_output = delta_ck, eta_ck, sigma_ck
+        sigma_ck *= 10. # convert from fm^2 to mb
+        single_output = jnp.stack((delta_ck, eta_ck, sigma_ck))
 
         # coupled channels
-        Tcck = Tcckq[:,:,:,:,0]
         Scck = - 1j * jnp.pi * f * m * k[None,:,None,None] * Tcck / hc
-        Scck = Scck.at[:,:,0,0].set(1.0)
-        Scck = Scck.at[:,:,1,1].set(1.0)
+        Scck = Scck.at[:,:,0,0].add(1.0)
+        Scck = Scck.at[:,:,1,1].add(1.0)
+        
 
         Z = 0.5 * ( Scck[:,:,0,1] + Scck[:,:,1,0] ) / jnp.sqrt(Scck[:,:,0,0] * Scck[:,:,1,1])
         epsilon = -0.25 * 1j * jnp.log( (1 + Z) / (1 - Z) )
@@ -176,10 +164,14 @@ class Solver:
         eta_plus = jnp.abs(S_plus)
         
         sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * (2 - S_minus - S_plus).real / k[None,:]**2
+        sigma_cck *= 10. # convert from fm^2 to mb        
+        coupled_output = jnp.stack((delta_minus, delta_plus, epsilon, eta_minus, eta_plus, sigma_cck))
+
         
-        coupled_output = (delta_minus, delta_plus, epsilon), (eta_minus, eta_plus), sigma_cck
+        # total cross section
+        sigma_tot = jnp.sum(sigma_ck, axis=0) + jnp.sum(sigma_cck, axis=0)
         
-        return single_output, coupled_output
+        return sigma_tot, single_output, coupled_output
     
 
     
@@ -261,11 +253,15 @@ class Solver:
         
         Vqq = Vqq.at[:,:,0,0].set( V_onshell )
         
-        Vqq = Vqq.at[:,:,1:,0].set( V_halfshell )
+        Vqq = Vqq.at[0,0,1:,0].set( V_halfshell[0,0] )
+        Vqq = Vqq.at[1,1,1:,0].set( V_halfshell[1,1] )
         Vqq = Vqq.at[0,1,1:,0].set( V_halfshell[1,0] )
+        Vqq = Vqq.at[1,0,0,1:].set( V_halfshell[1,0] )
         
-        Vqq = Vqq.at[:,:,0,1:].set( V_halfshell )
-        Vqq = Vqq.at[0,1,1:,0].set( V_halfshell[0,1] )
+        Vqq = Vqq.at[0,0,0,1:].set( V_halfshell[0,0] )
+        Vqq = Vqq.at[1,1,0,1:].set( V_halfshell[1,1] )
+        Vqq = Vqq.at[0,1,0,1:].set( V_halfshell[0,1] )
+        Vqq = Vqq.at[1,0,1:,0].set( V_halfshell[0,1] )
         
         Vqq = Vqq.at[:,:,1:,1:].set( V_offshell )
         
@@ -295,7 +291,7 @@ class Solver:
         Tq = self.coupled_channel_t(LECs, cc, k)
         
         return jnp.concatenate(
-            (Tq[0,0], Tq[1,0], Tq[1,0], Tq[1,1]),
+            (Tq[0,0], Tq[1,0], Tq[0,1], Tq[1,1]),
             axis=0
         )
         
@@ -309,20 +305,23 @@ class Solver:
         nq = self.mesh.n_mesh
         no = self.potential.n_operators
         
-        # dot LECs with precomputed operators
         V_onshell = self.Vccko[cc,:,:,k]
         V_halfshell = self.Vcckqo[cc,:,:,k]
         V_offshell  = self.Vccqqo[cc]
-        
+
         Vqqo = jnp.zeros((2, 2, nq+1, nq+1, no), dtype=jnp.complex128)
         
         Vqqo = Vqqo.at[:,:,0,0].set( V_onshell )
         
-        Vqqo = Vqqo.at[:,:,1:,0].set( V_halfshell )
+        Vqqo = Vqqo.at[0,0,1:,0].set( V_halfshell[0,0] )
+        Vqqo = Vqqo.at[1,1,1:,0].set( V_halfshell[1,1] )
         Vqqo = Vqqo.at[0,1,1:,0].set( V_halfshell[1,0] )
+        Vqqo = Vqqo.at[1,0,0,1:].set( V_halfshell[1,0] )
         
-        Vqqo = Vqqo.at[:,:,0,1:].set( V_halfshell )
-        Vqqo = Vqqo.at[0,1,1:,0].set( V_halfshell[0,1] )
+        Vqqo = Vqqo.at[0,0,0,1:].set( V_halfshell[0,0] )
+        Vqqo = Vqqo.at[1,1,0,1:].set( V_halfshell[1,1] )
+        Vqqo = Vqqo.at[0,1,0,1:].set( V_halfshell[0,1] )
+        Vqqo = Vqqo.at[1,0,1:,0].set( V_halfshell[0,1] )
         
         Vqqo = Vqqo.at[:,:,1:,1:].set( V_offshell )
         
@@ -330,6 +329,7 @@ class Solver:
         Vqqo = jnp.reshape(Vqqo, (2*nq+2, 2*nq+2, no))
         
         Gq = jnp.tile(self.Gkq[k,:], (2,))
+
         VGqqo = Vqqo * Gq[None,:,None]
         Vqo = Vqqo[:,[0,nq+1],:]
         

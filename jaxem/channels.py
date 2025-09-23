@@ -49,6 +49,7 @@ class Channels:
                     for T in [0, 1] if Tz == 0 else [1]:
                         if (abs(L-S) <= J <= L+S) and (L + S + T) % 2 == 1:
                             single_channels.append((J, S, T, Tz, L))
+
                             single_labels.append(f"{2*S+1}{spect_not[L]}{J}")
                     
 
@@ -90,13 +91,8 @@ class Channels:
             for i in range(self.n_single):
                 J, S, T, Tz, L = self.single_quantum_nums[i]
                 label = self.single_labels[i]
+                print(f"\t{i} --- {self.isospin_channel}, {label} --- J = {J}, S = {S}, T = {T}, L = {L}")
 
-                if Tz == 1:
-                    print(f"\t{i} --- {label}, pp --- J = {J}, S = {S}, T = {T}, L = {L}")
-                elif Tz == -1:
-                    print(f"\t{i} --- {label}, nn --- J = {J}, S = {S}, T = {T}, L = {L}")
-                else:
-                    print(f"\t{i} --- {label}, np --- J = {J}, S = {S}, T = {T}, L = {L}")
     
         
     def print_coupled_channels(self):
@@ -106,10 +102,4 @@ class Channels:
             for i in range(self.n_coupled):
                 J, S, T, Tz, L1, L2 = self.coupled_quantum_nums[i]
                 label = self.coupled_labels[i]
-
-                if Tz == 1:
-                    print(f"\t{i} --- {label}, pp --- J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
-                elif Tz == -1:
-                    print(f"\t{i} --- {label}, nn --- J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
-                else:
-                    print(f"\t{i} --- {label}, np --- J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")
+                print(f"\t{i} --- {self.isospin_channel}, {label} --- J = {J}, S = {S}, T = {T}, L = {L1}, L' = {L2}")

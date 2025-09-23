@@ -8,61 +8,30 @@ from contextlib import contextmanager
 from .solver import Solver
 from typing import Tuple, Dict, List, Optional
 import matplotlib.pyplot as plt
+from jax.scipy.optimize import minimize
 
 class Sampler:
 
     def __init__(
         self,
         emulator,
-        models,
-        metas,
-        Elabs,
         sigmas,
         prior_scale : float = 0.5,
         likelihood_scale : float = 0.1,
         static_indices = None
     ):
         self.emulator = emulator
-        self.solver = emulator.solver
-        self.potential = emulator.potential
-        self.channels = emulator.channels
-        self.Elabs = Elabs
-        self.sigmas = sigmas / 10.0 # convert mb to fm^2
-        self.n_energies = Elabs.shape[0]
+        self.sigmas = sigmas
         self.prior_scale = prior_scale
-        self.prior_variance = (self.prior_scale * self.potential.LECs)**2
         self.likelihood_scale = likelihood_scale
         self.static_indices = static_indices or []
         
-    
-        
-        self.models = models
-        self.metas = metas
-        
-        print("Setting up all solvers")
-        all_single_systems = []
-        all_coupled_solvers = []
-        
-        for Elab in Elabs:
-
-            single_systems_for_Elab = []
-            
-            for channel in self.channels.single.keys():
-            
-                single_systems_for_Elab.append( self.solver.setup_single_channel(channel, Elab) )
-
-            coupled_solvers_for_Elab = []
-            
-            for channel in self.channels.coupled.keys():
-            
-                coupled_solvers_for_Elab.append( self.solver.setup_coupled_channel(channel, Elab) )
-                
-                
-            all_single_systems.append( single_systems_for_Elab )
-            all_coupled_solvers.append( coupled_solvers_for_Elab )
-        
-        self.single_systems = all_single_systems
-        self.coupled_solvers = all_coupled_solvers
+        self.solver = emulator.solver
+        self.potential = emulator.potential
+        self.channels = emulator.channels
+        self.Elabs = self.solver.Elabs
+        self.n_poles = self.solver.n_poles
+        self.prior_variance = (self.prior_scale * self.potential.LECs)**2
         
 
     def sample(
@@ -74,119 +43,131 @@ class Sampler:
         n_samples_per_chain = 500,
         init_noise = 0.002,
         step_scale = 0.005,
-        use_emulators = True
+        use_emulator = True
     ):
     
-        
-        
-        if use_emulators:
-            batch_log_posterior = self.batch_log_posterior_emulated
+        if use_emulator:
+            onshell_t_func = self.emulator.onshell_t
             
         else:
-            batch_log_posterior = self.batch_log_posterior_solved
-    
-    
-        scaled_step_size = step_scale * self.potential.LECs
+            onshell_t_func = self.solver.onshell_t
+        
+        
+        # get MAP LECs
+        @jax.jit
+        def objective(LECs):
+        
+            for i in self.static_indices:
+                LECs = LECs.at[i].set(self.potential.LECs[i])
+                
+            t_onshell = onshell_t_func(LECs)
+            sigma_tot, _, _ = self.solver.scattering_params(t_onshell)
+            return -self.log_posterior(LECs, sigma_tot)
+
+        self.MAP_LECs = minimize(
+            objective,
+            x0=self.potential.LECs,
+            method='BFGS',
+            tol=1e-8
+        ).x
+
+        print("Best Fit LECs = ", self.potential.LECs)
+        print("MAP LECs = ", self.MAP_LECs)
+        
+        
+        # get best step size in each direction using hessian at MAP
+        H = jax.hessian(objective)(self.MAP_LECs)
+        H = 0.5 * (H + H.T)
+        
+        step = jnp.sqrt(1.0 / jnp.diag(H))
+        
+        #step = self.potential.LECs # for debugging
         
         for i in self.static_indices:
-            scaled_step_size = scaled_step_size.at[i].set(0.0)
-        
+            step = step.at[i].set(0.0)
+            
+        print("Step = ", step)
+            
+        batch_onshell_t = jax.jit(jax.vmap(onshell_t_func, in_axes=(0,)))
+        batch_scattering_params = jax.jit(jax.vmap(self.solver.scattering_params, in_axes=(0,)))
     
+        @jax.jit
         def propagate_chains(state, _):
             
-            key, chains_o, logP_o, sigmas_o, acc_o = state
+            key, chains_o, logP_o, sigma_tot_o, single_params_o, coupled_params_o, acc_o = state
             
-            # propose moves for all chains
+            # propose new chains
             key, subkey = jax.random.split(key)
-            
-            chains_n = chains_o + scaled_step_size[None,:] * jax.random.normal(
-                subkey, shape=(n_chains, self.potential.n_operators)
-            )
-            
-            logP_n, sigmas_n = batch_log_posterior(chains_n)
-            #logP_n = self.batch_log_prior(chains_n)
-            
-            # accept or reject
+            chains_n = jax.random.normal(subkey, (n_chains, self.potential.n_operators))
+            chains_n = chains_o + step_scale * chains_n * step[None, :]
+
+            # forward model
+            t_onshell = batch_onshell_t(chains_n)
+            sigma_tot_n, single_params_n, coupled_params_n = batch_scattering_params(t_onshell)
+            logP_n = self.batch_log_posterior(chains_n, sigma_tot_n)
+
+            # accept/reject
             key, subkey = jax.random.split(key)
-            log_unif = jnp.log(jax.random.uniform(subkey, shape=(n_chains,)))
-            accept = log_unif < (logP_n - logP_o)
-            
-            chains_o = jnp.where(accept[:,None], chains_n, chains_o)
+            accept = jnp.log(jax.random.uniform(subkey, (n_chains,))) < (logP_n - logP_o)
+
+            def choose(new, old):
+                return jnp.where(accept[(...,) + (None,) * (new.ndim - 1)], new, old)
+
+            # update all state pieces in one place
+            chains_o = choose(chains_n, chains_o)
+            sigma_tot_o = choose(sigma_tot_n, sigma_tot_o)
             logP_o = jnp.where(accept, logP_n, logP_o)
-            sigmas_o = jnp.where(accept[:,None], sigmas_n, sigmas_o)
+            single_params_o = choose(single_params_n, single_params_o)
+            coupled_params_o = choose(coupled_params_n, coupled_params_o)
             acc_o = acc_o + accept.astype(jnp.int32)
+
+            new_state = (key, chains_o, logP_o, sigma_tot_o, single_params_o, coupled_params_o, acc_o)
             
-            state = (key, chains_o, logP_o, sigmas_o, acc_o)
-            
-            return state, (chains_o, sigmas_o)
+            return new_state, (chains_o, sigma_tot_o, single_params_o, coupled_params_o)
         
     
         key = jax.random.PRNGKey(seed)
         key, subkey = jax.random.split(key)
         chains_o = jax.random.normal(subkey, shape=(n_chains, self.potential.n_operators))
-        chains_o = self.potential.LECs[None,:] * (1 + init_noise * chains_o)
+        #chains_o = self.MAP_LECs[None,:] + init_noise * chains_o * step[None,:]
+        chains_o = self.potential.LECs[None,:] + init_noise * chains_o * step[None,:]
         
-        logP_o, sigmas_o = batch_log_posterior(chains_o)
+        t_onshell = batch_onshell_t(chains_o)
+        sigma_tot_o, single_params_o, coupled_params_o = batch_scattering_params(t_onshell)
+        logP_o = self.batch_log_posterior(chains_o, sigma_tot_o)
         acc_o = jnp.zeros((n_chains,), jnp.int32)
         
-        state_o = (key, chains_o, logP_o, sigmas_o, acc_o)
-        
-        '''
-                
-        # run all chains
-        total_steps = n_skip * (n_equil + n_samples_per_chain)
-        state_n, (chain_history, sigma_history) = jax.lax.scan(
-            propagate_chains,
-            state_o,
-            xs=None,
-            length=total_steps
-        )
-        
-        key, chains_n, logP_n, sigmas_n, acc_n = state_n
-        chain_history = chain_history[n_skip*n_equil::n_skip]
-        chain_history = jnp.reshape(chain_history, (-1, self.potential.n_operators))
-        sigma_history = sigma_history[n_skip*n_equil::n_skip]
-        sigma_history = jnp.reshape(sigma_history, (-1, self.n_energies))
-                
-        return chain_history, sigma_history, jnp.mean(acc_n)/total_steps
-        
-        '''
-        
-        # 1) burn-in (and thinning within burn-in): run n_equil * n_skip steps, store nothing
+        state_o = (key, chains_o, logP_o, sigma_tot_o, single_params_o, coupled_params_o, acc_o)
+
         burn_steps = n_equil * n_skip
         state_burn, _ = jax.lax.scan(propagate_chains, state_o, xs=None, length=burn_steps)
 
-        # helper: advance n_skip steps (no outputs), then collect current state
+        @jax.jit
         def advance_and_collect(state, _):
             state, _ = jax.lax.scan(propagate_chains, state, xs=None, length=n_skip)
-            key, chains, logP, sigmas, acc = state
-            # collect the thinned draw
-            return state, (chains, sigmas)
+            (key, chains_o, logP_o, sigma_tot_o, single_params_o, coupled_params_o, acc_o) = state
+            return state, (chains_o, sigma_tot_o, single_params_o, coupled_params_o)
 
-        # 2) sampling: repeat (advance n_skip, then collect) n_samples_per_chain times
-        state_end, (chains_collected, sigmas_collected) = jax.lax.scan(
+        state_end, (chains, sigma_tot, single_params, coupled_params) = jax.lax.scan(
             advance_and_collect, state_burn, xs=None, length=n_samples_per_chain
         )
 
-        # flatten across chains if you want the same return shape as before
-        chain_history = chains_collected.reshape(-1, self.potential.n_operators)
-        sigma_history = sigmas_collected.reshape(-1, self.n_energies)
+        # flatten the chain and sigma_tot arrays
+        chains = chains.reshape(-1, self.potential.n_operators)
+        sigma_tot = sigma_tot.reshape(-1, self.n_poles)
+        single_params = single_params.reshape(-1, 3, self.channels.n_single, self.n_poles)
+        single_params = jnp.transpose(single_params, (1,0,2,3))
+        coupled_params = coupled_params.reshape(-1, 6, self.channels.n_coupled, self.n_poles)
+        coupled_params = jnp.transpose(coupled_params, (1,0,2,3))
 
-        # acceptance over the whole run
-        _, _, _, _, acc_end = state_end
+        acc_end = state_end[-1]
         total_steps = n_skip * (n_equil + n_samples_per_chain)
         accept_rate = jnp.mean(acc_end) / total_steps
 
-        return chain_history, sigma_history, accept_rate
+        return chains, sigma_tot, single_params, coupled_params, accept_rate
     
-    
-    def batch_log_prior(
-        self,
-        LECs_batch
-    ):
-        return jax.vmap(self.log_prior, in_axes=(0,))(LECs_batch)
 
-
+    @partial(jax.jit, static_argnames=("self"))
     def log_prior(
         self,
         LECs
@@ -197,52 +178,7 @@ class Sampler:
         )
         return jnp.sum(logP)
 
-    def batch_log_likelihood(
-        self,
-        LECs_batch
-    ):
-        return jax.vmap(self.log_likelihood, in_axes=(0,))(LECs_batch)
-        
-    def emulated_cross_sections(
-        self,
-        LECs
-    ):
-    
-        sigmas = jnp.zeros(self.n_energies)
-        
-        
-        for i in range(self.n_energies):
-            sigmas = sigmas.at[i].set( self.emulator.total_cross_section(
-                self.models[i], self.metas[i], LECs=LECs
-                )
-            )
-            
-        
-        #sigmas = jax.vmap(self.emulator.total_cross_section, in_axes=(0,0,None))(self.models, self.metas, LECs)
-        return sigmas
-        
-        
-    
-    def solved_cross_sections(
-        self,
-        LECs
-    ):
-    
-        sigmas = jnp.zeros(self.n_energies)
-        
-        for i in range(self.n_energies):
-            sigmas = sigmas.at[i].set( self.solver.total_cross_section(
-                self.Elabs[i], LECs, self.single_systems[i], self.coupled_solvers[i]
-                )
-            )
-        
-        #sigmas = jax.vmap(self.solver.total_cross_section, in_axes=(0,None))(self.Elabs, LECs)
-        return sigmas
-    
-    
-        
-
-
+    @partial(jax.jit, static_argnames=("self"))
     def log_likelihood(
         self,
         sigmas
@@ -257,52 +193,20 @@ class Sampler:
         
         return jnp.sum(logP)
     
-
-    def log_likelihood_solved(
+    
+    @partial(jax.jit, static_argnames=("self"))
+    def log_posterior(
         self,
-        LECs
+        LECs,
+        sigmas
     ):
-        sigmas = self.solved_cross_sections(LECs)
-        logP = self.log_likelihood(sigmas)
-        return logP, sigmas
-        
-    def log_likelihood_emulated(
-        self,
-        LECs
-    ):
-        sigmas = self.emulated_cross_sections(LECs)
-        logP = self.log_likelihood(sigmas)
-        return logP, sigmas
+        return self.log_prior(LECs) + self.log_likelihood(sigmas)
         
 
-    def log_posterior_emulated(
-        self,
-        LECs
-    ):
-        logP, sigmas = self.log_likelihood_emulated(LECs)
-        return logP + self.log_prior(LECs), sigmas
-        
-        
-    def log_posterior_solved(
-        self,
-        LECs
-    ):
-        logP, sigmas = self.log_likelihood_solved(LECs)
-        return logP + self.log_prior(LECs), sigmas
-        
-        
-    def batch_log_posterior_emulated(
+    @partial(jax.jit, static_argnames=("self"))
+    def batch_log_posterior(
         self,
         LECs_batch,
-        
+        sigmas_batch
     ):
-        return jax.vmap(self.log_posterior_emulated, in_axes=(0,))(LECs_batch)
-        
-
-    def batch_log_posterior_solved(
-        self,
-        LECs_batch,
-        
-    ):
-        return jax.vmap(self.log_posterior_solved, in_axes=(0,))(LECs_batch)
-        
+        return jax.vmap(self.log_posterior, in_axes=(0,0))(LECs_batch, sigmas_batch)

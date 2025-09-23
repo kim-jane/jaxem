@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "jaxem"
 version = "0.1.0"
-description = "A JAX-based emulator package"
+description = "A JAX-based nucleon-nucleon scattering package"
 requires-python = ">=3.8"
 dependencies = [
     "numpy",
@@ -16,7 +16,8 @@ dependencies = [
     "jupyterlab",
     "jax",
     "scikit-learn",
-    "pandas"
+    "pandas",
+    "corner"
 ]
 
 [tool.setuptools]
