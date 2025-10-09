@@ -116,15 +116,32 @@ class Solver:
         Tckq, Tcckq = self.t(LECs)
         
         return Tckq[:,:,0], Tcckq[:,:,:,:,0] # fm^2
+        
 
+    @partial(jax.jit, static_argnames=("self"))
+    def onshell_t_and_err(
+        self,
+        LECs: jnp.ndarray,
+    ):
+        
+        Tck, Tcck = self.onshell_t(LECs)
+        
+        nc = self.channels.n_single
+        ncc = self.channels.n_coupled
+        nk = self.n_poles
+        
+        return (Tck, Tcck), (jnp.zeros((nc, nk)), jnp.zeros((ncc, nk)))
+        
 
     @partial(jax.jit, static_argnames=("self"))
     def scattering_params(
         self,
-        t_onshell: Tuple[jnp.ndarray]
+        t_and_err_onshell: Tuple[jnp.ndarray]
     ):
     
+        t_onshell, err_t_onshell = t_and_err_onshell
         Tck, Tcck = t_onshell # fm^2
+        err_Tck, err_Tcck = err_t_onshell
         
         hc = self.potential.hbarc # MeV fm
         k = self.k # fm^-1
@@ -139,13 +156,18 @@ class Solver:
         eta_ck = jnp.abs(Sck)
         sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * (1-Sck).real / k[None,:]**2 # fm^2
         sigma_ck *= 10. # convert from fm^2 to mb
+        
+        # error in sigma_ck, err_Tck is real
+        err_Sck = jnp.pi * f * m * k * err_Tck / hc
+        err_sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * err_Sck / k[None,:]**2 # fm^2
+        err_sigma_ck *= 10. # convert from fm^2 to mb
+        
         single_output = jnp.stack((delta_ck, eta_ck, sigma_ck))
 
         # coupled channels
         Scck = - 1j * jnp.pi * f * m * k[None,:,None,None] * Tcck / hc
         Scck = Scck.at[:,:,0,0].add(1.0)
         Scck = Scck.at[:,:,1,1].add(1.0)
-        
 
         Z = 0.5 * ( Scck[:,:,0,1] + Scck[:,:,1,0] ) / jnp.sqrt(Scck[:,:,0,0] * Scck[:,:,1,1])
         epsilon = -0.25 * 1j * jnp.log( (1 + Z) / (1 - Z) )
@@ -164,14 +186,22 @@ class Solver:
         eta_plus = jnp.abs(S_plus)
         
         sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * (2 - S_minus - S_plus).real / k[None,:]**2
-        sigma_cck *= 10. # convert from fm^2 to mb        
+        sigma_cck *= 10. # convert from fm^2 to mb
+        
+        # error in sigma_cck
+        err_Scck = jnp.pi * f * m * k[None,:,None,None] * err_Tcck / hc
+        err_sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * err_Scck / k[None,:]**2
+        err_sigma_cck *= 10. # convert from fm^2 to mb
+        
         coupled_output = jnp.stack((delta_minus, delta_plus, epsilon, eta_minus, eta_plus, sigma_cck))
 
-        
         # total cross section
         sigma_tot = jnp.sum(sigma_ck, axis=0) + jnp.sum(sigma_cck, axis=0)
         
-        return sigma_tot, single_output, coupled_output
+        # error in total cross section
+        err_sigma_tot = jnp.sqrt( jnp.sum(err_sigma_ck**2, axis=0) + jnp.sum(err_sigma_cck**2, axis=0) )
+        
+        return sigma_tot, err_sigma_tot, single_output, coupled_output
     
 
     

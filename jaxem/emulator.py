@@ -44,8 +44,7 @@ class Emulator:
         self.t_cck = nested_Nones(ncc, nk)
         self.error_ck  = nested_Nones(nc, nk)
         self.error_cck = nested_Nones(ncc, nk)
-        self.nbasis_ck  = nested_Nones(nc, nk)
-        self.nbasis_cck = nested_Nones(ncc, nk)
+
         
 
     def fit(
@@ -54,7 +53,7 @@ class Emulator:
         rom='g',
         mode='pod',
         n_init=2,
-        n_max=40,
+        n_max=100,
         tol=1e-5
     ):
         for k in range(self.solver.n_poles):
@@ -89,6 +88,8 @@ class Emulator:
         
         self.estimate_error_ck = make_grid_funcs(self.error_ck)
         self.estimate_error_cck = make_grid_funcs(self.error_cck)
+        
+
 
 
     def fit_single_channel_pod_galerkin(
@@ -173,7 +174,6 @@ class Emulator:
         self.t_ck[c][k] = jax.jit(emulate_t)
         self.onshell_t_ck[c][k] = jax.jit(emulate_onshell_t)
         self.error_ck[c][k] = jax.jit(estimate_error)
-        self.nbasis_ck[c][k] = n_basis
     
         
 
@@ -264,9 +264,10 @@ class Emulator:
         self.t_cck[cc][k] = jax.jit(emulate_t)
         self.onshell_t_cck[cc][k] = jax.jit(emulate_onshell_t)
         self.error_cck[cc][k] = jax.jit(estimate_error)
-        self.nbasis_cck[cc][k] = n_basis
         
         
+        
+
 
     @partial(jax.jit, static_argnames=("self"))
     def t(
@@ -301,10 +302,29 @@ class Emulator:
         
         Tck = self.emulate_onshell_t_ck(LECs)
         Tcck = self.emulate_onshell_t_cck(LECs)
-        print("Tcck =", Tcck.shape)
         Tcck = Tcck.reshape(ncc, nk, 2, 2)
 
         return Tck, Tcck
+        
+        
+    @partial(jax.jit, static_argnames=("self"))
+    def onshell_t_and_err(
+        self,
+        LECs: jnp.ndarray,
+    ):
+        
+        ncc = self.channels.n_coupled
+        nk = self.solver.n_poles
+        
+        Tck = self.emulate_onshell_t_ck(LECs)
+        Tcck = self.emulate_onshell_t_cck(LECs)
+        Tcck = Tcck.reshape(ncc, nk, 2, 2)
+        
+        err_Tck = self.estimate_error_ck(LECs)
+        err_Tcck = self.estimate_error_cck(LECs)
+        #err_Tcck = err_Tcck.reshape(ncc, nk) # redundant 
+
+        return (Tck, Tcck), (err_Tck, err_Tcck)
 
 
 
@@ -382,3 +402,42 @@ class Emulator:
         
         self.estimate_error_ck = make_grid_funcs(self.error_ck)
         self.estimate_error_cck = make_grid_funcs(self.error_cck)
+
+
+    def load_compute_write_potential(
+        self,
+        filename,
+        validate,
+        load,
+        compute,
+    ):
+        print("")
+        
+        if self.load_potential and glob.glob(filename):
+            print(f"Loading file: {filename}")
+            t = time.perf_counter()
+            data = jnp.load(filename)
+            valid_cache = validate(data)
+            t = time.perf_counter() - t
+            print(f"Done in {t:.5f} sec. Valid: {valid_cache}.")
+            
+        else:
+            valid_cache = False
+            print(f"File not found: {filename}")
+            
+        if valid_cache:
+            V = load(data)
+            
+        else:
+            print(f"Computing potential matrix elements...")
+            t = time.perf_counter()
+            kwargs = compute()
+            V = next(iter(kwargs.values()))
+            t = time.perf_counter() - t
+            print(f"Done in {t:.5f} sec.")
+            
+            if self.write_potential:
+                print(f"Writing potential to file: {filename}")
+                jnp.savez(filename, **kwargs)
+        
+        return V
