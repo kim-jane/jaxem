@@ -1,3 +1,7 @@
+"""
+This script solves the Lippmann-Schwinger 
+"""
+
 import jax
 jax.config.update("jax_enable_x64", True)
 import jax.numpy as jnp
@@ -13,7 +17,7 @@ import corner
 n_mesh = 40
 Jmax = 2
 Elabs = jnp.linspace(0.001, 300.0, 10)
-Elabs = [0.1, 1, 2, 5, 10, 20, 50, 100]
+Elabs = [0.1, 1, 2, 5, 10, 20, 50, 100, 200, 300]
 
 mesh = TRNS(n_mesh=n_mesh)
 channels = Channels(isospin_channel='np', Jmax=Jmax)
@@ -21,11 +25,9 @@ potential = Chiral()
 solver = Solver(mesh, channels, potential, Elabs)
 
 
-    
-out = solver.coupled_channel_t(potential.LECs, 0, 9)
 
-t_onshell = solver.onshell_t(potential.LECs)
-sigma_tot, single_output, coupled_output = solver.scattering_params(t_onshell)
+t_and_err_onshell = solver.onshell_t_and_err(potential.LECs)
+sigma_tot, err_sigma_tot, single_output, coupled_output = solver.scattering_params(t_and_err_onshell)
 delta_ck, eta_ck, sigma_ck = single_output
 delta_minus, delta_plus, epsilon, eta_minus, eta_plus, sigma_cck = coupled_output
 

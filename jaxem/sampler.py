@@ -25,6 +25,7 @@ class Sampler:
         self.prior_scale = prior_scale
         self.likelihood_scale = likelihood_scale
         self.static_indices = static_indices or []
+        self.static_indices = jnp.array(self.static_indices, dtype=int)
         
         self.solver = emulator.solver
         self.potential = emulator.potential
@@ -55,8 +56,7 @@ class Sampler:
         # get MAP LECs
         @jax.jit
         def objective(LECs):
-            for i in self.static_indices:
-                LECs = LECs.at[i].set(self.potential.LECs[i])
+            LECs = LECs.at[self.static_indices].set(self.potential.LECs[self.static_indices])
             onshell_t_and_err = onshell_t_and_err_func(LECs)
             sigma_tot, err_sigma_tot, _, _ = self.solver.scattering_params(onshell_t_and_err)
             return -self.log_posterior(LECs, sigma_tot, err_sigma_tot)
@@ -67,7 +67,7 @@ class Sampler:
             objective,
             x0=self.potential.LECs,
             method='BFGS',
-            tol=1e-5
+            options={'gtol': 1e-5}
         ).x
 
         print("Best Fit LECs = ", self.potential.LECs)
@@ -78,14 +78,24 @@ class Sampler:
         H = jax.hessian(objective)(self.MAP_LECs)
         H = 0.5 * (H + H.T)
         
-        step = jnp.sqrt(1.0 / jnp.diag(H))
+        
+        jitter = 1e-6
+        Sigma = jnp.linalg.inv(H + jitter * jnp.eye(H.shape[0]))
+        print("Sigma = ", Sigma)
+        L = jnp.linalg.cholesky(Sigma)
+        L = L.at[self.static_indices,:].set(jnp.zeros((self.static_indices.shape[0], L.shape[1])))
+        print("L = ", L)
+        
+        print("Step = ", L @ jnp.ones(L.shape[1]))
         
         #step = self.potential.LECs # for debugging
         
-        for i in self.static_indices:
-            step = step.at[i].set(0.0)
-            
-        print("Step = ", step)
+        #step = jnp.sqrt(1.0 / jnp.diag(H)) # uncorrelated proposals
+        #step = step.at[self.static_indices].set(jnp.zeros_like(self.static_indices))
+        
+        #print("Step = ", step)
+        #print("Scaled step = ", step_scale * step)
+        
             
         batch_onshell_t_and_err = jax.jit(jax.vmap(onshell_t_and_err_func, in_axes=(0,)))
         batch_scattering_params = jax.jit(jax.vmap(self.solver.scattering_params, in_axes=(0,)))
@@ -98,7 +108,8 @@ class Sampler:
             # propose new chains
             key, subkey = jax.random.split(key)
             chains_n = jax.random.normal(subkey, (n_chains, self.potential.n_operators))
-            chains_n = chains_o + step_scale * chains_n * step[None, :]
+            #chains_n = chains_o + step_scale * chains_n * step[None, :] # for uncorrelated proposals
+            chains_n = chains_o + step_scale * jnp.einsum('ij,cj->ci', L, chains_n)
 
             # forward model
             onshell_t_and_err = batch_onshell_t_and_err(chains_n)
@@ -129,8 +140,8 @@ class Sampler:
         key = jax.random.PRNGKey(seed)
         key, subkey = jax.random.split(key)
         chains_o = jax.random.normal(subkey, shape=(n_chains, self.potential.n_operators))
-        chains_o = self.MAP_LECs[None,:] + init_noise * chains_o * step[None,:]
-        #chains_o = self.potential.LECs[None,:] + init_noise * chains_o * step[None,:]
+        #chains_o = self.MAP_LECs[None,:] + init_noise * chains_o * step[None,:]
+        chains_o = self.MAP_LECs[None,:] + init_noise * jnp.einsum('ci,ij->cj', chains_o, L)
         
         onshell_t_and_err = batch_onshell_t_and_err(chains_o)
         sigma_tot_o, err_sigma_tot_o, single_params_o, coupled_params_o = batch_scattering_params(onshell_t_and_err)

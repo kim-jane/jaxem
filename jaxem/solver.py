@@ -19,7 +19,8 @@ class Solver:
         potential: Potential,
         Elabs: List,
         write_potential: bool = True,
-        load_potential: bool = True
+        load_potential: bool = True,
+        setup: bool = True
     ):
     
         self.mesh = mesh
@@ -29,7 +30,8 @@ class Solver:
         self.write_potential = write_potential
         self.load_potential = load_potential
         
-        self.setup()
+        if setup:
+            self.setup()
         
     
     def setup(self):
@@ -136,12 +138,12 @@ class Solver:
     @partial(jax.jit, static_argnames=("self"))
     def scattering_params(
         self,
-        t_and_err_onshell: Tuple[jnp.ndarray]
+        t_and_err_onshell: Tuple[jnp.ndarray],
     ):
     
         t_onshell, err_t_onshell = t_and_err_onshell
+        
         Tck, Tcck = t_onshell # fm^2
-        err_Tck, err_Tcck = err_t_onshell
         
         hc = self.potential.hbarc # MeV fm
         k = self.k # fm^-1
@@ -157,10 +159,6 @@ class Solver:
         sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * (1-Sck).real / k[None,:]**2 # fm^2
         sigma_ck *= 10. # convert from fm^2 to mb
         
-        # error in sigma_ck, err_Tck is real
-        err_Sck = jnp.pi * f * m * k * err_Tck / hc
-        err_sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * err_Sck / k[None,:]**2 # fm^2
-        err_sigma_ck *= 10. # convert from fm^2 to mb
         
         single_output = jnp.stack((delta_ck, eta_ck, sigma_ck))
 
@@ -188,20 +186,32 @@ class Solver:
         sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * (2 - S_minus - S_plus).real / k[None,:]**2
         sigma_cck *= 10. # convert from fm^2 to mb
         
-        # error in sigma_cck
-        err_Scck = jnp.pi * f * m * k[None,:,None,None] * err_Tcck / hc
-        err_sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * err_Scck / k[None,:]**2
-        err_sigma_cck *= 10. # convert from fm^2 to mb
         
         coupled_output = jnp.stack((delta_minus, delta_plus, epsilon, eta_minus, eta_plus, sigma_cck))
 
         # total cross section
         sigma_tot = jnp.sum(sigma_ck, axis=0) + jnp.sum(sigma_cck, axis=0)
         
-        # error in total cross section
-        err_sigma_tot = jnp.sqrt( jnp.sum(err_sigma_ck**2, axis=0) + jnp.sum(err_sigma_cck**2, axis=0) )
+
+        if err_t_onshell is not None:
+            err_Tck, err_Tcck = err_t_onshell
+            
+            # error in sigma_ck, err_Tck is real
+            err_Sck = jnp.pi * f * m * k * err_Tck / hc
+            err_sigma_ck = 0.5 * jnp.pi * (2*Jc[:,None]+1) * err_Sck / k[None,:]**2 # fm^2
+            err_sigma_ck *= 10. # convert from fm^2 to mb
+            
+            # error in sigma_cck
+            err_Scck = jnp.pi * f * m * k[None,:,None,None] * err_Tcck / hc
+            err_sigma_cck = 0.5 * jnp.pi * (2*Jcc[:,None]+1) * err_Scck / k[None,:]**2
+            err_sigma_cck *= 10. # convert from fm^2 to mb
+            
+            # error in total cross section
+            err_sigma_tot = jnp.sqrt( jnp.sum(err_sigma_ck**2, axis=0) + jnp.sum(err_sigma_cck**2, axis=0) )
         
-        return sigma_tot, err_sigma_tot, single_output, coupled_output
+            return sigma_tot, err_sigma_tot, single_output, coupled_output
+            
+        return sigma_tot, None, single_output, coupled_output
     
 
     
@@ -235,6 +245,7 @@ class Solver:
         Tq = jnp.linalg.solve(Aqq, Vqq[:,0])
 
         return Tq # fm^2
+        
         
 
     @partial(jax.jit, static_argnames=("self"))
@@ -532,7 +543,6 @@ class Solver:
         load,
         compute,
     ):
-        print("")
         
         if self.load_potential and glob.glob(filename):
             print(f"Loading file: {filename}")
@@ -560,6 +570,8 @@ class Solver:
             if self.write_potential:
                 print(f"Writing potential to file: {filename}")
                 jnp.savez(filename, **kwargs)
-        
+                
+        print("")
+            
         return V
         

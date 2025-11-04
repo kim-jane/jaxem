@@ -34,11 +34,11 @@ emulator = Emulator(solver)
 
 
 # train emulator
-key = jax.random.PRNGKey(657)
+key = jax.random.PRNGKey(23)
 key, subkey = jax.random.split(key)
 LECs_candidates = sample_LECs(
     subkey,
-    500,
+    1000,
     potential.LECs,
     scale_min=0.0,
     scale_max=2.0,
@@ -46,11 +46,11 @@ LECs_candidates = sample_LECs(
 )
 
 
-emulator.fit(LECs_candidates)
+emulator.fit(LECs_candidates, tol=1e-8)
 
 # prior predictive?
 
-prior_scale = 0.2
+prior_scale = 0.1
 likelihood_scale = 0.1
 
 sampler = Sampler(
@@ -60,16 +60,14 @@ sampler = Sampler(
     static_indices=static_indices
 )
 
-n_chains = 20
-n_equil = 10
+n_chains = 10
+n_equil = 1
 n_skip = 10
-n_samples_per_chain = 500
+n_samples_per_chain = 1000 #2560
 init_noise = 0.5
 step_scale = 0.5
 
 start_time = time.time()
-
-
         
 LECs_em, sigmas_em, err_sigmas_em, params_c_em, params_cc_em, accept_rate_em = sampler.sample(
     n_chains=n_chains,
@@ -83,7 +81,7 @@ LECs_em, sigmas_em, err_sigmas_em, params_c_em, params_cc_em, accept_rate_em = s
 print("Emulator acceptance rate = ", accept_rate_em)
 print("Time = ", time.time() - start_time)
 
-filename = "saved_samples/test_emulator_samples_0.2_0.1_n2.npz"
+filename = "saved_samples/emulator_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 kwargs = {
     "LECs_em": LECs_em,
     "sigmas_em": sigmas_em,
@@ -108,7 +106,7 @@ LECs_ex, sigmas_ex, err_sigmas_ex, params_c_ex, params_cc_ex, accept_rate_ex = s
     init_noise=init_noise,
     step_scale=step_scale,
     use_emulator=False,
-    seed=317
+    #seed=317
 )
 
 #LECs_ex, sigmas_ex, err_sigmas_ex, params_c_ex, params_cc_ex, accept_rate_ex = LECs_em, sigmas_em, err_sigmas_em, params_c_em, params_cc_em, accept_rate_em
@@ -116,7 +114,7 @@ LECs_ex, sigmas_ex, err_sigmas_ex, params_c_ex, params_cc_ex, accept_rate_ex = s
 print("Solver acceptance rate = ", accept_rate_ex)
 print("Time = ", time.time() - start_time)
 
-filename = "saved_samples/test_solver_samples_0.2_0.1_n2.npz"
+filename = "saved_samples/solver_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 kwargs = {
     "LECs_ex": LECs_ex,
     "sigmas_ex": sigmas_ex,

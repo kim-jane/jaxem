@@ -12,7 +12,7 @@ print(jax.__version__)
 
 import matplotlib as mpl
 
-fontsize = 9
+fontsize = 12
 black = 'k'
 
 mpl.rcdefaults()  # Set to defaults
@@ -60,8 +60,8 @@ mpl.rcParams['figure.constrained_layout.hspace'] = 0.0
 mpl.rcParams['figure.constrained_layout.h_pad'] = 3. / ppi  # 3 points
 mpl.rcParams['figure.constrained_layout.w_pad'] = 3. / ppi
 
-mpl.rcParams['legend.title_fontsize'] = fontsize
-mpl.rcParams['legend.fontsize'] = fontsize
+mpl.rcParams['legend.title_fontsize'] = 9
+mpl.rcParams['legend.fontsize'] = 9
 mpl.rcParams['legend.edgecolor'] = 'inherit'  # inherits from axes.edgecolor, to match
 mpl.rcParams['legend.facecolor'] = (1, 1, 1, 0.6)  # Set facecolor with its own alpha, so edgecolor is unaffected
 mpl.rcParams['legend.fancybox'] = True
@@ -92,27 +92,19 @@ colors_alt = [cmap(0.55 - 0.1 * (i == 0)) for i, cmap in enumerate(cmaps)]
 colors_alt2 = plt.get_cmap('tab20').colors
 
 
-'''
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.serif": ["STIX"],       # or "Times New Roman"
-    "mathtext.fontset": "stix",   # ensures math matches the text
-    "font.size": 12
-})
-'''
-
 
 # data
 filename = "benchmark/np_SGT/PWA93_0.1_300.txt"
 Elabs_all, sigmas_all = np.loadtxt(filename, unpack=True)
+Elabs_all = Elabs_all[:109]
+sigmas_all = sigmas_all[:109]
 indices = [0,13,18,28,38,48,58,68,78,88,98,108]
 #indices = [0,5,10,20,30,40,50,60,70,80,90,100]
 Elabs = Elabs_all[indices]
 sigmas = sigmas_all[indices]
 
 n_mesh = 40
-Jmax = 2
+Jmax = 4
 static_indices = [0, 10, 11]
 
 mesh = TRNS(n_mesh=n_mesh)
@@ -122,7 +114,7 @@ solver = Solver(mesh, channels, potential, Elabs)
 emulator = Emulator(solver)
 
 
-filename = "saved_samples/test_emulator_samples_0.2_0.1.npz"
+filename = "saved_samples/emulator_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_em = data["LECs_em"]
 sigmas_em = data["sigmas_em"]
@@ -132,7 +124,7 @@ params_cc_em = data["params_cc_em"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_em = data["MAP LECs"]
 
-filename = "saved_samples/test_solver_samples_0.2_0.1.npz"
+filename = "saved_samples/solver_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_ex = data["LECs_ex"]
 sigmas_ex = data["sigmas_ex"]
@@ -141,6 +133,9 @@ params_c_ex = data["params_c_ex"]
 params_cc_ex = data["params_cc_ex"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_ex = data["MAP LECs"]
+
+params_c_ex = params_c_em
+params_cc_ex = params_cc_ex
 
 
 def stats(arr):
@@ -157,7 +152,7 @@ onshell_t_and_err = solver.onshell_t_and_err(potential.LECs)
 _, _, params_c_best, params_cc_best = solver.scattering_params(onshell_t_and_err)
 
 delta_best, eta_best, sigma_c_best = params_c_best
-delta_minus_best, delta_plus_best, epsilon_best, eta_minus_best, eta_plus_best, sigma_cc_best = params_cc_best
+delta_m_best, delta_p_best, epsilon_best, eta_minus_best, eta_plus_best, sigma_cc_best = params_cc_best
 
 delta_em, eta_em, sigma_c_em = params_c_em
 delta_minus_em, delta_plus_em, epsilon_em, eta_minus_em, eta_plus_em, sigma_cc_em = params_cc_em
@@ -184,15 +179,33 @@ kwargs = {
 }
 
 def spectro_label(s):
-    # assumes format like "1S0"
     return fr"$^{{{s[0]}}}{s[1]}_{{{s[2:]}}}$"
-    
-    
-for c, label in enumerate(channels.single_labels):
 
+f = 180/np.pi
+
+lower_left = (0.15, 0.15)
+lower_right = (0.85, 0.15)
+upper_right = (0.8, 0.8)
+upper_left = (0.15, 0.8)
+
+locs = [
+    lower_left,  # 1S0
+    upper_left,  # 3P0
+    lower_left,  # 1P1
+    lower_left,  # 3P1
+    lower_right, # 1D2
+    lower_right, # 3D2
+    upper_right, # 1F3
+    upper_right, # 3F3
+    lower_right, # 1G4
+    lower_right  # 3G4
+]
+for (c, label), (x,y) in zip(enumerate(channels.single_labels), locs):
     
     filename = f"benchmark/np_phase_shifts/PWA93_0.1_300_{label}.txt"
     Elabs_all, deltas_all = np.loadtxt(filename, unpack=True)
+    Elabs_all = Elabs_all[:112]
+    deltas_all = deltas_all[:112]
     Elabs = Elabs_all[indices]
     deltas = deltas_all[indices]
     
@@ -201,104 +214,129 @@ for c, label in enumerate(channels.single_labels):
     print(len(delta_best))
     
     print(label)
+    print(spectro_label(label))
 
     fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(4, 4), sharex=True,
+        2, 1, figsize=(3.5, 4), sharex=True,
         gridspec_kw={"height_ratios": [2, 1]}
     )
     
-    f = 180/np.pi
+    
 
+    ax1.text(x, y, spectro_label(label), transform=ax1.transAxes, fontsize=20, ha='center', va='center')
     ax1.plot(Elabs_all, deltas_all, color='k', label='PWA93')
-    ax1.errorbar(Elabs, f*med_delta_ex[c], yerr=(f*low_delta_ex[c], f*up_delta_ex[c]), color='C0', marker='s', label=r'High-Fidelity (95\% CI)', **kwargs)
-    ax1.errorbar(Elabs, f*med_delta_em[c], yerr=(f*low_delta_em[c], f*up_delta_em[c]), color='C1', marker='o', label=r'Low-Fidelity (95\% CI)', **kwargs)
+    ax1.errorbar(Elabs, f*med_delta_ex[c], yerr=(f*low_delta_ex[c], f*up_delta_ex[c]), color='C0', marker='o', label=r'High-Fidelity (95\% CI)', **kwargs)
+    ax1.errorbar(Elabs, f*med_delta_em[c], yerr=(f*low_delta_em[c], f*up_delta_em[c]), color='C1', marker='x', label=r'Low-Fidelity (95\% CI)', **kwargs)
     ax1.errorbar(Elabs, f*delta_best[c], color='C3', marker='^', label='Best Fit', **kwargs)
 
     ax2.axhline(0, color='k')
-    ax2.errorbar(Elabs, (f*med_delta_ex[c] - deltas), yerr=(np.abs(f*low_delta_ex[c]), np.abs(f*up_delta_ex[c])), color='C0', marker='s', label='High-Fidelity', **kwargs)
-    ax2.errorbar(Elabs, (f*med_delta_em[c] - deltas), yerr=(np.abs(f*low_delta_em[c]), np.abs(f*up_delta_em[c])), color='C1', marker='o', label='Low-Fidelity', **kwargs)
+    ax2.errorbar(Elabs, (f*med_delta_ex[c] - deltas), yerr=(f*low_delta_ex[c], f*up_delta_ex[c]), color='C0', marker='o', label='High-Fidelity', **kwargs)
+    ax2.errorbar(Elabs, (f*med_delta_em[c] - deltas), yerr=(f*low_delta_em[c], f*up_delta_em[c]), color='C1', marker='x', label='Low-Fidelity', **kwargs)
     ax2.errorbar(Elabs, (f*delta_best[c] - deltas), color='C3', marker='^', label='Best Fit', **kwargs)
 
-    formatted_labels =0
 
-    plt.xlim(-1, 101)
+    plt.xlim(-2, 102)
 
     plt.xlabel(r"$E_{lab}$ [MeV]")
-    ax1.set_ylabel(r"$\delta$ [deg]")
+    ax1.set_ylabel(r"Phase Shift [deg]")
     ax2.set_ylabel("Deviation")
     ax1.legend()
     #plt.show()
-    plt.savefig(f"figures/test_phase_shifts_{label}.pdf", format="pdf")
+    plt.savefig(f"dnp_figures/phase_shifts_{label}.pdf", format="pdf")
 
+    
+
+
+locs = [
+    (upper_right, upper_right, upper_left),
+    (upper_left, upper_left, lower_left),
+    (upper_left, lower_left, lower_right),
+    (upper_left, upper_left, upper_right)
+]
+
+for (cc, label), ((x_m, y_m), (x_p, y_p), (x_e, y_e)) in zip(enumerate(channels.coupled_labels), locs):
+
+    print(label)
+    
+    dash = label.find("-")
+    label_m = label[:dash]
+    label_p = label[dash+1:]
+    label_e = label[-1]
+    print(label_m, label_p, label_e)
+    
+    filename_m = f"benchmark/np_phase_shifts/PWA93_0.1_300_{label_m}.txt"
+    filename_p = f"benchmark/np_phase_shifts/PWA93_0.1_300_{label_p}.txt"
+    filename_e = f"benchmark/np_phase_shifts/PWA93_0.1_300_E{label_e}.txt"
+    
+    Elabs_PWA_m, deltas_PWA_m = np.loadtxt(filename_m, unpack=True)
+    Elabs_PWA_p, deltas_PWA_p = np.loadtxt(filename_p, unpack=True)
+    Elabs_PWA_e, deltas_PWA_e = np.loadtxt(filename_e, unpack=True)
+    
+    Elabs_PWA_m_all = Elabs_PWA_m[:112]
+    deltas_PWA_m_all = deltas_PWA_m[:112]
+    Elabs_PWA_p_all = Elabs_PWA_p[:112]
+    deltas_PWA_p_all = deltas_PWA_p[:112]
+    Elabs_PWA_e_all = Elabs_PWA_e[:112]
+    deltas_PWA_e_all = deltas_PWA_e[:112]
+    
+    deltas_PWA_m = deltas_PWA_m[indices]
+    deltas_PWA_p = deltas_PWA_p[indices]
+    deltas_PWA_e = deltas_PWA_e[indices]
+
+    
+    fig, axes = plt.subplots(
+        2, 3, figsize=(9.5, 4), sharex=True,
+        gridspec_kw={"height_ratios": [2, 1]}
+    )
+    
+    axes[0,0].text(x_m, y_m, spectro_label(label_m), transform=axes[0,0].transAxes, fontsize=20, ha='center', va='center')
+    axes[0,1].text(x_p, y_p, spectro_label(label_p), transform=axes[0,1].transAxes, fontsize=20, ha='center', va='center')
+    axes[0,2].text(x_e, y_e, fr"$\epsilon_{{{label_e}}}$", transform=axes[0,2].transAxes, fontsize=20, ha='center', va='center')
+    
+    axes[0,0].plot(Elabs_PWA_m_all, deltas_PWA_m_all, color='k', label='PWA93')
+    axes[0,1].plot(Elabs_PWA_p_all, deltas_PWA_p_all, color='k', label='PWA93')
+    axes[0,2].plot(Elabs_PWA_e_all, deltas_PWA_e_all, color='k', label='PWA93')
+    
+    axes[0,0].errorbar(Elabs, f*med_delta_m_ex[cc], yerr=(f*low_delta_m_ex[cc], f*up_delta_m_ex[cc]), color='C0', marker='o', label=r'High-Fidelity (95\% CI)', **kwargs)
+    axes[0,1].errorbar(Elabs, f*med_delta_p_ex[cc], yerr=(f*low_delta_p_ex[cc], f*up_delta_p_ex[cc]), color='C0', marker='o', label=r'High-Fidelity (95\% CI)', **kwargs)
+    axes[0,2].errorbar(Elabs, f*med_epsilon_ex[cc], yerr=(f*low_epsilon_ex[cc], f*up_epsilon_ex[cc]), color='C0', marker='o', label=r'High-Fidelity (95\% CI)', **kwargs)
+    
+    axes[0,0].errorbar(Elabs, f*med_delta_m_em[cc], yerr=(f*low_delta_m_em[cc], f*up_delta_m_em[cc]), color='C1', marker='x', label=r'Low-Fidelity (95\% CI)', **kwargs)
+    axes[0,1].errorbar(Elabs, f*med_delta_p_em[cc], yerr=(f*low_delta_p_em[cc], f*up_delta_p_em[cc]), color='C1', marker='x', label=r'Low-Fidelity (95\% CI)', **kwargs)
+    axes[0,2].errorbar(Elabs, f*med_epsilon_em[cc], yerr=(f*low_epsilon_em[cc], f*up_epsilon_em[cc]), color='C1', marker='x', label=r'Low-Fidelity (95\% CI)', **kwargs)
+    
+    axes[0,0].errorbar(Elabs, f*delta_m_best[cc], color='C3', marker='^', label='Best Fit', **kwargs)
+    axes[0,1].errorbar(Elabs, f*delta_p_best[cc], color='C3', marker='^', label='Best Fit', **kwargs)
+    axes[0,2].errorbar(Elabs, f*epsilon_best[cc], color='C3', marker='^', label='Best Fit', **kwargs)
+    
+    axes[1,0].axhline(0, color='k')
+    axes[1,1].axhline(0, color='k')
+    axes[1,2].axhline(0, color='k')
+    
+    axes[1,0].errorbar(Elabs, f*med_delta_m_ex[cc] - deltas_PWA_m, yerr=(f*low_delta_m_ex[cc], f*up_delta_m_ex[cc]), color='C0', marker='o', label='High-Fidelity', **kwargs)
+    axes[1,1].errorbar(Elabs, f*med_delta_p_ex[cc] - deltas_PWA_p, yerr=(f*low_delta_p_ex[cc], f*up_delta_p_ex[cc]), color='C0', marker='o', label='High-Fidelity', **kwargs)
+    axes[1,2].errorbar(Elabs, f*med_epsilon_ex[cc] - deltas_PWA_e, yerr=(f*low_epsilon_ex[cc], f*up_epsilon_ex[cc]), color='C0', marker='o', label='High-Fidelity', **kwargs)
+    
+    axes[1,0].errorbar(Elabs, f*med_delta_m_em[cc] - deltas_PWA_m, yerr=(f*low_delta_m_em[cc], f*up_delta_m_em[cc]), color='C1', marker='x', label='Low-Fidelity', **kwargs)
+    axes[1,1].errorbar(Elabs, f*med_delta_p_em[cc] - deltas_PWA_p, yerr=(f*low_delta_p_em[cc], f*up_delta_p_em[cc]), color='C1', marker='x', label='Low-Fidelity', **kwargs)
+    axes[1,2].errorbar(Elabs, f*med_epsilon_em[cc] - deltas_PWA_e, yerr=(f*low_epsilon_em[cc], f*up_epsilon_em[cc]), color='C1', marker='x', label='Low-Fidelity', **kwargs)
+    
+
+    axes[1,0].errorbar(Elabs, (f*delta_m_best[cc] - deltas_PWA_m), color='C3', marker='^', label='Best Fit', **kwargs)
+    axes[1,1].errorbar(Elabs, (f*delta_p_best[cc] - deltas_PWA_p), color='C3', marker='^', label='Best Fit', **kwargs)
+    axes[1,2].errorbar(Elabs, (f*epsilon_best[cc] - deltas_PWA_e), color='C3', marker='^', label='Best Fit', **kwargs)
+
+
+    plt.xlim(-2, 102)
+
+    axes[1,0].set_xlabel(r"$E_{lab}$ [MeV]")
+    axes[1,1].set_xlabel(r"$E_{lab}$ [MeV]")
+    axes[1,2].set_xlabel(r"$E_{lab}$ [MeV]")
+    axes[0,0].set_ylabel(r"Phase Shift [deg]")
+    axes[1,0].set_ylabel("Deviation")
+    axes[0,2].legend()
+    
+    plt.savefig(f"dnp_figures/phase_shifts_{label}.pdf", format="pdf")
+    
     #plt.show()
     #plt.close()
-    
-'''
-for cc, label in enumerate(channels.coupled_labels):
-
-    fig, axes = plt.subplots(1, 3, figsize=(12,4))
-    
-    axes[0].plot(Elabs, med_delta_m_em[cc], color='C0')
-    axes[0].plot(Elabs, med_delta_m_ex[cc], color='C1', linestyle='dashed')
-    axes[0].errorbar(Elabs, med_delta_m_em[cc], yerr=(low_delta_m_em[cc], up_delta_m_em[cc]), color='C0', marker='s', label='Low-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-    axes[0].errorbar(Elabs, med_delta_m_ex[cc], yerr=(low_delta_m_ex[cc], up_delta_m_ex[cc]), color='C1', marker='^', label='High-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-
-    axes[1].plot(Elabs, med_delta_p_em[cc], color='C0')
-    axes[1].plot(Elabs, med_delta_p_ex[cc], color='C1', linestyle='dashed')
-    axes[1].errorbar(Elabs, med_delta_p_em[cc], yerr=(low_delta_p_em[cc], up_delta_p_em[cc]), color='C0', marker='s', label='Low-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-    axes[1].errorbar(Elabs, med_delta_p_ex[cc], yerr=(low_delta_p_ex[cc], up_delta_p_ex[cc]), color='C1', marker='^', label='High-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-    
-    axes[2].plot(Elabs, med_epsilon_em[cc], color='C0')
-    axes[2].plot(Elabs, med_epsilon_ex[cc], color='C1', linestyle='dashed')
-    axes[2].errorbar(Elabs, med_epsilon_em[cc], yerr=(low_epsilon_em[cc], up_epsilon_em[cc]), color='C0', marker='s', label='Low-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-    axes[2].errorbar(Elabs, med_epsilon_ex[cc], yerr=(low_epsilon_ex[cc], up_epsilon_ex[cc]), color='C1', marker='^', label='High-Fidelity', linewidth=0, elinewidth=2, capsize=10)
-    
-    #plt.savefig(f"figures/test_{label}.pdf", format="pdf")
-    plt.show()
-    plt.close()
-
-
-
-fig, (ax1, ax2) = plt.subplots(
-    2, 1, figsize=(4, 4), sharex=True,
-    gridspec_kw={"height_ratios": [2, 1]}
-)
-
-med_em, low_em, up_em = stats(sigmas_em)
-med_ex, low_ex, up_ex = stats(sigmas_ex)
-
-
-
-
-
-ax1.plot(Elabs_all, sigmas_all, color='k', label='PWA93')
-ax1.errorbar(Elabs, med_ex, yerr=(low_ex, up_ex), color='C0', marker='s', label=r'High-Fidelity (95\% CI)', **kwargs)
-ax1.errorbar(Elabs, med_em, yerr=(low_em, up_em), color='C1', marker='o', label=r'Low-Fidelity (95\% CI)', **kwargs)
-ax1.errorbar(Elabs, sigmas_best, color='C3', marker='^', label='Best Fit', **kwargs)
-
-ax1.set_ylim(50, 20000)
-ax1.set_yscale('log')
-
-
-ax2.axhline(0, color='k')
-ax2.errorbar(Elabs, (med_ex-sigmas)/sigmas, yerr=(low_ex/sigmas, up_ex/sigmas), color='C0', marker='s', label='High-Fidelity', **kwargs)
-ax2.errorbar(Elabs, (med_em-sigmas)/sigmas, yerr=(low_em/sigmas, up_em/sigmas), color='C1', marker='o', label='Low-Fidelity', **kwargs)
-ax2.errorbar(Elabs, (sigmas_best-sigmas)/sigmas, color='C3', marker='^', label='Best Fit', **kwargs)
-ax2.set_ylim(-0.06, 0.06)
-
-
-plt.xlim(-1, 101)
-
-plt.xlabel(r"$E_{lab}$ [MeV]")
-ax1.set_ylabel(r"$\sigma_{tot}$ [mb]")
-ax2.set_ylabel("Relative Deviation")
-ax1.legend()
-#plt.show()
-plt.savefig(f"figures/test_cross_sections.pdf", format="pdf")
-plt.close()
-
-print(Elabs)
-
-
-
-'''

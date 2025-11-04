@@ -11,7 +11,7 @@ print(jax.__version__)
 
 import matplotlib as mpl
 
-fontsize = 9
+fontsize = 10
 black = 'k'
 
 mpl.rcdefaults()  # Set to defaults
@@ -92,16 +92,16 @@ Elabs = Elabs_all[indices]
 sigmas = sigmas_all[indices]
 
 n_mesh = 40
-Jmax = 2
+Jmax = 4
 static_indices = [0, 10, 11]
 
 mesh = TRNS(n_mesh=n_mesh)
 channels = Channels(isospin_channel='np', Jmax=Jmax)
 potential = Chiral()
-solver = Solver(mesh, channels, potential, Elabs)
-emulator = Emulator(solver)
+#solver = Solver(mesh, channels, potential, Elabs)
+#emulator = Emulator(solver)
 
-filename = "saved_samples/test_emulator_samples_0.2_0.1.npz"
+filename = "saved_samples/emulator_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_em = data["LECs_em"]
 sigmas_em = data["sigmas_em"]
@@ -111,7 +111,7 @@ params_cc_em = data["params_cc_em"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_em = data["MAP LECs"]
 
-filename = "saved_samples/test_solver_samples_0.2_0.1.npz"
+filename = "saved_samples/solver_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_ex = data["LECs_ex"]
 sigmas_ex = data["sigmas_ex"]
@@ -120,6 +120,7 @@ params_c_ex = data["params_c_ex"]
 params_cc_ex = data["params_cc_ex"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_ex = data["MAP LECs"]
+
 
 labels = [r"$C_S$", r"$C_T$", r"$C_1$", r"$C_2$", r"$C_3$", r"$C_4$", r"$C_5$", r"$C_6$", r"$C_7$"]
 
@@ -151,6 +152,7 @@ fig = plt.figure(figsize=(12, 12), constrained_layout=False)
 
 corner.corner(
     np.array(LECs_em[:, 1:10]),
+    range=[0.996] * (np.array(LECs_em[:, 1:10])).shape[1],
     color="k",
     smooth=True,
     fig=fig,
@@ -162,6 +164,7 @@ corner.corner(
 
 corner.corner(
     np.array(LECs_ex[:, 1:10]),
+    range=[0.996] * (np.array(LECs_ex[:, 1:10])).shape[1],
     color="C0",
     smooth=True,
     fig=fig,
@@ -200,6 +203,6 @@ add_corner_titles(fig, np.array(LECs_em[:, 1:10]), labels, color="k", yoffset=0.
 add_corner_titles(fig, np.array(LECs_ex[:, 1:10]), labels, color="C0", yoffset=0.2)
 
 #plt.show()
-plt.savefig("figures/test_corner_0.2_0.1.pdf", format="pdf")
+plt.savefig("dnp_figures/corner.pdf", format="pdf")
 # plt.close()
 

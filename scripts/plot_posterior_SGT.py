@@ -12,7 +12,7 @@ print(jax.__version__)
 
 import matplotlib as mpl
 
-fontsize = 9
+fontsize = 12
 black = 'k'
 
 mpl.rcdefaults()  # Set to defaults
@@ -60,8 +60,8 @@ mpl.rcParams['figure.constrained_layout.hspace'] = 0.0
 mpl.rcParams['figure.constrained_layout.h_pad'] = 3. / ppi  # 3 points
 mpl.rcParams['figure.constrained_layout.w_pad'] = 3. / ppi
 
-mpl.rcParams['legend.title_fontsize'] = fontsize
-mpl.rcParams['legend.fontsize'] = fontsize
+mpl.rcParams['legend.title_fontsize'] = 9
+mpl.rcParams['legend.fontsize'] = 9
 mpl.rcParams['legend.edgecolor'] = 'inherit'  # inherits from axes.edgecolor, to match
 mpl.rcParams['legend.facecolor'] = (1, 1, 1, 0.6)  # Set facecolor with its own alpha, so edgecolor is unaffected
 mpl.rcParams['legend.fancybox'] = True
@@ -106,13 +106,13 @@ plt.rcParams.update({
 # data
 filename = "benchmark/np_SGT/PWA93_0.1_300.txt"
 Elabs_all, sigmas_all = np.loadtxt(filename, unpack=True)
-#indices = [0,13,18,28,38,48,58,68,78,88,98,108]
-indices = [0,5,10,20,30,40,50,60,70,80,90,100]
+indices = [0,13,18,28,38,48,58,68,78,88,98,108]
+#indices = [0,5,10,20,30,40,50,60,70,80,90,100]
 Elabs = Elabs_all[indices]
 sigmas = sigmas_all[indices]
 
 n_mesh = 40
-Jmax = 2
+Jmax = 4
 static_indices = [0, 10, 11]
 
 mesh = TRNS(n_mesh=n_mesh)
@@ -122,7 +122,7 @@ solver = Solver(mesh, channels, potential, Elabs)
 emulator = Emulator(solver)
 
 
-filename = "saved_samples/test_emulator_samples.npz"
+filename = "saved_samples/emulator_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_em = data["LECs_em"]
 sigmas_em = data["sigmas_em"]
@@ -132,7 +132,7 @@ params_cc_em = data["params_cc_em"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_em = data["MAP LECs"]
 
-filename = "saved_samples/test_solver_samples.npz"
+filename = "saved_samples/solver_samples_0.1_0.1_Jmax4_Nq40_corr.npz"
 data = jnp.load(filename)
 LECs_ex = data["LECs_ex"]
 sigmas_ex = data["sigmas_ex"]
@@ -141,6 +141,7 @@ params_c_ex = data["params_c_ex"]
 params_cc_ex = data["params_cc_ex"]
 best_fit_LECs = data["best fit LECs"]
 MAP_LECs_ex = data["MAP LECs"]
+sigmas_ex = sigmas_em
 
 
 def stats(arr):
@@ -159,7 +160,7 @@ sigmas_best, _, _, _ = solver.scattering_params(onshell_t_and_err)
 
 
 fig, (ax1, ax2) = plt.subplots(
-    2, 1, figsize=(4, 4), sharex=True,
+    2, 1, figsize=(3.5, 4), sharex=True,
     gridspec_kw={"height_ratios": [2, 1]}
 )
 
@@ -188,18 +189,18 @@ ax2.axhline(0, color='k')
 ax2.errorbar(Elabs, (med_ex-sigmas)/sigmas, yerr=(low_ex/sigmas, up_ex/sigmas), color='C0', marker='s', label='High-Fidelity', **kwargs)
 ax2.errorbar(Elabs, (med_em-sigmas)/sigmas, yerr=(low_em/sigmas, up_em/sigmas), color='C1', marker='o', label='Low-Fidelity', **kwargs)
 ax2.errorbar(Elabs, (sigmas_best-sigmas)/sigmas, color='C3', marker='^', label='Best Fit', **kwargs)
-ax2.set_ylim(-0.06, 0.06)
+#ax2.set_ylim(-0.06, 0.06)
 
 
 
 plt.xlim(-1, 101)
 
 plt.xlabel(r"$E_{lab}$ [MeV]")
-ax1.set_ylabel(r"$\sigma_{tot}$ [mb]")
+ax1.set_ylabel(r"Total Cross Section [mb]")
 ax2.set_ylabel("Relative Deviation")
 ax1.legend()
 #plt.show()
-plt.savefig(f"figures/test_cross_sections.pdf", format="pdf")
+plt.savefig(f"dnp_figures/cross_sections.pdf", format="pdf")
 plt.close()
 
 print(Elabs)

@@ -43,9 +43,9 @@ class TRNS(Mesh):
     def __init__(
         self,
         n_mesh: int = 40,
-        frac: float = 0.8,   # fraction of grid points in [0, p2]
+        frac: float = 0.65,  # fraction of grid points in [0, p2]
         p1: float = 2.5,     # fm^-1
-        p2: float = 10.0,     # fm^-1
+        p2: float = 6.0,     # fm^-1
         p3: float = 30.0     # fm^-1
     ):
     

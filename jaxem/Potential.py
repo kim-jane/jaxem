@@ -8,9 +8,16 @@ from typing import Optional
 import sys
 import os
 
-script_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
-chiral_modules_path = os.path.join(os.path.dirname(script_directory), "chiral", "modules")
-sys.path.append(chiral_modules_path)
+#script_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
+#chiral_modules_path = os.path.join(os.path.dirname(script_directory), "chiral", "modules")
+#sys.path.append(chiral_modules_path)
+
+jaxem_root = os.path.dirname(os.path.abspath(__file__))  # path to jaxem/jaxem
+chiral_modules_path = os.path.join(jaxem_root, "..", "chiral", "modules")
+chiral_modules_path = os.path.abspath(chiral_modules_path)
+
+if chiral_modules_path not in sys.path:
+    sys.path.append(chiral_modules_path)
 
 from Potential import chiralms, chiralms_affine
 from Channel import Channel as CD_Channel
