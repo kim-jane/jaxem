@@ -1,0 +1,2060 @@
+/Users/janekim/jaxem/scripts/speedup
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq20_1S0_Vqqo.npz
+Done in 0.08575 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1S0_Vkqo.npz
+Done in 0.08177 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1S0_Vko.npz
+Done in 0.00077 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vqqo.npz
+Done in 0.00083 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vkqo.npz
+Done in 0.00098 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vko.npz
+Done in 0.00072 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vqqo.npz
+Done in 0.00080 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vkqo.npz
+Done in 0.00103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vko.npz
+Done in 0.00062 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vqqo.npz
+Done in 0.00070 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vkqo.npz
+Done in 0.00094 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vko.npz
+Done in 0.00064 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vqqo.npz
+Done in 0.00069 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vkqo.npz
+Done in 0.00097 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vko.npz
+Done in 0.00062 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vqqo.npz
+Done in 0.00070 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vkqo.npz
+Done in 0.00095 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vko.npz
+Done in 0.00064 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vqqo.npz
+Done in 0.00074 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vkqo.npz
+Done in 0.00147 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vko.npz
+Done in 0.00066 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vqqo.npz
+Done in 0.00071 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vkqo.npz
+Done in 0.00096 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vko.npz
+Done in 0.00062 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vqqo.npz
+Done in 0.00069 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vkqo.npz
+Done in 0.00096 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vko.npz
+Done in 0.00067 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vqqo.npz
+Done in 0.00086 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vkqo.npz
+Done in 0.00107 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vko.npz
+Done in 0.00062 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vqqo.npz
+Done in 0.00069 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vkqo.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vko.npz
+Done in 0.00076 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vqqo.npz
+Done in 0.00071 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vkqo.npz
+Done in 0.00100 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vko.npz
+Done in 0.00068 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vqqo.npz
+Done in 0.00072 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vkqo.npz
+Done in 0.00095 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vko.npz
+Done in 0.00091 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vqqo.npz
+Done in 0.00070 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vkqo.npz
+Done in 0.00107 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vko.npz
+Done in 0.00067 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vqqo.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vkqo.npz
+Done in 0.00144 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vko.npz
+Done in 0.00075 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vqqo.npz
+Done in 0.00089 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vkqo.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vko.npz
+Done in 0.00069 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vqqo.npz
+Done in 0.00084 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vkqo.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vko.npz
+Done in 0.00108 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vqqo.npz
+Done in 0.00080 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vkqo.npz
+Done in 0.00108 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vko.npz
+Done in 0.00067 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vqqo.npz
+Done in 0.00076 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vkqo.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vko.npz
+Done in 0.00064 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vqqo.npz
+Done in 0.00074 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vkqo.npz
+Done in 0.00105 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vko.npz
+Done in 0.00066 sec. Valid: True.
+
+(500, 12)
+***
+2 0.24247759582726852
+3 0.04748878618532858
+4 0.00859165678906401
+5 0.0014866016813780752
+6 0.0007292329312154012
+7 2.0065520934316664e-05
+0 0 (21, 7)
+2 0.07273578132903614
+3 0.07168425027129764
+4 0.0009733915580110231
+5 0.00033981342071683654
+6 4.725586308191061e-05
+0 1 (21, 6)
+2 0.3227090430893364
+3 0.06926070160795696
+4 0.00204683640481305
+5 0.0025063899044929093
+6 0.00021223826368064525
+7 2.0309786065670283e-05
+0 2 (21, 7)
+2 0.04747111771884763
+3 0.01055818815296154
+4 0.0019014103548552655
+5 0.0002662820691175516
+6 1.8463614116107193e-05
+0 3 (21, 6)
+2 0.04834643356629451
+3 0.0026552374593640364
+4 0.0005518203507269606
+5 0.00012104039893905969
+6 8.324005416316174e-06
+0 4 (21, 6)
+2 0.5789636750125711
+3 0.06134672025241594
+4 0.0039966476003306245
+5 0.0005853318756620525
+6 0.000251229142548676
+7 1.6917904723112878e-05
+0 5 (21, 7)
+2 0.0027317617466158014
+3 0.00026544328630861855
+4 9.926366974381824e-05
+0 6 (21, 4)
+2 0.0015572035136561472
+3 0.00012796841842655787
+4 4.353474822853918e-05
+0 7 (21, 4)
+2 0.0002740832769003789
+3 5.984814633382037e-06
+0 8 (21, 3)
+2 0.0012872900846655076
+3 4.2931941909320274e-05
+0 9 (21, 3)
+2 1.9299802509761073e-05
+0 10 (21, 2)
+2 1.1123930429420218e-05
+0 11 (21, 2)
+2 9.676159110370463e-07
+0 12 (21, 2)
+2 8.15375746674354e-06
+0 13 (21, 2)
+2 0.3592926074769651
+3 0.3506185437030713
+4 0.073810775449043
+5 0.038707583198806156
+6 0.03352309026090583
+7 0.020359701636323432
+8 0.01131445060015388
+9 0.00696751265211222
+10 0.003302069276510353
+11 0.0036162953625323863
+12 0.002493868075440123
+13 0.0021477899300063772
+14 0.0009873833775198195
+15 0.000560704209819727
+16 0.000351007257561142
+17 0.0001575129513457347
+18 0.00012117391838573997
+19 9.15863233512245e-05
+19 9.158632335144275e-05
+0 0 (84, 19)
+2 0.18000960810716662
+3 0.22670209458927126
+4 0.06657368367247755
+5 0.012964678609524773
+6 0.006627913133091248
+7 0.006145216972340359
+8 0.0037676624018118518
+9 0.0012058868325594458
+10 0.0010264601089349339
+11 0.00037831751814718334
+12 0.0002984937125728595
+13 0.0003089969582489355
+14 7.547264255576933e-05
+14 7.547264255577459e-05
+0 1 (84, 14)
+2 0.3693051954838986
+3 0.5153226860090234
+4 0.009589779246059985
+5 0.007350912627320124
+6 0.0035486268518463413
+7 0.0021209149930215042
+8 0.0005717488765507296
+9 0.0002797770774692588
+10 0.00021336994864095576
+11 0.0001269098915023725
+12 8.573776844954783e-05
+12 8.573776844950677e-05
+0 2 (84, 12)
+2 0.0035647857619851087
+3 0.0033457008109511383
+4 0.0006267867856997178
+5 0.00011752298698032912
+6 0.00010875721417486648
+7 9.662980327989137e-05
+7 9.662980327989089e-05
+0 3 (84, 7)
+2 0.0013462317210698276
+3 0.000342663515108036
+4 7.598085131160144e-05
+4 7.598085131160151e-05
+0 4 (84, 4)
+2 4.672981982166079e-05
+2 4.6729819821660787e-05
+0 5 (84, 2)
+
+
+* 20, 0.000852200984954834, 2.1713608911769334e-05
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq40_1S0_Vqqo.npz
+Done in 0.09103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1S0_Vkqo.npz
+Done in 0.00247 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1S0_Vko.npz
+Done in 0.00176 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vqqo.npz
+Done in 0.00289 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vkqo.npz
+Done in 0.00201 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vko.npz
+Done in 0.00111 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vqqo.npz
+Done in 0.00318 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vkqo.npz
+Done in 0.00214 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vko.npz
+Done in 0.00103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vqqo.npz
+Done in 0.00265 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vkqo.npz
+Done in 0.00173 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vko.npz
+Done in 0.00099 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vqqo.npz
+Done in 0.00266 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vkqo.npz
+Done in 0.00186 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vqqo.npz
+Done in 0.00204 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vkqo.npz
+Done in 0.00162 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vko.npz
+Done in 0.00108 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vqqo.npz
+Done in 0.00216 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vkqo.npz
+Done in 0.00206 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vko.npz
+Done in 0.00102 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vqqo.npz
+Done in 0.00318 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vkqo.npz
+Done in 0.00159 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vko.npz
+Done in 0.00123 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vqqo.npz
+Done in 0.00221 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vkqo.npz
+Done in 0.00184 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vko.npz
+Done in 0.00125 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vqqo.npz
+Done in 0.00286 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vkqo.npz
+Done in 0.00180 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vko.npz
+Done in 0.00131 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vqqo.npz
+Done in 0.00323 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vkqo.npz
+Done in 0.00179 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vko.npz
+Done in 0.00144 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vqqo.npz
+Done in 0.00231 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vkqo.npz
+Done in 0.00172 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vqqo.npz
+Done in 0.00218 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vkqo.npz
+Done in 0.00173 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vko.npz
+Done in 0.00134 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vqqo.npz
+Done in 0.00215 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vkqo.npz
+Done in 0.00199 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vko.npz
+Done in 0.00102 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vqqo.npz
+Done in 0.00420 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vkqo.npz
+Done in 0.00429 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vko.npz
+Done in 0.00179 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vqqo.npz
+Done in 0.00417 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vkqo.npz
+Done in 0.00209 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vko.npz
+Done in 0.00118 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vqqo.npz
+Done in 0.00307 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vkqo.npz
+Done in 0.00208 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vko.npz
+Done in 0.00124 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vqqo.npz
+Done in 0.00338 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vkqo.npz
+Done in 0.00225 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vko.npz
+Done in 0.00118 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vqqo.npz
+Done in 0.00411 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vkqo.npz
+Done in 0.00218 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vko.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vqqo.npz
+Done in 0.00337 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vkqo.npz
+Done in 0.00212 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vko.npz
+Done in 0.00108 sec. Valid: True.
+
+(500, 12)
+***
+2 0.34357938264037624
+3 0.0667270875661752
+4 0.015330163387447485
+5 0.0020055620304810073
+6 0.0013069871431066467
+7 0.0001165286887635531
+8 8.639255134599469e-06
+0 0 (41, 8)
+2 0.10574167764203637
+3 0.10017069234297417
+4 0.0018805815995533992
+5 0.0005116803042673946
+6 0.00020341273269491815
+7 1.0830725481621114e-05
+0 1 (41, 7)
+2 0.5082105908642559
+3 0.10117243054198718
+4 0.003701956608508383
+5 0.005169829447934913
+6 0.0004030263663277465
+7 7.186367254334695e-05
+0 2 (41, 7)
+2 0.06569733283796973
+3 0.014803036018061221
+4 0.00382034606821563
+5 0.00037454250038563593
+6 5.220837112203161e-05
+0 3 (41, 6)
+2 0.06805717759601362
+3 0.0036936078590024362
+4 0.0007150942986149147
+5 0.00025175389680770016
+6 2.2687133357917995e-05
+0 4 (41, 6)
+2 0.7883401295144531
+3 0.09000932731264547
+4 0.004026708044155207
+5 0.0009652476822189179
+6 8.259313644490334e-05
+0 5 (41, 6)
+2 0.003864202306757424
+3 0.00037255406369350304
+4 0.0001781277344538974
+5 1.0838228685793587e-05
+0 6 (41, 5)
+2 0.0022129658045024593
+3 0.00021606998588788622
+4 3.288043091616941e-05
+0 7 (41, 4)
+2 0.0003978508315802552
+3 1.532907541907663e-05
+0 8 (41, 3)
+2 0.0018368966590668185
+3 6.1011745338786406e-05
+0 9 (41, 3)
+2 2.6865665397954724e-05
+0 10 (41, 2)
+2 1.6300945127408244e-05
+0 11 (41, 2)
+2 1.4491008413219327e-06
+0 12 (41, 2)
+2 1.2804955083234572e-05
+0 13 (41, 2)
+2 0.4941030607133626
+3 0.4863365182634896
+4 0.10793449278832673
+5 0.055461078374857274
+6 0.04796485744187045
+7 0.029843910963123763
+8 0.017515587944425298
+9 0.008433513253961864
+10 0.005711627056591243
+11 0.003804311878118287
+12 0.004147298113678808
+13 0.0017485143877009237
+14 0.001387398230567892
+15 0.0008578723479606661
+16 0.0008185462884928052
+17 0.0002743622400020265
+18 0.0002324210818556043
+19 0.0001434716777925529
+20 0.00010916910463123328
+21 7.887410098970158e-05
+21 7.887410098965885e-05
+0 0 (164, 21)
+2 0.25126471441351006
+3 0.3246047288113727
+4 0.0935682170402497
+5 0.01938302365544601
+6 0.009493303398934446
+7 0.008933920972245395
+8 0.006348694290403388
+9 0.0017621829671819597
+10 0.001490783015951157
+11 0.000550944772708468
+12 0.0005261849482934213
+13 0.0004158559845664748
+14 0.00010658138954620449
+15 9.467338523725214e-05
+15 9.467338523725972e-05
+0 1 (164, 15)
+2 0.5519403815102806
+3 0.7474573562595328
+4 0.013667962051731536
+5 0.008917546133800894
+6 0.004684559360592561
+7 0.003041983275319047
+8 0.0008440616244650178
+9 0.00045200312578597536
+10 0.0003581694188014947
+11 0.00026979779748509007
+12 0.00015505973607363472
+13 0.00016221472855215032
+14 5.7097633035352035e-05
+14 5.709763303536382e-05
+0 2 (164, 14)
+2 0.005099828086075695
+3 0.004678161939692082
+4 0.0010011021010730323
+5 0.00017896338263048765
+6 0.00014615649388973888
+7 0.00010173386118451623
+8 6.489983445291377e-05
+8 6.489983445291493e-05
+0 3 (164, 8)
+2 0.0018703880785462769
+3 0.00047131369799465324
+4 0.00017535622986406037
+5 5.594171315816726e-05
+5 5.594171315816647e-05
+0 4 (164, 5)
+2 6.729807842645635e-05
+2 6.729807842645637e-05
+0 5 (164, 2)
+
+
+* 40, 0.0016673779487609863, 2.412549124542228e-05
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq60_1S0_Vqqo.npz
+Done in 0.09938 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1S0_Vkqo.npz
+Done in 0.00553 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1S0_Vko.npz
+Done in 0.00142 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vqqo.npz
+Done in 0.00321 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vkqo.npz
+Done in 0.00209 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vko.npz
+Done in 0.00108 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vqqo.npz
+Done in 0.00268 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vkqo.npz
+Done in 0.00178 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vko.npz
+Done in 0.00130 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vqqo.npz
+Done in 0.00287 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vkqo.npz
+Done in 0.00238 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vko.npz
+Done in 0.00102 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vqqo.npz
+Done in 0.00235 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vkqo.npz
+Done in 0.00186 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vko.npz
+Done in 0.00094 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vqqo.npz
+Done in 0.00327 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vkqo.npz
+Done in 0.00160 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vko.npz
+Done in 0.00141 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vqqo.npz
+Done in 0.00299 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vkqo.npz
+Done in 0.00180 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vko.npz
+Done in 0.00130 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vqqo.npz
+Done in 0.00230 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vkqo.npz
+Done in 0.00181 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vko.npz
+Done in 0.00087 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vqqo.npz
+Done in 0.00265 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vkqo.npz
+Done in 0.00283 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vqqo.npz
+Done in 0.00316 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vkqo.npz
+Done in 0.00177 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vko.npz
+Done in 0.00124 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vqqo.npz
+Done in 0.00283 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vkqo.npz
+Done in 0.00224 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vko.npz
+Done in 0.00095 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vqqo.npz
+Done in 0.00257 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vkqo.npz
+Done in 0.00178 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vko.npz
+Done in 0.00091 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vqqo.npz
+Done in 0.00230 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vkqo.npz
+Done in 0.00224 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vko.npz
+Done in 0.00107 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vqqo.npz
+Done in 0.00278 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vkqo.npz
+Done in 0.00192 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vqqo.npz
+Done in 0.00627 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vkqo.npz
+Done in 0.00914 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vko.npz
+Done in 0.00140 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vqqo.npz
+Done in 0.00459 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vkqo.npz
+Done in 0.01272 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vko.npz
+Done in 0.00103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vqqo.npz
+Done in 0.00457 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vkqo.npz
+Done in 0.00352 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vqqo.npz
+Done in 0.00420 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vkqo.npz
+Done in 0.00333 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vko.npz
+Done in 0.00092 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vqqo.npz
+Done in 0.00497 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vkqo.npz
+Done in 0.00317 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vko.npz
+Done in 0.00120 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vqqo.npz
+Done in 0.00545 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vkqo.npz
+Done in 0.00275 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vko.npz
+Done in 0.00105 sec. Valid: True.
+
+(500, 12)
+***
+2 0.42283438242047505
+3 0.0815371447145134
+4 0.018762379263233434
+5 0.0024659131975001683
+6 0.001607090904651615
+7 0.00015826090754402538
+8 9.678217180136689e-06
+0 0 (61, 8)
+2 0.1299643827075906
+3 0.12173716663965656
+4 0.002299546534625197
+5 0.0006061921912382499
+6 0.00024094171752116035
+7 1.3732145562078389e-05
+0 1 (61, 7)
+2 0.6204387350603006
+3 0.1230308696820517
+4 0.004124308228663071
+5 0.00628489222744785
+6 0.00047540281996985405
+7 7.713953611282325e-05
+0 2 (61, 7)
+2 0.07956729559082212
+3 0.018271857319182544
+4 0.004676425197471083
+5 0.00044395180484122816
+6 6.158899422203922e-05
+0 3 (61, 6)
+2 0.08325340633491128
+3 0.004504034665302096
+4 0.0008998749372656016
+5 0.0003172834962084676
+6 2.7801933200006267e-05
+0 4 (61, 6)
+2 0.9605017415281587
+3 0.11143105167880701
+4 0.00482717032404223
+5 0.0012577389381532612
+6 0.00010140837665767964
+7 2.282944152942587e-05
+0 5 (61, 7)
+2 0.004726889374294599
+3 0.00045732955074725235
+4 0.00020615350929572944
+5 1.2869751153793356e-05
+0 6 (61, 5)
+2 0.002724565527704362
+3 0.00026419374162191364
+4 3.9022606755178104e-05
+0 7 (61, 4)
+2 0.0004907370839310836
+3 1.8497613100200616e-05
+0 8 (61, 3)
+2 0.0022501578215235467
+3 7.478916669843094e-05
+0 9 (61, 3)
+2 3.300199454292064e-05
+0 10 (61, 2)
+2 1.9966500446983582e-05
+0 11 (61, 2)
+2 1.7712742576545521e-06
+0 12 (61, 2)
+2 1.566011962019138e-05
+0 13 (61, 2)
+2 0.5972898731785059
+3 0.5933320346697047
+4 0.13283874192854542
+5 0.06797765059476016
+6 0.058446002843079464
+7 0.03665530894002881
+8 0.021494356965732982
+9 0.0103356216480278
+10 0.007032603522947624
+11 0.004675244562369637
+12 0.005099002847183128
+13 0.0021310940137493034
+14 0.001739426192920821
+15 0.0011621770658489545
+16 0.0009258301555138795
+17 0.00035124463394539077
+18 0.0002907342679531244
+19 0.00015410915300986472
+20 0.0001320485180030776
+21 9.436784907453177e-05
+21 9.436784907444889e-05
+0 0 (244, 21)
+2 0.3065802628016108
+3 0.3968189291067522
+4 0.114558428906922
+5 0.023874022629858126
+6 0.011613137031029569
+7 0.0109124019195579
+8 0.007784401404333042
+9 0.0021466242206795057
+10 0.0018337253580005565
+11 0.0006742732644074144
+12 0.0006342585287833053
+13 0.0005006804470732794
+14 0.00012823216036992246
+15 0.00010422707555812129
+16 9.59061870629862e-05
+16 9.590618706299098e-05
+0 1 (244, 16)
+2 0.6730236239944672
+3 0.9146162834603722
+4 0.016754785476288742
+5 0.010941190602698074
+6 0.005734259657424737
+7 0.0037024067214828454
+8 0.001049666624038245
+9 0.0005654748736226921
+10 0.00044213748950265607
+11 0.00033511206863566013
+12 0.0001900913149152856
+13 0.00020069141658042214
+14 7.051967753167109e-05
+14 7.051967753166839e-05
+0 2 (244, 14)
+2 0.006266096929709001
+3 0.005754498942711919
+4 0.001222225580169693
+5 0.000220244372947808
+6 0.00017808451162722985
+7 0.00012285719291834683
+8 7.91900690499647e-05
+8 7.919006904996695e-05
+0 3 (244, 8)
+2 0.002303707765722896
+3 0.0005796342151144263
+4 0.00021569388784409166
+5 6.86005607380212e-05
+5 6.860056073802223e-05
+0 4 (244, 5)
+2 8.29436489760601e-05
+2 8.294364897606013e-05
+0 5 (244, 2)
+
+
+* 60, 0.0020357227325439454, 2.2875343750732523e-05
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq80_1S0_Vqqo.npz
+Done in 0.09303 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1S0_Vkqo.npz
+Done in 0.00921 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1S0_Vko.npz
+Done in 0.00175 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vqqo.npz
+Done in 0.00418 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vkqo.npz
+Done in 0.00217 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vko.npz
+Done in 0.00132 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vqqo.npz
+Done in 0.00417 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vkqo.npz
+Done in 0.00215 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vqqo.npz
+Done in 0.00381 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vkqo.npz
+Done in 0.00214 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vko.npz
+Done in 0.00122 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vqqo.npz
+Done in 0.00374 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vkqo.npz
+Done in 0.00235 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vko.npz
+Done in 0.00129 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vqqo.npz
+Done in 0.00309 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vkqo.npz
+Done in 0.00236 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vko.npz
+Done in 0.00103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vqqo.npz
+Done in 0.00334 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vkqo.npz
+Done in 0.00190 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vqqo.npz
+Done in 0.00322 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vkqo.npz
+Done in 0.00190 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vko.npz
+Done in 0.00159 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vqqo.npz
+Done in 0.00382 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vkqo.npz
+Done in 0.00190 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vko.npz
+Done in 0.00124 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vqqo.npz
+Done in 0.00407 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vkqo.npz
+Done in 0.00218 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vko.npz
+Done in 0.00119 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vqqo.npz
+Done in 0.00412 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vkqo.npz
+Done in 0.00189 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vko.npz
+Done in 0.00158 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vqqo.npz
+Done in 0.00296 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vkqo.npz
+Done in 0.00200 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vko.npz
+Done in 0.00091 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vqqo.npz
+Done in 0.00278 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vkqo.npz
+Done in 0.00212 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vko.npz
+Done in 0.00113 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vqqo.npz
+Done in 0.00288 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vkqo.npz
+Done in 0.00206 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vko.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vqqo.npz
+Done in 0.00680 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vkqo.npz
+Done in 0.01633 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vko.npz
+Done in 0.00177 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vqqo.npz
+Done in 0.00741 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vkqo.npz
+Done in 0.00672 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vko.npz
+Done in 0.00105 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vqqo.npz
+Done in 0.00708 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vkqo.npz
+Done in 0.00344 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vqqo.npz
+Done in 0.00772 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vkqo.npz
+Done in 0.00371 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vko.npz
+Done in 0.00113 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vqqo.npz
+Done in 0.00780 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vkqo.npz
+Done in 0.00365 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vqqo.npz
+Done in 0.00752 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vkqo.npz
+Done in 0.00386 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vko.npz
+Done in 0.00122 sec. Valid: True.
+
+(500, 12)
+***
+2 0.4892878291858128
+3 0.09403499944246742
+4 0.021623661195925712
+5 0.0028383850307747214
+6 0.0018522676103881863
+7 0.00018212925840082288
+8 1.1139067703915434e-05
+0 0 (81, 8)
+2 0.15033916040977377
+3 0.14006172332241815
+4 0.002645851877575967
+5 0.0006978063693834709
+6 0.00027738720766825535
+7 1.5810921369359978e-05
+0 1 (81, 7)
+2 0.7153916275004049
+3 0.14176990334444792
+4 0.004750769033310639
+5 0.007244197881067164
+6 0.0005475415280249068
+7 8.882005847738097e-05
+0 2 (81, 7)
+2 0.0913349476504495
+3 0.021175454785729356
+4 0.0053848830202410805
+5 0.0005112086591019316
+6 7.093401069764376e-05
+0 3 (81, 6)
+2 0.09606687193680469
+3 0.005198852999418084
+4 0.0010358019724675564
+5 0.0003653624761860869
+6 3.199708400048993e-05
+0 4 (81, 6)
+2 1.1057192894759114
+3 0.1293600580197178
+4 0.005561602176990226
+5 0.0014475548543775288
+6 0.00011660194107062181
+7 2.6223785286254483e-05
+0 5 (81, 7)
+2 0.005457559490106409
+3 0.0005270908757555795
+4 0.00023756752214403626
+5 1.4824404835502707e-05
+0 6 (81, 5)
+2 0.003154299913807811
+3 0.0003044163654596712
+4 4.493564666381341e-05
+0 7 (81, 4)
+2 0.0005686748128665468
+3 2.1298257000433892e-05
+0 8 (81, 3)
+2 0.002600526950289842
+3 8.608812986723785e-05
+0 9 (81, 3)
+2 3.81972738109136e-05
+0 10 (81, 2)
+2 2.307871343974579e-05
+0 11 (81, 2)
+2 2.0414795635311434e-06
+0 12 (81, 2)
+2 1.8035585410458234e-05
+0 13 (81, 2)
+2 0.6851232216181828
+3 0.683627218788813
+4 0.1537706569448117
+5 0.0785214942235595
+6 0.0673399078491541
+7 0.04238403617474865
+8 0.024836688492718664
+9 0.011928340775975651
+10 0.008121581572406047
+11 0.0053928460661110235
+12 0.005892341782122048
+13 0.002454871898264124
+14 0.0020071705230611174
+15 0.0013390957376247588
+16 0.0010681919229161355
+17 0.00040512831244224643
+18 0.0003354979306555375
+19 0.00017745229755134894
+20 0.00015207181497328034
+21 0.00010876955048258447
+22 5.899475516890369e-05
+22 5.899475516891378e-05
+0 0 (324, 22)
+2 0.35332054486798503
+3 0.457769103397704
+4 0.1322730472192051
+5 0.02763574938688757
+6 0.013396000834938285
+7 0.012575571078861814
+8 0.008981625392628322
+9 0.002479851672648113
+10 0.002121052633008724
+11 0.0007778909673993809
+12 0.0007321576315281376
+13 0.00057650213359997
+14 0.00014771648863051078
+15 0.00012000066435026034
+16 0.000110412099602897
+17 7.062793486512283e-05
+17 7.062793486512437e-05
+0 1 (324, 17)
+2 0.7751799180527288
+3 1.0552615733322166
+4 0.019385632999853165
+5 0.012646865015827641
+6 0.006609743749435674
+7 0.004263865646433973
+8 0.0012098811238168401
+9 0.0006520114248736323
+10 0.000509947430495769
+11 0.00038642185336817736
+12 0.00021881061280905461
+13 0.00023201029092983588
+14 8.159671785469071e-05
+14 8.159671785469495e-05
+0 2 (324, 14)
+2 0.007245985564942314
+3 0.0066599897352181605
+4 0.00140802064770185
+5 0.0002542384176764611
+6 0.00020537082109694388
+7 0.00014150827825702703
+8 9.144449230192191e-05
+8 9.144449230192747e-05
+0 3 (324, 8)
+2 0.002667503779645959
+3 0.0006708114068394409
+4 0.0002487954377368555
+5 7.905063052693448e-05
+5 7.905063052693411e-05
+0 4 (324, 5)
+2 9.608822318671918e-05
+2 9.60882231867192e-05
+0 5 (324, 2)
+
+
+* 80, 0.0022990822792053225, 2.2793465169887608e-05
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq100_1S0_Vqqo.npz
+Done in 0.10018 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1S0_Vkqo.npz
+Done in 0.01456 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1S0_Vko.npz
+Done in 0.00176 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vqqo.npz
+Done in 0.00505 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vkqo.npz
+Done in 0.00273 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vko.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vqqo.npz
+Done in 0.00442 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vkqo.npz
+Done in 0.00228 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vko.npz
+Done in 0.00112 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vqqo.npz
+Done in 0.00393 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vkqo.npz
+Done in 0.00301 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vko.npz
+Done in 0.00092 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vqqo.npz
+Done in 0.00401 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vkqo.npz
+Done in 0.00284 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vko.npz
+Done in 0.00132 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vqqo.npz
+Done in 0.00455 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vkqo.npz
+Done in 0.00235 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vko.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vqqo.npz
+Done in 0.00323 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vkqo.npz
+Done in 0.00226 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vko.npz
+Done in 0.00125 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vqqo.npz
+Done in 0.00361 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vkqo.npz
+Done in 0.00238 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vko.npz
+Done in 0.00121 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vqqo.npz
+Done in 0.00361 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vkqo.npz
+Done in 0.00219 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vko.npz
+Done in 0.00109 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vqqo.npz
+Done in 0.00312 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vkqo.npz
+Done in 0.00246 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vko.npz
+Done in 0.00109 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vqqo.npz
+Done in 0.00471 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vkqo.npz
+Done in 0.00235 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vko.npz
+Done in 0.00093 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vqqo.npz
+Done in 0.00438 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vkqo.npz
+Done in 0.00236 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vko.npz
+Done in 0.00136 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vqqo.npz
+Done in 0.00376 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vkqo.npz
+Done in 0.00226 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vko.npz
+Done in 0.00103 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vqqo.npz
+Done in 0.00374 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vkqo.npz
+Done in 0.00242 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vko.npz
+Done in 0.00121 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vqqo.npz
+Done in 0.01028 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vkqo.npz
+Done in 0.02506 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vko.npz
+Done in 0.00238 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vqqo.npz
+Done in 0.00889 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vkqo.npz
+Done in 0.01709 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vko.npz
+Done in 0.00130 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vqqo.npz
+Done in 0.00855 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vkqo.npz
+Done in 0.00612 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vqqo.npz
+Done in 0.00896 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vkqo.npz
+Done in 0.00697 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vko.npz
+Done in 0.00105 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vqqo.npz
+Done in 0.00842 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vkqo.npz
+Done in 0.00606 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vko.npz
+Done in 0.00098 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vqqo.npz
+Done in 0.00802 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vkqo.npz
+Done in 0.00589 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vko.npz
+Done in 0.00120 sec. Valid: True.
+
+(500, 12)
+***
+2 0.5477156279806857
+3 0.10505728874663359
+4 0.024148982648809558
+5 0.00316749065314898
+6 0.002068602670473605
+7 0.00020323721384480855
+8 1.2430272263905216e-05
+0 0 (101, 8)
+2 0.16825535228659372
+3 0.15625231690634386
+4 0.002951955212464632
+5 0.000778777961667163
+6 0.0003095906377217014
+7 1.764647422000544e-05
+0 1 (101, 7)
+2 0.7991373489707104
+3 0.15829806856564477
+4 0.005303445904303085
+5 0.008090309480977494
+6 0.000611153029602343
+7 9.913327926677255e-05
+0 2 (101, 7)
+2 0.10174095667678511
+3 0.023726015959960784
+4 0.006010509569878571
+5 0.0005705796126120962
+6 7.917707941680482e-05
+0 3 (101, 6)
+2 0.10736002868295728
+3 0.005810984186847645
+4 0.0011558634275865148
+5 0.0004078303235893381
+6 3.570669680510177e-05
+0 4 (101, 6)
+2 1.2339697054985421
+3 0.14510361035105032
+4 0.0062107495366418575
+5 0.0016154887367894704
+6 0.0001300656888779515
+7 2.9232138670054227e-05
+0 5 (101, 7)
+2 0.006101021201852899
+3 0.0005886481124782973
+4 0.00026526691103850457
+5 1.6547597010793892e-05
+0 6 (101, 5)
+2 0.0035320366040637063
+3 0.00033991809890637374
+4 5.0154701063029455e-05
+0 7 (101, 4)
+2 0.0006371380703332324
+3 2.377181083756444e-05
+0 8 (101, 3)
+2 0.002908932690378647
+3 9.607333211682357e-05
+0 9 (101, 3)
+2 4.276603841742853e-05
+0 10 (101, 2)
+2 2.5818546662530292e-05
+0 11 (101, 2)
+2 2.2799590322386153e-06
+0 12 (101, 2)
+2 2.0133726772145244e-05
+0 13 (101, 2)
+2 0.7629069150634541
+3 0.7633102005756097
+4 0.17217304634633815
+5 0.08780805663897696
+6 0.07519081741664682
+7 0.04742639971618299
+8 0.027779687204610083
+9 0.013332307897145304
+10 0.009081104603920266
+11 0.006025762281089248
+12 0.006590805739421748
+13 0.002740960749788218
+14 0.0022432672162938086
+15 0.0014951589430043963
+16 0.0011937213282793963
+17 0.0004526152462818896
+18 0.00037494066610798
+19 0.00019811624631171758
+20 0.00016975944160284873
+21 0.00012148246724428024
+22 6.58554041527205e-05
+22 6.585540415256361e-05
+0 0 (404, 22)
+2 0.39455339040465176
+3 0.5115058931048325
+4 0.14787353713253115
+5 0.030943162097576398
+6 0.014967840468777518
+7 0.0140433767020457
+8 0.010038065695243322
+9 0.002773343191168026
+10 0.002373828597725909
+11 0.000869252077432193
+12 0.0008184252692577874
+13 0.0006434669213684965
+14 0.0001649163878549526
+15 0.00013393337898749515
+16 0.00012322873560292001
+17 7.883310597635417e-05
+17 7.883310597637033e-05
+0 1 (404, 17)
+2 0.8653497584439119
+3 1.1792243648878138
+4 0.021699643887517998
+5 0.0141484425556171
+6 0.007381830918404377
+7 0.00475979762031017
+8 0.0013512701919428335
+9 0.0007283531803438005
+10 0.0005697208017588933
+11 0.00043167818848148266
+12 0.0002442053971744296
+13 0.0002595878756983684
+14 9.133696140374132e-05
+14 9.133696140375094e-05
+0 2 (404, 14)
+2 0.008108178285584041
+3 0.007456206138362424
+4 0.001572054243081673
+5 0.0002841943156976407
+6 0.00022943870265532525
+7 0.00015797588835135104
+8 0.00010223831884522773
+9 3.896858121847762e-05
+9 3.896858121847748e-05
+0 3 (404, 9)
+2 0.0029872558548870495
+3 0.0007509944642572371
+4 0.0002779766030577074
+5 8.827493165919669e-05
+5 8.827493165919836e-05
+0 4 (404, 5)
+2 0.00010763870232700818
+3 6.11834576495159e-05
+3 6.118345764951591e-05
+0 5 (404, 3)
+
+
+* 100, 0.00236189603805542, 1.547894238609372e-05
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq120_1S0_Vqqo.npz
+Done in 0.10387 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1S0_Vkqo.npz
+Done in 0.02019 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1S0_Vko.npz
+Done in 0.00176 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vqqo.npz
+Done in 0.00616 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vkqo.npz
+Done in 0.00406 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vko.npz
+Done in 0.00100 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vqqo.npz
+Done in 0.01083 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vkqo.npz
+Done in 0.00358 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vko.npz
+Done in 0.00119 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vqqo.npz
+Done in 0.00600 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vkqo.npz
+Done in 0.00420 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vko.npz
+Done in 0.00121 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vqqo.npz
+Done in 0.00569 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vkqo.npz
+Done in 0.00351 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vko.npz
+Done in 0.00095 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vqqo.npz
+Done in 0.00471 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vkqo.npz
+Done in 0.00496 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vko.npz
+Done in 0.00121 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vqqo.npz
+Done in 0.00639 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vkqo.npz
+Done in 0.00297 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vko.npz
+Done in 0.00099 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vqqo.npz
+Done in 0.00543 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vkqo.npz
+Done in 0.00382 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vko.npz
+Done in 0.00104 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vqqo.npz
+Done in 0.00621 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vkqo.npz
+Done in 0.00414 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vko.npz
+Done in 0.00097 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vqqo.npz
+Done in 0.00566 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vkqo.npz
+Done in 0.00379 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vko.npz
+Done in 0.00111 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vqqo.npz
+Done in 0.00625 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vkqo.npz
+Done in 0.00356 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vko.npz
+Done in 0.00099 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vqqo.npz
+Done in 0.00566 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vkqo.npz
+Done in 0.00323 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vqqo.npz
+Done in 0.00454 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vkqo.npz
+Done in 0.00374 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vko.npz
+Done in 0.00106 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vqqo.npz
+Done in 0.00606 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vkqo.npz
+Done in 0.00400 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vqqo.npz
+Done in 0.01280 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vkqo.npz
+Done in 0.03584 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vko.npz
+Done in 0.00253 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vqqo.npz
+Done in 0.01468 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vkqo.npz
+Done in 0.01912 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vko.npz
+Done in 0.00138 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vqqo.npz
+Done in 0.01013 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vkqo.npz
+Done in 0.00910 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vko.npz
+Done in 0.00099 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vqqo.npz
+Done in 0.00792 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vkqo.npz
+Done in 0.01005 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vqqo.npz
+Done in 0.00933 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vkqo.npz
+Done in 0.00951 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vko.npz
+Done in 0.00129 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vqqo.npz
+Done in 0.00789 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vkqo.npz
+Done in 0.00867 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vko.npz
+Done in 0.00101 sec. Valid: True.
+
+(500, 12)
+***
+2 0.6004748555894703
+3 0.11502857165391607
+4 0.02643444473183685
+5 0.0034655215329319764
+6 0.002264373900204522
+7 0.00022235319231529317
+8 1.35996464849246e-05
+0 0 (121, 8)
+2 0.1844350862048864
+3 0.17091621935040638
+4 0.0032292223318322448
+5 0.0008521043276822813
+6 0.00033875385196984966
+7 1.9308911434805143e-05
+0 1 (121, 7)
+2 0.8749027412038556
+3 0.17325324706469372
+4 0.005803689421748461
+5 0.008855882208297555
+6 0.0006687270105198169
+7 0.00010846798685504743
+8 2.9618988413169942e-05
+0 2 (121, 8)
+2 0.11117254379123392
+3 0.02602767053904634
+4 0.006576958420916044
+5 0.0006243300133711896
+6 8.66388661551103e-05
+0 3 (121, 6)
+2 0.117572605515941
+3 0.006364411573351751
+4 0.0012645711274780122
+5 0.00044627852110905406
+6 3.9066074908706254e-05
+0 4 (121, 6)
+2 1.3500941878544017
+3 0.1593056073679587
+4 0.006798525901387457
+5 0.0017675866086353442
+6 0.00014226761435706943
+7 3.196029512356427e-05
+0 5 (121, 7)
+2 0.006682658013549276
+3 0.0006443546971330634
+4 0.00029033228275822295
+5 1.8107164291888594e-05
+0 6 (121, 5)
+2 0.003873062704525809
+3 0.0003720505830748786
+4 5.4879483918772486e-05
+0 7 (121, 4)
+2 0.0006989209320875213
+3 2.601142482359353e-05
+0 8 (121, 3)
+2 0.0031876017584102283
+3 0.00010511587304903123
+4 3.078014568767194e-05
+0 9 (121, 4)
+2 4.6891811702769976e-05
+0 10 (121, 2)
+2 2.8294369244357177e-05
+0 11 (121, 2)
+2 2.495781105418991e-06
+0 12 (121, 2)
+2 2.203324539223187e-05
+0 13 (121, 2)
+2 0.8334609853479835
+3 0.8354249617112828
+4 0.1887885640647339
+5 0.09620225356255424
+6 0.08229684262654266
+7 0.05198217596917246
+8 0.03043943605657235
+9 0.014601951573909292
+10 0.009948559411744294
+11 0.006598309385205758
+12 0.007222028192419746
+13 0.002999959342054889
+14 0.00245679640893889
+15 0.0016363959520144006
+16 0.0013072601391584935
+17 0.0004955680105800006
+18 0.00041060944500378175
+19 0.00021683103247255891
+20 0.000185773791338119
+21 0.00013298780076201176
+22 7.206515107207161e-05
+22 7.206515107148087e-05
+0 0 (484, 22)
+2 0.43184841705748556
+3 0.5600775775574544
+4 0.1620109789997281
+5 0.03393152902585132
+6 0.016388956794610648
+7 0.01537557829721484
+8 0.010937931525236417
+9 0.0030515242017104412
+10 0.0026022847175160516
+11 0.0009685741958883504
+12 0.0008990682078751938
+13 0.0007043764576438386
+14 0.0002413095189056634
+15 0.00018078935871578163
+16 0.00014118718356646607
+17 0.00010165840853065219
+18 7.399017434230101e-05
+18 7.399017434229733e-05
+0 1 (484, 18)
+2 0.9469692111508549
+3 1.2913345063349517
+4 0.02378954066435122
+5 0.015505307098212118
+6 0.008080466565585675
+7 0.005208787735518083
+8 0.0014792132569725733
+9 0.0007974225234833645
+10 0.0006237889463613375
+11 0.00047261969060039536
+12 0.00026720330182268315
+13 0.0002845067903890239
+14 0.00010013303434601302
+15 4.7067720751334614e-05
+15 4.706772075133954e-05
+0 2 (484, 15)
+2 0.008887056056042614
+3 0.0081751878155789
+4 0.0017205406005308566
+5 0.0003112804986183771
+6 0.00025121286276886455
+7 0.0001728830880979215
+8 0.00011199607491341232
+9 4.2677341474081214e-05
+9 4.267734147408129e-05
+0 3 (484, 9)
+2 0.0032759180146433135
+3 0.0008234030806687728
+4 0.00030437230398872836
+5 9.662375219710732e-05
+5 9.662375219710452e-05
+0 4 (484, 5)
+2 0.00011806415822391619
+3 6.699025940202225e-05
+3 6.699025940202236e-05
+0 5 (484, 3)
+
+
+* 120, 0.002497868537902832, 2.9548079071175062e-05

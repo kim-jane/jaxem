@@ -136,7 +136,7 @@ class Emulator:
         LECs_candidates,
         c: int,
         k: int,
-        n_max: int = 40,  # maximum number of snapshots to select from candidates
+        n_max: int = 100,  # maximum number of snapshots to select from candidates
         tol: float = 1e-5
     ):
     
@@ -218,7 +218,7 @@ class Emulator:
         LECs_candidates,
         cc: int,
         k: int,
-        n_max: int = 40,  # maximum number of snapshots to select from candidates
+        n_max: int = 100,  # maximum number of snapshots to select from candidates
         tol: float = 1e-5
     ):
     
@@ -548,7 +548,7 @@ class Emulator:
         solving the least-squares problem (A C ≈ b) with jnp.linalg.lstsq.
         """
 
-        n_dim = self.solver.n_coupled_dim + 1
+        n_dim = (self.mesh.n_mesh + 1) * 4
         T = jnp.zeros((n_dim, n_max), dtype=jnp.complex128)
 
         # collect n_init snapshots
@@ -566,9 +566,7 @@ class Emulator:
         self.onshell_elems = jnp.array([0, nq + 1, 2 * nq + 2, 3 * nq + 3])
 
         for i in range(n_init, n_max):
-
-            print("\ngreedy iteration =", i)
-
+        
             # orthogonalize current snapshots
             X = self.qr(T)
             X = X.at[:, i:].set(0.0)
@@ -821,7 +819,7 @@ class Emulator:
         LECs_candidates,
         c: int,
         k: int,
-        n_max: int = 40,
+        n_max: int = 100,
         tol: float = 1e-5
     ):
         """

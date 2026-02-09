@@ -1,2 +1,0 @@
-2025-03-08 15:46:52,707 logger initialized and writing to file: output/benchmark_chiral.txt
-2025-03-08 15:46:52,707 >>> SETUP

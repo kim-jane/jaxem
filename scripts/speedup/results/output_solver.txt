@@ -1,0 +1,1972 @@
+/Users/janekim/jaxem/scripts/speedup
+====================================================================================================
+SOLVER
+====================================================================================================
+====================================================================================================
+MESH POINTS =  20
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq20_1S0_Vqqo.npz
+Done in 0.09717 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1S0_Vkqo.npz
+Done in 0.00135 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.23225 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1S0_Vko.npz
+Done in 0.00146 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.21185 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vqqo.npz
+Done in 0.00156 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vkqo.npz
+Done in 0.00073 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.22458 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P0_Vko.npz
+Done in 0.00099 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01150 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vqqo.npz
+Done in 0.00205 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vkqo.npz
+Done in 0.00079 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.23408 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1P1_Vko.npz
+Done in 0.00079 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01244 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vqqo.npz
+Done in 0.00203 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vkqo.npz
+Done in 0.00084 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.23214 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P1_Vko.npz
+Done in 0.00078 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01332 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vqqo.npz
+Done in 0.00185 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vkqo.npz
+Done in 0.00065 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.22395 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1D2_Vko.npz
+Done in 0.00083 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01082 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vqqo.npz
+Done in 0.00216 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vkqo.npz
+Done in 0.00083 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.22857 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3D2_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01250 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vqqo.npz
+Done in 0.00218 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vkqo.npz
+Done in 0.00083 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.31315 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1F3_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01328 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vqqo.npz
+Done in 0.00172 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vkqo.npz
+Done in 0.00079 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.28419 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3F3_Vko.npz
+Done in 0.00111 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01305 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vqqo.npz
+Done in 0.00202 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vkqo.npz
+Done in 0.00078 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.28237 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1G4_Vko.npz
+Done in 0.00144 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01283 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vqqo.npz
+Done in 0.00198 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vkqo.npz
+Done in 0.00083 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.31431 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3G4_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01000 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vqqo.npz
+Done in 0.00166 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vkqo.npz
+Done in 0.00079 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.28197 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1H5_Vko.npz
+Done in 0.00131 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00954 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vqqo.npz
+Done in 0.00195 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vkqo.npz
+Done in 0.00074 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.26194 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3H5_Vko.npz
+Done in 0.00059 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00919 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vqqo.npz
+Done in 0.00202 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vkqo.npz
+Done in 0.00070 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.24697 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_1I6_Vko.npz
+Done in 0.00060 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00956 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vqqo.npz
+Done in 0.00210 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vkqo.npz
+Done in 0.00081 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.24824 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3I6_Vko.npz
+Done in 0.00076 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00883 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vqqo.npz
+Done in 0.00265 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vkqo.npz
+Done in 0.00197 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.16208 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3S1-3D1_Vko.npz
+Done in 0.00131 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.30613 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vqqo.npz
+Done in 0.00282 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vkqo.npz
+Done in 0.00131 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.96895 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3P2-3F2_Vko.npz
+Done in 0.00097 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04371 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vqqo.npz
+Done in 0.00218 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vkqo.npz
+Done in 0.00152 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.97581 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3D3-3G3_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04092 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vqqo.npz
+Done in 0.00227 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vkqo.npz
+Done in 0.00155 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.02831 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3F4-3H4_Vko.npz
+Done in 0.00100 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03988 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vqqo.npz
+Done in 0.00223 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vkqo.npz
+Done in 0.00176 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.02097 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3G5-3I5_Vko.npz
+Done in 0.00102 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03885 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vqqo.npz
+Done in 0.00210 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vkqo.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.94248 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq20_3H6-3K6_Vko.npz
+Done in 0.00119 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03706 sec.
+Writing potential to file: saved_potentials/chiral_Nq20_3H6-3K6_Vko.npz
+
+
+
+!*! 20, 0.013709988594055176, 0.00028244973642114373
+====================================================================================================
+MESH POINTS =  40
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq40_1S0_Vqqo.npz
+Done in 0.08941 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1S0_Vkqo.npz
+Done in 0.00156 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.70284 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1S0_Vko.npz
+Done in 0.00070 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01143 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vqqo.npz
+Done in 0.00215 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vkqo.npz
+Done in 0.00113 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.44831 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P0_Vko.npz
+Done in 0.00100 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01149 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vqqo.npz
+Done in 0.00248 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vkqo.npz
+Done in 0.00111 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.45969 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1P1_Vko.npz
+Done in 0.00100 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01143 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vqqo.npz
+Done in 0.00229 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vkqo.npz
+Done in 0.00111 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.44776 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P1_Vko.npz
+Done in 0.00093 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01180 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vqqo.npz
+Done in 0.00260 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vkqo.npz
+Done in 0.00108 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.44080 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1D2_Vko.npz
+Done in 0.00079 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01114 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vqqo.npz
+Done in 0.00221 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vkqo.npz
+Done in 0.00111 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.44542 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3D2_Vko.npz
+Done in 0.00093 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01099 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vqqo.npz
+Done in 0.00216 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vkqo.npz
+Done in 0.00100 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.59848 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1F3_Vko.npz
+Done in 0.00086 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01184 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vqqo.npz
+Done in 0.00223 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vkqo.npz
+Done in 0.00107 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.55757 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3F3_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01093 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vqqo.npz
+Done in 0.00225 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vkqo.npz
+Done in 0.00108 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.53484 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1G4_Vko.npz
+Done in 0.00098 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00993 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vqqo.npz
+Done in 0.00209 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vkqo.npz
+Done in 0.00117 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.54768 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3G4_Vko.npz
+Done in 0.00089 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00994 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vqqo.npz
+Done in 0.00266 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vkqo.npz
+Done in 0.00109 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.52037 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1H5_Vko.npz
+Done in 0.00141 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00965 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vqqo.npz
+Done in 0.00217 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vkqo.npz
+Done in 0.00098 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.48057 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3H5_Vko.npz
+Done in 0.00102 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00913 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vqqo.npz
+Done in 0.00237 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vkqo.npz
+Done in 0.00110 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.47483 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_1I6_Vko.npz
+Done in 0.00067 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00845 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vqqo.npz
+Done in 0.00236 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vkqo.npz
+Done in 0.00096 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.50049 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3I6_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00893 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vqqo.npz
+Done in 0.00381 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vkqo.npz
+Done in 0.00240 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.91614 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3S1-3D1_Vko.npz
+Done in 0.00130 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03932 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vqqo.npz
+Done in 0.00324 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vkqo.npz
+Done in 0.00141 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.96539 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3P2-3F2_Vko.npz
+Done in 0.00104 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04207 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vqqo.npz
+Done in 0.00423 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vkqo.npz
+Done in 0.00184 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.95222 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3D3-3G3_Vko.npz
+Done in 0.00120 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03980 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vqqo.npz
+Done in 0.00338 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vkqo.npz
+Done in 0.00153 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.22896 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3F4-3H4_Vko.npz
+Done in 0.00099 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04048 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vqqo.npz
+Done in 0.00341 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vkqo.npz
+Done in 0.00155 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.12727 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3G5-3I5_Vko.npz
+Done in 0.00088 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03904 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vqqo.npz
+Done in 0.00305 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vkqo.npz
+Done in 0.00170 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.97892 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq40_3H6-3K6_Vko.npz
+Done in 0.00092 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03845 sec.
+Writing potential to file: saved_potentials/chiral_Nq40_3H6-3K6_Vko.npz
+
+
+
+!*! 40, 0.09266409635543824, 9.594624437148472e-05
+====================================================================================================
+MESH POINTS =  60
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq60_1S0_Vqqo.npz
+Done in 0.09471 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1S0_Vkqo.npz
+Done in 0.00123 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.02021 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1S0_Vko.npz
+Done in 0.00098 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01994 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vqqo.npz
+Done in 0.00268 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vkqo.npz
+Done in 0.00124 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.83037 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P0_Vko.npz
+Done in 0.00069 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01331 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vqqo.npz
+Done in 0.00240 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vkqo.npz
+Done in 0.00140 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.80523 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1P1_Vko.npz
+Done in 0.00068 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01260 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vqqo.npz
+Done in 0.00199 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vkqo.npz
+Done in 0.00152 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.78235 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P1_Vko.npz
+Done in 0.00105 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01229 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vqqo.npz
+Done in 0.00249 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vkqo.npz
+Done in 0.00133 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.67050 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1D2_Vko.npz
+Done in 0.00065 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01461 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vqqo.npz
+Done in 0.00288 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vkqo.npz
+Done in 0.00099 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.72830 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3D2_Vko.npz
+Done in 0.00121 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01376 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vqqo.npz
+Done in 0.00243 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vkqo.npz
+Done in 0.00116 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.97511 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1F3_Vko.npz
+Done in 0.00061 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01299 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vqqo.npz
+Done in 0.00192 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vkqo.npz
+Done in 0.00123 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.84311 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3F3_Vko.npz
+Done in 0.00068 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01105 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vqqo.npz
+Done in 0.00254 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vkqo.npz
+Done in 0.00124 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.80228 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1G4_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01006 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vqqo.npz
+Done in 0.00243 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vkqo.npz
+Done in 0.00102 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.82608 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3G4_Vko.npz
+Done in 0.00067 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01002 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vqqo.npz
+Done in 0.00259 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vkqo.npz
+Done in 0.00147 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.79383 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1H5_Vko.npz
+Done in 0.00055 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01080 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vqqo.npz
+Done in 0.00250 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vkqo.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.75066 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3H5_Vko.npz
+Done in 0.00069 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00931 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vqqo.npz
+Done in 0.00250 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vkqo.npz
+Done in 0.00110 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.68898 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_1I6_Vko.npz
+Done in 0.00119 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00926 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vqqo.npz
+Done in 0.00261 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vkqo.npz
+Done in 0.00137 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.73315 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3I6_Vko.npz
+Done in 0.00067 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00846 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vqqo.npz
+Done in 0.00580 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vkqo.npz
+Done in 0.00245 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.77601 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3S1-3D1_Vko.npz
+Done in 0.00097 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03824 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vqqo.npz
+Done in 0.00527 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vkqo.npz
+Done in 0.00174 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.96009 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3P2-3F2_Vko.npz
+Done in 0.00106 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04348 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vqqo.npz
+Done in 0.00451 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vkqo.npz
+Done in 0.00216 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.92378 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3D3-3G3_Vko.npz
+Done in 0.00094 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04013 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vqqo.npz
+Done in 0.00472 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vkqo.npz
+Done in 0.00224 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.09014 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3F4-3H4_Vko.npz
+Done in 0.00070 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03913 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vqqo.npz
+Done in 0.00452 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vkqo.npz
+Done in 0.00280 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.14617 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3G5-3I5_Vko.npz
+Done in 0.00087 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03830 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vqqo.npz
+Done in 0.00458 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vkqo.npz
+Done in 0.00164 sec. Valid: False.
+Computing potential matrix elements...
+Done in 2.87393 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq60_3H6-3K6_Vko.npz
+Done in 0.00119 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03666 sec.
+Writing potential to file: saved_potentials/chiral_Nq60_3H6-3K6_Vko.npz
+
+
+
+!*! 60, 0.35219042539596557, 0.0013977230276422232
+====================================================================================================
+MESH POINTS =  80
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq80_1S0_Vqqo.npz
+Done in 0.09477 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1S0_Vkqo.npz
+Done in 0.00237 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.15798 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1S0_Vko.npz
+Done in 0.00147 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01115 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vqqo.npz
+Done in 0.00406 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vkqo.npz
+Done in 0.00150 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.88830 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P0_Vko.npz
+Done in 0.00089 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01159 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vqqo.npz
+Done in 0.00391 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vkqo.npz
+Done in 0.00152 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.89590 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1P1_Vko.npz
+Done in 0.00120 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01199 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vqqo.npz
+Done in 0.00319 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vkqo.npz
+Done in 0.00169 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.89055 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P1_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01173 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vqqo.npz
+Done in 0.00290 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vkqo.npz
+Done in 0.00160 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.86783 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1D2_Vko.npz
+Done in 0.00144 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01155 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vqqo.npz
+Done in 0.00301 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vkqo.npz
+Done in 0.00155 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.87710 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3D2_Vko.npz
+Done in 0.00127 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01239 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vqqo.npz
+Done in 0.00316 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vkqo.npz
+Done in 0.00143 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.22881 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1F3_Vko.npz
+Done in 0.00082 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01211 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vqqo.npz
+Done in 0.00320 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vkqo.npz
+Done in 0.00148 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.11057 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3F3_Vko.npz
+Done in 0.00154 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01085 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vqqo.npz
+Done in 0.00309 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vkqo.npz
+Done in 0.00131 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.05003 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1G4_Vko.npz
+Done in 0.00092 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01017 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vqqo.npz
+Done in 0.00292 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vkqo.npz
+Done in 0.00162 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.08617 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3G4_Vko.npz
+Done in 0.00093 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01095 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vqqo.npz
+Done in 0.00377 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vkqo.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.03927 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1H5_Vko.npz
+Done in 0.00161 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00966 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vqqo.npz
+Done in 0.00295 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vkqo.npz
+Done in 0.00144 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.96689 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3H5_Vko.npz
+Done in 0.00103 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00943 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vqqo.npz
+Done in 0.00312 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vkqo.npz
+Done in 0.00158 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.91096 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_1I6_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00899 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vqqo.npz
+Done in 0.00323 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vkqo.npz
+Done in 0.00155 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.96333 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3I6_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00899 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vqqo.npz
+Done in 0.00730 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vkqo.npz
+Done in 0.00230 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.65633 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3S1-3D1_Vko.npz
+Done in 0.00088 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03966 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vqqo.npz
+Done in 0.01029 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vkqo.npz
+Done in 0.00148 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.98032 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3P2-3F2_Vko.npz
+Done in 0.00106 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04217 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vqqo.npz
+Done in 0.00551 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vkqo.npz
+Done in 0.00326 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.88986 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3D3-3G3_Vko.npz
+Done in 0.00103 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03973 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vqqo.npz
+Done in 0.00592 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vkqo.npz
+Done in 0.00223 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.27532 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3F4-3H4_Vko.npz
+Done in 0.00105 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03950 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vqqo.npz
+Done in 0.00579 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vkqo.npz
+Done in 0.00349 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.06494 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3G5-3I5_Vko.npz
+Done in 0.00097 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03797 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vqqo.npz
+Done in 0.00562 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vkqo.npz
+Done in 0.00356 sec. Valid: False.
+Computing potential matrix elements...
+Done in 3.73835 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq80_3H6-3K6_Vko.npz
+Done in 0.00106 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03593 sec.
+Writing potential to file: saved_potentials/chiral_Nq80_3H6-3K6_Vko.npz
+
+
+
+!*! 80, 0.7302975296974182, 0.0007690557148650068
+====================================================================================================
+MESH POINTS =  100
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq100_1S0_Vqqo.npz
+Done in 0.09586 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1S0_Vkqo.npz
+Done in 0.00244 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.38087 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1S0_Vko.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01107 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vqqo.npz
+Done in 0.00552 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vkqo.npz
+Done in 0.00137 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.12202 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P0_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01191 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vqqo.npz
+Done in 0.00356 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vkqo.npz
+Done in 0.00160 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.13400 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1P1_Vko.npz
+Done in 0.00103 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01210 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vqqo.npz
+Done in 0.00348 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vkqo.npz
+Done in 0.00149 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.10616 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P1_Vko.npz
+Done in 0.00065 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01245 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vqqo.npz
+Done in 0.00356 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vkqo.npz
+Done in 0.00154 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.08302 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1D2_Vko.npz
+Done in 0.00135 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01126 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vqqo.npz
+Done in 0.00327 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vkqo.npz
+Done in 0.00189 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.09565 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3D2_Vko.npz
+Done in 0.00082 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01151 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vqqo.npz
+Done in 0.00350 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vkqo.npz
+Done in 0.00146 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.46298 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1F3_Vko.npz
+Done in 0.00103 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01169 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vqqo.npz
+Done in 0.00351 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vkqo.npz
+Done in 0.00189 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.36899 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3F3_Vko.npz
+Done in 0.00086 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01058 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vqqo.npz
+Done in 0.00366 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vkqo.npz
+Done in 0.00171 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.30411 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1G4_Vko.npz
+Done in 0.00104 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01021 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vqqo.npz
+Done in 0.00348 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vkqo.npz
+Done in 0.00231 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.33922 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3G4_Vko.npz
+Done in 0.00118 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01004 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vqqo.npz
+Done in 0.00393 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vkqo.npz
+Done in 0.00158 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.28320 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1H5_Vko.npz
+Done in 0.00069 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00956 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vqqo.npz
+Done in 0.00361 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vkqo.npz
+Done in 0.00155 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.20671 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3H5_Vko.npz
+Done in 0.00087 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00916 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vqqo.npz
+Done in 0.00389 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vkqo.npz
+Done in 0.00258 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.15453 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_1I6_Vko.npz
+Done in 0.00119 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00895 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vqqo.npz
+Done in 0.00332 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vkqo.npz
+Done in 0.00160 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.21924 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3I6_Vko.npz
+Done in 0.00094 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00886 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vqqo.npz
+Done in 0.00934 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vkqo.npz
+Done in 0.00347 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.53231 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3S1-3D1_Vko.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03816 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vqqo.npz
+Done in 0.01274 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vkqo.npz
+Done in 0.00148 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.91053 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3P2-3F2_Vko.npz
+Done in 0.00088 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04288 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vqqo.npz
+Done in 0.00732 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vkqo.npz
+Done in 0.00206 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.90876 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3D3-3G3_Vko.npz
+Done in 0.00089 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03945 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vqqo.npz
+Done in 0.00727 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vkqo.npz
+Done in 0.00196 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.12022 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3F4-3H4_Vko.npz
+Done in 0.00091 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03881 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vqqo.npz
+Done in 0.00741 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vkqo.npz
+Done in 0.00193 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.08418 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3G5-3I5_Vko.npz
+Done in 0.00092 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03750 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vqqo.npz
+Done in 0.00707 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vkqo.npz
+Done in 0.00526 sec. Valid: False.
+Computing potential matrix elements...
+Done in 4.65244 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq100_3H6-3K6_Vko.npz
+Done in 0.00090 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03599 sec.
+Writing potential to file: saved_potentials/chiral_Nq100_3H6-3K6_Vko.npz
+
+
+
+!*! 100, 0.9705554389953613, 0.005873155460355814
+====================================================================================================
+MESH POINTS =  120
+====================================================================================================
+Single channels:
+	0 --- np, 1S0 --- J = 0, S = 0, T = 1, L = 0
+	1 --- np, 3P0 --- J = 0, S = 1, T = 1, L = 1
+	2 --- np, 1P1 --- J = 1, S = 0, T = 0, L = 1
+	3 --- np, 3P1 --- J = 1, S = 1, T = 1, L = 1
+	4 --- np, 1D2 --- J = 2, S = 0, T = 1, L = 2
+	5 --- np, 3D2 --- J = 2, S = 1, T = 0, L = 2
+	6 --- np, 1F3 --- J = 3, S = 0, T = 0, L = 3
+	7 --- np, 3F3 --- J = 3, S = 1, T = 1, L = 3
+	8 --- np, 1G4 --- J = 4, S = 0, T = 1, L = 4
+	9 --- np, 3G4 --- J = 4, S = 1, T = 0, L = 4
+	10 --- np, 1H5 --- J = 5, S = 0, T = 0, L = 5
+	11 --- np, 3H5 --- J = 5, S = 1, T = 1, L = 5
+	12 --- np, 1I6 --- J = 6, S = 0, T = 1, L = 6
+	13 --- np, 3I6 --- J = 6, S = 1, T = 0, L = 6
+Coupled channels:
+	0 --- np, 3S1-3D1 --- J = 1, S = 1, T = 0, L = 0, L' = 2
+	1 --- np, 3P2-3F2 --- J = 2, S = 1, T = 1, L = 1, L' = 3
+	2 --- np, 3D3-3G3 --- J = 3, S = 1, T = 0, L = 2, L' = 4
+	3 --- np, 3F4-3H4 --- J = 4, S = 1, T = 1, L = 3, L' = 5
+	4 --- np, 3G5-3I5 --- J = 5, S = 1, T = 0, L = 4, L' = 6
+	5 --- np, 3H6-3K6 --- J = 6, S = 1, T = 1, L = 5, L' = 7
+Loading file: saved_potentials/chiral_Nq120_1S0_Vqqo.npz
+Done in 0.09998 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1S0_Vkqo.npz
+Done in 0.00243 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.60403 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1S0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1S0_Vko.npz
+Done in 0.00128 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01165 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1S0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vqqo.npz
+Done in 0.00979 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vkqo.npz
+Done in 0.00135 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.34910 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P0_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P0_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01150 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P0_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vqqo.npz
+Done in 0.00434 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vkqo.npz
+Done in 0.00265 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.35530 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1P1_Vko.npz
+Done in 0.00128 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01259 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vqqo.npz
+Done in 0.00453 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vkqo.npz
+Done in 0.00392 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.31056 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P1_Vko.npz
+Done in 0.00120 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01168 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vqqo.npz
+Done in 0.00436 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vkqo.npz
+Done in 0.00215 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.29499 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1D2_Vko.npz
+Done in 0.00103 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01085 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vqqo.npz
+Done in 0.00440 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vkqo.npz
+Done in 0.00297 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.30078 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3D2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3D2_Vko.npz
+Done in 0.00122 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01102 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3D2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vqqo.npz
+Done in 0.00446 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vkqo.npz
+Done in 0.00259 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.73474 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1F3_Vko.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01294 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vqqo.npz
+Done in 0.00460 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vkqo.npz
+Done in 0.00263 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.63909 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3F3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3F3_Vko.npz
+Done in 0.00085 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.01138 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3F3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vqqo.npz
+Done in 0.00439 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vkqo.npz
+Done in 0.00338 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.64429 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1G4_Vko.npz
+Done in 0.00119 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00985 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vqqo.npz
+Done in 0.00444 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vkqo.npz
+Done in 0.00226 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.63243 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3G4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3G4_Vko.npz
+Done in 0.00101 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00983 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3G4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vqqo.npz
+Done in 0.00456 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vkqo.npz
+Done in 0.00199 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.55361 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1H5_Vko.npz
+Done in 0.00091 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00943 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vqqo.npz
+Done in 0.00453 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vkqo.npz
+Done in 0.00212 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.46541 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3H5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3H5_Vko.npz
+Done in 0.00084 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00908 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3H5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vqqo.npz
+Done in 0.00452 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vkqo.npz
+Done in 0.00399 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.44991 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_1I6_Vko.npz
+Done in 0.00120 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00865 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_1I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vqqo.npz
+Done in 0.00503 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vkqo.npz
+Done in 0.00178 sec. Valid: False.
+Computing potential matrix elements...
+Done in 1.47491 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3I6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3I6_Vko.npz
+Done in 0.00094 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.00906 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3I6_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vqqo.npz
+Done in 0.01227 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vkqo.npz
+Done in 0.00256 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.40661 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3S1-3D1_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3S1-3D1_Vko.npz
+Done in 0.00129 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04056 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3S1-3D1_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vqqo.npz
+Done in 0.01133 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vkqo.npz
+Done in 0.00162 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.98172 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P2-3F2_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3P2-3F2_Vko.npz
+Done in 0.00086 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.04101 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3P2-3F2_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vqqo.npz
+Done in 0.00934 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vkqo.npz
+Done in 0.00244 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.86926 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3D3-3G3_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3D3-3G3_Vko.npz
+Done in 0.00109 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03978 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3D3-3G3_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vqqo.npz
+Done in 0.00897 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vkqo.npz
+Done in 0.00660 sec. Valid: False.
+Computing potential matrix elements...
+Done in 6.13489 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3F4-3H4_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3F4-3H4_Vko.npz
+Done in 0.00108 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03906 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3F4-3H4_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vqqo.npz
+Done in 0.00916 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vkqo.npz
+Done in 0.00710 sec. Valid: False.
+Computing potential matrix elements...
+Done in 6.22651 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3G5-3I5_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3G5-3I5_Vko.npz
+Done in 0.00069 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.05849 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3G5-3I5_Vko.npz
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vqqo.npz
+Done in 0.01242 sec. Valid: True.
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vkqo.npz
+Done in 0.00516 sec. Valid: False.
+Computing potential matrix elements...
+Done in 5.65446 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3H6-3K6_Vkqo.npz
+
+Loading file: saved_potentials/chiral_Nq120_3H6-3K6_Vko.npz
+Done in 0.00091 sec. Valid: False.
+Computing potential matrix elements...
+Done in 0.03571 sec.
+Writing potential to file: saved_potentials/chiral_Nq120_3H6-3K6_Vko.npz
+
+    
+
+!*! 120, 1.3076533460617066, 0.003422554200883101

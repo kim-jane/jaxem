@@ -1,3 +1,7 @@
 saved_potentials/*
 output/*
 jaxem/__pycache__/*
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+jaxem.egg-info/
