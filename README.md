@@ -4,7 +4,7 @@
 
 The STREAMLINE members at Ohio University and Ohio State University have developed fast and accurate momentum-space emulators for two-nucleon scattering using an active-learning approach to basis selection.
 
-The corresponding preprint is available at [arXiv:2512.17842].(https://arxiv.org/abs/2512.17842)
+The corresponding preprint is available at [arXiv:2512.17842](https://arxiv.org/abs/2512.17842).
 
 
 ## Cite this work
