@@ -54,11 +54,9 @@ class Emulator:
         n_max=100,
         tol=1e-5
     ):
-        print("***")
     
         if rom == 'g' and mode == 'pod':
         
-            print("g pod")
             def fit_single_channel(LECs, c, k):
                 return self.fit_single_channel_pod_g(LECs_candidates, c, k, n_max=n_max, tol=tol)
                 
@@ -67,7 +65,6 @@ class Emulator:
                 
         elif rom == 'g' and mode == 'greedy':
             
-            print("g greedy")
             def fit_single_channel(LECs, c, k):
                 return self.fit_single_channel_greedy_g(LECs_candidates, c, k, n_init=n_init, n_max=n_max, tol=tol)
                 
@@ -208,9 +205,7 @@ class Emulator:
         self.t_ck[c][k] = jax.jit(emulate_t)
         self.onshell_t_ck[c][k] = jax.jit(emulate_onshell_t)
         self.error_ck[c][k] = jax.jit(estimate_error)
-    
-        print(k, c, X.shape)
-        
+            
 
 
     def fit_coupled_channel_pod_g(
@@ -294,8 +289,6 @@ class Emulator:
         self.t_cck[cc][k] = jax.jit(emulate_t)
         self.onshell_t_cck[cc][k] = jax.jit(emulate_onshell_t)
         self.error_cck[cc][k] = jax.jit(estimate_error)
-        
-        print(k, cc, X.shape)
         
         
 
@@ -385,8 +378,6 @@ class Emulator:
 
             def estimate_error(LECs):
                 return calibration_ratio * estimate_residual(LECs)
-
-            print(i, jnp.max(calibrated_residuals))
             
             if jnp.max(calibrated_residuals) < tol:
                 # recompute final emulator cleanly
@@ -411,7 +402,6 @@ class Emulator:
         self.onshell_t_ck[c][k] = jax.jit(emulate_onshell_t)
         self.error_ck[c][k] = jax.jit(estimate_error)
 
-        print(k, c, X.shape)
         
 
     def fit_coupled_channel_greedy_g(
@@ -504,7 +494,6 @@ class Emulator:
             def estimate_error(LECs):
                 return calibration_ratio * estimate_residual(LECs)
 
-            print(i, jnp.max(calibrated_residuals))
             
             if jnp.max(calibrated_residuals) < tol:
                 # recompute final emulator cleanly
@@ -528,8 +517,6 @@ class Emulator:
         self.t_cck[cc][k] = jax.jit(emulate_t)
         self.onshell_t_cck[cc][k] = jax.jit(emulate_onshell_t)
         self.error_cck[cc][k] = jax.jit(estimate_error)
-
-        print(k, cc, X.shape)
 
 
     def fit_coupled_channel_greedy_lspg(
@@ -622,8 +609,6 @@ class Emulator:
             def estimate_error(LECs):
                 return calibration_ratio * estimate_residual(LECs)
 
-            print(i, jnp.max(calibrated_residuals))
-
             if jnp.max(calibrated_residuals) < tol:
 
                 # recompute X, Y, and reduced operators
@@ -667,7 +652,6 @@ class Emulator:
                 def estimate_error(LECs):
                     return calibration_ratio * estimate_residual(LECs)
 
-                print(i, jnp.max(calibrated_residuals))
                 break
 
         # store emulator
@@ -675,7 +659,6 @@ class Emulator:
         self.onshell_t_cck[cc][k] = jax.jit(emulate_onshell_t)
         self.error_cck[cc][k] = jax.jit(estimate_error)
 
-        print(k, cc, X.shape)
 
 
     def fit_single_channel_greedy_lspg(
@@ -761,7 +744,6 @@ class Emulator:
             def estimate_error(LECs):
                 return calibration_ratio * estimate_residual(LECs)
 
-            print(i, jnp.max(calibrated_residuals))
 
             if jnp.max(calibrated_residuals) < tol:
                 # recompute final X,Y and reduced ops using basis up to i
@@ -811,7 +793,6 @@ class Emulator:
         self.onshell_t_ck[c][k] = jax.jit(emulate_onshell_t)
         self.error_ck[c][k] = jax.jit(estimate_error)
 
-        print(k, c, X.shape)
 
 
     def fit_single_channel_pod_lspg(
@@ -886,7 +867,6 @@ class Emulator:
         self.onshell_t_ck[c][k] = jax.jit(emulate_onshell_t)
         self.error_ck[c][k] = jax.jit(estimate_error)
 
-        print(k, c, X.shape)
 
 
     def fit_coupled_channel_pod_lspg(
@@ -964,7 +944,6 @@ class Emulator:
         self.onshell_t_cck[cc][k] = jax.jit(emulate_onshell_t)
         self.error_cck[cc][k] = jax.jit(estimate_error)
 
-        print(k, cc, X.shape)
 
     @partial(jax.jit, static_argnames=("self"))
     def t(
