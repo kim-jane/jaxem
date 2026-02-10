@@ -1,5 +1,27 @@
 # jaxem
 
+![STREAMLINE logo](streamline.png)
+
+The STREAMLINE members at Ohio University and Ohio State University have developed fast and accurate momentum-space emulators for two-nucleon scattering using an active-learning approach to basis selection.
+
+The corresponding preprint is available at [arXiv:2512.17842].(https://arxiv.org/abs/2512.17842)
+
+
+## Cite this work
+
+Please use the following BibTeX entry to cite this work: 
+
+```bibtex
+@article{Giri:2025pkw,
+  author        = {Giri, A. and Kim, J. and Drischler, C. and Elster, C.},
+  title         = {{Active learning emulators for nuclear two-body scattering}},
+  eprint        = {2512.17842},
+  archivePrefix = {arXiv},
+  primaryClass  = {nucl-th},
+  month         = {12},
+  year          = {2025}
+}
+```
 
 ## Setting up a virtual environment
 
@@ -12,7 +34,7 @@ Then, Create a new virtual environment and activate:
 
 ## Install the dependencies
 
-Simply type:
+Simply run:
 `pip install -e .`
 
 
